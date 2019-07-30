@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="./js/artTemplate.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		
+		<!-- 编辑子模板 -->
+		<script type="text/html" id="son">
+			<ul>
+				{{each list val ind}}
+				<li>
+					<span>{{val}}</span>
+					<span>{{ind}}</span>
+				</li>
+				{{/each}}
+			</ul>
+		</script>
+		
+		<!-- 编辑父模板 -->
+		<script type="text/html" id="main">
+			<div>
+				<h2>第一个子模板</h2>
+				{{include 'son' a}} <!--使用include引用子模板 子模板的id 子模板要渲染的数据-->
+			</div>
+			<div>
+				<h2>第二个子模板</h2>
+				{{include 'son' b}}
+			</div>
+		</script>
+		
+		<script type="text/javascript">
+			
+			let data = {
+				a: {
+					list: ['娱乐','科技','数码','汽车','生活','美女']
+				},
+				b: {
+					list: ['篮球','足球','排球','棒球','网球','台球']
+				}
+				
+			}
+			
+			let myHtml = template("main",data);	//渲染父模板
+			document.getElementById("container").innerHTML = myHtml;
+			
+		</script>
+	</body>
+</html>

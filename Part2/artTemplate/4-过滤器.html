@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/artTemplate.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+</html>
+<script type="text/html" id="temp">
+	<ul>
+		{{each date val}}
+		<li>{{val.gender | filter}}{{": "+val.name}}</li>
+		{{/each}}
+	</ul>
+</script>
+
+<script type="text/javascript">
+	let date = {
+		date:[
+			{name: '小明',gender: 1},
+			{name: '小花',gender: 0},
+			{name: '小丽',gender: 0},
+			{name: '小刚',gender: 1},
+			{name: 'sawadika',gender: 2}
+		]
+	}
+	template.defaults.imports.filter = gender =>{
+		if(gender == 0){
+			return '女';
+		}else if(gender == 1){
+			return '男';
+		}else{
+			return '人妖';
+		}
+	}
+	
+	let myHtml = template('temp',date);
+	document.getElementById("container").innerHTML = myHtml;
+</script>

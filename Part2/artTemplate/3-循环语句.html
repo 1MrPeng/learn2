@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="./js/artTemplate.js"></script>
+	</head>
+	<body>
+		<!--
+			each循环,如果没有重命名value和index,默认使用$value和$index表示
+		-->
+		<div id="container"></div>
+	</body>
+</html>
+<script type="text/html" id="temp">
+	<ul>
+		{{each films}}
+			<li>
+				<span>{{$index}}</span>
+				<span>{{$value.name}}</span>
+				<span>{{$value.nation}}</span>
+			</li>
+		{{/each}}
+	</ul>
+	
+	<ul>
+		{{each films val ind}}
+		<li>
+			<span>{{ind+1}}</span>
+			<span>{{'电影名：'+val.name}}</span>
+			<span>{{'国家：'+val.nation}}</span>
+			
+			<p>
+				{{each val.actors actor ind}}
+				<p>{{'演员'+(ind+1)+'.'+actor.name}}</p>
+				{{/each}}
+			</p>
+			
+		</li>
+		{{/each}}
+	</ul>
+</script>
+
+<script type="text/javascript">
+	let data = {
+		films: [
+			{name: "复联4", nation: "美国", actors: [{name: "克里斯·埃文斯"},{name: "布丽·拉尔森"},{name: "克里斯·海姆斯沃斯"}]},
+			{name: "何以为家", nation: "黎巴嫩,法国,美国", actors: [{name: "娜丁·拉巴基"},{name: "赞恩·阿尔·拉菲亚"},{name: "博鲁瓦蒂夫·特雷杰·班科尔"}]},
+			{name: "雪暴", nation: "中国大陆", actors: [{name: "倪妮"},{name: "张震"},{name: "廖凡"}]},
+			{name: "天上再见", nation: "法国,加拿大", actors: [{name: " 罗兰·拉斐特"},{name: "阿尔贝·杜邦泰尔"},{name: "艾米莉·德奎恩"}]},
+			{name: "一个母亲的复仇", nation: "印度", actors: [{name: "拉维·德耶瓦尔"},{name: "希里黛玉"},{name: "阿克夏耶·坎纳"}]}
+		]
+	}
+	let myHtml = template("temp",data);
+	
+	document.getElementById("container").innerHTML = myHtml;
+</script>

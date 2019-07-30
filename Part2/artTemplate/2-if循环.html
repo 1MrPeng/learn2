@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/artTemplate.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+</html>
+<!--模板-->
+<script type="text/html" id="temp">
+	{{if status == 200}}
+		<h2>成功</h2>
+	{{else if status == 404}}
+		<h2>找不到页面</h2>
+	{{else}}
+		<h2>请联系管理员</h2>
+	{{/if}}
+	<!--if嵌套循环-->
+	{{if status == 200}}
+		{{if readyState == 2}}
+			<h3>请求成功</h3>
+		{{else if readyState == 1}}
+			<h3>请求中...</h3>
+		{{/if}}
+		
+	{{else}}
+		<h3>请求失败</h3>
+	{{/if}}
+</script>
+<!--渲染模板-->
+<script type="text/javascript">
+	let date = {
+		status: 200,
+		readyState: 2
+	}
+	
+	let myHtml = template('temp',date);
+	document.querySelector('#container').innerHTML = myHtml;
+</script>
