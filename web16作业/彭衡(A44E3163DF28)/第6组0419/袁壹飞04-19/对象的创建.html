@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js中对象创建的方式</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script>
+	
+	// =======一字面量的方式创建对象
+	 var obj1 = {
+	 	id: '1',
+	 	name: 'yuan',
+	 	age: 22,
+	 	gander: '男',
+	 	phone: '1333123321',
+	 	say: function(){
+	 		console.log('say-----')
+	 	},
+	 	call: function(){
+	 		console.log('call-----');
+	 	}
+	 }
+	 
+	 //=========通过new Object()创建对象
+	 var obj2 = new Object();
+	 obj2.id = '2';
+	 obj2.name = 'zhangsan';
+	 obj2.age = 13;
+	 obj2.gander = '女';
+	 obj2.phone = '15722822283';
+	 obj2.say = function(){
+	 	console.log('obj2--say----');
+	 }
+	 obj2.tall = function(){
+	 	console.log('obj2.tall-----');
+	 }
+	 
+	 //==========通过工厂的方式创建对象
+	 function createObjectFactory(id,name,age,gander,phone){
+	 	 var obj_f = new Object();
+		 obj_f.id = id;
+		 obj_f.name = name;
+		 obj_f.age = age;
+		 obj_f.gander = gander;
+		 obj_f.phone = phone;
+		 obj_f.say = function(){
+		 	console.log('obj_f--say----');
+		 }
+		 obj_f.tall = function(){
+		 	console.log('obj_f.tall-----');
+		 } 
+		 return obj_f;
+	 }
+	 
+	 var obj3 = createObjectFactory(3,'zhaoyun',23,'男','17772782822');
+	 
+	 //=============通过构造函数创建对象
+	 function Cat(id,name,age,gander,color){
+	 	this.id = id;
+	 	this.name = name;
+	 	this.age = age;
+	 	this.gander = gander;
+	 	this.color = color;
+	 	this.eay = function(){
+	 		console.log('吃猫粮----');
+	 	}
+	 	this.say = function(){
+	 		console.log('喵喵------');
+	 	}
+	 }
+	 var obj4 = new Cat(4,'小白',2,'女','白色');
+	 
+	 // =========== 通过Object.create()创建对象
+	 var obj5 = Object.create(null);
+	 obj5.id = '2';
+	 obj5.name = 'zhangsan';
+	 obj5.age = 13;
+	 obj5.gander = '女';
+	 obj5.phone = '15722822283';
+	 obj5.say = function(){
+	 	console.log('obj5--say----');
+	 }
+	 obj5.tall = function(){
+	 	console.log('obj5.tall-----');
+	 }
+	 
+	 //==========通过class创建对象
+	 class Student{
+	 	constructor(id,name,age,gander,phone){
+	 		this.id = id;
+	 		this.name  = name;
+	 		this.age = age;
+	 		this.gander = gander;
+	 		this.phone = phone;
+	 		this.say = function(){
+	 			console.log(this.name+'是个学生---');
+	 		}
+	 		this.call = function(){
+	 			console.log(this.name+'打电话---');
+	 		}
+	 	}
+	 }
+	 
+	 var obj6 = new Student(6,'小红',22,'女','15222353353');
+	 
+	 //============== apply和call继承==
+	 function Persion(id,name,age,gander,phone){
+	 	this.id = id;
+	 	this.name = name;
+	 	this.age = age;
+	 	this.gander = gander;
+	 	this.phone = phone;
+	 	this.say = function(){
+ 			console.log(this.name+'是个人---');
+ 		}
+ 		this.call = function(){
+ 			console.log(this.name+'打电话---');
+ 		}
+	 }
+	 //使用apply和call改变this的指向
+	 function createObjectApply(id,name,age,gander,phone){
+	 	var oApply = new Object();
+	 	Persion.apply(oApply,[id,name,age,gander,phone]);
+//	 	Persion.call(oApply,id,name,age,gander,phone);
+	 	return oApply;	
+	 }
+	 var obj7 = createObjectApply(1,'hello world!!',23,'男','13145207728');
+	 
+	 //============原型继承
+	 function Apple(id,name,age){
+	 	this.id = id;
+	 	this.name = name;
+	 	this.age = age;
+	 	this.say = function(){
+	 		console.log('使用原型继承创建对象-------');
+	 	}
+	 }
+	 Apple.prototype = {
+	 	gander: '男',
+	 	phone : '15135935393',
+	 	tall: function(){
+	 		console.log('使用原型继承的tall方法-------');
+	 	}
+	 }
+	 
+	 var obj8 = new Apple(8,'lisi',12);
+	 
+	 //=======打印
+	 console.log(obj1);
+	 console.log(obj2);
+	  console.log(obj3);
+	 console.log(obj4);
+	  console.log(obj5);
+	 console.log(obj6);
+	  console.log(obj7);
+	 console.log(obj8);
+	
+</script>

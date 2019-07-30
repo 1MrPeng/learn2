@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			.box{
+				width: 80%;
+				height: 500px;
+				/* border: 2px dashed green; */
+			}
+			.box div{
+				/* border: 2px dashed green; */
+				display: none;
+			}
+			div.box1{
+				display: block;
+                display: flex;
+                justify-content: space-around;
+			}
+            img{
+                width: 20%;
+                height: 100%;
+            }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<button class="button">热门</button>
+			<button>出行</button>
+			<button>健康</button>
+			<button>酷玩</button>
+			<button>路由器</button>
+			<div class="box1">
+                <img src="https://i1.mifile.cn/a1/pms_1506733860.3164711!220x220.jpg"/>
+                <img src="https://i1.mifile.cn/a1/pms_1527754949.17141338!220x220.jpg"/>
+                <img src="https://i1.mifile.cn/a4/cf6660a3-d424-4248-889f-0eed1e99a342"/>
+                <img src="https://i1.mifile.cn/a1/T1sWd_B7VT1RXrhCrK!220x220.jpg"/>
+                <img src="https://i1.mifile.cn/a1/pms_1490770630.65576964!220x220.png"/>
+            </div>
+			<div>
+                <img src="https://i1.mifile.cn/a1/pms_1488272686.62666302!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a4/2b69b930-a2fd-4d09-a46a-8690cb79f764" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1522071421.29489244!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1506733860.3164711!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1478761096.92412274!220x220.jpg" alt="">
+            </div>
+			<div>
+                <img src="https://i1.mifile.cn/a1/pms_1498564154.53184175!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1522204891.45957856!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/T1sWd_B7VT1RXrhCrK!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1531132647.86213611!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1497801904.81994356!220x220.jpg" alt="">
+            </div>
+			<div>
+                <img src="https://i1.mifile.cn/a1/pms_1499048837.78256911!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1464615180.86261317!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a4/31ae6df6-b672-491e-ab95-7b83a965c694" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1480474019.52478532!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1520564952.59464287!220x220.jpg" alt="">
+            </div>
+			<div>
+                <img src="https://i1.mifile.cn/a1/pms_1532604005.80875371!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1481188619.07736357!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1488268224.14952632!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1488268195.02396947!220x220.jpg" alt="">
+                <img src="https://i1.mifile.cn/a1/pms_1496289112.05343314!220x220.jpg" alt="">
+            </div>
+		</div>
+		<script >
+			window.onload = function(){
+				var btn = document.getElementsByTagName("button");
+				var abox = document.getElementsByClassName("box")[0];
+				var adiv = abox.getElementsByTagName("div");
+				var aspan = document.getElementsByTagName("span");
+				var num = 0;
+				for (var i = 0;i<btn.length;i++) {
+					btn[i].index = i;
+					
+					btn[i].onclick = function(){
+						
+						for (var j = 0;j<btn.length;j++) {
+							btn[j].className = "";
+							adiv[j].className = "";
+						}
+						this.className = "button";
+						adiv[this.index].className = "box1";
+					}
+				}
+            }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: #ccc;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <script>
+        window.onload = function(){
+            var obox = document.getElementsByClassName("box");
+            for(var i = 0;i<obox.length;i++){
+                obox[i].index = i;
+                obox[i].onmousedown = function(){
+                    var _this = this;
+                    document.onmousemove = function(ev){
+                    // console.log(_this)
+                        var ev= window.event||ev;
+                        var mouseX = ev.pageX;
+                        var mouseY = ev.pageY;
+                        _this.style.cssText = "left:"+(mouseX-50)+"px;top:"+(mouseY-50)+"px;";
+                        _this.style.background = "rgb("+getRandom(0,255)+","+getRandom(0,255)+","+getRandom(0,255)+")";
+                        _this.onmouseup = function(){
+                            document.onmousemove = null;
+                        }
+                    }
+
+                }
+
+            }
+            function getRandom(min,max){
+                    return Math.round(Math.random()*(max-min)+min);
+                }
+        }
+    </script>
+</body>
+</html>

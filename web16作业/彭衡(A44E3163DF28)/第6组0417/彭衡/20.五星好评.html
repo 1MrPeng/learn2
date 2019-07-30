@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#warp{
+				display: flex;
+				width: 150px;
+			}
+			#warp span{
+				display: inline-block;
+				width: 30px;
+				height: 28px;
+				background: url(../img/star.jpg) no-repeat;
+				background-position-x: 0;
+				background-position-y: -72px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		
+		
+		<script type="text/javascript">
+			window.onload =function(){
+				//获取元素
+				var aSpan =document.querySelectorAll('span');
+				//循环绑定span点击事件
+				for(i=0;i<aSpan.length;i++){
+					aSpan[i].index = i;
+					aSpan[i].onclick = function(ev){
+						if(css(aSpan[this.index],"background-position-y")=="-72px"){
+							for(j=0;j<=this.index;j++){
+								aSpan[j].style.backgroundPositionY = "-2px";	
+							}
+						}else{
+							for(k=0;k<this.index;k++){
+								aSpan[k].style.backgroundPositionY = "-2px";	
+								for(q=this.index;q<aSpan.length;q++){
+									aSpan[q].style.backgroundPositionY = "-72px";
+								}
+							}
+						}
+						stopBubble(ev);
+					}
+				}
+				document.onclick = function(){
+					for(i=0;i<aSpan.length;i++){
+						aSpan[i].style.backgroundPositionY = "-72px";
+					}
+				}
+				//取消冒泡事件
+				function stopBubble(ev){
+					if(ev && ev.stopPropagation){ //标准 
+						ev.stopPropagation();
+					}else{	//ie
+						ev.cancelBubble = true;
+					}
+				}
+				//获取最终样式函数
+				function css(obj,attr,val){
+					if(!val){
+						if(window.getComputedStyle){
+							return getComputedStyle(obj)[attr];
+						}else{
+							return obj.currentStyle[attr];
+						}
+					}else{
+						return obj.style[attr] = val;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

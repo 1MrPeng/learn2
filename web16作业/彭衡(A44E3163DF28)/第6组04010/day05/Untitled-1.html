@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        html,body,span,div,img{margin: 0; padding: 0;}
+        span{
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="zctive_span">百度</span>
+        <span>京东</span>
+        <span>搜狗</span>
+        <span>阿里巴巴</span>
+        <div class="active">
+            <img src="" alt="">
+        </div>
+        <div>
+            <img src="" alt="">
+        </div>
+        <div>
+            <img src="" alt="">
+        </div>
+        <div>
+            <img src="" alt="">
+        </div>
+        <button class="left_btn">←</button>
+        <button class="right_btn">→</button>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var aSpan = document.getElementsByTagName("span");
+            var bigBox = document.getElementsByClassName("container")[0];
+            var aDiv = bigBox.getElementsByTagName("div");
+            var aBtn = bigBox.getElementsByTagName("button");
+            var ind = 0;
+
+            for(var i = 0; i<aSpan.length; i++){
+                aSpan[i].aa = i;
+                aSpan[i].onclick = function(){
+                    console.log(this.aa);
+
+                    resetCSS();
+                    this.className = "active_span";
+                    aDiv[this.aa].className = "active";
+                    ind = this.aa;
+                }
+            }
+            aBtn[0].onclick = function(){
+                if(ind == 0){
+                    ind = aSpan.length-1;
+                }else{
+                    ind--;
+                }
+                resetCSS();
+                aSpan[ind].className = "active_span";
+                aDiv[ind].className = "active";
+            }
+            aBtn[1].onclick = function(){
+                if(ind == aSpan.length-1){
+                    ind = 0;
+                }else{
+                    ind++;
+                }
+                resetCSS();
+                aSpan[ind].className = "active_span";
+                aDiv[ind].className = "active";
+            }
+            function resetCSS(){
+                for(var j=0; j<aSpan.length; j++){
+                    aSpan[j].className = "";
+                    aDiv[j].className = "";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 440px;
+            height: 440px;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            transition: 10s;
+        }
+        #box div{
+            width: 200px;
+            height: 200px;
+            background: #ccc;
+            margin: 10px;   
+        }
+        #box:hover{
+            transform: rotate(3600deg)
+        }
+        #box1,#box4{
+            border-radius: 0 85% 0 85%;
+        }
+        #box2,#box3{
+            border-radius: 85% 0 85% 0;
+        }
+        /* .box5{
+            width: 20px;
+            height: 600px;
+            background: #ccc;
+            position: fixed;
+            left: 228px;
+            top: 235px;
+        } */
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="box1">1</div>
+        <div id="box2">2</div>
+        <div id="box3">3</div>
+        <div id="box4">4</div>
+    </div>
+</body>
+</html>

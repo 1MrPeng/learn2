@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        	body{
+				background-color: #f1f1f1;
+			}
+			canvas{
+				background-color: #fff;
+				border: 1px solid green;
+				
+			}
+			span{
+				display: inline-block;
+				width: 40px;
+				height: 20px;
+				background: green;
+				margin: 10px;
+                position: absolute;
+                bottom: 300px;
+			}
+    </style>
+</head>
+<body>
+    	<canvas width="600" height="500">
+                您的浏览器不支持canvas
+            </canvas>
+            <span></span>
+            <button>清除</button><br>
+            <input type="color"><br>
+            <input type="text" name="" id="" placeholder="请输入线条大小"><br>
+            
+            <img src="" />
+
+            <script>
+                window.onload = function(){
+
+                    //获取元素
+                    var myCan = document.getElementsByTagName('canvas')[0];
+                    var oImg = document.getElementsByTagName('img')[0];
+                    var oSpan = document.getElementsByTagName('span')[0];
+                    var oBtn = document.getElementsByTagName('button')[0];
+                    var InputColor = document.getElementsByTagName('input')[0];
+                    var Input = document.getElementsByTagName('input')[1];
+
+                    //  创建画布
+                    var ctx = myCan.getContext('2d');
+
+                    //绑定鼠标按下事件
+                    myCan.onmousedown = function(ev){
+
+                        var ev = ev || window.event;
+
+                        //获取鼠标按下坐标位置
+                        var MouseX = ev.pageX - myCan.offsetLeft;
+                        var MouseY = ev.pageY - myCan.offsetTop;
+
+                        //开始绘制
+                        ctx.beginPath();
+
+                         //  设置input的value等于cavvas线条颜色
+                        ctx.moveTo(MouseX,MouseY);
+                        ctx.strokeStyle = InputColor.value;
+                        console.log(InputColor.value)
+
+                        //设置oInput的value等于canvas的线宽
+                        ctx.lineWidth = Input.value;
+
+                        //绑定鼠标移动事件
+                        myCan.onmousemove = function(ev){
+                            var ev = ev || window.event;
+                            
+                            //  获取鼠标移动的坐标
+                            var MX = ev.pageX - myCan.offsetLeft;
+                            var MY = ev.pageY - myCan.offsetTop;
+                            
+                            ctx.lineTo(MX,MY);
+
+                            // 绘制线条
+                            ctx.stroke();
+                        }   
+                        //绑定鼠标松开事件
+                        myCan.onmouseup = function(){
+
+                            //关闭路径
+                            ctx.closePath();
+
+                            myCan.onmousemove = null;
+
+                            //生成图片路径
+                            var oSrc = myCan.toDataURL();
+                            oImg.src =  oSrc;
+                        
+                            // 绑定清除按钮
+						    oBtn.onclick = function(){
+							
+							// 清除矩形内容(X轴坐标,Y轴坐标,宽度,高度)
+							ctx.clearRect(0,0,myCan.offsetWidth,myCan.offsetHeight); 
+                        }
+                        //  绑定oSpan的按下事件
+                        oSpan.onmousedown = function(){
+
+                            //绑定oSpan移动事件
+                            oSpan.onmousemove = function(ev){
+                                var ev = ev||window.event;
+
+                                //获取oSpan的移动坐标
+                                oSpanX = ev.pageX - oSpan.offsetLeft;
+                                oSpanY = ev.pageY - oSpan.offsetTop;
+                                oSpan.style =( 'left'+oSpanX+'top'+oSpanY);
+                                ctx.clearRect(oSpan.offsetWidth-10,oSpan.offsetHeight-5 ,myCanvas.offsetWidth,myCanvas.offsetHeight);
+                            }
+                        }
+                    }
+                } 
+            }
+            </script>
+</body>
+</html>

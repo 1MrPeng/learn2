@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		矩形的长：<input type="text" id="long"><br>
+		矩形的宽：<input type="text" id="kuan"><br>
+		矩形的面积为：<input type="text" value="" id="rectangle"><br>
+		<button onclick="func(long,kuan)">计算矩形的面积</button><br><br>
+		<hr><br><br>
+		圆的半径：<input type="text" id="radiu"><br>
+		圆的面积：<input type="text" id="circle"><br>
+		<button onclick="test()">计算圆的面积</button>
+		
+		<br><br>
+		<hr><br><br>
+		输入一个数字：<input type="text" id="num"><br>
+		绝对值为：<input type="text" id="jdz"><br>
+		<button onclick="jdz()">计算绝对值</button><br><br>
+		<hr><br>
+		输入3个数比较大小<br>
+		第一个数：<input type="text" id="num1"><br>
+		第二个数：<input type="text" id="num2"><br>
+		第三个数：<input type="text" id="num3"><br>
+		<button onclick="daxiao()">点击比较大小</button><br>
+		最大的数为：<input type="text" id="num4"><br>
+		最小的数为：<input type="text" id="num5">
+
+		<script>
+			//矩形面积
+			
+			function func(long,kuan){
+				long = document.getElementById('long');
+				a = long.value;
+				
+				kuan = document.getElementById('kuan');
+				b = kuan.value;
+				
+				var rectangle = document.getElementById('rectangle');
+				rectangle.value = a*b;
+				// return a*b;
+			}	
+			
+			//圆的面积
+			function test(radiu){
+				radiu = document.getElementById('radiu');
+				c = radiu.value;
+				
+				var circle = document.getElementById('circle');
+				circle.value = (Math.PI*Math.pow(c,2)).toFixed(2);	//π为Math.PI	幂函数为Math.pow( num, 次方)
+			}
+			
+			//输入一个数,求绝对值
+			function jdz(num){
+				var num = document.getElementById('num');
+				d = num.value;
+				
+				var jdz = document.getElementById('jdz');
+				jdz.value = Math.abs(d);	//计算绝对值
+			}
+			//输入三个数字比较大小
+			function daxiao(num1,num2,num3){
+				num1 = document.getElementById('num1');
+				e = num1.value;
+				
+				num2 = document.getElementById('num2');
+				f = num2.value;
+				
+				num3 = document.getElementById('num3');
+				g = num3.value;
+				
+				var num4 = document.getElementById('num4');
+				var num5 = document.getElementById('num5');
+				if(e>f&&e>g){
+					if(f>g){
+						num4.value = e;
+						num5.value = g;
+					}else{
+						num4.value = e;
+						num5.value = f;
+					}
+				}else if(f>e&&f>g){
+					if(e>g){
+						num4.value = f;
+						num5.value = g;
+					}else {
+						num4.value = f;
+						num5.value = e;
+					}
+				}else if(g>e&&g>f){
+					if(e>f){
+						num4.value = g;
+						num5.value = f;
+					}else{
+						num4.value = g;
+						num5.value = e;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

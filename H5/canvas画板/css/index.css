@@ -1,0 +1,133 @@
+*{margin: 0;padding: 0;}
+body{
+	background: #F5DEB3;
+	background: url(../img/bg5.gif) no-repeat;
+	background-size: 100% 100%;
+	height: 100vh;
+	/* background-position: 300px 10px; */
+}
+.canvas1{
+	width: 1000px;
+	height: 100px;
+	margin: 0 auto;
+}
+.canvas{
+	position: absolute;
+	left: 30px;
+	top: 40px;
+}
+.clear{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: none;
+}
+.clear span{
+	font-size: 40px;
+	color: lightpink;
+}
+#mycanvas2{
+	background: #fff;
+	border-radius: 20px;
+}
+#warp{
+	position: relative;
+	width: 1000px;
+	height: 600px;
+	/* border: 1px solid red; */
+	margin: 0 auto;
+	background: url(../img/heartBg.jpg);
+}
+.tools{
+	height: 50px;
+	width: 550px;
+	position: absolute;
+	left: 30px;
+	bottom: 70px;
+	border-radius: 20px;
+	/* background: #fff; */
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.tools div:not(:nth-of-type(3)){
+	width: 70px;
+	height: 50px;
+	background: #C0D6FF;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	
+}
+.tools div span{
+	display: inline-block;
+	height: 100%;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.lineWith{
+	width: 70px;
+	height: 50px;
+	background: #C0D6FF;
+	border-radius: 10px;
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+.lineWith p:nth-of-type(1):hover{
+	background: red;
+}
+.lineWith p:nth-of-type(2):hover{
+	background: red;
+}
+.lineWith p:nth-of-type(3):hover{
+	background: red;
+}
+.lineWith p:nth-of-type(1){
+	width: 40px;
+	height: 2px;
+	background: black;
+}
+.lineWith p:nth-of-type(2){
+	width: 40px;
+	height: 5px;
+	background: black;
+}
+.lineWith p:nth-of-type(3){
+	width: 40px;
+	height: 8px;
+	background: black;
+}
+.image{
+	width: 300px;
+	height: 210px;
+	position: absolute;
+	right: 20px;
+	bottom: 50px;
+	background: #eee;
+	border-radius: 20px;
+	display: none;
+	
+}
+.image img{
+	border-radius: 20px;
+	background: white;
+	width: 300px;
+	height: 180px;
+}
+.image a{
+	text-underline: none;
+	position: relative;
+	left: 200px;
+	padding: 0 10px;
+}

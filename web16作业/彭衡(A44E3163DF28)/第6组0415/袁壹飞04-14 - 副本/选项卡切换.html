@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选项卡的切换</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				margin:50px;
+			}
+			.checkboxContent{
+				height: 30px;
+			}
+			.checkboxContent>label{
+				display: inline-block;
+				width: 70px;
+			}
+			.bannerContent{
+				padding: 5px 0;
+				height: 37px;
+			}
+			.imgContect{
+				display: none;
+			}
+			.bannerContent>button{
+				display: none;
+			}
+			.bannerContent>button:nth-child(1),
+			.bannerContent>button:nth-child(2),
+			.bannerContent>button:nth-child(3){
+				display: inline-block;
+			}
+			/*图片div的样式*/
+			.imgContect img{
+				width: 500px;
+				height: 281px;
+			}
+			.imgContect:nth-of-type(1){
+				display: block;
+			}
+			.bannerContent>button{
+				padding: 3px 10px;
+				border-style: solid;
+			}
+			.imgbox>img{
+				display: none;
+			}
+			/*激活状态的按钮样式*/
+			.active_btn{
+				background: olive;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="checkboxContent">
+			<label>
+				<input type="checkbox" checked="checked"/>&nbsp;图一
+			</label>
+			<label>
+				<input type="checkbox" checked="checked"/>&nbsp;图二		
+			</label>
+			<label>
+				<input type="checkbox" checked="checked"/>&nbsp;图三		
+			</label>
+			<label>		
+				<input type="checkbox" />&nbsp;图四
+			</label>
+			<label>	
+				<input type="checkbox" />&nbsp;图五
+			</label>
+		</div>
+		
+		<div class="bannerContent">
+			<button class="active_btn">图一</button>
+			<button>图二</button>
+			<button>图三</button>
+			<button>图四</button>
+			<button>图五</button>
+		</div>
+		<div class="imgbox">
+			<div class="imgContect">
+				<img src="img/1.jpg"/>
+			</div>
+			<div class="imgContect">
+				<img src="img/2.jpg"/>
+			</div>
+			<div class="imgContect">
+				<img src="img/3.jpg"/>
+			</div>
+				<div class="imgContect">
+				<img src="img/4.jpg"/>
+			</div>
+			<div class="imgContect">
+				<img src="img/5.jpg"/>
+			</div>
+			<img src="img/error.jpg" width="500px" height="281px"/>
+		</div>
+	</body>
+</html>
+<script>
+	
+	window.onload = function(){
+		//获取元素
+		var btns = document.querySelectorAll('.bannerContent>button');
+		var imgs = document.querySelectorAll('.imgContect');
+		var checkboxs = document.querySelectorAll('.checkboxContent input');
+		var errorImg = document.querySelector('.imgbox>img');
+		var currentIndex = 0;
+		var state = false;
+		//给按钮绑定点击事件
+		for(var i = 0;i<btns.length;i++){
+			btns[i].index = i;
+			btns[i].onclick = function(){
+				resetCss();
+				//点击按钮显示相应的图片
+				this.className = 'active_btn';
+				imgs[this.index].style.display = 'block';
+				currentIndex = this.index;
+			}
+		}
+		
+		//给每一个复选框添加点击事件
+		for(var i = 0;i<checkboxs.length;i++){
+			//保存下标
+			checkboxs[i].index = i;
+			checkboxs[i].onclick = function(){	
+				//判断是选择还是取消选择
+				if(this.checked){
+					//显示该复选框对应的按钮
+					btns[this.index].style.display = 'inline-block';
+					//重新开始选择的
+						if(state){
+							btns[this.index].className = 'active_btn';
+							//显示相应的图片
+							imgs[this.index].style.display = 'block';
+							//隐藏error图片
+							errorImg.style.display = 'none';
+							state = false;
+							currentIndex = this.index;
+						}
+					}else{
+					//隐藏该复选框对应的按钮
+					btns[this.index].style.display = 'none';
+					//隐藏对象的图片
+					imgs[this.index].style.display = 'none';
+					//判断是否还有选中的复选框
+					if(!getCheckbox()){
+						//显示错误图片
+						errorImg.style.display = 'block';
+						state = true;
+					}else{
+						//如果是隐藏当前激活状态的按钮则激活下一个按钮
+						if(this.index == currentIndex){
+							resetCss();
+							//得到显示的按钮
+							var indexArr = getBlockBtns();
+							//激活下一个
+							var maxid = 0;
+							for(var i = 0;i<indexArr.length;i++){
+								if(this.index<indexArr[i]){
+									maxid = indexArr[i];
+									break;
+								}
+							}
+							//如果没有取到下标比当前下标大的值则取得最小值
+							if(maxid == 0){
+								maxid = Math.min.apply(null,indexArr);
+							}
+							//点击按钮显示相应的图片
+							currentIndex = maxid;
+							
+							btns[currentIndex].className = 'active_btn';
+							imgs[currentIndex].style.display = 'block';
+						}
+					}			
+				}	
+			}
+		}
+		
+		function resetCss(){
+			//重置样式
+			for(var i = 0;i<btns.length;i++){
+				btns[i].className = '';
+				imgs[i].style.display = 'none';
+			}
+		}
+		//判断是否有选择的复选框
+		function getCheckbox(){
+			for(var i = 0;i<checkboxs.length;i++){
+				if(checkboxs[i].checked){
+					return true;
+				}
+			}
+			//都没有选中的复选框则返回false;
+			return false;
+		}
+		//得到显示的所有按钮
+		function getBlockBtns(){
+			var arr = new Array();
+			for(var i = 0;i<checkboxs.length;i++){
+				if(checkboxs[i].checked){
+					//返回选择的复选框的标
+					
+					arr.push(checkboxs[i].index);
+				}
+			}
+			return arr;
+		}
+		
+		
+		//===========end======
+		
+	}
+</script>

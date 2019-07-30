@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			ul li{list-style: none;}
+			#warp{
+				width: 390px;
+				margin: 0 auto;
+				margin-top: 20px;
+				position: relative;
+			}
+			p{
+				border: 2px solid #ccc;
+				width: 150px;
+				padding: 5px 10px;
+				box-sizing: border-box;
+				background: #E2EFF9;
+			}
+			ul{
+				display: none;
+			}
+			ul li{
+				width: 150px;
+				border: 2px solid #ccc;
+				border-top: none;
+				box-sizing: border-box;
+				padding: 5px 10px;
+				
+			}
+			input {
+				position: absolute;
+				top: 0;
+				right: 0;
+				border: 2px solid #ccc;
+				width: 200px;
+				height: 31px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<p>歌曲</p>
+			<ul>
+				<li>歌曲</li>
+				<li>专辑</li>
+				<li>歌手</li>
+				<li>歌词</li>
+				<li>MV</li>
+				<li>票务</li>
+			</ul>
+			<input type="text" placeholder="" />
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oP = document.querySelector('p');
+				var oUl = document.querySelector('ul');
+				var oInput = document.querySelector('input');
+				
+				//点击显示菜单
+				oP.onclick = function(ev){
+					oUl.style.display = 'block';
+					stopBubble(ev);
+				}
+				//绑定document点击事件(隐藏菜单)
+				document.onclick = function(ev){
+					oUl.style.display = 'none';
+					oInput.placeholder ='';
+				}
+				//li点击事件委托给ul
+				oUl.onclick = function(ev){
+					var ev = ev || window.event;
+					//事件源兼容写法
+					var target = ev.target || ev.scrElement;
+					if(target.nodeName.toLowerCase() == 'li'){
+						console.log(target.innerHTML)
+						oInput.placeholder ='请输入'+ target.innerHTML;
+						oP.innerHTML = target.innerHTML;
+					}
+					oInput.focus();
+					stopBubble(ev);
+				}
+				
+				
+//				取消冒泡事件
+				function stopBubble(ev){
+					if(ev && ev.stopPropagation){ //标准 
+						ev.stopPropagation();
+					}else{	//ie
+						ev.cancelBubble = true;
+					}
+				};	
+			}
+		</script>
+	</body>
+</html>

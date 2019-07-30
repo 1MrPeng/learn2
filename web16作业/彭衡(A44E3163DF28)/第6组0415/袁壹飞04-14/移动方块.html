@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>方块的移动</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				padding: 10px;
+			}
+			div{
+				width: 100px;
+				height: 100px;
+				background: #b3aeae;
+				border: 1px solid #B3AEAE;
+				border-radius: 50%;
+				position: absolute;
+				cursor: pointer;
+			}
+		
+			
+		</style>
+		
+		<script>
+			//页面加载完成时
+			window.onload = function(){
+				//得到元素节点
+				var box = document.querySelector('.box');
+			
+				var container = document.querySelector('body');
+			
+				var iSpeedX=0;    
+			    var iSpeedY=0;     
+			    var lastX=0;    
+			    var lastY=0;    
+			    var timer=null;   
+					
+				bindNewNode(box);
+				//给新节点绑定鼠标事件
+				function bindNewNode(newNode){
+					newNode.onmousedown = function(){	
+						//添加一个div
+						if(this == getLastChild(container)){
+							//创建并追加一个节点
+//							container.appendChild(document.createElement('div'));
+							container.insertAdjacentHTML('beforeend','<div></div>');
+							this.style.backgroundColor =  'rgb('+createColor(0,255)+','+createColor(0,255)+','+createColor(0,255)+')';
+							//使用递归给每个新节点绑定事件
+							bindNewNode(getLastChild(container));
+						}else{
+							//移动
+							this.style.backgroundColor = this.style.backgroundColor;
+						}
+
+						//设置鼠标移动事件
+						document.onmousemove = function(ev){
+							var ev = ev || window.event;
+							//得到鼠标的坐标
+							var oX = ev.pageX - newNode.offsetWidth/2;
+							var oY = ev.pageY - newNode.offsetHeight/2;
+						
+ 							
+							newNode.style.left = oX+"px";
+							newNode.style.top = oY+"px";
+							
+							iSpeedX=ev.clientX-lastX;    
+				            iSpeedY=ev.clientY-lastY;     
+				            lastX=ev.clientX;    
+				            lastY=ev.clientY;
+						
+						}
+						//设置鼠标松开事件
+						newNode.onmouseup = function(){			
+							//停止移动
+							document.onmousemove = null;			
+							this.click();
+							//开始惯性移动
+							 startMove(newNode);
+						}
+						
+					}
+				}
+				
+			
+			    function startMove(oDiv){    //移动函数，主要操作是计算鼠标移动速度和移动方向。
+			        clearInterval(timer);    
+			        timer=setInterval(function(){    
+			            iSpeedY+=3;    
+			            var t=oDiv.offsetTop+iSpeedY;    
+			            var l=oDiv.offsetLeft+iSpeedX;    
+			            if(t>document.documentElement.clientHeight-oDiv.offsetHeight){    
+			                t=document.documentElement.clientHeight-oDiv.offsetHeight;    
+			                iSpeedY*=-0.8;    
+			                iSpeedX*=0.8;  
+			            }     
+			            if(t<0){    
+			                t=0;    
+			                iSpeedY*=-0.8;    
+			                iSpeedX*=0.8;  
+			            }    
+			            if(l>document.documentElement.clientWidth-oDiv.offsetWidth){    
+			                l=document.documentElement.clientWidth-oDiv.offsetWidth;   
+			     
+			                iSpeedX*=-0.8;    
+			                iSpeedY*=0.8;    
+			            }    
+			            if(l<0){    
+			                l=0;    
+			                iSpeedX*=-0.8;    
+			                iSpeedY*=0.8;  
+			     
+			            }    
+			                 
+			            oDiv.style.left=l+'px';    
+			            oDiv.style.top=t+'px';    
+			                 
+			            if(Math.abs(iSpeedX)<1)iSpeedX=0;    
+			            if(Math.abs(iSpeedY)<1)iSpeedY=0;    
+			            if(iSpeedX==0 && iSpeedY==0 && t==document.documentElement.clientHeight-oDiv.offsetHeight){    
+			                clearInterval(timer);    
+			            }    
+	   
+			        },30); 
+			    }  
+			//=============end=========
+			}
+			
+			//生成随机颜色
+			function createColor(min,max){
+				return Math.floor(Math.random()*(max-min)+min);
+			}
+			//得到最后一个孩子节点的兼容性函数
+			function getLastChild(obj){
+				if(!obj.lastChild){
+					return false;
+				}
+				if(obj.lastElementChild){
+					return obj.lastElementChild;
+				}else{
+					//递归得到最后一个孩子节点的哥哥节点
+					return obj.lastChild.nodeType == 1?obj.lastChild:getPreviousSibling(obj.lastChild);
+				}
+			}
+			//得到哥哥节点的兼容性方法
+			function getPreviousSibling(obj){
+				if(!obj.previousSibling){
+					return false;
+				}
+				if(obj.previousElementSibling){
+					return obj.previousElementSibling;
+				}else{
+					//ie的写法
+					return obj.previousSibling.nodeType == 1?obj.previousSibling:getPreviousSibling(obj.previousSibling);
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div class="box"></div>
+		
+	</body>
+</html>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    
+     
+        ul{
+            list-style: none;
+            width: 505px;
+            height: 250px;
+            margin: 10px auto;
+            position: relative;
+        }
+        ul li{
+            width: 47px;
+            height: 47px;
+            position: absolute;
+            background: url('./img/1.png') no-repeat 0px 0px;
+           
+        }
+    </style>
+
+</head>
+<body>
+    <div id="box">
+        <ul>
+
+        </ul>
+
+    </div>
+
+    <script type="text/javascript">  
+        window.onload = function(){
+            let ul_box = document.getElementsByTagName('ul')[0];
+            for(let x = 0;x < 5;x++){
+                
+                for(let y = 0; y < 10; y++){ 
+                     ul_box.innerHTML += '<li style="left:'+48*y+'px;top:'+48*x+'px; background-position: -'+48*y+'px -'+48*x+'px;"></li>' ;   
+                }
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

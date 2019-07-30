@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="" id="" value="" />
+		<button type="button">计算</button>
+	</body>
+</html>
+<script type="text/javascript">
+	var count = document.querySelector('input');
+	var btn = document.querySelector('button');
+	function fib(max){
+ 		var t,a=0,b=1,arr = [0,1];
+     	while (arr.length < max) {
+            [a,b] = [b,a+b]; //es6的解构
+            arr.push(b)
+     }
+     return arr;
+	}
+	btn.onclick = function(){
+		document.body.innerHTML = (fib(count.value));
+	}
+</script>

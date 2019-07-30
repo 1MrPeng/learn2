@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>圆的面积为：<span id="spa"><span></p>
+    <input type="text" name="" id="" placeholder="请输入半径">
+    <button id="buttn">计算</button>
+</body>
+</html>
+<script>
+    var pans = document.getElementById("spa");
+    var btn = document.getElementById("buttn");
+    var inp = document.getElementsByTagName("input");
+
+    btn.onclick = function(){
+        var r = Number(inp[0].value);
+        var value2 = r*r*3.14;
+        pans.innerHTML = value2;
+    }
+</script>

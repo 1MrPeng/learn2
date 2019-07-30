@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/music.css" />
+		<link rel="stylesheet" href="css/iconfont.css"/>
+			<!--引入数据js文件-->
+		<script src="js/produce_list.js"></script>
+		<script src="js/banner.js"></script>
+		<title>网易云音乐</title>
+		<style>
+			
+				/* 购全球的样式*/
+			 .content ul{
+				width: 100%;
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				/*换行显示*/
+				flex-wrap: wrap;
+				background: #f5f5f5;
+			}
+			.music_box_list .content ul li{
+				width: 15%;
+				height: 186px;
+				background: white;
+				box-sizing: border-box;
+				padding-left: 5px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 5px;
+				font-size: 12px;
+				position: relative;
+			}
+			.content li img{
+				width: 114px;
+				height: 114px;
+				
+			}
+			.content li .item_name{
+				line-height: 1.5;
+				height: 33px;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				/* 这里是在第二行有省略号 */
+				-webkit-line-clamp: 2;  
+				overflow: hidden;
+			
+				font-size: 11px;
+			}
+			 .content .item_desc{
+				width: 100%;
+				height: 34px;
+				display: flex;
+				align-items: center;
+				background: white;
+			}
+			.content .item_desc p{
+				width: 79px;
+				height: 15px;
+				display: flex;
+				align-items: center;
+			}
+			.content .item_desc>span{
+				display: inline-block;
+				height: 34px;
+				line-height: 34px;
+				width: 34px;
+				background: url("https://image.watsons.com.cn/upload/6232b1ca.png") no-repeat center;
+				background-size: 100%;
+				
+			}
+			.content .item_desc p span:nth-child(1){
+				color: #ff1f32;
+				font-size: 15px;
+				height: 17px;
+				line-height: 17px;
+			}
+			.content .item_desc p span:nth-child(2){
+				text-decoration: line-through;
+				color: #999;
+				margin-left: 5px;
+				height: 12px;
+				line-height: 12px;
+				font-size: 12px;
+			}
+			/*促销信息*/
+			.promotions_p{
+				position: absolute;
+				left: 0;
+				top: 95px;
+				height: 15px;
+				line-height: 15px;
+				font-size: 12px;
+				color: white;
+				background: #FF4449;
+				padding-right: 5px;
+				border-radius: 0 15px 15px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main_box">
+			
+			<!-- 头部导航 -->
+			<div class="top_nav">
+				<div class="top_nav_content">
+					<p >
+						<span class="logo"></span>
+						<span>网易云音乐</span>
+					</p>
+					<p>发现音乐</p>
+					<p>我的音乐</p>
+					<p>朋友</p>
+					<p>商城</p>
+					<p>音乐人</p>
+					<p>
+						<span class="top_hot"></span>
+						下载客户端
+					</p>
+				</div>
+			</div>
+			
+			<!-- 轮播图 -->
+			<div class="banner">
+				<div class="banner_content">
+					<span class="banner_left iconfont icon-zuojiantou"></span>
+					<!-- <img class="banner_img_left" src="img/4.jpg" /> -->
+					<img class="banner_img_center" src="img/0.jpg" />
+					<!-- <img class="banner_img_right" src="img/1.jpg" /> -->
+					<span class="banner_right iconfont icon-youjiantou"></span>
+				</div>
+			</div>
+			
+			<!-- 歌曲内容 -->
+			<div class="music_content">
+				
+				<div class="music_box">
+					<!-- 头部分类栏 -->
+					<div class="music_box_top_nav">
+						<p class="currentNavP">购物</p>
+						
+						<div class="music_box_move_box">
+							<div class="music_box_move ">
+								<a class="active_nav_btn" href="javascript:void(0);">购物</a>|
+								<a href="javascript:void(0);">歌曲</a>|
+								<a href="javascript:void(0);">摇滚</a>|
+								<a href="javascript:void(0);">电子</a>|
+								<a href="javascript:void(0);">歌手</a>
+							</div>
+							<!-- 关闭后的动画效果 -->
+							<div class="music_box_move_close ">
+								<a href="#">购物</a>|
+								<a href="#">歌曲</a>|
+								<a href="#">摇滚</a>|
+								<a href="#">电子</a>|
+								<a href="#">歌手</a>
+							</div>
+							<span class="move_btn iconfont icon-gengduo"></span>
+						</div>
+					</div>
+					
+					<!-- 歌曲目录 -->
+					<!--购物页面 -->
+					<div class="music_box_list content_box active_list">
+						 <!-- 商品列表 -->
+						 <div class="content">
+							<ul class="content_ul"></ul>
+						</div>
+					</div>
+					<div class="music_box_list ">
+						<ul>
+							<li>歌曲</li>
+							<li>歌曲</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+						</ul>
+					</div>
+					<!-- 歌手页面 -->
+					<div class="music_box_list">
+						<ul>
+							<li>摇滚</li>
+							<li>摇滚</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+						</ul>
+					</div>
+					
+					<!--摇滚 页面 -->
+					<div class="music_box_list">
+						<ul>
+							<li>电子</li>
+							<li>电子</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+						</ul>
+					</div>
+					<!--电子页面 -->
+					<div class="music_box_list">
+						<ul>
+							<li>歌手</li>
+							<li>歌手</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+							<li>6</li>
+							<li>7</li>
+							<li>8</li>
+						</ul>
+					</div>
+					
+					
+				</div>
+			</div>
+			
+		</div>
+		<!-- 音乐 -->
+		<audio id="music01" autoplay="autoplay" src="music/music02.mp3"></audio>
+	</body>
+</html>
+
+<script>
+	
+	//页面完成加载
+	window.onload = function(){
+		//获取页面的元素
+		var musicBoxMove = document.getElementsByClassName('music_box_move')[0];
+		var moveBtn = document.getElementsByClassName('move_btn')[0];
+		var music_box_move_close = document.getElementsByClassName('music_box_move_close')[0];
+		var musicNavBtn_a = document.querySelectorAll('.music_box_move>a');
+		var moveBtnState = false;
+		var music01 = document.getElementById('music01');
+		var currentNavP = document.getElementsByClassName('currentNavP')[0];
+		var music_box_list = document.getElementsByClassName('music_box_list');
+		var content_ul = document.getElementsByClassName('content_ul')[0];
+		var bannerSpan = document.querySelectorAll('.banner_content>span');
+		var banner_content = document.getElementsByClassName('banner_content')[0]
+		
+		//轮播图
+		var banner_img_left = document.getElementsByClassName('banner_img_left')[0];
+		var banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+		var banner_img_right = document.getElementsByClassName('banner_img_right')[0];
+		
+		
+		//轮播图
+		//定义一个下标
+		var index = 0;
+		var timer = null;
+		var timerState = false;
+		clearInterval(timer);
+		//轮播图的切换
+		//左边bannerSpan
+		bannerSpan[0].onclick = function(){
+			console.log(timer)
+			// timerState = !timerState;
+			if(timer){
+				return ;
+			}
+			console.log('-----left')
+			//在右边生成一张图片<img class="banner_img_right" src="img/1.jpg" />
+			var oImg = document.createElement('img');
+			index = (index+1)%4;
+			oImg.className = 'banner_img_right';
+			oImg.src = 'img/'+index+'.jpg';
+			//添加图片
+			banner_content.insertBefore(oImg,banner_img_center.nextElementSibling);
+			banner_img_right = document.getElementsByClassName('banner_img_right')[0];
+			banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+			console.log(banner_img_right);
+			//添加定时器
+			//设置定时器
+			var sum =0;
+			var oRight = 890;
+			timer = setInterval(function(){ 
+				sum += 100;
+				oRight -= 100;
+				if(sum >= 890){
+					//清楚定时器
+					clearInterval(timer);
+					timer = null;
+					//把左边的给删除
+					banner_content.removeChild(banner_img_center);
+					banner_img_right.className = 'banner_img_center';
+					banner_img_right.style.left = '0px';//left 0;
+				}else{
+					banner_img_center.style.left = '-'+sum+'px';//left -890px
+					banner_img_right.style.left = oRight+'px';//left 0;
+				}
+			
+			},100);
+			
+		}
+		// 右边
+		bannerSpan[1].onclick = function(){
+			if(timer){
+				return ;
+			}
+			//在左边生成一张图片
+			var oImg = document.createElement('img');
+			oImg.className = 'banner_img_left';
+			if(index == 0){
+				index = 4;
+			}else{
+				index -- ;
+			}
+			console.log(index);
+			oImg.src = "img/"+index+".jpg";
+			//添加图片
+			
+			banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+			banner_content.insertBefore(oImg,banner_img_center);
+			banner_img_left = document.getElementsByClassName('banner_img_left')[0];
+			//添加定时器
+			//设置定时器
+			var sum =0;
+			var oRight = 890;
+			timer = setInterval(function(){ 
+				sum += 100;
+				oRight -= 100;
+				
+				if(sum >= 890){
+					//清楚定时器
+					clearInterval(timer);
+					timer = null;
+					//把左边的给删除
+					banner_content.removeChild(banner_img_center);
+					banner_img_left.className = 'banner_img_center';
+					banner_img_left.style.left = '0px';//left 0;
+				}else{
+					banner_img_center.style.left = sum+'px';//left 890px
+					banner_img_left.style.left = '-'+oRight+'px';//left 0;
+				}
+			
+			},100);
+			
+		}
+		
+		
+		//关闭音乐
+		// music01.pause();
+		//给更多按钮绑定事件
+		moveBtn.addEventListener('click',function(){
+			//展开更多选项
+			//添加动画
+			musicNavFrame()	;
+		});
+		
+		//实现动画效果的函数封装
+		function musicNavFrame(){
+				moveBtnState = !moveBtnState;
+			if(moveBtnState){
+				musicBoxMove.className = 'music_box_move move_btnNav';
+				moveBtn.className = 'move_btn iconfont icon-gengduo move_btnFrameClose';
+				music_box_move_close.className = 'music_box_move_close';
+				music_box_move_close.style.display = 'none';
+			
+			}else{
+				moveBtn.className = 'move_btn iconfont icon-gengduo move_btnFrame';
+				musicBoxMove.className = 'music_box_move';
+				music_box_move_close.style.display = 'block';
+				music_box_move_close.className = 'music_box_move_close move_btn_navClose';
+			}	
+		}
+		//给音乐分类导航栏绑定点击事件
+		for(var i = 0;i<musicNavBtn_a.length;i++){
+			musicNavBtn_a[i].index = i;
+			musicNavBtn_a[i].addEventListener('click',function(){
+				//重置样式
+				resetMusicBtnCSS();
+				//激活样式
+				this.className = 'active_nav_btn';
+				//设置当前所在的页面
+				currentNavP.innerHTML = this.innerHTML;
+				//激活相应的页面
+				music_box_list[this.index].className= 'music_box_list active_list';
+				//如果是购物页则加载数据
+				if(this.index === 0){
+					console.log('12');
+					reloadItem();
+				}
+				//添加动画
+				musicNavFrame();
+			});
+		}
+		
+		//重置音乐分类导航按钮样式
+		function resetMusicBtnCSS(){	
+			for(var i = 0;i<musicNavBtn_a.length;i++){
+				musicNavBtn_a[i].className = '';
+				music_box_list[i].classList = 'music_box_list'
+			}
+			
+		}
+	
+		
+		
+		//载入商品列表数据
+		reloadItem();
+		function reloadItem(){
+//			console.log(item_data.data.item_list);
+			var items = item_data.data.item_list;//解析得到商品列表项数组
+			//遍历添加商品列表项
+			for(var i = 0 ;i<items.length;i++){
+				//商品的价格处理
+				var min_app_price = parseFloat(items[i].min_app_price/100);
+				var min_market_price = parseFloat(items[i].min_market_price/100);
+				//得到促销信息
+				var promotions = items[i].promotions;
+				
+				
+				
+				var textInnerHTML = '<li><img src="'+items[i].over_image_url+'" />';
+				//判断是否有促销信息
+				if(promotions){
+					//拼接促销信息
+					textInnerHTML += '<p class="promotions_p">'+promotions[0]+'</p>';
+				}
+				textInnerHTML += '<p class="item_name">'+items[i].item_name+'</p><div class="item_desc"><p><span><i>¥</i>'+min_app_price+'</span>';
+				
+				//判断对比价格是否为0
+				if(min_market_price != 0){
+					//显示对比价格
+					textInnerHTML += '<span><i>¥</i>'+min_market_price+'</span>';
+				}
+				textInnerHTML += '</p><span></span></div></li>';
+				content_ul.innerHTML += textInnerHTML;
+			}
+			
+		}
+//================end=====
+	}
+</script>

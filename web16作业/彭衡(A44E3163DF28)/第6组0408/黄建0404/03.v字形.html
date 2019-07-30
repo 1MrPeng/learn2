@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul li{
+            list-style: none;
+        }
+        li{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: red;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <ul></ul>
+    <script>
+        var oul = document.getElementsByTagName("ul")[0];
+        var oli = document.getElementsByTagName('li');
+        var j = 0;
+        var flag = true;
+        for(var i = 0;i<40;i++){
+                oul.innerHTML += "<li style='left:"+i*50+"px;'>"+i+"</li>"
+                
+                if(flag){
+                    j++;
+                    if(j === 8){
+                        flag = false
+                    }
+                }else{
+                    j--;
+                    if(j === 0){
+                        flag = true
+                    }
+                }
+
+
+                // j = i%8 + 1
+                // if(!flag){
+                //     j = 8-j
+                // }
+                // if(j===8 || j === 0){
+                //     flag =!flag;
+                // }
+
+                
+                oli[i].style.top = j*50+"px"
+        }
+        
+    </script>
+</body>
+</html>

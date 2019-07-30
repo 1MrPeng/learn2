@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业3</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html,body,.main_box{
+				width: 100%;
+				height: 100%;
+				background: green;
+			}
+			.main_box{
+				position: relative;
+			}
+			button{
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				border-style: solid;
+				background: gold;
+				position: absolute;
+				top: 5px;
+				left: 150px;
+			}
+			.count{
+				width: 100px;
+				height: 30px;
+				position: absolute;
+				top: 10px;
+				left: 25px;
+			}
+			ul{
+				list-style: none;
+				display: flex;
+				padding: 50px 20px;
+				flex-wrap: wrap;
+			}
+			li{
+				/*width: 40px;*/
+				height: 40px;
+				background: gold;
+				border-radius: 50%;
+				padding: 5px;
+				margin: 5px;	
+				line-height: 40px;
+				text-align: center;
+			}
+			.taotai_ul{
+				
+			}
+			ul>li:nth-child(1){
+				width: 100%;
+				border-radius: 0;
+				line-height: 40px;
+				padding-left: 20px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="main_box">
+			
+			<input type="text" class="count" value="10" placeholder="请输入人数"/>
+			
+			<ul class="taotai_ul">
+				<li>显示结果</li>
+				
+			</ul>
+			
+			<button type="button">点击开始</button>
+			
+		</div>
+	</body>
+</html>
+
+<script>
+	//页面加载完成
+	window.onload = function(){
+		
+		//获取元素
+		var startBtn = document.querySelector('button');
+		var oCount = document.getElementsByClassName('count')[0];
+		var taotai_ul = document.getElementsByClassName('taotai_ul')[0];
+		
+		//绑定点击时间
+		startBtn.addEventListener('click',function(){
+			//得到输入内容
+
+			var count = Number(oCount.value.trim());
+			if(count<=3||!count){
+				alert('请输入个数大于3');
+				oCount.value = 3;
+				return ;
+			}else{
+				//保存结果
+				var arr = new Array();
+			
+				for (var i = 1;i<=count;i++) {
+					if(i==1||i==2){
+						arr.push(1);
+					}else{
+						arr.push(arr[i-2]+arr[i-3]);
+					}
+					//页面渲染
+//					console.log(arr[i-1])
+					taotai_ul.innerHTML += '<li>'+arr[i-1]+'</li>';
+				}
+			}
+		});
+	}
+	
+</script>
+

@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.top{
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    background: #F0F0F0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    position: fixed;
+    top: 0;
+}
+.item_a{
+    background: #FAFAFA;
+}
+.weixin{
+    width: 70%;
+    margin-left: 10px;
+}
+.top_right{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    margin-right: 10px;
+}
+.ite{
+    margin-top: 60px;
+}
+.item{
+    /* margin: 5px; */
+    padding: 5px;
+}
+.item1{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin: 5px;
+}
+.item_img{
+    width: 20%;
+}
+.item img{
+    width: 100%;
+}
+.item2{
+    width: 70%;
+    margin-left: 15px;
+    border-bottom: 1px solid #ccc;
+}
+.name{
+    font-size: 18px;
+    color: black;
+}
+.name1{
+    font-size: 14px;
+    color: #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.item3{
+    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+}
+.bottom{
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #F0F0F0;
+    height: 60px;
+}
+.btm{
+    margin-bottom: 60px;
+}
+.name_a{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.iconfont{
+    font-size: 30px;
+    text-align: center;
+}
+.icon{
+    text-align: center;
+}
+.icon1{
+    font-size: 20px;
+}

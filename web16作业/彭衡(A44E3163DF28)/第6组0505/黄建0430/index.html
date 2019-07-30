@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./index.css">
+  <title>Document</title>
+    <style>
+      .box{
+            overflow: hidden;
+            width: 500px;
+            height: 650px;
+            background: orange;
+            position: relative;
+        }
+        .box div{
+            width: 100px;
+            height:100px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        .d1{
+            position: relative;
+            background: pink;
+            animation: changex 0.6s ease-out infinite;
+        }
+        .d2{
+            background: green;
+            animation: bounce 3s ease-out infinite;
+        }
+        .d3{
+            background: #e4393c;
+            -webkit-animation: move 3s linear infinite;
+            animation: move 3s linear infinite;
+        }
+        .d4{
+          background: greenyellow;
+          animation: bounce1 3s ease-out infinite;
+        }
+        .d5{
+          background: #ccc;
+          animation:tantiao 0.5s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="d1"></div>
+        <div class="d2"></div>
+        <div class="d3"></div>
+        <div class="d4"></div>
+        <div class="d5"></div>
+    </div>
+</body>
+</html>

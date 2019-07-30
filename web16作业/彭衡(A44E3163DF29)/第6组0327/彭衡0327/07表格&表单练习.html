@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表格&表单练习</title>
+		<style type="text/css">
+			table {
+				margin: 0 auto;
+				width: 460px;
+			}
+			table td {
+				height: 27px;
+			}
+			table .left {
+				text-align: right;
+				width: 120px;
+			}
+		</style>
+	</head>
+	<body>
+		<form  method="get">
+		<table border="1" cellspacing="0px">
+			<tr>
+				<td class="left">用户名：</td>
+				<td>
+					<input type="text" name="username" placeholder="请输入用户名" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left">密码：</td>
+				<td>
+					<input type="password" name="password" placeholder="请输入密码" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left">确认密码：</td>
+				<td>
+					<input type="password" name="password" placeholder="请再次输入密码" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left">喜欢的颜色：</td>
+				<td>
+					<input type="color" name="color" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left">性别：</td>
+				<td>
+					<label><input type="radio" name="gender" value="male" />男</label>
+					<label><input type="radio" name="gender" value="female" />女</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">出生日期：</td>
+				<td>
+					<input type="date" name="date" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left">爱好：</td>
+				<td>
+					<select multiple="multiple" size="1">
+						<option value ="">购物</option>
+						<option value ="">游泳</option>
+						<option value ="">打球</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">你喜欢的游戏：</td>
+				<td>
+					<label><input type="checkbox" name="game" value="cf" />穿越火线</label>
+					<label><input type="checkbox" name="game" value="lol" />英雄联盟</label>
+					<label><input type="checkbox" name="game" value="niz" />逆战</label>
+					<label><input type="checkbox" name="game" value="shouwang" />守望先锋</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">邮箱：</td>
+				<td>
+					<input type="email" name="email" placeholder="请输入邮箱" />@
+					<select>
+						<option>qq.com</option>
+						<option>123.com</option>
+						<option>139.com</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">邮箱密码：</td>
+				<td>
+					<input type="password" name="emailpaw" placeholder="请输入邮箱密码" />
+				</td>
+			</tr>
+			<tr>
+				<td class="left"></td>
+				<td>
+					<input type="submit" name="submit" value="提交" />
+					<input type="reset" name="reset" value="重置" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>

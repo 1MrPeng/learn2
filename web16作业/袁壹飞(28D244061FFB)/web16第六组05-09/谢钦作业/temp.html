@@ -1,0 +1,20 @@
+<ul class="conten">
+    {{each film val}}
+        <li>
+            <div class="li_left">
+                <img src="">
+            </div>
+            <div class="li_right">
+                <div class="txt">
+                    <p>{{val.name}}<span>2D</span></p>
+                    <p><span>7</span></p>
+                    <p></p>
+                    <p>{{val.actors}}<span></span> | <span></span></p>
+                </div>
+                <div class="btn">
+                    <span>购票</span>
+                </div>
+            </div>
+        </li>
+        {{/each}}     
+    </ul>

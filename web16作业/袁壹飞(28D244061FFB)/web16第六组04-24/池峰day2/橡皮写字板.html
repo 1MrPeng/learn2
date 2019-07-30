@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #f1f1f1;
+        }
+        canvas{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="500">
+        您的浏览器不支持canvas
+    </canvas>
+    <button>我是橡皮擦</button>
+    <input type="color" name="" id="">
+    <img src="">
+
+    <script>
+        // 页面加载后执行
+        window.onload = function(){
+            // 获取元素
+            var oCanvas = document.getElementsByTagName("canvas")[0];
+            var oButton = document.getElementsByTagName("button")[0];
+            var oInput = document.getElementsByTagName("input")[0];
+            var oImg = document.getElementsByTagName("img")[0];
+            
+            // 创建画布
+            var ctx = oCanvas.getContext("2d");
+
+            // 1.创建画布
+				var ctx = oCanvas.getContext("2d");
+				
+			// 绑定鼠标按下事件
+			oCanvas.onmousedown = function(ev){
+					
+				var ev = ev || window.event;
+					
+				// 获取鼠标按下的坐标
+				var oMouseX = ev.pageX - oCanvas.offsetLeft;
+				var oMouseY = ev.pageY - oCanvas.offsetTop;
+					
+				// 开始路径绘制
+				ctx.beginPath();
+					
+				// 将该坐标设置为起始坐标
+				ctx.moveTo(oMouseX,oMouseY);
+					
+				// 绑定鼠标移动事件
+				document.onmousemove = function(ev){
+						
+					var ev = ev || window.event;
+						
+					// 获取鼠标移动到的坐标
+					var MX = ev.pageX - oCanvas.offsetLeft;
+					var MY = ev.pageY - oCanvas.offsetTop;
+						
+					// lineTo到坐标
+					ctx.lineTo(MX,MY);
+						
+					// 绘制线条
+					ctx.stroke();
+						
+                }
+                
+                // 绑定鼠标松开事件
+				oCanvas.onmouseup = function(){
+						
+					// 关闭路径
+					ctx.closePath();
+						
+					// 取消鼠标移动事件
+					document.onmousemove = null;
+						
+					// 生成图片路径
+					var oSrc = oCanvas.toDataURL();	
+						
+					// 将路径赋值给oImg
+					oImg.src = oSrc;
+						
+					// 绑定清除按钮
+					oButton.onclick = function(){
+							
+						// 清除矩形内容
+						ctx.clearRect(0,0,oCanvas.offsetWidth,oCanvas.offsetHeight);
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+        
+    </script>
+</body>
+</html>

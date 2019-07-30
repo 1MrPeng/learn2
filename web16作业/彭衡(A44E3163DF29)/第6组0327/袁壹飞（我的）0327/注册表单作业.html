@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单练习</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+           padding: 0;
+        }
+        #main{
+            width:500px;
+            margin: 20px auto;
+            color: #555
+        }
+        .top_btn{
+            text-align: center;
+        }
+        .top_btn button{
+            padding: 5px 25px;
+            margin-bottom: 30px;
+        }
+        .top_btn .top_btn_1{
+            background: #3d85cf;
+            border-top-left-radius: 6px;
+            color: white;
+            font-weight: bold;
+            border-bottom-left-radius: 6px;
+            margin-left: 20px;
+        }
+       
+       
+        /* 用户注册表单 */
+        #user_form table{
+            margin-left: 0;
+        }
+        #user_form tr{
+            height: 40px;
+           
+        }
+        #user_form input{
+            height: 25px;   
+            
+        }
+        #user_form td span{
+            color: red;
+        }
+
+        #user_form .td_left{
+            padding-right: 20px;
+        }
+
+       #main .right_input_bg{
+           background: url("./img/input.png") no-repeat center;
+           background-size: 100%;
+           border: none;
+           border-top: 1px #eee solid;
+           border-bottom: 1px #eee solid;
+           border-radius: 3px;
+       }
+       #main a{
+           text-decoration: none;
+       }
+       /* 给国旗a链接添加样式 */
+       #main .gq_a{
+           display: inline-block;
+            width: 16px;
+            height: 25px;
+            background: url(./img/gq01.ico) no-repeat center;
+            background-size: 100%;
+            margin: 0;
+            float: left;
+       }
+
+        #main .gq_select{
+            display: inline-block;
+            float: left;
+            width: 16px;
+            height: 25px;
+            background: url(./img/triangle.gif) no-repeat center;
+        }
+        #main .gq_text{
+            display: inline-block;
+            float: left;
+            width: 36px;
+            height: 25px;
+            /* font-size: 10px; */
+            color: black;
+            font-weight: bold;
+        }
+        /* 国旗图片下拉选项 */
+        #main .gq_box_position{
+            position: relative;
+        }
+        #main .gq_msg_box{
+            width: 340px;
+            height: 100px;
+            /* 使用绝对定位 */
+            position: absolute;
+            border: 1px #eee solid;
+            background: white;
+            padding-top: 10px;
+            padding-left: 5px;
+            /* 开始隐藏 */
+            display: none;
+        }
+        #main .gq_msg_box img{
+            /* width: 340px; */
+          
+        }
+        #main .gq_title_span{
+            color: #555;
+            font-size: 14px;    
+            float: right;
+        }
+
+    </style>
+
+    <!-- 添加js代码实现国旗图片的切换 -->
+    <script type="text/javascript">
+        // 国旗图片对象
+        var gq_a ;
+        var gq_msg_box ;
+        //预加载
+        window.onload = function(){
+            gq_a = document.getElementsByClassName("gq_a")[0];
+            //给a链接绑定点击事件
+            gq_a.onclick = function(){
+                // alert("aa");
+                //打开国旗下拉框
+                gq_msg_box = document.getElementsByClassName("gq_msg_box")[0];
+                gq_msg_box.style.display = "block";
+
+            };
+
+        }
+
+        // 定义国旗对应的前缀号码
+        var phone = {'gq01':"+33-",'gq02':"+86-",'gq03':"+12-"};
+        // 切换图标的方法
+        function qiehuan_img(img){
+                // alert('img='+img.id);
+                var name = img.id;
+            // 修改选择的国旗图标
+            gq_a.style.background = "url('./img/"+name+".ico') no-repeat center";
+            //修改电话前缀
+             var gq_text = document.getElementsByClassName("gq_text")[0];
+             gq_text.innerHTML = phone[name];
+            // 隐藏国旗下拉选项
+            gq_msg_box.style.display = "none";
+        }
+      
+
+    </script>
+
+</head>
+<body>
+    <!--表单登录练习作业  -->
+
+    <div id="main">
+        <!-- 头部切换按钮 -->
+        <div class="top_btn">
+                <button class="top_btn_1"  type="button" >注册字母邮箱
+                <button  type="button" >注册手机号码邮箱
+                <button class="top_btn_2" type="button" >注册VIP邮箱
+        </div>
+
+        <!-- 表单中的信息 -->
+        <form id="user_form">
+                <table cellspceing="30px;">
+                    <tr >
+                        <td align="right" valign="top" class="td_left"><span>*</span> 邮箱地址</td>
+                        <td>
+                            <input class="right_input_bg" style="width: 220px;" type="text">
+                            @
+                            <select style="height: 25px;width: 93px;font-weight: bold;">
+                                <option value="qq.com" selected>qq.com</option>
+                                <option value="qq.com" selected>162.com</option>
+                                <option value="qq.com" selected>163.com</option>
+                            </select>
+                            <p style="font-size: 10px;margin-top: 5px;margin-bottom:20px;color: #999">6~18个字符，可以使用字母、数字、下划线，需以字母开头</p>
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td align="right" valign="top" class="td_left"><span>*</span> 密码</td>
+                        <td>
+                            <input class="right_input_bg" style="width: 340px;" type="password" >
+                            <p style="font-size: 10px;margin-top: 5px;margin-bottom:20px;color: #999">6~16个字符，区别大小写</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top" class="td_left"><span>*</span> 确认密码</td>
+                        <td>
+                            <input class="right_input_bg" style="width: 340px;" type="password" >
+                            <p style="font-size: 10px;margin-top: 5px;margin-bottom:20px;color: #999">请再次输入密码</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top" class="td_left"><span>*</span> 手机号码</td>
+                        <td>
+                            <!-- 实现手机号码输入框中的图标的显示 -->
+                            <div class="right_input_bg gq_box_position" style="width: 340px;height: 25px;">
+                                    <!--国旗图片  -->
+                                    <a href="#" class="gq_a"></a>
+                                    <!-- 下拉按钮 -->
+                                    <span class="gq_select"></span>
+                                    <span class="gq_text">+33-</span>
+                                    <input  style="width: 270px;border: none;" type="text" >
+                                    <!-- 国旗下拉选项 -->
+                                    <div class="gq_msg_box">
+                                        <p onclick="qiehuan_img(this)" id="gq02">
+                                            <img src="./img/gq02.ico" alt="中国国旗"/>
+                                            <span class="gq_title_span">中国+86-</span>
+                                        </p> 
+                                        <hr>
+                                        <p onclick="qiehuan_img(this)" id="gq01">
+                                              <img src="./img/gq01.ico" alt="中国国旗"/>
+                                              <span class="gq_title_span">美国+33-</span>
+                                         </p>
+                                        <hr>
+
+                                        <p onclick="qiehuan_img(this)" id="gq03">
+                                            <img src="./img/gq03.ico" alt="中国国旗"/>
+                                            <span class="gq_title_span">巴西+12-</span>
+                                        </p>                                   
+                                    </div>
+                            </div>
+                           
+                            <p style="font-size: 10px;margin-top: 5px;margin-bottom:20px;color: #999">密码错误时，可以通过该手机号码快速找回密码</p>
+                            
+                               
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right" valign="top" class="td_left"><span>*</span>验证码</td>
+                        <td>
+                            <!-- 验证码图片-->
+                     
+                            <div style="width:230px;height:50px;margin-bottom:10px;display: inline-block;padding-top: 10px;">
+                                    <input class="right_input_bg"  style="width: 220px;" type="text" >
+                             
+                                    <p style="font-size: 10px;margin-top: 5px;color: #999">请填写图片中的字符，不区分大小写</p>
+                            </div>
+                            <div style="width:100px;height:50px;margin-bottom:10px;display: inline-block;">
+                                    <img src="./img/regist.png" width="100px;">
+                             
+                                    <p style="font-size: 10px;margin-top: 5px;color: #00e"><a>看不清?换张图片</a></p>
+                            </div>
+                          
+                        </td>
+                    </tr>
+                   
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" style="padding: 0;border: none;" ><img src="./img/mesg_btn.png"/></button>
+                            <p style="font-size: 10px;margin-top: 5px;margin-bottom:20px;color: #999"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right" valign="top" class="td_left"><span>*</span> 短信验证码</td>
+                        <td>
+                                <input class="right_input_bg" style="width: 340px;" type="text">
+                               
+                                <p style="font-size: 10px;margin-top: 5px;margin-bottom:10px;color: #999">请查收手机短信，并填写短信中的验证码</p>
+                        </td>
+                    </tr>  
+                    <tr >
+                        <td></td>
+                        <td valign="middle">
+                            <label style="font-size:10px;color:#999;">
+                                    <input style="float:left;" type="checkbox" checked="true"/>&nbsp;
+                                     同意 <a href="#">"服务条款"</a>和<a href="#">"隐私权相关政策"</a></span>
+                             </label>
+                        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="button" style="padding: 0;border: none;" ><img src="./img/regist_btn.png"/></button>
+                        </td>
+                    </tr>  
+
+                </table>
+                       
+        </form>
+
+    </div>
+
+    <!-- <img src="./img/01.bmp"> -->
+
+</body>
+</html>

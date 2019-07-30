@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>猫眼电影</title>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/Ajax.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="movie" class="active_div">
+			<header>
+				猫眼电影
+			</header>
+			<div id="nav">
+				<div>
+					深圳
+				</div>
+				<div class="nowPlaying">正在热映</div>
+				<div class="commingSoon active">即将上映</div>
+				<span class="iconfont icon-searchicon"></span>
+			</div>
+			<div id="nowPlaying" class="">
+				<!-- <div class="item">
+					<div class="item_left">
+						<img src="https://p0.meituan.net/128.180/movie/8d3efdc44af04c3254fc9e4ad5334ae32660685.jpg" width="64px">
+					</div>
+					<div class="item_right">
+						<div class="item_msg">
+							<p>扫毒2天地对决</p>
+							<p>观众评 <span>9.0</span></p>
+							<p>主演: <span>刘德华,古天乐,苗桥伟</span></p>
+							<p>今天<span>261</span>家影院放映<span>4453</span>场</p>
+						</div>
+						<span class="ticket">购票</span>
+					</div>
+				</div> -->
+			</div>
+			
+			
+			<div id="commingSoon" class="active_div">
+				<div class="expect">
+					<p>近期最受期待</p>
+					<div class="expectItems">
+						<div>
+							<!-- <div class="expect_item">
+								<img src="https://p0.meituan.net/170.230/movie/ae98a8b942495de97ddde12170f9b38d92428.jpg" width="85px" height="115px" >
+								<span class="wish"><span>293135</span>人想看</span>
+								<p>摸金校尉之...</p>
+								<p>10月1日</p>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				<div class="commingSoon_items">
+					<div class="date">
+						<p>7月12日 周五</p>
+						<div class="c_item">
+							<div class="c_item_left">
+								<img src="https://p0.meituan.net/128.180/moviemachine/7b9b0725ab5feae642e1fbba9fbb90fe3702078.jpg" width="64px">
+							</div>
+							<div class="c_item_right">
+								<div class="c_item_msg">
+									<p>狮子王<span>3D</span><span>IMAX</span></p>
+									<p><span>190730</span>人想看</p>
+									<p>主演: <span>唐纳德.格洛弗,塞斯.罗根,詹...</span></p>
+									<p>2019-07-12上映</p>
+								</div>
+								<span class="c_ticket">预售</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div id="cinema">
+			影院
+		</div>
+		<div id="mine">
+			我的
+		</div>
+		
+		<div id="footer">
+			<ul>
+				<li class="active_li">
+					<i class="iconfont icon-dianying"></i>
+					电影
+				</li>
+				<li>
+					<i class="iconfont icon-yingyuana"></i>
+					影院
+				</li>
+				<li>
+					<i class="iconfont icon-wode"></i>
+					我的
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+			var data = [
+				{time: "7-12"},
+				{time: "7-12"},
+				{time: "7-13"}
+			]
+			var newDATa = [
+				{
+					time: '7-12', 
+					content: [
+						{time: "7-12"},
+						{time: "7-12"},
+						{time: "7-12"},
+						{time: "7-12"},
+						{time: "7-12"},
+					],
+				},
+				{
+					time: '7-13', 
+					content: [
+						{time: "7-12"},
+						{time: "7-12"},
+					],
+				},
+			]
+		</script>
+	</body>
+</html>

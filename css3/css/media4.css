@@ -1,0 +1,18 @@
+header{
+	justify-content: center;
+	height: 100vh;
+}
+ul{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 300px;
+}
+ul li{
+	width: 100%;
+	border-top: 1px solid #4CD1FE;
+	border-bottom: 1px solid #00ABE5;
+	justify-content: center;
+	
+}

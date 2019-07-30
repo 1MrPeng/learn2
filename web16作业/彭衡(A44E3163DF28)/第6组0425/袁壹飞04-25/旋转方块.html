@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
+</head>
+<style type="text/css">
+    body {
+        padding: 0;
+        margin: 0;
+        background: black;
+    }
+    #canvas {
+        background: white;
+        margin: 100px 0 0 300px;
+    }
+    #canvas>span {
+        color: white;
+        font-size: 14px;
+    }
+</style>
+<body>
+    <canvas id="canvas" width="600" height="500">
+    <span>您的浏览器不支持</span>
+</canvas>
+</body>
+</html>
+<script type="text/javascript">
+    var oc = $('#canvas')[0];
+    //创建画板
+    var canvas = oc.getContext('2d');  
+    //创建图片
+    var img = new Image();
+	img.src="img/10.jpg";
+	
+    //偏移
+    canvas.translate(250, 250);
+	
+	var sum = 0.1;//伸缩比例
+    var state = true; //伸缩标记
+ 
+    setInterval(function(){
+
+         //清理画板
+		canvas.clearRect(-250, -250, oc.offsetWidth, oc.offsetHeight); 
+       	//旋转
+		canvas.rotate(6*Math.PI/180)
+      	  //保存路径
+         canvas.save(); 
+         
+//         图形缩放
+			if(state){ 
+				//放大
+				if(sum >= 2){
+					state = false;
+				}
+				sum += 0.05;
+			}else{
+				//缩小
+				if(sum <= 0){
+					state = true;
+				}
+				sum -= 0.05;
+			}
+ 		canvas.scale(sum, sum);
+        //偏移旋转中心
+        canvas.translate(-100, -100);
+		//填充图片
+		canvas.drawImage(img,0,0,200,200);
+		
+		
+        //恢复路径
+        canvas.restore();
+    }, 30);
+</script>

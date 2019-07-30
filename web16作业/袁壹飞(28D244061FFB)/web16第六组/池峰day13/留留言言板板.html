@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../../代码/js/jquery3.4.0.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .A{
+            width: 100%;
+            height: 700px;
+            background: black;
+            background-image: url(../池峰day13/timg4.gif);
+            background-size: 100% 100%; 
+            
+        }
+        .B>img{
+            width: 80%; 
+            height: 130px; 
+            margin-top: 0;
+            margin-left: 10%;
+        }
+        .C{
+            width: 80%;
+            height: 700px;
+            background: transparent;
+            margin-left: 10%;
+            
+        }
+        .c1{
+				
+            height: 500px;
+    		border: 1px solid black;
+            background: transparent;
+    		overflow-y: auto;
+		}
+		textarea{
+			width: 80%;
+			height: 50px;
+			box-sizing: border-box;
+			resize: none;
+        }
+		.But{
+            background: black;
+            font-size: 26px;
+            color: white;
+			width: 20%;
+            height: 50px;
+            float: right;
+		}
+    </style>
+</head>
+<body>
+    <div class="A">
+        <div class="B">
+            <img src="../池峰day13/blog_20150718101243492906.jpg" alt="">
+        </div>
+        <div class="C">
+            <textarea placeholder="请输入留言"></textarea> 
+            <button class="But">发表留言</button>
+            <div class="c1" style="color: white">
+                <p></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+		$(function(){
+            $("button").click(function(){
+                var val = $('textarea').val();
+
+                $("c1").append("<p>"+val+"<button>删除</button></p>");
+                $("p").first().prepend("<p>"+val+"</p>");
+
+                $("textarea").val("");
+                $("p button").click(function(){
+						
+						$(this).parent().remove();
+                })
+            })
+        })
+		</script>
+</body>
+</html>

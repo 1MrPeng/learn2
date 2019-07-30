@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	//原型继承
+	function Animate(name,age){
+		this.name = name;
+		this.age = age;
+		return this;
+	}
+	Animate.prototype.say = function(say){
+		return `${this.name} 说${say}`
+	}
+	
+	let cat = new Animate(`小猫咪`,3);
+	console.log(cat.say('喵喵~'));
+	
+	//class继承
+	class Fruit {
+		constructor(name,price) {
+			this.name = name;
+			this.price = price;
+		}
+		taste(taste){
+			return `${this.name} 味道是 ${taste}`
+		}
+	}
+	class Apple extends Fruit {
+		constructor(name,price) {
+			super(name,price);
+		}
+		color(color){
+			return `${this.name} 是 ${color}的`
+		}
+	}
+	
+	let Apple1 = new Apple('苹果',7);
+	console.log(Apple1.taste('甜的'));
+	console.log(Apple1.color('红色'));
+	
+</script>

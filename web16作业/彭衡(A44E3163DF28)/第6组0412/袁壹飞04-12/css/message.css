@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1554975195058'); /* IE9 */
+  src: url('iconfont.eot?t=1554975195058#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPwAAsAAAAACJAAAAOkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqESINiATYCJAMQCwoABCAFhG0HSxtXBxEVnOfIfh7Y4Bbl2nmfueaZKLQwdJKTvu85eJ7y+v7cVOVNoIHk9IBaEVxB/3vdW5vipqtQUXVMiZ2+S7PysPOXD7SFDTjQ2AOwiDY4AP64n7r0Aeazb3Opv26LSBztBjjK892AuqlaNIRxw9iVF7EZAjjkoBhSr0GzdlhojF4CyLDBA3tjpdTomkTBQkgpmaiRFZhYxkLjPrDc/738pIxYYGAqjIGtBtTvR60vt68ZVJyM6eZiQMczAmwaKKAYoEEGlZr7oEJvMRSOEq6pAFjmJwZ8SfMlx9cMySTi7kVsob88EAwUSApGvAdAOSRSJ4baCAS+5EBgwNcMahTE6+4W4AKXgUeAmM1gIvDN+QPfl2xedi+DOzk4+TSHuf1ZRX/tnnh3Om/RbnS8xw0X7xMzsW/xHvSWx+V6LNqbyDhw/eI9cbp+axxDsC5p3pfRbaxu7ylozzCZ6qnE3u67GN6a3fGe9L6xds/ifRmVv35fYm/fePeivaIGFPa1hcagQm9ipVqfy0hvxGtdf/H6ujydGrnj3U60aHyT68oSz3niSXYcSaxzvEVrwC9dqsegwxvd/c7GI58el8le5vGnMG+wP8wTDgrKhKSwTPYJed2NO27nCepl3fRsuyerZ/aXPmzJdKPzZM/z+P79zSkUDoRKrR+3dcN6OeuFdXv9ldOGfzXTw7I564bTe30uAJkbu6hrjLpGtYaofV64UPjGmbjj7Ir5ztugXM56wVvvD/esXdN7E9ZbOKOZOuOu8cQV3AtsrOLMX1F9xdep0qSK99Gt7v7hVRnNKACSqcuqh0+52qsqCZeW1vrpnVjgsSc9w2r/W/5VF71+UeQdtiTT9EP/HNoa/cVoyxyt8gyN1jLf5mixmg6Y8MYScXCAHxuENHwcQ5q+dTwIFuljMEhFdlBY5MNqYjEwcSkHKVjUBIeiNJzukpYxKETbQBHmAhAiDoFBwCVQRDzAauIHMMnAb0ghEgUOHSTtgq6Bu8xeztgKDtD9Ye7pUJZOvCDxgeO5tZzk+eQPspkdkIRxNlDjgTzGEHONqYgCxbRDBbbDbSPQTAv2Ek4iOosiVXajsKfd8sgZW8EB6P7A3NOh3MLi5b7/wPHcWq7JqjB+kM1cP5AQErfA1uKjVda1NDfXmCKicDfFtAMVNOJmegnQ5e0W7CVk6uHWGRHKp9qKw/ml+xOuAhyMVbUYokSLid9/mCVIgp70372DUYGgEdtM7dFPp2UB') format('woff2'),
+  url('iconfont.woff?t=1554975195058') format('woff'),
+  url('iconfont.ttf?t=1554975195058') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1554975195058#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-edit-1-copy:before {
+  content: "\e612";
+}
+
+.icon-icon-test:before {
+  content: "\e61e";
+}
+
+.icon-shanchu:before {
+  content: "\e716";
+}
+

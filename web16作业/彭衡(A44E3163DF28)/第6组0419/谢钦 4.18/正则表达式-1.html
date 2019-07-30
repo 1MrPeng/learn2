@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 700px;
+            height: 700px;
+            /* background-color: rgb(240, 238, 238); */
+            margin: 100px auto;
+            
+        }
+        .top{
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+        }
+        .top button{
+            padding: 13px;
+            width: 156px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            margin-top: 30px;
+         }
+         input{
+             border-radius: 5px;
+             height: 27px;
+         }
+        .top>button:first-child{
+            background-color: rgb(70, 70, 245);
+            color: white;
+            font-weight: 200px;
+        }
+
+        .middle{
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .middle>input{
+            width: 281px;
+             
+        }
+
+        .middle>span{
+            font-size:10px; 
+            margin-left: 23px;     
+        }
+
+        .password{
+          
+            margin-top: 30px;
+            margin-left: 149px;
+        }
+
+        .password>input{
+            width: 280px;
+        }
+
+        .password span{
+            margin-left: 61px;
+            font-size:10px; 
+        }
+
+        .ok{
+          margin-top: 30px;
+          margin-left: 120px;
+        }
+
+        .ok>input{
+          width: 280px;
+        }
+
+        .ok span{
+          margin-left: 88px;
+          font-size:10px; 
+        }
+        .numb{
+          margin-top: 30px;
+          margin-left: 120px;
+        }
+
+        .numb>input{
+          width: 280px;
+        }
+
+        .numb span{
+          margin-left: 88px;
+          font-size:10px; 
+        }
+        .popt{
+          margin-top: 30px;
+          margin-left: 135px;
+        }
+
+        .popt>input{
+          width: 200px;
+        }
+
+        .popt span{
+          margin-left:74px;
+          font-size:10px; 
+        }
+        .btn{
+            margin-left: 73px;
+            padding: 3px;
+            margin-top: 10px;
+        }
+        .duanxin{
+          margin-top: 30px;
+          margin-left: 111px;
+        }
+
+        .duanxin>input{
+          width: 280px;
+        }
+
+        .duanxin span{
+          margin-left:99px;
+          font-size:10px; 
+        }
+        .xia{
+            margin-left: 208px;
+            margin-top: 16px;
+        }
+        .xia span{
+            color: blue;
+        }
+        .xia button{
+            height: 38px;
+            width: 111px;
+            margin-top: 20px; 
+            background-color: green;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            color: white;
+        }
+        .xia input{
+          margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+        <div class="box">
+            <div class="top">
+                <button>注册字母邮箱</button><button>注册手机号码邮箱</button><button>注册VIP邮箱</button>
+             </div>
+             <div class="middle">
+                    * 邮件地址 &nbsp;&nbsp;&nbsp;<input type="text" name="youxiang" placeholder="请输入"> &nbsp;&nbsp;@ &nbsp;&nbsp;<button>163.com</button><br>
+                    <span class="hash">6~18个字符，可使用字母、数字、下划线，需要以字母开头</span>
+             </div>
+             <div class="password">
+                *密码 &nbsp;&nbsp;&nbsp;<input type="password" name="mima" placeholder="请输入"><br>
+                <span class="hash">6-16个字符，区分大小写</span>
+             </div>
+             <div class="ok">
+                    *确认密码 &nbsp;&nbsp;&nbsp;<input type="password" placeholder="请输入"><br>
+                    <span>请再次填写密码</span>
+             </div>
+             <div class="numb">
+                    *手机号码 &nbsp;&nbsp;&nbsp;<input type="text" name="call" placeholder="请输入"><br>
+                    <span class="hash">忘记密码时，可以通过该手机快速找回密码</span>
+             </div>
+             <div class="popt">
+                 *验证码 &nbsp;&nbsp;&nbsp;<input type="text"><br>
+                 <span>请填写图片中的字符，不区分大小写</span><br>
+                 <button class="btn">免费获取验证码</button>
+             </div>
+             <div class="duanxin">
+                    *短信验证码&nbsp;&nbsp;&nbsp;<input type="text"><br>
+                    <span>请查看手机，并填写手机中的验证码</span>
+             </div>
+             <div class="xia">
+                    <input type="checkbox">同意<span>"服务条款"</span>和<span>"隐私相关政策"</span><br>
+                    <button>立即注册</button>
+             </div>
+        </div>
+        <script>
+                // 页面加载后执行
+                window.onload = function(){
+                    // 获取元素
+                    var oYx = document.querySelector('input[name="youxiang"]');
+                    var oPass = document.querySelector('input[name="mima"]');
+                    var call = document.querySelector('input[name="call"]');
+                   
+                    var hash= document.getElementsByClassName("hash");
+                    // 绑定失焦事件
+                    oYx.onblur = function(){
+                         var oyx = oYx.value.trim()
+                         
+                         if(!oyx){
+                                hash[0].innerHTML = '<font style= "color:red";>请输入邮箱</font>';
+                                oYx.focus();
+                         }else{
+                              var oyxRel = /^[a-zA-Z]\w{5,17}$/g;
+                              if(!oyxRel.test(oyx)){
+                                  hash[0].innerHTML = '<font style="color:red;">请输入正确的邮箱</font>';
+                                  oYx.focus();
+                              }else{
+                                    hash[0].innerHTML = '<font style="color:bule;">邮箱正确</font>';
+                              }
+                         
+                         }
+                         
+                    }
+                     // 绑定失焦事件
+                     oPass.onblur = function(){
+                         var opass = oPass.value.trim()
+                         
+                         if(!opass){
+                                hash[1].innerHTML = '<font style= "color:red";>请输入正确的密码</font>';
+                                oPass.focus();
+                         }else{
+                              var opassRel =/^\w{6,16}$/g;
+                              if(!opassRel.test(opass)){
+                                hash[1].innerHTML = '<font style="color:red;">请输入密码6~17位数密码</font>';
+                                oPass.focus()
+                              }else{
+                                hash[1].innerHTML = '<font style="color:blue;">密码正确！</font>';
+                              }
+                         
+                         }
+                         
+                    }
+
+                }
+        </script>
+</body>
+</html>

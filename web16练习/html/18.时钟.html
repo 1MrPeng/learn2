@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#warp{
+				width: 500px;
+				height: 450px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border: 1px solid pink;
+			}
+			.clock{
+				width: 342px;
+				height: 342px;
+				background: url(../img/robotimg/时钟.jpg);
+				position: relative;
+			}
+			.clock>span{
+				display: inline-block;
+			}
+			.hour{
+				width: 13px;
+				height: 110px;
+				background: url(../img/robotimg/hour.gif);
+				position: absolute;
+				left: 165px;
+				top: 61px;
+			}
+			
+			.hour{
+				width: 13px;
+				height: 110px;
+				background: url(../img/robotimg/hour.gif);
+				position: absolute;
+				left: 165px;
+				top: 61px;
+				transform-origin: bottom;
+				animation: Rotate 60s infinite linear;
+			}
+			.minute{
+				width: 10px;
+				height: 150px;
+				background: url(../img/robotimg/minute.gif);
+				position: absolute;
+				left: 166px;
+				top: 21px;
+				transform-origin: bottom;
+				animation: Rotate 30s infinite linear;
+			}
+			.second{
+				width: 200px;
+				height: 200px;
+				background: url(../img/robotimg/second.gif);
+				position: absolute;
+				left: 71px;
+				top: -1px;
+				transform-origin: 102px 165px;
+				animation: Rotate 10s infinite linear;
+			}
+			@keyframes Rotate{
+				0%{
+					transform: rotateZ(0);
+				}
+				100%{
+					transform: rotateZ(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<div class="clock">
+				<span class="hour"></span>
+				<span class="minute"></span>
+				<span class="second"></span>
+			</div>
+		</div>
+	</body>
+</html>

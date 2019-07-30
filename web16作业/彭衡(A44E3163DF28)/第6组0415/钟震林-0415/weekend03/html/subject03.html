@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业三</title>
+		<style>
+			html,body,div,label,input,button{margin: 0; padding: 0;}
+			.container{
+				width: 350px;
+				height: 400px;
+				margin: 80px auto;
+			}
+			.check_box{
+				padding: 10px;
+				font-size: 18px;
+			}
+			.btn_box input{
+				margin-left: 10px;
+			}
+			.btn_box{
+				display: flex;
+				align-items: center;
+			}
+			.btn_box button{
+				height: 25px;
+				font-size: 18px;
+				border: 1px solid #4194CB;
+				border-radius: 5px;
+				margin-left: 10px;
+				display: none;
+			}
+			.div_box div{
+				width: 300px;
+				height: 300px;
+				border: 1px solid black;
+				margin-top: 5px;
+				margin-left: 10px;
+				display: none;
+			}
+			.btn_box .btn{
+				display: block;
+				height: 40px;
+				font-size: 22px;
+				background-color: red;
+				border: 5px groove #6C6C6C;
+				border-radius: 0;
+				display: block;
+			}
+			.div_box .active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="check_box">
+				<label><input type="checkbox" checked="checked" />1111</label>
+				<label><input type="checkbox" />2222</label>
+				<label><input type="checkbox" />3333</label>
+				<label><input type="checkbox" />4444</label>
+				<label><input type="checkbox" />5555</label>
+			</div>
+			<div class="btn_box">
+				<button class="btn">1111</button>
+				<button>2222</button>
+				<button>3333</button>
+				<button>4444</button>
+				<button>5555</button>
+			</div>
+			<div class="div_box">
+				<div class="active">1111</div>
+				<div>2222</div>
+				<div>3333</div>
+				<div>4444</div>
+				<div>5555</div>
+			</div>
+		</div>
+		<script>
+			
+			window.onload = function(){
+				
+				var aInput = document.getElementsByTagName("input");
+				var oBtn = document.getElementsByClassName("btn_box")[0];
+				var aBtn = oBtn.getElementsByTagName("button");
+				var oDiv = document.getElementsByClassName("div_box")[0];
+				var aDiv = oDiv.getElementsByTagName("div");
+				
+				for (var i =0; i < aInput.length; i++) {
+					
+					aBtn[i].ind = i;
+					aInput[i].onclick = function(){
+						
+						aInput[this.ind].checked = "checked";
+						aBtn[this.ind].className= "btn";
+					}
+				}
+				
+				for (var j = 0; j < aBtn.length; j++) {
+					aBtn[j].index = j;
+					aBtn[j].onclick = function(){
+
+						clearCSS();
+						
+						getCSS(this.index);
+					}
+				}
+				
+				
+				
+				function clearCSS(){
+					for (var y = 0; x < aBtn.length; y++) {
+						aBtn[y].className= "";
+						aDiv[y].className= "";
+					}
+				}
+				
+				function getCSS(flag){
+					aBtn[flag].className= "btn";
+					aDiv[flag].className= "active";
+				}
+			}
+		</script>
+	</body>
+</html>

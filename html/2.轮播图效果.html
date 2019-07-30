@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--
+			1. 五张图片，从左置右连续滚动
+			2. 每张图片滚动完成后，停顿1秒再滚动第二张图片
+			3. 最后一张图片滚动完成后，继续滚动，应该是第一张图片
+		-->
+		<title>广告轮播图</title>
+	</head>
+	<style type="text/css">
+		.parent {
+			width: 900px;
+			/*height: 1000px;
+			margin-top: 100px;*/
+			overflow: hidden;
+			margin: 0 auto;
+			position: relative;
+		}
+		
+		.item {
+			float: left;
+			width: 900px;
+			height: 337px;
+		}
+		
+		.item img {
+			width: 900px;
+			cursor: pointer;
+		}
+		
+		/*图片隐藏样式*/
+		.hide {
+			width: 0px;
+			height: 0px;
+		}
+		
+		
+	</style>
+	<body>
+		<div class="parent" id="parent">
+			<div class="item hide">
+				<img src="img/xmad_15548066591437_Stxlj.jpg" />
+			</div>
+			<div class="item hide">
+				<img src="img/xmad_15565398421566_aihJA.jpg" />
+			</div>
+			<div class="item hide">
+				<img src="img/xmad_15566146318197_mAghl.jpg" />
+			</div>
+			<div class="item hide">
+				<img src="img/xmad_15572806062885_EVpev.jpg" />
+			</div>
+			<div class="item">
+				<img src="img/xmad_15574198038169_xvodz.jpg" />
+			</div>
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript">
+	// 获取所有的item
+	var aitem = document.getElementsByClassName("item");
+	var biginIndex = 4;
+	var secondIndex = 3;
+	var biginMarginLeft = 0;
+	var secondMarginLeft = -900;
+
+	
+	/*开启定时任务，进行滚动*/
+	var timer = setInterval(roll, 1);
+	
+	/*滚动*/
+	function roll() {
+		if(biginMarginLeft == 900 || secondMarginLeft == 0) {
+			// 结束当前任务
+			clearInterval(timer);
+			
+			setTimeout(function() {
+				timer = setInterval(roll, 1);
+			}, 1000);
+			
+			// 当5张图片全部滚动完成后，第二轮的第一张图片之前设置了marginTop，现在还原
+			aitem[secondIndex].style.marginTop = "0px";
+			
+			// 将当前滚动before的class设置为: item hide
+			aitem[biginIndex].className = "item hide";
+			// 将当前滚动after的class设置为：item
+			aitem[secondIndex].className = "item";
+			
+			// 一波图片滚动完成后，需要的猛如虎操作
+			
+			// 修改biginIndex
+			if(biginIndex == 0) {
+				biginIndex = 4;
+				
+			} else {
+				biginIndex--;
+			}
+			// 重置biginMarginLeft
+			biginMarginLeft = 0;
+			// 修改secondIndex
+			if(secondIndex == 0) {
+				secondIndex = 4;
+			} else {
+				secondIndex--;
+			}
+			// 重置secondMarginLeft
+			secondMarginLeft = -900;
+		} else {
+			aitem[biginIndex].style.marginLeft = ++biginMarginLeft + "px";
+			aitem[secondIndex].style.marginLeft = ++secondMarginLeft + "px";
+			
+			if(secondIndex == 4) {
+				aitem[secondIndex].style.marginTop = "-337px";
+			}
+		}
+		
+	}
+</script>

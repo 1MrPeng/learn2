@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				height: 2500px;
+				font-size: 30px;
+				background: lightcyan;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+			}
+			::-webkit-scrollbar{
+				display: none;
+			}
+			.track{
+				position: fixed;
+				right: 5px;
+				top: 0;
+				bottom: 0;
+				height: 100vh;
+				background: #000000;
+				width: 5px;
+				display: flex;
+				justify-content: center;
+			}
+			.thumb{
+				width: 15px;
+				height: 15px;
+				background: hotpink;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div>top</div>
+		<div>middle</div>
+		<div>bottom</div>
+		<div class="track">
+			<span class="thumb"></span>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$(document).scroll(function(){
+			var height = $(this).scrollTop();
+			var scale = ($(this).height() - $(window).height())/($(window).height()-$('.thumb').height() - $('.track').position().top);
+			var top = height/scale + 'px';
+			$('.thumb').css('top',top)
+		})
+	})
+</script>

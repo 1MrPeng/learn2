@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        .box {
+            height: 100%;
+            width: 100%;
+        }
+
+        .header {
+            width: 100%;
+            height: 123px;
+            background: rgb(52, 52, 236);
+            color: white;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+
+            /* line-height: 123px; */
+        }
+
+        /* .header>p{
+            padding-bottom: 10px;
+        } */
+        p {
+            color: grey;
+            font-size: 15px;
+
+        }
+
+        ul {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            /*  margin-left: 20px; */
+            justify-content: space-around;
+        }
+
+        .img {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+         .jieshao{
+            width: 620px;
+           height: 100%; 
+           background-color: rgb(248, 244, 244); 
+        }  
+        .footer{
+            width: 100%;
+            float: left;
+            display: flex;
+            justify-content: center;
+            /* justify-content: space-between; */
+            margin-top: 107px;
+            
+        }
+        @media only screen and (max-width: 780px) {
+            .box{
+               display: flex;
+               justify-content: center;
+               flex-direction: column;
+               align-items: center;
+               margin-left: 20px; 
+               margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="header">
+            <h2>世界名犬</h2>
+            <p>世界名犬集 </p>
+        </div>
+        <ul>
+            <li>吉娃娃</li>
+            <li>德国牧羊犬</li>
+            <li>中国藏獒</li>
+            <li>哈士奇</li>
+            <li>贵宾犬</li>
+        </ul>
+        <div class="img">
+            <img src="./jww1.jpeg" alt="">
+        </div>
+        <div class="footer">
+            <div class="jieshao">
+                <h2>吉娃娃介绍</h2>
+                <p>吉娃娃是目前人们所知道最古老的的犬种之一，原产于美洲，和墨西哥的古老文明<br>有深厚而密切的关系。吉娃娃属小型犬种里最小型、优雅、警惕、动作迅速,以匀称<br>的体格个娇小的体型广受人们的喜爱。它们是相当受欢迎的狗狗，
+                    功用也相当广泛，<br>它们可以是宗教的守护者，也是平民的好伴侣，上至贵族下至百姓，不分等级<br>不分贵贱，吉娃娃是大家的好朋友。它不喜欢外来的同品种的狗。有和梗类相似的特，<br>点。精力充沛。体型较小，适合家养。
+                </p>
+            </div>
+            <div class="jiwawa">
+                <img src="./small.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

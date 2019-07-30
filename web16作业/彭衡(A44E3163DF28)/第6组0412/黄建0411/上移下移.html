@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul></ul>
+    <script>
+        window.onload = function(){
+            var oul = document.getElementsByTagName("ul")[0];
+            for(var j = 0;j<5;j++){
+                var oli = document.createElement("li");
+                var btn1 = document.createElement("button");
+                var btn2 = document.createElement("button");
+                oul.appendChild(oli);
+                oli.innerHTML = j+1;
+                oli.appendChild(btn1);
+                oli.appendChild(btn2);
+                btn1.innerHTML = "上移";
+                btn2.innerHTML = "下移";
+            }
+
+            var oli = document.getElementsByTagName("li");
+            for(var i = 0;i<oli.length;i++){
+                var btn = oli[i].getElementsByTagName("button");
+                btn[0].onclick = function(){
+                    var a = this.parentElement.previousElementSibling;
+                    // console.log(a)
+                    if(a== null){
+                        alert("到顶了");
+                    }else{
+                        oli[0].parentElement.insertBefore(this.parentElement,a)
+                    }
+                }
+                btn[1].onclick = function(){
+                    var b = this.parentElement.nextElementSibling;   
+                    // console.log(b)
+                    if(b == null){
+                        alert("到底了");
+                    }else{
+                        oli[0].parentElement.insertBefore(b,this.parentElement);
+                    }
+                } 
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算器</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="stylesheet" href="css/jisuanqi.css" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+	</head>
+	<body>
+		
+		<div id="main_box">
+			<!-- 计算显示 -->
+			<div class="content_top">
+				<p class="content_p"></p>
+			</div>
+			<!-- 功能按钮 -->
+			<div class="content_btn">
+					
+				<ul>
+					<li>c</li>
+					<li>%</li>
+					<li>←</li>
+					<li class="right_btn">/</li>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li class="right_btn">*</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li class="right_btn">-</li>
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li class="right_btn">+</li>
+					<li class="li_colspan">0</li>
+					<li>.</li>
+					<li class="right_btn">=</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- <img width="300px" src="img/webwxgetmsgimg.jpg" /> -->
+		
+	</body>
+</html>
+<script>
+	
+	//页面完成加载
+	window.onload = function(){
+		//获取元素
+		var content_p = document.getElementsByTagName('p')[0];
+		var liBtns = document.getElementsByTagName('li');
+		//特殊的字符
+		var str = '%/*-+.' ;
+		var dengStr = '%/*-+' ;
+		//初始化为0
+		reset();
+		var state = false;
+		var dengState = false;	
+		//给按钮绑定点击事件
+		for(var i = 0;i<liBtns.length;i++){
+			//保存数字
+			liBtns[i].index = liBtns[i].innerHTML;
+			liBtns[i].onclick = function(){
+				var index = this.index;
+				//得到内容
+				var contentText = content_p.innerHTML;
+				
+				if(index == 'c'){
+					reset();//清空		
+					return ;
+				}else if(index == '←'){
+					//删除后一个
+					if(contentText.length == 0){
+						return ;
+					}
+					content_p.innerHTML = contentText.slice(0,-1);
+					return ;
+				}else if(index == '='){
+					if(contentText == '0'){
+						return true;
+					}
+					//得算出结果
+					//判断最后一个是否是运算符
+					var endFont = contentText.substring(contentText.length-1)
+					if(str.indexOf(endFont) != -1){
+						//截取掉最后的一个运算符
+						contentText = contentText.slice(0,-1);
+					}
+					//判断运算的值是否为Infinity
+					var result = String(eval(contentText));
+					if(result == 'Infinity'){
+						//设置为0
+						result = 0;
+					}
+					content_p.innerHTML = result;
+					dengState  = true;
+					return ;
+				}else if(index == '.'){				
+					//一个数值不能有多个.
+					var result_state = subEndFont(contentText);
+					if(result_state){
+						//已经存在点
+						return;
+					}
+					
+				}
+				//如果第一个显示为0，如果下一个点击的是数字则把0清除
+				if(contentText == '0' && !isNaN(index)){
+					content_p.innerHTML = "";
+				}
+
+				//判断不能有连续的特殊字符
+				if(str.indexOf(index)!=-1){
+					//得到最后输入的一个内容
+					var endFont = contentText.substring(contentText.length-1)
+					if(str.indexOf(endFont) != -1){
+						//不能有连续的操作符
+						return ;
+					}
+				}
+				//如果上一次运算介绍，如果点击数字则重新开始
+				if(dengState){
+					var endFont = contentText.substring(contentText.length-1)
+					//如果点击运算符则继续进行
+					if(dengStr.indexOf(this.index) != -1){
+						//继续运算
+						dengState = false;
+					}else{
+						//不能再点击数.
+						if(this.index == '.'){
+							return;
+						}
+						//如果上次运算结束，再点击数字，重新开始运算
+						if(!isNaN(this.index)){
+							content_p.innerHTML = '';
+							dengState = false;
+							
+						}
+					}
+					
+				}
+				
+				content_p.innerHTML += this.index;
+				//设置滚动条,显示最新的内容
+				content_p.scrollTop = content_p.scrollHeight;
+				
+			}
+			
+		}
+		
+		//细节判断
+		function startChuLi(content){
+			//如果是开始时不能添加%/等符号
+			if(content == '0'){
+				return true;
+			}
+		}
+	
+		//截取得到最后一个数字
+		function subEndFont(text){
+			var arrs = ['%','/','*','-','+'];
+			var indexs = new Array();
+			for(var i in arrs){
+				var ind = text.lastIndexOf(arrs[i]);
+				indexs.push(ind);
+			}
+//			console.log(indexs);
+			//得到数组中最大值
+			var max_index = Math.max.apply(null,indexs);
+			
+			var result_text = text.substring(max_index+1);
+//			console.log(result_text)
+			if(result_text.indexOf('.') != -1){
+				//存在.不能再添加.
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		// 初始化显示
+		function reset(){
+			 state = false;
+			content_p.innerHTML = '0';
+		}
+		
+	}
+	
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>签字板</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: white;
+			}
+			img{
+				width: 200px;
+				background: white;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500">
+			您的浏览器不支持canvas
+		</canvas>
+		<button type="button">清除</button>
+		<img src="" >
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('canvas')
+		//创建画布
+		var ctx = $('canvas')[0].getContext('2d');
+		
+		$('canvas').on('mousedown',function(ev){
+			//获取鼠标按下的坐标
+			var oMouseX = ev.pageX - $(this).offset().left;
+			var oMouseY = ev.pageY - $(this).offset().top;
+			
+			//开始绘制路径
+			ctx.beginPath();
+			//将此坐标设置为起始位置
+			ctx.moveTo(oMouseX,oMouseY);
+			
+			$(document).on('mousemove',function(ev){
+				
+				var moveX = ev.pageX - $('canvas').offset().left;
+				var moveY = ev.pageY - $('canvas').offset().top;
+				
+				ctx.lineTo(moveX,moveY)
+				
+				ctx.stroke();
+			})
+			$('canvas').on('mouseup',function(){
+				ctx.closePath();
+				$(document).off('mousemove');
+				var oSrc = $('canvas')[0].toDataURL();
+				
+				$('img').attr('src',oSrc)
+				
+				$('button').on('click',function(){
+					ctx.clearRect(0,0,$('canvas').width(),$('canvas').height());
+				}) 
+			})
+		})
+	})
+</script>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../jq/新建文件夹/jquery3.4.0.js"></script>
+    <link rel="stylesheet" href="./font_1132776_hc01ahmrrzc/iconfont.css">
+    <link rel="stylesheet" href="./font_1152552_l3wohsup0q/iconfont.css">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 700px;
+            height: 600px;
+            margin: auto;
+            position: relative;
+        }
+       .iconfont{
+           display: inline-block;
+           width: 60px;
+           height: 60px;
+       }
+       .bnt{
+           display: inline-block;
+           display: flex;
+           align-items: center;
+            justify-content: space-between;
+           line-height: 59px;
+            height: 59px;
+            width: 800px;
+            background-color: aqua;
+            position: absolute;
+            margin-top: -63px;
+       }
+      .iconfont{
+          font-size: 30px;
+      }
+    </style>
+</head>
+<body>
+    <div class="box">
+            <video controls="controls" width="800px" loop="loop">
+                <source src="./1.mp4" type="video/mp4"> </source>
+                当前浏览器不支持 video直接播放，点击这里下载视频：<a href="./1.mp4">下载视频</a>
+            </video>
+           <div class="bnt">
+                <p class="iconfont">&#xe77c;</p>
+                <p class="iconfont">&#xe777;</p>
+                <input type="range" name="" id="">
+                <input type="range" step="0.1" name="" id="">
+                <p class="iconfont">&#xe61e;</p>
+                <p class="iconfont">&#xe665;</p>
+                <p class="iconfont">&#xe728;</p>
+        </div>
+    </div>
+    <script>
+            // 页面加载后执行
+            window.onload = function(){
+
+                // 获取元素
+                var oVideo = document.getElementsByTagName('video')[0];         
+                var oPlay = document.getElementsByTagName('p')[0];     //播放 
+                var oPause = document.getElementsByTagName('p')[1];    //暂停
+                var oMuted = document.getElementsByTagName('p')[2];    //静音
+                var oFullScreen  = document.getElementsByTagName('p')[3];    //全屏 
+                var onload = document.getElementsByTagName('p')[4];    //重新加载
+                var oVol = document.getElementsByTagName('input')[0];       //音量
+                var oProcess = document.getElementsByTagName('input')[1];   //进度条
+
+                // 绑定播放功能点击事件
+                oPlay.onclick = function(){
+                    oVideo.play()
+                }
+
+                // 绑定暂停功能点击事件
+                oPause.onclick = function(){
+                    oVideo.pause()
+                }
+
+                //绑定静音功能的点击事件
+                oMuted.onclick = function(){
+                    oVideo.muted = !oVideo.muted
+                }
+
+                //绑定全屏的点击事件
+                oFullScreen.onclick = function(){
+                    if(navigator.userAgent.indexOf('Chrome') != -1){
+                        oVideo.webkitRequestFullScreen();
+                    }else if(navigator.userAgent.indexOf("Firefox") != -1){	//火狐浏览器
+						
+						oVideo.mozRequestFullScreen(); 
+                    }
+                    
+                }
+
+                // 绑定音量调节时间
+                oVol.onchange = function(){
+                    oVideo.volume = this.value/100;
+                    
+                }
+
+                // 绑定重新播放功能
+                onload.onclick = function(){
+                    oVideo.load()
+                }
+
+                oProcess.setAttribute("max",oVideo.duration);
+				oProcess.onchange = function(){	
+					var currentProcess = oProcess.value;
+					oVideo.currentTime = currentProcess;
+                }
+            }
+        
+    </script>
+</body>
+</html>

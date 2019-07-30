@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>动画02</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				margin-top: 40px;
+			
+			}
+			img{
+				width: 300px;
+				animation: name 3s;
+				animation-fill-mode: forwards;
+			}
+			
+			/*定义动画*/
+			@keyframes name{
+				0%{
+					animation-timing-function: ease-out;
+					opacity: 0;
+					transform: translateX(0px);}
+				50%{
+					transform: translateX(500px);
+				}
+				100%{	
+						opacity: 1;
+					 	transform: translateX(400px);
+					}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="main_box">
+			<img src="img/01.jpg" />
+		</div>
+	</body>
+</html>

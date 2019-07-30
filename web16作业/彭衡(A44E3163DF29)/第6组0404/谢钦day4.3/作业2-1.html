@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+        <!-- <input type="text" class="pai"value="3.14"> -->
+        <input type="text" class="r" value="">
+        <button id="dian">点击我</button>
+        <div id="hezi"></div> 
+        <script>
+            var pai1= document.getElementsByTagName("input");
+            var oBtn =document.getElementById("dian");
+            var open =document.getElementById("hezi");
+              oBtn.onclick=function(){
+                    /* var value1=pai[0].value; */
+                    var value2=pai1[0].value;
+                   value3=Number(value2)*Number(value2)* 3.14;
+                open.innerHTML=value3;
+              }
+        </script>
+</body>
+</html>

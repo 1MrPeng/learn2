@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 100%;;
+            height: 2500px;
+            position: relative;
+        }
+        .top{
+            width: 100%;
+            height: 500px;
+            background-color: rgb(129, 129, 231)
+        }
+        .middle{
+            width: 100%;
+            height: 500px;
+            background-color: greenyellow;
+        }
+        .button{
+            width: 100%;
+            height: 500px;
+            background-color: pink;
+        }
+        .ha{
+            width: 100%;
+            height: 500px;
+            background-color: yellow;
+        }
+        .xia{
+            width: 100%;
+            height: 500px;
+            background-color: rgb(83, 82, 82);
+        }
+        
+         .gunlun>p{
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .gunlun p:first-child{
+            background-color: red;
+        }
+        
+        .gunlun{
+            position: fixed;
+            right: 0;
+            top: 300px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top"></div>
+        <div class="middle"></div>
+        <div class="button"></div>
+        <div class="ha"></div>
+        <div class="xia"></div>
+        <div class="gunlun">
+            <p class="top_1"</p>
+            <p class="middle_1"></p>
+            <p class="button_1"></p>
+            <p class="ha_1"></p>
+            <p class="xia_1"></p>
+        </div>
+    </div>
+    <script>
+        //  页面加载后执行
+            window.onload = function(){
+                //  获取元素
+                var top_1 = document.getElementsByClassName("top_1");
+                var middle_1 = document.getElementsByClassName("middle_1");
+                var button_1 = document.getElementsByClassName("button_1");
+                var ha_1 = document.getElementsByClassName("ha_1");
+                var xia_1 = document.getElementsByClassName("xia_1");
+                var gunlun = document.getElementsByClassName("gunlun")[0];
+
+                //  获取浏览器可视内容的高度
+                var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+                 console.log(scrollTop,'111111111') 
+                 // 绑定鼠标滚动事件
+               windowonscroll = function(){
+                   if( scrollTop>=400){
+                        middle_1.style.backgroundColor = "red"
+                   }else{
+                       
+                   }
+               }
+            }
+                    
+    </script>
+</body> 
+</html>

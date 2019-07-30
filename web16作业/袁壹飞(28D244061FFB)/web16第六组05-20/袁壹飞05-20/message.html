@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/message.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+
+    <title>留言板</title>
+</head>
+<body>
+
+    <div id="main-box">
+        <header>
+            Vue-简易留言板
+        </header>
+        <div id="content">
+            <send-msg-component></send-msg-component>
+
+            <msg-list-component></msg-list-component>
+        </div>
+
+        <!--定义发送留言内容模板  -->
+        <template id="send-msg-tempate">
+            <div class="send-msg-box">
+                <input type="text" v-model='msgValue' :placeholder="msgPlaceholder"/>
+                <button @click="sendMsg" type="button">提交</button>
+            </div>
+        </template>
+
+        <!-- 留言列表模板 -->
+        <template id="msg-list-template">
+            <div class="msg-list-box">
+                <div>留言列表</div>
+
+                <div class="msg-list-content">
+                    <ul>
+                        <li v-for="item in msgList">{{item}}</li>
+                    </ul>
+                    <button @click="clearMsg" type="button">清空留言</button>
+                </div>
+            </div>
+        </template>
+
+    </div>
+    
+</body>
+</html>
+<script>
+
+    let bus = new Vue();
+
+    //创建输入内容的组件
+    let sendMsgComponent = {
+        template: '#send-msg-tempate',
+        data: function(){
+            return {
+                msgPlaceholder: '请输入留言内容',
+                msgValue: ''
+            }
+        },
+        methods: {
+            sendMsg: function(){//发送留言
+                if(this.msgValue.trim()){
+                    bus.$emit('sendMsg', this.msgValue.trim());
+                    //清空输入框
+                    this.msgValue = "";
+                }
+            }
+        }
+
+    }
+
+    //创建显示留言的组件
+    let messageListComponent = {
+        template: '#msg-list-template',
+        data: function(){
+            return {
+                msgList: ['你在哪里?','北京?']
+            }
+        },
+        mounted: function(){
+            //接收发射过来的内容
+            bus.$on('sendMsg', val => {
+                this.msgList.push(val);
+            })
+        },
+        methods: {
+            clearMsg: function(){
+                if(confirm('确认要清空留言吗?')){
+                     this.msgList = [];
+                }
+            }
+        }
+    }
+ 
+    //创建根实例
+    let vm = new Vue({
+        el: '#content',
+        data: {
+
+        },
+        components: {
+            'send-msg-component': sendMsgComponent,
+            'msg-list-component': messageListComponent
+        }
+    })
+
+</script>

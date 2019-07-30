@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>爱奇艺</title>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,body{
+            width: 100%;
+            height: 100%;
+            background: url("./img/爱奇艺_bg.PNG") no-repeat center;
+            background-size: 100%;
+        }
+        #main_box{
+           /* 使用固定定位 */
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color:rgba(0, 0, 0, .5);
+        }
+        /* 登录框样式 */
+        #main_box .login_box{
+            width: 460px;
+            height: 386px;
+            background-color: white;
+            /* 居中 */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-left: -230px;
+            margin-top: -193px;
+
+        }
+
+        /*  头部标题开始 */
+        #main_box .login_top{
+            height: 50px;
+            background: url("./img/login-logo.png") no-repeat center;
+            position:  relative;
+        }
+
+        #main_box .login_top .login_no_btn{
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: url("./img/login-tn.png") no-repeat 0px -50px;
+            position: absolute;
+            top: 15px;
+            right: 10px;
+        }
+        #main_box .login_top .login_no_btn:hover{
+            background-position: -40px -44px;
+            top: 10px;
+            right: 15px;
+        }
+
+        /* 用户登录输入框样式 */
+        #main_box form{
+            position: relative;
+            height: 283px;
+        }
+
+        #main_box form div{
+            width: 360px;
+            height: 50px;
+            margin: 0 auto;
+            padding-top: 45px;
+           
+        }
+        #main_box form .username_box{
+            height: 30px;
+            /* border-bottom: 1px #a9a1a1 solid; */
+        }
+        #main_box form .username_box .username_box_span1{
+            display: inline-block;
+            width: 10px;
+            height: 5px;
+            background: url("./img/login-tn.png") no-repeat -3px -173px;
+        }
+        #main_box form .username_box .username_text_click,
+        #main_box form .username_box .username_box_span1{
+          cursor: pointer;
+        }
+        #main_box form .username_box input{
+            margin-left: 25px;
+            width: 225px; 
+            border: none;
+            /* 设置无轮廓 */
+            outline: none;
+        }
+
+        #main_box form .username_box .username_placholder{
+            color: #a9a1a1;
+           /* 使用绝对定位*/
+           position: absolute;
+           top: 46px;
+           right: 140px;
+           pointer-events: none;
+        }
+        /* 改变plachoder的位置 */
+        #main_box form .username_box input:focus + .username_placholder{
+            /* top: 19px;
+            right: 183px;
+            font-size:12px; */
+        }
+        /*username_text_click  */
+        #main_box form .username_box .username_text_click:hover + .username_box_span1{
+            /* background-position: -46px -171px;  */
+        }
+        /* 改变用户名输入框的底部边框 */
+        #main_box form .username_box input:focus ~.username_border {
+             border-top: 1px green solid;
+        }
+        /* 输入框的底部边框 */
+        .username_border{
+            border-top: 1px #a9a1a17a solid;
+            margin-top: 10px;
+        }
+
+    /* 底部导航栏 */
+        .login_bottom{
+            height: 52px;
+            background-color: #eee;
+           
+        }
+        .login_bottom a{
+            text-decoration: none;
+            color: #555;
+            line-height: 52px;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        /* 给链接添加hover */
+        .login_bottom a:hover{
+            color: #79b632;
+        }
+        .login_bottom>a:first-child{
+            margin-left: 20px;
+        }
+
+        .login_bottom div{
+            display: inline-block;
+            float: right;
+            padding-right: 10px;
+        }
+        /* ===================密码div */
+        #main_box .login_box .password_box{
+            position: relative;
+        }
+        /* 密码输入框 */
+        #main_box .login_box .password_box input{
+            width: 220px;
+            border: none;
+            outline: none;
+        }
+        /* 密码输入框的placholder */
+        #main_box .login_box .passwrod_placholder{
+            color: #a9a1a1;
+            /* 使用绝定定位 */
+            position:absolute;
+            bottom: 30px;
+            left: 0;
+            pointer-events: none;
+        }
+        #main_box .login_box .password_box input:focus + span{
+           /* font-size: 12px;
+           bottom: 57px; */
+        }
+        /* 改变底部边框的样式 */
+        #main_box .login_box .password_box input:focus ~.username_border{
+            border-top: 1px green solid;
+        }
+
+        /* 眼睛图片 */
+        #main_box .login_box .password_ege{
+            display: inline-block;
+            width: 20px;
+            height:15px;
+            background: url("./img/login-tn.png") no-repeat 0px -101px;
+            position:absolute;
+            right: 10px;
+            top: 52px;
+        }
+
+        /* 忘记密码容器 */
+        #main_box .login_box .login_black_p{
+            position: relative;
+            height: 20px;
+            padding-top: 0;
+        }
+    
+        #main_box .login_box .login_black_p a{
+            text-decoration: none;
+            color: #4a4646;
+            font-size: 12px;    
+            position: absolute;
+            right: 0;
+            top: -8px;
+        }
+        #main_box form  .login_submit{
+            padding-top: 0;
+            margin-top: 0;
+        }
+        #main_box .login_box button{
+            width:100%;  
+            height: 50px;
+            color: white;   
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            background: rgba(0, 255, 0, .35);
+        }
+        #main_box form .login_text{
+            height: 30px;
+            padding-top: 0;
+            font-size: 14px;
+            color: #888383;
+            text-align: center;
+        }
+      
+        #main_box .login_text a{
+            text-decoration: none;
+            line-height: 30px;
+            color: #31dc31e8;
+           
+        }
+        /* 找回密码提示框 */
+        #main_box form .login_black_password{
+            width: 70px;
+            height: 80px;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px 15px;
+            position: absolute;
+            top: -110px;
+            right: 0;
+            background-color: #eaeaea;
+            border: 1px #eee solid;
+            /* 隐藏 */
+            display: none;
+        }
+        #main_box form .login_black_password li{
+            list-style: none;
+            margin-bottom: 5px;
+            color: #867f7f;
+        }
+        #main_box form .login_black_password li:nth-child(2),
+        #main_box form .login_black_password li:nth-child(3)
+        {
+            background-color: #1dcc1d;
+            color: white;
+            padding: 5px 10px;
+        }
+        /* 给忘记密码链接设置hover*/
+        #main_box .login_box .login_black_p a:hover{
+            color: #79b632;
+            cursor: pointer;            
+        }
+
+        /* #main_box .login_box .login_black_p a:hover {
+            color: #79b632;
+             
+        } */
+        #main_box .login_box .login_black_p a:hover + .login_black_password {
+            display: block;
+        }
+        #main_box .login_box .login_black_p .login_black_password:hover {
+            display: block;
+        }
+
+        #main_box form .login_black_password li:nth-child(2):hover,
+        #main_box form .login_black_password li:nth-child(3):hover
+        {
+            background:rgba(53, 226, 53, 0.8);
+            cursor: pointer;   
+           
+        }
+        /* 地区下拉选择框 */
+        #main_box form .user_area{
+            height: 100px;
+            background: white;
+            border: 1px #eee solid;
+            padding-top: 0;
+            position:absolute;
+            top: 78px;
+            left: 50px;
+            z-index: 9;
+            /* 隐藏 */
+            display: none;
+            overflow: auto;
+        }
+        #main_box form .user_area ul li{
+            list-style: none;
+            padding-left: 10px;
+        }
+        #main_box form .user_area li:hover{
+           background-color: #eaeaea;
+           cursor: pointer;
+        }
+        /* 修改滚动条的样式 */
+        .user_area::-webkit-scrollbar {
+             width: 5px;
+             height: 10px;
+        }
+        /*         正常情况下滑块的样式 */
+
+        .user_area::-webkit-scrollbar-thumb {
+
+            background-color: rgba(0,0,0,.05);
+
+            border-radius: 10px;
+
+            -webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
+
+        }
+
+        /*鼠标悬浮在该类指向的控件上时滑块的样式*/
+
+        .user_area:hover::-webkit-scrollbar-thumb {
+
+          background-color: rgba(0,0,0,.2);
+
+            border-radius: 10px;
+
+            -webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
+
+        }
+
+        /*鼠标悬浮在滑块上时滑块的样式*/
+
+        .user_area::-webkit-scrollbar-thumb:hover {
+
+            background-color: rgba(0,0,0,.4);
+
+            -webkit-box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
+
+        }
+
+        /*正常时候的主干部分*/
+
+        .user_area::-webkit-scrollbar-track {
+
+            border-radius: 10px;
+
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+
+             background-color: white;
+
+        }
+
+        /*鼠标悬浮在滚动条上的主干部分*/
+
+        .user_area::-webkit-scrollbar-track:hover {
+
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.4);
+
+            background-color: rgba(0,0,0,.01);
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="main_box">
+            <div class="login_box">
+                    <!-- 头部标题开始 -->
+                    <div class="login_top">
+                        <span class="login_no_btn"></span>
+                    </div>
+                    <!-- 登录表单开始 -->
+                    <form >
+                        <!-- 用户名输入框 -->
+                         <div class="username_box">
+                             <span class="username_text_click" onclick="user_area_fun()">中国大陆</span>
+                             <span class="username_box_span1" onclick="user_area_fun()"></span>
+                             <!-- 用户名输入框 -->
+                             <input name="username" type="text" onfocus="username_placholder(this)" onblur="username_blur(this)"/>
+                             <span class="username_placholder">请输入手机号或者邮箱</span>
+                             <p class="username_border"></p>
+                             <!-- 使用js代码实现placehodler的效果 -->
+                             <script type="text/javascript">
+                              var username_p = document.getElementsByClassName("username_placholder")[0];
+                                    // 实现用户名输入框的plachoder效果
+                                    function username_placholder(username){
+                                        // 如果用户名输入框中有内容，则plachoder在输入框的上面显示
+                                        username_reset(username,"19px","183px","12px")
+                                    }
+                                    // 失去焦点时的plachoder
+                                    function username_blur(username){
+                                        username_reset(username,"46px","140px","16px")
+                                    }
+                                //   代码的重构
+                                function username_reset(username,top,right,font_size){
+                                    // var username_value = username.value.replace(/(^\s*)|(\s*$)/g, "");
+                                        if(username.value === ""){
+                                            //把plachoder在输入框上显示
+                                            username_p.style.top = top;
+                                            username_p.style.right = right;
+                                            username_p.style.fontSize = font_size;
+                                        }
+                                }   
+                             </script>
+                         
+                         </div>
+                         <!-- 用户名输入框结束 -->
+                         <!-- 地区选择下拉
+                        请求地区数据的地址：https://passport.iqiyi.com/apis/phone/get_support_areacode.action?ptid=01010021010000000000&local=1&agenttype=1 
+                        -->
+                         <div class="user_area">
+                                <ul>
+                                    <li><span>英国</span> +44</li>
+                                    <li ><span>泰国</span> +66</li>
+                                    <li><span>瑞典</span> +46</li>
+                                    <li ><span>德国</span> +49</li>
+                                    <li><span>南非</span> +27</li>
+                                    <li><span>香港地区</span> +852</li>
+                                    <li><span>澳门地区</span> +853</li>
+                                    <li><span>柬埔寨</span> +855</li>
+                                    <li><span>印度</span> +91</li>
+                                    <li><span>老挝</span> +856</li>
+                                    <li><span>缅甸</span> +95</li>
+                                </ul>
+                         </div>
+                         <!-- 使用js动态添加地区数据 -->
+                         <script type="text/javascript">
+                                var user_area = document.getElementsByClassName("user_area")[0]
+                                var username_box_span1 = document.getElementsByClassName("username_box_span1")[0];
+                                var username_text_click = document.getElementsByClassName("username_text_click")[0];
+                                //  定义一个标记
+                                var f = false;
+                                // 动态展现地区数据
+                                function user_area_fun(){
+                                    click_select();
+                                }
+                                // 给li绑定点击事件
+                                var user_area_lis = document.querySelectorAll(".user_area li");
+                                for(let li_index = 0; li_index<user_area_lis.length;li_index++){
+                                    user_area_lis[li_index].onclick = function(){
+                                        // click_select();
+                                        if(!f){
+                                        //打开选择框
+                                        user_area.style.display = "block";
+                                        // 修改图标 background-position: ;
+                                        username_box_span1.style.backgroundPosition = "-46px -171px";
+                                        f = true;
+                                            return ;
+                                        }
+                                        // 关闭下拉地址选项
+                                        user_area.style.display = "none";
+                                        // 修改图标 background-position: ;
+                                        username_box_span1.style.backgroundPosition = "-3px -173px";
+                                        f = false;
+                                        // 修改地区的信息
+                                        var span_text = this.firstElementChild;
+                                        // console.info()
+                                        username_text_click.innerHTML = span_text.innerHTML;
+                                    };
+                                }
+
+                                // 下拉框功能的具体实现
+                                function click_select(){
+                                    if(!f){
+                                        //打开选择框
+                                        user_area.style.display = "block";
+                                        // 修改图标 background-position: ;
+                                        username_box_span1.style.backgroundPosition = "-46px -171px";
+                                        f = true;
+                                            return ;
+                                        }
+                                        // 关闭下拉地址选项
+                                        user_area.style.display = "none";
+                                        // 修改图标 background-position: ;
+                                        username_box_span1.style.backgroundPosition = "-3px -173px";
+                                        f = false;
+                                }
+                          
+
+                         </script>
+
+                         <!-- 密码输入框 -->
+                         <div class="password_box">
+                            <input name="password" onfocus="password_focus(this)" onblur="password_blur(this)" type="password"/>
+                            <span class="passwrod_placholder">请输入密码</span>
+                            <p class="username_border"></p>
+                            <span class="password_ege"></span>
+                            <!-- 添加js代码实现眼睛的切换效果 -->
+                            <script type="text/javascript">
+                                // 定义一个标记
+                                var f = false;
+                                //得到眼睛span
+                                var password_ege = document.getElementsByClassName("password_ege")[0];
+                                var passwrod_placholder = document.getElementsByClassName("passwrod_placholder")[0];
+                                //给该元素绑定点击事件
+                                password_ege.onclick = function(){
+                                    // 实现眼睛图片的切换s 
+                                    if(!f){
+                                        // 切换为睁开图片
+                                        password_ege.style.backgroundPosition = "-43px -99px";
+                                        f = true;
+                                        return;
+                                    }
+                                    //切换为闭眼
+                                    password_ege.style.backgroundPosition = "0px -101px";
+                                    f = false;
+                                }
+
+                                // 实现密码输入框的plachoder
+                                // 得到焦点
+                                function password_focus(password_input){
+                                    password_reset(password_input,"57px","12px")
+                                }
+                                 // 失去焦点
+                                 function password_blur(password_input){
+                                    password_reset(password_input ,"30px","16px");
+                                }
+                                // 实现代码的重构
+                                function password_reset(password_input,bottom,font_size){
+                                    // var password_value = password_input.value.replace(/(^\s*)|(\s*$)/g, "");
+                                        if(password_input.value === ""){
+                                         
+                                            //把plachoder在输入框上显示
+                                            passwrod_placholder.style.bottom = bottom;
+                                            passwrod_placholder.style.fontSize = font_size;
+                                        }
+                                }   
+                            </script>
+
+                         </div>
+
+                         <!-- 忘记密码 -->
+                         <div class="login_black_p">
+                             <a  href="#">忘记密码</a>
+                               <!-- 找回密码提示框 -->
+                            <div class="login_black_password">
+                                <ul>
+                                    <li>忘记密码了?</li>
+                                    <li>找回密码</li>
+                                    <li>短信登录</li>
+                                </ul>
+                            </div>
+                         </div>
+                       
+
+                         <!-- 登录按钮 -->
+                         <div class="login_submit">
+                            <button type="login_submit">登录</button>
+                         </div>
+                         <!-- 协议书 -->
+                         <div class="login_text">
+                                 登录即代表您<a href="#">同意用户协议</a>和<a href="#">隐私政策</a>
+                         </div>
+                        
+                    </form>
+                    <!-- 底部导航栏 -->
+
+                    <div class="login_bottom">
+                            <a href="#" >注册</a>
+                            <div>
+                                <a href="#">手机扫码登录</a>|
+                                <a href="#">其他方式登录</a>
+                            </div>
+                    </div>
+            </div>
+    </div>
+
+</body>
+</html>

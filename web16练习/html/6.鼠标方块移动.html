@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body,div{margin: 0;padding: 0;}
+			div{
+				width: 80px;
+				height: 80px;
+				background: pink;
+				position: fixed;
+				left: 0;
+				top: 0;
+				border-radius: 15px;
+			}
+			.num{
+				color: white;
+				font-size: 20px;
+				font-weight: bold;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName('div')[0];
+				//绑定鼠标按下事件
+				oDiv.onmousedown = function(){
+					var creatDiv = document.createElement('div');
+					//创建一个div
+
+					creatDiv.style.cssText +="background: rgb("+getRandom(0,255)+","+getRandom(0,255)+","+getRandom(0,255)+");position: absolute;border-radius: "+getRandom(0,50)+"px;width: "+getRandom(20,100)+"px;height: "+getRandom(20,100)+"px;"
+
+					creatDiv.className = 'num';
+					document.body.appendChild(creatDiv);
+					//绑定鼠标移动事件
+					document.onmousemove = function(ev){
+						var ev = ev||window.event;
+						var mouseX = ev.pageX-oDiv.offsetWidth/2;
+						var mouseY = ev.pageY-oDiv.offsetHeight/2;
+						creatDiv.style.cssText += 'left: '+mouseX+'px;top: '+mouseY+'px';
+					}
+					//绑定鼠标松开事件
+					document.onmouseup = function(){
+						document.onmousemove = null;
+					}
+					creatDiv.onmousedown = function(){
+						document.onmousemove = function(ev){
+							var ev = ev||window.event;
+							var mouseX = ev.pageX-oDiv.offsetWidth/2;
+							var mouseY = ev.pageY-oDiv.offsetHeight/2;
+							creatDiv.style.cssText += 'left: '+mouseX+'px;top: '+mouseY+'px';
+						}
+						document.onmouseup = function(){
+							document.onmousemove = null;
+						}
+					}
+					//计算个数
+					var numDiv = document.getElementsByClassName('num');
+					console.log(numDiv.length)
+					for(i=0;i<=numDiv.length;i++){
+						creatDiv.innerHTML = i;
+					}
+				}
+
+				//获取随机数函数
+				function getRandom(min,max){
+					return Math.floor(Math.random()*(max-min)+min);
+				}
+			}
+		</script>
+	</body>
+</html>

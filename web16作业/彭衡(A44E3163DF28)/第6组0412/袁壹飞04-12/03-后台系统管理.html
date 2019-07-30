@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- <link rel="stylesheet" href="css/iconfont.css" /> -->
+	<link rel="stylesheet" href="css/message.css" />
+	<link rel="stylesheet" href="css/xiaomi_iconfont.css"/>
+	<link rel="stylesheet" href="css/message_system.css" />
+	
+	<title>后台系统管理</title>
+	
+</head>
+<body>
+	
+	<!-- 后台系统管理 -->
+	<div class="main_box">
+		
+		<table border="1" cellspacing="0" bordercolor="#e5e8ef">
+			
+			<tbody>
+			<tr>
+				<th>
+					<span class="iconfont icon-fuxuankuang_weixuanzhong allCheckbox"></span>
+				</th>
+				<th>展项ID</th>
+				<th>名称</th>
+				<th>所处楼层</th>
+				<th>所处位置</th>
+				<th>所属展区</th>
+				<th>更多</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<th>
+					<span index="0" class="iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn"></span>
+				</th>
+				<th>imte1</th>
+				<th>大门1</th>
+				<th>4</th>
+				<th>100，300</th>
+				<th>zone-03</th>
+				<th><a href="#">查看更多&gt;</a></th>
+				<th>
+					<span class="iconfont icon-edit-1-copy edit_btn"></span>
+					<span class="iconfont icon-shanchu delete_btn" ></span>
+				</th>
+			</tr>
+			<tr>
+				<th>
+					<span index="0" class="iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn"></span>
+				</th>
+				<th>imte1</th>
+				<th>大门1</th>
+				<th>4</th>
+				<th>100，300</th>
+				<th>zone-03</th>
+				<th><a href="#">查看更多&gt;</a></th>
+				<th>
+					<span class="iconfont icon-edit-1-copy edit_btn"></span>
+					<span class="iconfont icon-shanchu delete_btn" ></span>
+				</th>
+			</tr>
+			
+			<tr>
+				<th>
+					<span index="0" class="iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn"></span>
+				</th>
+				<th>imte1</th>
+				<th>大门1</th>
+				<th>4</th>
+				<th>100，300</th>
+				<th>zone-03</th>
+				<th><a href="#">查看更多&gt;</a></th>
+				<th>
+					<span class="iconfont icon-edit-1-copy edit_btn"></span>
+					<span class="iconfont icon-shanchu delete_btn"></span>
+				</th>
+			</tr>
+			
+			</tbody>
+		</table>
+		<!-- 底部功能栏 -->
+		<div class="footer_nav">
+			<!-- 左边的按钮 -->
+			<div class="footer_nav_left">
+				<p class="deleteBat">
+					<span class="iconfont icon-shanchu "></span>
+					批量删除
+				</p>
+				<p class="add_item_btn">
+					<span class="iconfont icon-icon-test"></span>
+					新增
+				</p>
+			</div>
+			<!-- 右边的分页按钮 -->
+			<div class="footer_nav_right">
+				<button>首页</button>
+				<button>上一页</button>
+				<button>1</button>
+				<button>2</button>
+				<button>3</button>
+				<button>下一页</button>
+			</div>
+		</div>
+		
+		<!-- 添加页面 -->
+		<div class="add_box"> 
+			<form id="addForm" onsubmit="return false">
+				<div>
+					<span>展项ID</span><input type="text" placeholder="请输入展项ID"/>
+				</div>
+				<div>
+					<span>名称</span><input type="text" placeholder="请输入名称"/>
+				</div>
+				<div>
+					<span>所处楼层</span><input type="text" placeholder="请输入所处楼层"/>
+				</div>
+				<div>
+					<span>所处位置</span><input type="text" placeholder="请输入所处位置"/>
+				</div>
+				<div>
+					<span>所属展区</span><input type="text" placeholder="请输入所属展区"/>
+				</div>
+				<div class="add_box_btns">
+					<button>确定</button>
+					<button>取消</button>
+				</div>
+			</form>				
+		</div>
+			<!-- 修改页面 -->
+		<div class="add_box editBox"> 
+			<form id="editForm" onsubmit="return false">
+				<div>
+					<span>展项ID</span><input type="text" placeholder="请输入展项ID"/>
+				</div>
+				<div>
+					<span>名称</span><input type="text" placeholder="请输入名称"/>
+				</div>
+				<div>
+					<span>所处楼层</span><input type="text" placeholder="请输入所处楼层"/>
+				</div>
+				<div>
+					<span>所处位置</span><input type="text" placeholder="请输入所处位置"/>
+				</div>
+				<div>
+					<span>所属展区</span><input type="text" placeholder="请输入所属展区"/>
+				</div>
+				<div class="add_box_btns">
+					<button class="edit_true">确定</button>
+					<button class="edit_false">取消</button>
+				</div>
+			</form>
+		</div>
+		<!-- 查看页面 -->
+		<div class="add_box moveBox"> 
+			<form id="moveForm" onsubmit="return false">
+				<div>
+					<span>展项ID</span><input readonly="readonly" type="text" placeholder="请输入展项ID"/>
+				</div>
+				<div>
+					<span>名称</span><input readonly="readonly" type="text" placeholder="请输入名称"/>
+				</div>
+				<div>
+					<span>所处楼层</span><input readonly="readonly" type="text" placeholder="请输入所处楼层"/>
+				</div>
+				<div>
+					<span>所处位置</span><input readonly="readonly" type="text" placeholder="请输入所处位置"/>
+				</div>
+				<div>
+					<span>所属展区</span><input readonly="readonly" type="text" placeholder="请输入所属展区"/>
+				</div>
+				<div class="add_box_btns">
+					<button class="moveBtn">确定</button>
+				</div>
+			</form>
+		</div>
+		
+		<!--遮罩效果的div-->
+		<div id="noContent"></div>
+	
+	</div>
+
+</body>
+</html>
+<script>
+	//页面加载完成时执行
+	window.onload = function(){
+		//获取元素
+		var addBox = document.getElementsByClassName('add_box')[0];
+		var addItemBtn = document.getElementsByClassName('add_item_btn')[0];
+		var addBoxBtns = document.getElementsByClassName('add_box_btns')[0];
+		var addBtns = addBoxBtns.getElementsByTagName('button');
+		var tableBox = document.getElementsByTagName('tbody')[0];
+		var addForm = document.getElementById('addForm');
+		var oAddInputs = addForm.getElementsByTagName('input');
+		var editBox = document.getElementsByClassName('editBox')[0];
+		var editTrueBtn = document.getElementsByClassName('edit_true')[0];
+		var editFalseBtn = document.getElementsByClassName('edit_false')[0];
+		//得到修改窗口的输入框
+		var editInput = document.querySelectorAll('#editForm input');
+		
+		//查看更多的元素moveBtn
+		var moveBox = document.getElementsByClassName('moveBox')[0];
+		var moveTureBtn = document.getElementsByClassName('moveBtn')[0];
+		//得到显示窗口的输入框
+		var moveInput = document.querySelectorAll('#moveForm input');
+		//遮罩窗口
+		var noContent = document.getElementById('noContent');
+		//全选按钮
+		var allCheckbox = document.getElementsByClassName('allCheckbox')[0];
+		var allChexkboxState = false;
+		//批量删除
+		var deleteBat = document.getElementsByClassName('deleteBat')[0];
+		
+		//保存正在修改的元素节点
+		var currentEditNode = null;
+		//给每一个列表项的删除按钮绑定点击事件
+		bindDeleteBtn();
+		//给添加按钮绑定点击事件
+		addItemBtn.onclick = function(){
+			//显示添加窗口
+			addBox.style.display = 'block';
+			contentWindowDispaly('block');
+			//清空输入框中的内容
+			addForm.reset();
+		}
+		
+		//给全选按钮绑定点击事件
+		allCheckbox.onclick = function(){
+			console.log(12)
+			//实现全选
+			allChexkboxState = !allChexkboxState;
+			//得到全部的列表项
+			var items = document.getElementsByClassName('checkBoxBtn');
+			var cName = "";
+			var color = "";
+			var index = '';
+			if(allChexkboxState){
+				
+				//实现全选
+				cName = 'iconfont icon-fuxuankuang checkBoxBtn';
+				color = 'orange';
+				index = '1';
+				this.className = 'iconfont icon-fuxuankuang allCheckbox';
+				this.style.color = 'orange';
+			}else{
+				//实现全不选
+				cName = 'iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn';
+				color = '';
+				index = '0';
+				this.className = 'iconfont icon-fuxuankuang_weixuanzhong allCheckbox';
+				this.style.color = '';
+			}
+			
+			for(var i = 0;i<items.length;i++){
+				items[i].className = cName;
+				items[i].style.color = color;
+				items[i].setAttribute('index',index);
+			}
+		}
+		
+		//给批量删除按钮绑定点击事件
+		deleteBat.onclick = function(){
+			//删除确认
+			if(!deleteAlter()){
+				return ;
+			}
+			//删除所有选择的列表项
+			//得到全部的列表项,
+			var items = document.getElementsByClassName('checkBoxBtn');
+			var deleteNodes = new Array();
+			for(var i = 0;i<items.length;i++){
+				//如果index = 1则删除
+				if(items[i].getAttribute('index') == '1'){
+					// tableBox.removeChild(items[i].parentNode.parentNode);
+					console.log(console.log(items.length));
+					deleteNodes.push(items[i].parentNode.parentNode)
+				}
+			}
+			
+			for(var i = 0 ;i<deleteNodes.length;i++){
+				tableBox.removeChild(deleteNodes[i]);
+			}
+			
+		}
+		
+		//给添加列表项添加点击事件
+		addBtns[0].onclick = function(){
+			
+			// 点击确定时获取输入框中的内容
+			 var arrs = new Array();
+			for(var i = 0;i<oAddInputs.length;i++){
+				if(oAddInputs[i].value.trim() == ''){
+					alert(oAddInputs[i].placeholder.substring(3)+"不能为空!");
+					return ;
+				}
+				arrs.push(oAddInputs[i].value.trim());
+			}
+
+			//创建tr节点
+			var oTr = document.createElement('tr');
+			oTr.innerHTML =  '<th><span index="0" class="iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn"></span></th><th>'+arrs[0]+'</th><th>'+arrs[1]+'</th><th>'+arrs[2]+'</th><th>'+arrs[3]+'</th><th>'+arrs[4]+'</th><th><a href="#">查看更多&gt;</a></th><th><span class="iconfont icon-edit-1-copy edit_btn"></span><span class="iconfont icon-shanchu delete_btn"></span></th>';
+			// tableBox.innerHTML += '<tr><th><span index="0" class="iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn"></span></th><th>'+arrs[0]+'</th><th>'+arrs[1]+'</th><th>'+arrs[2]+'</th><th>'+arrs[3]+'</th><th>'+arrs[4]+'</th><th><a href="#">查看更多&gt;</a></th><th><span class="iconfont icon-edit-1-copy edit_btn"></span><span class="iconfont icon-shanchu delete_btn"></span></th></tr>';
+			tableBox.appendChild(oTr);
+			//给每一个列表项的删除按钮绑定点击事件
+			bindDeleteBtn();
+			//关闭添加窗口
+			addBox.style.display = 'none';
+			contentWindowDispaly('none');
+		}
+		addBtns[1].onclick = function(){
+			//取消添加
+			addBox.style.display = 'none';
+			contentWindowDispaly('none');
+		}
+	
+		//=========绑定点击事件的方法=====
+		function bindDeleteBtn(){
+			//删除按钮
+			var deleteBtn = document.getElementsByClassName('delete_btn');
+			//给每一个修改按钮绑定点击事件
+			var editBtn = document.getElementsByClassName('edit_btn');
+			//得到复选框
+			var checkBoxBtn = document.getElementsByClassName('checkBoxBtn');
+			//给每个查看更多绑定点击事件
+			var moveBtn = document.querySelectorAll('table a');
+			for(var i = 0;i<deleteBtn.length;i++){
+				
+				//==========给删除按钮绑定点击事件
+				deleteBtn[i].onclick = function(){
+						//删除确认
+					if(!deleteAlter()){
+						return ;
+					}
+					//删除当前列表项
+					tableBox.removeChild(this.parentNode.parentNode);
+				}
+				
+				//===========给修改按钮绑定点击事件
+				editBtn[i].onclick = function(){
+					currentEditNode = this.parentNode.parentNode;
+					//调用数据回显函数，回显输入框中的内容
+					setInputDate(this,editBox,editInput);
+					
+				}
+				
+				//======给查看跟多的按钮绑定点击事件
+				moveBtn[i].onclick = function(){
+					//调用数据回显函数，进行数据的回显
+					setInputDate(this,moveBox,moveInput);
+				}
+				
+				//给复选框绑定点击事件
+				checkBoxBtn[i].onclick = function(){
+					console.log('jjjj'+this.getAttribute('index'))
+					//得到复选框中的下标index ：0未选择，1已选择
+					if(this.getAttribute('index') =='0'){
+						//选中icon-fuxuankuang1
+						this.className = 'iconfont icon-fuxuankuang checkBoxBtn';
+						this.style.color = 'orange';
+						this.setAttribute('index',"1");
+					
+					}else{
+						//取消选中
+						this.className = 'iconfont icon-fuxuankuang_weixuanzhong checkBoxBtn';
+						this.setAttribute('index',"0");
+						this.style.color = '';
+					}
+					
+				}
+				
+			}
+		}
+		//给修改窗口的确定按钮绑定点击事件
+		editTrueBtn.onclick = function(){
+			//输入的内容不能为空
+			var editText = new Array();
+			for(var i = 0;i<editInput.length;i++){
+				if(editInput[i].value.trim() == ''){
+					alert(editInput[i].placeholder.substring(3)+"不能为空!");
+					return ;
+				}
+				//不输入框中的内容保存到数组中
+				editText.push(editInput[i].value.trim())
+			}
+			//保存需改信息
+			//得到该列表项下的所有孩子
+			var ths = currentEditNode.children;
+			for(var i = 0;i<ths.length;i++){
+				var state = firstNode(ths[i]);
+				if(state){
+					//有元素节点则跳出当次循环
+					continue;
+				}else{
+					//设置每一个单元格中的文本信息
+					ths[i].innerHTML = editText[i-1];
+				}
+			}
+			
+			editBox.style.display = 'none';
+			contentWindowDispaly('none');
+		}
+		
+		//给修改窗口的取消按钮绑定点击事件
+		editFalseBtn.onclick = function(){
+			editBox.style.display = 'none';
+			contentWindowDispaly('none');
+		}
+		
+		//给查看更多窗口的确定按钮绑定点击事件
+		moveTureBtn.onclick = function(){
+			//关闭查看的窗口
+			moveBox.style.display = 'none';
+			contentWindowDispaly('none');
+		}
+		//=================end=====
+	}
+	
+	//数据的回显方法
+	function setInputDate(currNode,windowNode,inputNodes){
+		//得到要修改的列表项
+		var editItem = currNode.parentNode.parentNode;
+		var arr_text = new Array();//保存单元格中要修改的文本信息
+		//得到该列表项下的所有孩子
+		var ths = editItem.children;
+		for(var i = 0;i<ths.length;i++){
+			var state = firstNode(ths[i]);
+			if(state){
+				//有元素节点则跳出当次循环
+				continue;
+			}else{
+				//得到每一个单元格中的文本信息
+				arr_text.push(ths[i].innerHTML);
+			}
+		}
+		//打开修改窗口
+		windowNode.style.display = 'block';
+		contentWindowDispaly('block');
+		//数据的回显
+		for(let i = 0; i < arr_text.length;i++){
+			inputNodes[i].value = arr_text[i];
+		}
+	}
+	//删除提示
+	function deleteAlter(){
+		// alert('确定要')
+		return window.confirm('你确认要删除选择的数据吗?');
+	}
+	//遮罩窗口的显示和隐藏
+	function contentWindowDispaly(val){
+		noContent.style.display = val;
+	}
+	//得到第一个孩子节点的兼容性函数
+	function firstNode(obj) {
+		if(!obj.firstChild) {return false;}
+		return obj.firstElementChild ||(obj.firstChild.nodeType==1?obj.firstChild:(obj.firstChild).nextSibling);
+	}
+
+	
+</script>

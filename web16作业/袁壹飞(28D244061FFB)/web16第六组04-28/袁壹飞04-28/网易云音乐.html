@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="js/initialData.js"></script>
+		<title>网易云音乐</title>
+	</head>
+	<body>
+		<!--内容主体-->
+		<div class="main_box">
+			<!--头部-->
+			<header class="top_box">
+				<nav class="top_nav">
+					<!--左边的功能-->
+					<ul class="top_nav_left">
+						<li></li>
+						<li>发现音乐</li>
+						<li>我的音乐</li>
+						<li>朋友</li>
+						<li>商城</li>
+						<li>音乐人</li>
+						<li>
+							下载客户端
+							<span></span>
+						</li>
+						
+					</ul>
+					
+					<!--右边的功能-->
+					<ul class="top_nav_right">
+						<li>
+							<span></span>
+							<input type="text" placeholder="音乐/视屏/电台/用户" />
+						</li>
+						<li>
+							创作者中心
+						</li>
+						<li>
+							登录
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!--选显卡的切换栏-->
+			<nav class="top_next_nav">
+				<div>
+					<ul class="nav_btn">
+						<li  data-hashval="indexlist" data-index="1" data-bgcolor="#000"><span class="active_bth">推荐</span></li>
+						<li data-hashval="toplist" data-index="2" data-bgcolor="#88bdcb"><span>排行榜</span></li>
+						<li data-hashval="playlist" data-index="3" data-bgcolor="#134055"><span>歌单</span></li>
+						<li data-hashval="djradio" data-index="4" data-bgcolor="#ff131d"><span>主播电台</span></li>
+						<li data-hashval="artist" data-index="5" data-bgcolor="#a0adb6"><span>歌手</span></li>
+						<li data-hashval="album" data-index="6" data-bgcolor="#8e0f16"><span>新碟上架</span></li>
+						<span></span>
+					</ul>
+				</div>
+			</nav>
+			
+			<!--轮播图-->
+			<div class="banner_box">
+				<div>
+					<img src="img/01.jpg" />
+					<div class="downLoad"></div>
+				</div>
+				
+			</div>
+
+		</div>
+	</body>
+</html>
+<script>
+	
+	//页面加载完成
+	window.onload = function(){
+		//获取元素
+		var navBtns = document.querySelectorAll('.nav_btn li');
+		var bannerBox = document.querySelector('.banner_box');
+		var oImg = document.querySelector('.banner_box img');
+		var oSpanBtn = document.querySelectorAll('.nav_btn span');
+
+//		//设置初始化的hash #indexlist
+		window.location.hash = "#indexlist";
+			
+		//给选显卡按钮绑定事件
+		for(var i = 0;i< navBtns.length;i++){
+		
+			
+			navBtns[i].onclick = function(){
+				//重置样式
+				resetCSS();
+//				激活样式
+				oSpanBtn[this.dataset.index-1].classList.add('active_bth');
+				console.log(oSpanBtn[this.dataset.index-1])
+				//设置hash
+				window.location.hash = "#"+(this.dataset.hashval);
+				//保存到对象中 data-index="1" data-bgColor="#000"
+//				styleObj[this.dataset.hashval] = {imgSrc:'img/0'+this.dataset.index+'.jpg',bgcolor:this.dataset.bgcolor};
+				
+			}
+			
+		}
+		
+		//监听hash改变事件
+		window.onhashchange = function(){
+			
+			//得到相应的hash值，回显相应的数据
+			var oHash = window.location.hash;
+			if(oHash){
+				bannerBox.style.background = styleObj[oHash.substring(1)].bgcolor;
+				oImg.src = styleObj[oHash.substring(1)].imgSrc;
+			}
+			//重置样式
+			resetCSS();
+			//激活样式
+			var index = styleObj[oHash.substring(1)].imgSrc;
+		
+			oSpanBtn[index.substr(index.indexOf('0')+1,1)-1].classList.add('active_bth');
+		}
+	
+		//重置样式
+		function resetCSS(){
+			
+			for(var i = 0;i<oSpanBtn.length;i++){
+				
+				oSpanBtn[i].classList.remove('active_bth');
+			}
+			
+		}
+		
+	}
+</script>

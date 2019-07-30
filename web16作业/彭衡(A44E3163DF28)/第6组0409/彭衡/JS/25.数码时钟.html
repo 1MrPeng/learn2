@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<img />
+			<img />
+			<img src="../img/second1.png" />
+			<img />
+			<img />
+			<img src="../img/second1.png" />
+			<img />
+			<img />
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		//获取img元素数组
+		var aImg = document.getElementsByTagName('img');
+		var timer;
+		//改变img.src
+		function play(){
+			var mDate =new Date();
+			var str = add(mDate.getHours()) + add(mDate.getMinutes()) + add(mDate.getSeconds());
+			for(i=0;i<aImg.length;i++){
+				if(i<=1){
+					aImg[i].src = "../img/"+str.charAt(i)+".png"
+				}else if(i<=3){
+					aImg[i+1].src = "../img/"+str.charAt(i)+".png"
+				}else if(i<=5){
+					aImg[i+2].src = "../img/"+str.charAt(i)+".png"
+				}		
+			}
+			timer = setTimeout(play,1000);
+		}
+		play();
+		
+		//补齐六位
+		function add(num){
+			if(num<10){
+				return "0"+num;
+			}else{
+				return ""+num;
+			}
+		}
+	}
+</script>

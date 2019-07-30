@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <title>Document</title>
+    <style>
+        input{
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 200px;
+            height: 30px;
+            margin-top: 10px;
+        }
+        #app{
+            position: relative;
+        }
+        #app input:last-child{
+            width: 200px;
+            height: 100px;
+        }
+        #app button:last-child{
+            width:180px;
+            height: 50px;
+            background: rgb(115, 115, 245);
+            border :1px solid #ccc;
+            border-radius: 8px;
+            margin: 10px;
+        }
+       #app p{
+           border: 1px solid #ccc;
+           position: absolute;
+           left: 207px;
+           bottom: 53px;
+           width: 60px;
+           height: 74px;
+           line-height: 74px;
+           border-radius: 5px;
+           text-align: center;
+           background: gray;
+       }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <template id="child12">
+
+            <div>
+                <input type="text" placeholder="手机号码"><br>
+                <input type="text" name="" id="" placeholder="验证码"><p>验证码</p><br>
+
+                <router-link to="/login">登录</router-link>
+                <router-link to="/bm">
+                    <button>登录</button>
+                </router-link>
+                <router-view></router-view>
+            </div>
+        </template>
+           
+            <template id="child2">
+                <p>
+                    <input type="text" placeholder="姓名"><br>
+                    <input type="text" placeholder="性别"><br>
+                    <input type="text" placeholder="地址"><br>
+                    <input type="text" placeholder="号码"><br>
+                </p>
+            </template>
+            
+            
+        
+    </div>
+    <script>
+        const Login = { 
+				template: '<div>登录</div>',
+			}
+        const Bm = { template: '<div @click="login">bar</div>' }
+        
+        //配置路由表
+        
+        const routes = [
+            { path: '/login', component: Login },
+            { path: '/bm', component: Bm } 
+        ]
+            // 3.创建router实例
+        const router = new VueRouter({
+            routes // (缩写) 相当于 routes: routes(key为routes是固定的)
+        })
+        login = () => {
+            console.log(11111111111)
+        }
+        var vm = new Vue({
+            el:"#app",
+            data: {
+
+            },
+            router
+        })
+    </script>
+</body>
+</html>

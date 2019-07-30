@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #phone{
+            position: relative;
+        }
+        #item{
+            width: 216px;
+            height: 336px;
+            position: absolute;
+            background-image:url('../黄建0404/img/1.png'); 
+            top: 78px;
+            left: 21px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+        #item::-webkit-scrollbar {
+        display: none;
+    }
+        #image1{
+            position: absolute;
+            bottom: 88px;
+            left: 28px;
+        }
+        #inp{
+            width: 123px;
+            height: 25px;
+            position: absolute;
+            bottom: 85px;
+            left: 59px;
+        }
+        #btn{
+            position: absolute;
+            bottom: 85px;
+            left: 187px;
+            width: 47px;
+            height: 31px;
+            opacity: 0;
+        }
+        #right{
+				display: flex;
+				flex-flow: row-reverse wrap;
+			}
+        #left{
+            display: flex;
+        }
+        span{
+            border: 1px solid black;
+            border-radius: 5px;
+            max-width: 80%;
+            background: white;
+        }
+        .img1{
+            width: 20px;
+            height: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="phone">
+        <img id="image" src="../黄建0404/img/iPhone.png" alt="">
+        <div id="item"></div>
+        <img id="image1" src="../黄建0404/img/qq1.gif" alt="">
+        <input type="text" id="inp">
+        <input type="button" value="发送" id="btn">
+    </div>
+
+    <script>
+        window.onload = function(){
+            var img = document.getElementById("image1");
+            var ite = document.getElementById("item");
+            var inpt = document.getElementById("inp");
+            var btun = document.getElementById("btn");
+            var flag = false;
+            img.onclick = function(){
+                if(flag==true){
+                    img.src = "../黄建0404/img/qq1.gif"
+                }else{
+                    img.src = "../黄建0404/img/qq2.gif"
+                }
+                flag = !flag;
+            }
+            btun.onclick = function(){
+                if(flag){
+                    ite.innerHTML += "<p id='right'><img class='img1' src='../黄建0404/img/qq2.gif'/><span>"+inp.value+"</span></p>"
+                    inp.value = ""
+                }else{
+                    ite.innerHTML += "<p id='left'><img class='img1' src='../黄建0404/img/qq1.gif'/><span>"+inp.value+"</span></p>"
+                    inp.value = ""
+                }
+            }
+        }
+    </script>
+</body>
+</html>

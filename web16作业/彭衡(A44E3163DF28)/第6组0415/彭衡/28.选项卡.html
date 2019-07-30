@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body,span,div{margin: 0;padding: 0;}
+			
+			span {
+				margin-left: 17px;
+				display: inline-block;
+				width: 50px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				background: lightblue;
+				display: none;
+			}
+			span:hover{cursor: pointer;}
+			#warp div {
+				margin-top: 10px;
+				width: 500px;
+				height: 300px;
+				display: none;	
+			}
+			#warp div img{
+				width: 500px;
+				height: 300px;
+				
+				/* border: 1px solid red; */
+			}
+			
+			#warp .active {
+				display: block;
+			}
+			#warp .active_span{
+				background: pink;	
+			}
+			#warp .moren{
+				display: inline-block;
+			}
+			#warp {
+				/* border: 1px solid red; */
+				position: relative;
+				width: 500px;
+				height: 410px;	
+			}
+			#warp button {
+				position: absolute;
+				bottom: 150px;
+				width: 50px;
+				height: 50px;
+				border: none;
+				border-radius: 50%;
+				background: lightpink;
+				outline: none;
+			}
+			.btn_right{
+				right: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<p>
+				<input type="checkbox" name="checkbox" id="" value="" checked="checked" disabled="disabled" />早晨
+				<input type="checkbox" name="checkbox" id="" value="" />中午
+				<input type="checkbox" name="checkbox" id="" value="" />黄昏
+				<input type="checkbox" name="checkbox" id="" value="" />夜晚
+				<input type="checkbox" name="checkbox" id="" value="" />美食
+				<input type="checkbox" name="checkbox" id="" value="" />名车
+			</p>
+			<p>
+				<span class="active_span moren">早晨</span>
+				<span>中午</span>
+				<span>黄昏</span>
+				<span>夜晚</span>
+				<span>美食</span>
+				<span>名车</span>
+			</p>
+			
+			<div class="active">
+				<img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1554781740&di=6aac4f08e8aac3fe875f14073b98d32e&src=http://img3.redocn.com/tupian/20150807/zaochendetaiyang_4780200.jpg" >
+			</div>
+			<div>
+				<img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3085122765,2583202774&fm=26&gp=0.jpg" >
+			</div>
+			<div>
+				<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1106740038,2937498407&fm=26&gp=0.jpg" >
+			</div>
+			<div>
+				<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3101391293,3099176133&fm=26&gp=0.jpg" >
+			</div>
+			<div>
+				<img src="http://seopic.699pic.com/photo/50021/5741.jpg_wh1200.jpg" >
+			</div>
+			<div>
+				<img src="http://www.sinaimg.cn/qc/photo_auto/chezhan/2011/42/14/38/6674_src.jpg" >
+
+			</div>
+			<!-- <button type="button" class="btn_left">←</button>
+			<button type="button" class="btn_right">→</button> -->
+		</div>
+		
+		
+		<script type="text/javascript">
+			//页面加载完执行
+			window.onload = function(){
+				//获取元素
+				var aSpan = document.getElementsByTagName('span');
+				var warp = document.getElementById('warp');
+				var aDiv = warp.getElementsByTagName('div');
+				var aBtn = document.getElementsByTagName('button');
+				var ind=0;
+				var timer;
+				var oInput = document.getElementsByTagName('input');
+				
+				
+				
+				for(i=0;i<oInput.length;i++){
+					oInput[i].index = i;
+					aSpan[0].style.display = 'inline-block';
+
+					oInput[i].onclick = function(){
+						
+						if(oInput[this.index].checked){
+							aSpan[this.index].style.display = 'inline-block';
+							
+						}else{
+							aSpan[this.index].style.display = 'none';
+						}
+					}
+				}
+				
+				
+				
+				//for循环控制
+				for(var i=0;i<aSpan.length;i++){
+					
+					aSpan[i].index = i;//把每个另存
+					
+						aSpan[i].onclick = function(){
+							reset();
+							aSpan[this.index].className="active_span moren";
+							aDiv[this.index].className="active";	
+							ind = this.index;
+						}	
+				}
+				
+				//点击左切换事件
+// 				aBtn[0].onclick = function(){
+// 					//判断是否为第一个
+// 					if(ind == 0){
+// 						ind = aSpan.length-1;
+// 					}else{
+// 						ind--;
+// 					}
+// 					reset();
+// 					aSpan[ind].className="active_span";
+// 					aDiv[ind].className="active";
+// 				}
+				
+				//点击右切换事件
+				// aBtn[1].onclick = interval;
+				
+				//自动轮播
+				// timer = setInterval(interval,1000)
+				
+				
+				
+				//右切换函数
+				function interval(){
+					if(ind == aSpan.length-1){
+						ind = 0;	
+					}else{
+						ind++;
+					}
+					reset();
+					aSpan[ind].className="active_span";
+					aDiv[ind].className="active";
+				}
+				
+				//重置函数
+				function reset(){
+					for(var j=0;j<aSpan.length;j++){ //将原来的className置为空
+						aSpan[j].className = "";
+						aDiv[j].className = "";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

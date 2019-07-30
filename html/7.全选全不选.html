@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button>全选/全不选</button>
+		<input type="checkbox" checked="checked"  />
+		<input type="checkbox"  />
+		<input type="checkbox" checked="checked"   />
+		<input type="checkbox"  />
+		<input type="checkbox"  />
+		<input type="checkbox"  />
+		
+		<script>
+//			1.获取元素
+			var oBtn = document.getElementsByTagName("button")[0];
+			var aInput = document.getElementsByTagName("input");
+			var isChecked = true;	//声明是否选中的初始值
+			
+//			2.绑定点击事件
+			oBtn.onclick = function(){
+				
+//				3.循环获取每一个input
+				for(var i=0; i<aInput.length; i++){
+					
+//					4.改变input的checked属性的状态
+					aInput[i].checked = isChecked;
+					
+				}
+				
+//				5.每次点击之后选中状态取反
+				isChecked = !isChecked;
+				
+			}
+			
+		</script>
+	</body>
+</html>

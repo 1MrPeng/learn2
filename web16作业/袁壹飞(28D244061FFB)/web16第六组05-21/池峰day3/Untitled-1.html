@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        #box{
+            width: 540px;
+            height: 320px;
+            background: #3A4563;
+            margin: auto;
+            position: relative;
+        }
+        #box input:nth-child(1){
+            width: 250px;
+            height: 45px;
+            border-radius: 10px;
+            position: absolute;
+            margin-left: 100px;
+            margin-top: 70px;
+            border: 1px solid #fff;
+        }
+        #box input:nth-of-type(2){
+            width: 250px;
+            height: 45px;
+            border-radius: 10px;
+            position: absolute;
+            margin-left: 100px;
+            margin-top: 120px;
+            border: 1px solid #fff;
+        }
+        #box button:nth-of-type(1){
+            width: 100px;
+            height: 120px;
+            border-radius: 10px;
+            position: absolute;
+            margin-left: 365px;
+            margin-top: 30px;
+            background: #DDDDDD;
+            font-size: 15px;
+            outline:none;
+        }
+        #box button:nth-of-type(2){
+            width: 365px;
+            height: 50px;
+            border-radius: 10px;
+            position: absolute;
+            margin-left: 100px;
+            margin-top: 150px;
+            background: #5F74DD;
+            color: #FFF;
+            font-size: 20px;
+            outline:none;
+        }
+        #box1{
+            width: 360px;
+            height: 500px;
+            margin: 50px auto;
+            position: relative;
+        }
+        #box1 h4{
+            margin-left: 150px;
+        }
+        #box1 input:nth-of-type(1){
+            width: 355px;
+            height: 45px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        #box1 input:nth-of-type(2){
+            width: 355px;
+            height: 45px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        #box1 input:nth-of-type(3){
+            width: 355px;
+            height: 45px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        #box1 input:nth-of-type(4){
+            width: 355px;
+            height: 45px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        #box1 input:nth-of-type(5){
+            width: 355px;
+            height: 80px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        #box1 button{
+            width: 360px;
+            height: 50px;
+            border-radius: 10px;
+            margin-top: 20px;
+            background: #3A4563;
+            font-size: 20px;
+            color: #FFF;
+            outline:none;
+        } 
+        #box1 input{
+            border: 1px solid #ccc;
+        }
+        #box2{
+            width: 540px;
+            height: 300px;
+            margin: 50px auto;
+        }
+        #box2 h4{
+            margin-left: 224px;
+        }
+        #box2 table{
+            width: 540px;
+            height: 235px;
+        }
+        #box3{
+            margin: 50px auto;
+        }
+        #box3 img{
+            margin-left: 350px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text"><br/>
+        <input type="text"><br/>
+        <button>发送验证码</button><br/>
+        <button>登 录</button>
+    </div>
+
+    <div id="box1">
+        <h4>在线报名</h4>
+        <input type="text" placeholder=" 姓 名"><br/>
+        <input type="text" placeholder=" 性 别"><br/>
+        <input type="text" placeholder=" 手 机 号"><br/>
+        <input type="text" placeholder=" 地 址"><br/>
+        <input type="text" placeholder=" 备 注"><br/>
+        <button>立 即 报 名</button>
+    </div>
+
+    <div id="box2">
+        <h4>最新人员名单</h4>
+        <table border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#CFCFCF">
+            <tr style="background: #F1F1F1">
+                <th>姓 名</th>
+                <th>手 机 号</th>
+            </tr>
+            <tr style="text-align: center">
+                <td>秀 梅</td>
+                <td>13601994100</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="box3">
+        <img src="./zhoapian.bmp" alt="">
+    </div>
+</body>
+</html>

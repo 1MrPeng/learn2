@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .item{
+            width: 400px;
+        }
+        .item span{
+            display: none;
+            width: 40px;
+            height: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 20px;
+        }
+        .item1{
+            background: orangered;
+        }
+        .item div{
+            display: none;
+        }
+        div .item2{
+            display: block;
+            border: 1px solid #ccc;
+            width: 300px;
+            height: 300px;
+        }
+        .item span{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkbox">
+        <input type="checkbox"><span>111</span>
+        <input type="checkbox"><span>222</span>
+        <input type="checkbox"><span>333</span>
+        <input type="checkbox"><span>444</span>
+        <input type="checkbox"><span>555</span>
+    </div>
+    <div class="item">
+            <span class="item1">111</span>
+            <span>222</span>
+            <span>333</span>
+            <span>444</span>
+            <span>555</span>
+            <div class="item2">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+        </div>
+    <script>
+        window.onload = function(){
+            var check = document.getElementsByClassName("checkbox")[0]
+            var adiv = document.getElementsByClassName("item")[0]
+            var ospan = adiv.getElementsByTagName("span")
+            var odiv = adiv.getElementsByTagName("div")
+            var oinp = document.getElementsByTagName("input")
+            var oitem = document.getElementsByClassName("item2")[0]
+            for(var i =0;i<ospan.length;i++){
+                ospan[i].index=i
+                ospan[i].onclick = function(){
+                    for(var j =0;j<ospan.length;j++){
+                        ospan[j].className = ""
+                        odiv[j].className = ""
+                    }
+                    this.className = "item1"
+                    odiv[this.index].className = "item2"
+                }
+            }
+
+            for(var j = 0;j<oinp.length;j++){
+                oinp[j].index = j;
+                oinp[j].onclick = function(){
+                    var aspan = ospan[this.index]
+                    console.log(666)
+                    if(oinp[this.index].checked){
+                        // oitem.style.display = 'block'
+                        aspan.style.display = "inline-block"
+                        // console.log(aspan)
+                        // console.log(ospan.length)  
+                    }else{
+                        var cspan = check.getElementsByTagName("span");
+                        for(var z = 0;z<cspan.length;z++){
+                            if(cspan[z].innerHTML === aspan.innerHTML.charAt(0)){
+                                oitem.removeChild(cspan[z]);
+                            }
+                        }
+                        aspan.style.display = "none"
+                        console.log(this.index-1)
+                        
+                        if(ospan[this.index].className === "item1" && this.index !== 0){
+                            for(var k =0;k<ospan.length;k++){
+                            ospan[k].className = ""
+                            odiv[k].className = ""
+                        }
+                            ospan[this.index-1].className = "item1"
+                            odiv[this.index-1].className = "item2"
+
+                        }
+                    }
+                  
+                }
+                
+            }
+        }
+    </script>
+</body>
+</html>

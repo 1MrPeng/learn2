@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"><br />
+		<script type="text/javascript" src="js/jquery-3.4.0.min.js" ></script>
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<title>签名卡片</title>
+		
+		
+	</head>
+	<body>
+		<div class="box">
+			<!--定义一个画板-->
+			<canvas id="mycanvas2" width="500" height="400">当前浏览器版本过低，无法使用签名卡</canvas>
+			<div class="tools_box">
+				<p >
+					<span  class="iconfont icon-bianjixiugaiqianbishuxie"></span>
+				</p>
+				<p>
+					<span class="iconfont icon-xiangpica"></span>
+				</p>
+				<p>
+					<span></span>
+					<span></span>
+					<span></span>
+				</p>
+				<p>
+					<input type="color" />
+				</p>
+				<p>
+					<span class="iconfont icon-qingkong"></span>
+				</p>
+				<p>
+					<span class="iconfont icon-shengchenghuiyuanqia"></span>
+				</p>
+			</div>
+			
+			<!--橡皮擦-->
+			<p class="clearP">
+				<span class="iconfont icon-xiangpica"></span>
+			</p>
+			<!--粗细选择-->
+			<div class="cuxi_box">
+				<span index="2"></span>
+				<span index="4"></span>
+				<span index="7"></span>
+			</div>
+			<div class="img_box">
+				<img src="" width="250" />
+			</div>
+			
+		</div>
+		
+	</body>
+</html>
+<script>
+	
+	//页面加载完成
+	$(function(){
+		//创建画板 
+		var myCan = $('#mycanvas2')[0].getContext('2d');
+		
+		
+		//给铅笔绑定点击事件
+		$('.tools_box p:nth-of-type(1)').click(function(){
+			//重置样式
+			resetPCss();
+			//激活样式
+			$(this).addClass('active');
+			
+			//给画板绑定点击事件
+			$('canvas').mousedown(function(ev){
+				var ev = ev || window.event;
+				//设置开始位置
+				myCan.beginPath();
+				//得到鼠标的位置
+				var obj = $('canvas')[0].getBoundingClientRect();
+				var oX = ev.pageX - obj.left;
+				var oY = ev.pageY - obj.top;
+				//设置开始的坐标
+				myCan.moveTo(oX,oY);
+				
+				//绑定鼠标移动事件
+				$('canvas').mousemove(function(ev){
+					var mEv = ev || window.event;
+					var obj = $('canvas')[0].getBoundingClientRect();
+					//得到鼠标的位置
+					var mX = mEv.pageX - obj.left;
+					var mY = mEv.pageY - obj.top;
+					myCan.lineTo(mX,mY);
+					myCan.stroke();
+					
+				});
+					//绑定鼠标松开事件
+				$(document).mouseup(function(){
+					myCan.closePath();
+					//清除画板的鼠标移动事件
+					$('canvas').off('mousemove');
+				});
+			});
+			
+		}); 
+		
+		//给清空画板的p绑定事件
+		$('.tools_box p:nth-of-type(5)').mousedown(function(){
+			$('canvas').off('mousedown');
+			//重置样式
+			resetPCss();
+			//激活样式
+			$(this).addClass('active');
+			
+			myCan.clearRect(0,0,$('canvas')[0].offsetWidth,$('canvas')[0].offsetHeight);
+			
+		});
+		$('.tools_box p:nth-of-type(5)').mouseup(function(){
+			//重置样式
+			resetPCss();
+		});
+		
+		//给橡皮擦绑定点击事件
+		$('.tools_box p:nth-of-type(2)').click(function(){
+			$('canvas').off('mousedown');
+			//重置样式
+			resetPCss();
+			//激活样式
+			$(this).addClass('active');
+				//实现橡皮擦的擦除功能
+			$('canvas').mousedown(function(ev){
+//				console.log(12)
+				//显示橡皮擦
+				$('.clearP').show();
+				//设置橡皮擦的位置
+				var ev = ev || window.event;
+				var oLeft = ev.pageX - $('.box')[0].offsetLeft - $('.clearP')[0].offsetWidth/2;
+				var oTop = ev.pageY - $('.box')[0].offsetTop- $('.clearP')[0].offsetHeight/2;
+				$('.clearP').css({left:oLeft+"px",top:oTop+"px"});
+				$('canvas').mousemove(function(ev){
+					var oEv = ev || window.event;
+					var oLeft = oEv.pageX - $('.box')[0].offsetLeft - $('.clearP')[0].offsetWidth/2;
+					var oTop = oEv.pageY - $('.box')[0].offsetTop - $('.clearP')[0].offsetHeight/2;
+					$('.clearP').css({left:oLeft+"px",top:oTop+"px"});
+						//得到鼠标的位置
+					var obj = $('canvas')[0].getBoundingClientRect();
+					var mX = oEv.pageX - obj.left - $('.clearP')[0].offsetWidth/2;
+					var mY = oEv.pageY - obj.top - $('.clearP')[0].offsetHeight/2;
+					//擦除
+					myCan.clearRect(mX,mY,$('.clearP')[0].offsetWidth,$('.clearP')[0].offsetHeight);
+					
+				});
+			
+				//松开后取消擦除功能
+				$('.clearP').mouseup(function(){
+					//取消移动事件
+					console.log(12)
+					$('canvas').off('mousemove');
+					$('canvas').off('mousedown');
+					$('.clearP').animate({left:'200px',top:'430px'},1000,function(){
+						$('.clearP').css('display','none');
+						$('.tools_box p:nth-of-type(2)').removeClass('active');
+					});
+	
+				});
+			});
+		});
+		
+		
+		
+		//给切换粗细的p绑定事件
+		$('.tools_box p:nth-of-type(3)').click(function(){
+//			$('canvas').off('mousedown');
+			//激活样式
+			$(this).addClass('active');
+
+			$('.cuxi_box').css('display','block');
+			
+			
+			$('.cuxi_box span').click(function(){
+				console.log($(this).attr('index'));
+				$('.cuxi_box').css('display','none');
+				$('.tools_box p:nth-of-type(3)').removeClass('active');
+				//设置笔的粗细
+				myCan.lineWidth = $(this).attr('index');
+			});
+			$('canvas').click(function(){
+				$('.cuxi_box').css('disptools_box p:nth-of-type(6)lay','none');
+				$('.tools_box p:nth-of-type(3)').removeClass('active');
+			});
+		});
+		
+		//给切换颜色的p绑定事件
+		$('.tools_box p:nth-of-type(4) input').change(function(){
+			console.log(12)
+			//设置选择的颜色
+			myCan.strokeStyle = $(this).val();
+			
+		});
+		
+		//给生成图片的p绑定事件
+		$('.tools_box p:nth-of-type(6)').click(function(){
+//			console.log(myCan.toDataURL)
+			$('.img_box img').attr('src',$('canvas')[0].toDataURL())
+			
+		});
+		
+		//重置样式
+		function resetPCss(){
+			$('.tools_box p').each(function(index ,ele){
+				$(ele).removeClass('active');
+			});
+		}
+	})
+</script>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalabale=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="./css/iconfont.css">
+    <link rel="stylesheet"  href="./css/footer_iconfont.css">
+    <title>微信页面</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            line-height: 70px;
+        }
+        /* 头部样式 */
+        #weixin_top{
+       
+            background-color: #ededed;
+            height: 70px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            text-align: center;
+        }
+        #weixin_top li:first-child{
+            margin-left: 20px;
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #weixin_top li:nth-child(3),
+        #weixin_top li:nth-child(2){
+            float: right;
+            margin-right: 20px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        #weixin_top li:nth-child(3){
+            float: right;
+            margin-right: 30px;
+        }
+
+        /* 底部导航 */
+        .footer_nav{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            background-color: #ededed;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .footer_nav ul li{
+            /* height: 20px; */
+        }
+
+        .footer_nav ul li.iconfont{
+            font-size: 28px;
+            height: 45px;
+            line-height:45px;
+        }
+        .footer_nav ul li:not(.iconfont){
+            font-size: 15px;
+            height: 20px;
+            line-height:20px;
+        }
+        .footer_nav ul .tonxilu{
+           padding-left: 10px;
+        }
+        .footer_nav ul .myself{
+           padding-left: 6px;
+        }
+        .footer_nav ul:first-child li{
+            color: green;
+           
+        }
+        /* 信息列表样式 */
+        .content_list{
+            margin-top: 70px;
+            height: 60px;
+            /* background: #ededed; */
+            padding: 10px 10px 0;
+            display: flex;
+        }
+        .content_list .top_img{
+            display: inline-block;
+            width: 60px ;
+            height: 60px;
+            overflow: hidden;
+            margin-bottom: 10px;
+           
+        }
+        .content_list img{
+            width: 60px;
+        }
+
+        .content_list .content_msg{
+            flex-grow: 1;
+            height: 60px;
+            /* background: #ededed; */
+            padding-bottom: 10px;
+            margin-left: 10px;
+            border-bottom: 1px #dcd8d8 solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .content_list .content_msg .span_right{
+            float: right;
+        }
+        .content_list .content_msg .span_name{
+            font-size: 18px;
+            font-weight: bold;
+
+        }
+        .content_list .content_msg .span_text{
+            font-size: 14px;
+            color: #999;
+        }
+        div.content_all{
+            margin-top: 10px;
+        }
+        div.content_bottom{
+            margin-bottom: 70px;
+        }
+
+        /* 添加列表 */
+        #weixin_top .wenxin_move{
+            width: 170px;
+            /* height: 100px; */
+            background: #4c4c4c;
+            position: absolute;
+            top:75px;
+            right:10px;
+            display: none;
+        }
+
+        #weixin_top .wenxin_move li{
+            /* font-size: 14px; */
+            color: white;
+        }
+        #weixin_top .wenxin_move li.move_font{
+            font-size: 20px;
+            
+        }
+        #weixin_top  .weixin_sousou{
+            float: right;
+            margin-right: 20px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        #weixin_top ul li.a:hover + .wenxin_move{
+            display: block;
+        }
+        #weixin_top ul li.a{
+            padding-bottom: 20px;
+        }
+        #weixin_top .wenxin_move:hover{
+            display: block;
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- 头部 -->
+    <div id="weixin_top">
+        <ul>
+            <li>微信</li>
+            <li class= "a iconfont icon-tianjia"></li>
+        
+              <!-- xiala框 -->
+         <div class="wenxin_move">
+                <ul>
+                        <li class="iconfont icon-mes"></li>
+                        <li class="move_font">发起群聊</li>
+                    </ul>
+                    <ul>
+                        <li class="iconfont icon-lianxirenguanli tonxilu"></li>
+                        <li class="move_font">添加盆友</li>
+                    </ul>
+                    <ul>
+                        <li class="iconfont icon-faxian"></li>
+                        <li class="move_font">来扫一下</li>
+                    </ul>
+                    <ul>
+                        <li class="iconfont icon-xiazai"></li>
+                        <li class="myself move_font">个人中心</li>
+                    </ul>
+         </div>
+         <li  class="iconfont icon-sousuo weixin_sousou"></li>
+         </ul>
+
+         
+       
+    </div>
+
+  <!--  信息列表 -->
+    <div class="content_list" title="01">
+         <span class="top_img">
+            <img src="./img/top01.jpg">
+         </span>
+         <!-- 信息 -->
+         <div class="content_msg">
+                <p>
+                    <span class="span_name">神仙姐姐</span>
+                    <span class="span_right span_text">23:53</span>
+                </p>
+                <p>
+                    <span class="span_text">[语音]</span>
+                    <!-- <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span> -->
+                </p>
+            </div>
+    </div>
+    <div class="content_list content_all" title="02">
+            <span class="top_img">
+               <img src="./img/top02.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">杨幂</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">[微信红包]愚人节快乐</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+
+       <div class="content_list content_all" title="03">
+            <span class="top_img">
+               <img src="./img/top03.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">陌生的她</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">在干嘛</span>
+                       <!-- <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span> -->
+                   </p>
+               </div>
+       </div>
+
+       <div class="content_list content_all" title="04">
+            <span class="top_img">
+               <img src="./img/top04.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">郑爽</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">吃饭了吗？</span>
+                       <!-- <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span> -->
+                   </p>
+               </div>
+       </div>
+       <div class="content_list content_all" title="05">
+            <span class="top_img">
+               <img src="./img/top05.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">古力娜扎</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">[语音]</span>
+                       <!-- <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span> -->
+                   </p>
+               </div>
+       </div>
+       <div class="content_list content_all" title="06">
+            <span class="top_img">
+               <img src="./img/top06.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">小云</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">你好</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+
+       <div class="content_list content_all" title="07">
+            <span class="top_img">
+               <img src="./img/top07.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">允儿</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">[语音]</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+
+       <div class="content_list content_all" title="08">
+            <span class="top_img">
+               <img src="./img/top08.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">小花</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">[语音]</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+
+       <div class="content_list content_all" title="09">
+            <span class="top_img">
+               <img src="./img/top09.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">小腾</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">[语音]</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+      
+       <div class="content_list content_all content_bottom" title="11">
+            <span class="top_img">
+               <img src="./img/top11.jpg">
+            </span>
+            <!-- 信息 -->
+            <div class="content_msg">
+                   <p>
+                       <span class="span_name">健林</span>
+                       <span class="span_right span_text">23:53</span>
+                   </p>
+                   <p>
+                       <span class="span_text">签合同</span>
+                       <span class="span_right span_text iconfont icon-lingsheng-jingyin"></span>
+                   </p>
+               </div>
+       </div>
+    <!-- 微信底部 -->
+    <div class="footer_nav ">
+
+        <ul>
+            <li class="iconfont icon-mes"></li>
+            <li>微信</li>
+        </ul>
+        <ul>
+            <li class="iconfont icon-lianxirenguanli tonxilu"></li>
+            <li>通讯录</li>
+        </ul>
+        <ul>
+            <li class="iconfont icon-faxian"></li>
+            <li>发现</li>
+        </ul>
+        <ul>
+            <li class="iconfont icon-xiazai"></li>
+            <li class="myself">我</li>
+        </ul>
+    </div>
+    <!-- <img width="300px" src="./img/webwxgetmsgimg.jpg"> -->
+
+    <!-- 使用js实现具体的交互功能 -->
+    <script type="text/javascript">
+        //得到联系人列表的DOM对象
+        var content_lists = document.getElementsByClassName('content_list');
+        var span_name = document.getElementsByClassName('span_name');
+        //给每一个联系人添加点击事件
+        for(let i = 0;i < content_lists.length;i++){
+            content_lists[i].onclick = function(){
+                //实现聊天页面的跳转
+                // console.log(this.title)
+                window.location.href = "./sayPage.html?index="+this.title;
+                // 把用户名存到cookie中
+                document.cookie = 'username='+this.title+';path=/';
+                console.log('cookie='+document.cookie);
+            }
+
+        }
+
+    </script>
+</body>
+</html>

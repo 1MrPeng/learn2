@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="兼容函数.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			html,body,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			div{
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				width: 320px;
+				position: absolute;
+				display: none;
+			}
+			ul{
+				width: 130px; 
+				height: 200px;
+				display: flex;
+				flex-direction: column;
+				border: 1px solid #ccc;
+				border-bottom: 0;
+			}
+			li{
+				flex: 1;
+				border-bottom: 1px solid #ccc;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			li:hover{
+				background: lightblue;
+			}
+			input{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<ul class="myMenu">
+				<li>歌曲</li>
+				<li>专辑</li>
+				<li>歌手</li>
+				<li>歌词</li>
+				<li>MV</li>
+				<li>票务</li>
+			</ul>
+			<input type="text" />
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aDiv = document.querySelector('#warp');
+		var oUl = document.querySelector('.myMenu');
+		var oInput = document.querySelector('input');
+		
+		document.oncontextmenu = function(ev){
+			var ev = ev || window.event;
+			stopPrevent(ev);
+			var oMouseX = ev.pageX;
+			var oMouseY = ev.pageY;
+			aDiv.style.cssText += "display: flex;left: "+oMouseX+"px;top: "+oMouseY+"px"
+		}
+		document.onclick = function(){
+			aDiv.style.display = 'none';
+		}
+		aDiv.onclick = function(ev){
+			stopBubble(ev);
+		}
+		oUl.onclick = function(ev){
+			var ev = ev || window.event;
+			stopBubble(ev);
+			var target = ev.target || ev.srcElement;
+			if(target.nodeName.toLowerCase() == "li"){
+				oInput.style.display = 'block';
+				oInput.value = target.innerHTML;
+			}
+		}
+		oInput.onblur = function(){
+			oInput.style.display = 'none';
+		}
+		oInput.onfocus = function(){
+			oInput.style.color = 'red';
+		}
+		
+		
+	}
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 800px;
+				height: 200px;
+				/* border: 1px solid red; */
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入玩家的人数" /><br><br>
+		<button type="button">Play</button><br><br>
+		<div></div>
+		<div></div>
+	</body>
+</html>
+<script type="text/javascript">
+	var oInput = document.querySelector('input');
+	var Btn = document.querySelector('button');
+	var Div = document.querySelectorAll('div');
+	
+	Btn.onclick = function(){
+		var game = function(Num){ 
+			var people = []; 
+			for(var i=1;i<=Num;i++){ 
+				people.push(i); 
+			} 
+			var count=0; 
+			while(people.length>1){ 
+				var outNum = 0,len=people.length; 
+				for(var i=0;i<len;i++){ 
+					count++; 
+					if(count==3){ 
+						count=0; 
+						Div[0].innerHTML+="出局:"+people[i-outNum];
+						people.splice(i-outNum,1); 
+						outNum++; 
+					} 
+				} 
+			} 
+			return people[0]; 
+		}; 
+		Div[1].innerHTML+=("<br/>剩下:"+game(Number(oInput.value))); 
+	}
+		
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性操作</title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<img src="" >
+		<img src="" >
+		<img src="" >
+		<button type="button">全选/全不选</button>
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+		<input type="checkbox" name="" id="" value="" />
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('img').each(function(i){
+			$(this).attr({
+				'src' : '../html/img/'+i+'.png',
+				'title' : 'img'+i
+			});	//设置属性
+			
+			console.log($(this).attr('title'));	//获取属性
+		})
+		$('img').click(function(){
+			$(this).removeAttr('title');	//移除属性
+		})
+		//点击全选
+		// $('[type = button]').click(function(){
+		// 	$('[type = checkbox]').prop('checked',!$('[type = checkbox]').prop('checked'));
+		// })
+		
+		//点击反选
+		$('[type = button]').click(function(){
+			
+			$('[type = checkbox]').each(function(){
+				$(this).prop('checked',!$(this).prop('checked'));
+			})
+		})
+	})
+</script>

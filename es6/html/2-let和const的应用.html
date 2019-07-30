@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			let声明
+				1.具有块级作用域(花括号);
+				2.同一变量不允许重复声明
+				2.没有变量声明提升
+			
+			const声明常量(不可变)
+				1.具有块级作用域(花括号)
+				2.不可重新赋值
+				3.声明时需要直接赋值
+				4.不可重复声明
+		-->
+		<button type="button">1</button>
+		<button type="button">2</button>
+		<button type="button">3</button>
+	</body>
+</html>
+<script type="text/javascript">
+	//let下标应用
+	let btn = document.querySelectorAll('button');
+	for(let i =0;i<btn.length;i++){
+		btn[i].onclick = ()=>{
+			console.log(`我是第${i+1}个按钮!`);
+		}
+	}
+	
+	//const定义对象,其指针对象的地址不可修改,其属性可以被修改
+	
+	const obj = {
+		name: 'A'
+	}
+	obj.name = 'B';
+	obj.age = 18;
+	obj.age = 19;
+	console.log(obj);
+	
+	// obj = {};
+	// console.log(obj);修改地址则报错
+	
+	//使用Object的freeze进行冻结对象,严格模式下会报错,非严格模式下无法修改
+	
+	function f(){
+		// "use strict"
+		const a = {
+			name: 'C'
+		}
+		a.age = 20;
+		console.log(a);
+		Object.freeze(a);
+		a.age = 21;	//无法被修改(非严格模式)
+		console.log(a);
+	}
+	f();
+</script>

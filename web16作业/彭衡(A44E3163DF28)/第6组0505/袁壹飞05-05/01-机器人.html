@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>机器人</title><br />
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+		
+			.main_box{
+				width: 100%;
+				
+				height:500px;
+				box-sizing: border-box;
+				background: url(img/r_floor_bg.jpg) no-repeat ;
+				background-size: 100% 100%;
+				position:  relative;
+			}
+			.main_box div{
+				width: 167px;
+				height: 190px;
+				background: url(img/robot.png) no-repeat;
+				background-size: 100% 100%;
+				position: absolute;
+				right: 50px;
+				bottom: 100px;
+				transition: 0.5s;
+			}
+			.robot_box{
+				animation: robotFramesToLeft 5s linear ;
+			}
+			.robotLift{
+				animation: robotFramesToRight 5s linear ;
+			}
+			/*定义机器人的动画针*/
+			@keyframes robotFramesToLeft{
+				0%{transform: translateX(0);}
+				100%{
+					transform: translateX(-613px);
+				}
+			}
+			@keyframes robotFramesToRight{
+				0%{transform: translateX(-613px) rotateY(180deg);}
+				100%{
+					transform: translateX(0) rotateY(180deg);
+				}			
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		<div class="main_box">
+			 <div class="robot_box"></div>
+		</div>
+	</body>
+</html>
+<script>
+	
+	//页面加载完成
+	window.onload = function(){
+		var oRobot = document.querySelector('.main_box>div');
+		//监听事件是否完成
+		oRobot.addEventListener('webkitAnimationEnd', function(){
+			//改变动画的方向
+			oRobot.classList.toggle('robotLift');
+		}, false);
+	}
+</script>

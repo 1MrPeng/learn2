@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../css/iconfont1.css">
+		<title>个人信息</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			ul li{list-style: none;}
+			header{
+				height: 238px;
+				background: #59DAC5;
+				position: relative;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				padding-bottom: 30px;
+				box-sizing: border-box;
+			}
+			header>p:nth-of-type(1){
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				width: 67px;
+				height: 67px;
+				border-radius: 50%;
+				background: pink;
+				background-size: cover;
+			}
+			header>p:nth-of-type(2){
+				color: #FCFCFC;
+				font-size: 18px;
+			}
+			header .icon-jiankuohao-xi-zuo{
+				position: absolute;
+				left: 5px;
+				top: 5px;
+				font-size: 24px;
+				color: white;
+			}
+			#content{
+				padding: 10px;
+			}
+			#content>p{
+				margin-bottom: 20px;
+			}
+			#content ul{
+				display: flex;
+				color: #4A4A4A;
+				font-size: 12px;
+				justify-content: space-between;
+			}
+			#content ul li{
+				width: 60px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				border: 1px solid #eee;
+				padding: 10px;
+			}
+			#content ul li img{
+				width: 46px;
+				height: 46px;
+			}
+			.add,.modify{
+				color: #4A4A4A;
+				width: 300px;
+				height: 300px;
+				border-radius: 10px;
+				z-index: 10;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				background: pink;
+				box-sizing: border-box;
+				padding: 5px 15px 15px 15px;
+				display: none;
+			}
+			.modify{
+				background: skyblue;
+			}
+			.add label,.modify label{
+				display: inline-block;
+				padding: 5px;
+			}
+			.add label textarea,.modify label textarea{
+				width: 173px;
+				outline: none;
+				border-radius: 5px;
+				border: none;
+			}
+			.add label input,.modify label input{
+				outline: none;
+				border-radius: 5px;
+				border: none;
+			}
+			.add .btn,.modify .bton{
+				width: 100%;
+				display: flex;
+				justify-content: space-around;
+			}
+			.add .btn button,.modify .bton button{
+				width: 100px;
+				border: none;
+				border-radius: 10px;
+				background: skyblue;
+				padding: 2px;
+				color: #4A4A4A;
+				font-size: 16px;
+				outline: none;
+			}
+			.modify .bton button{
+				background: pink;
+			}
+			.active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<span class="iconfont icon-jiankuohao-xi-zuo"></span>
+			<p></p>
+			<p>user,欢迎你</p>
+		</header>
+		<div id="content">
+			<p>收货地址信息暂无！</p>
+			<ul>
+				<li>
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAACYVBMVEU8oOnr9v3///9dr+z///+02/b1+v48oOlMaXE+oer///////+w2Pb///////9SquvP6Pqj0vQ9outjs+09oOnN5vpJpupHperJ5fmIxfHq9f1Tq+r1+v37/f+FxPE8ouo9oOk5quM9nuv///////////94vfA8ouz2+v683vb///9LqOr///////////9BoumAwfD///9Fo+n///+i0fT////////M5vn////////////Z7fv////5/P7n9PxEpOr8/f/X7PtQqepAoer////////W6/o+oOr///+22/b6/f////89oen///9ar+z////i8fz///9Fpen///9suO7////R6fpKpurI5Pn///////////8/oen////////F4/n///////9Ipur///9fsu3////f7/um1PR2vO////////////////////96v/D5/P74+/48oOk9oOk9ous9oOs+ouo9outApO0+oek8n+k8oupDpuk8oek9oOs9oOhAn+o8oOo8n+o9oOk+oOY8oOo9oes+oOmt1/Wr1vVDm+n///89oemp1vX////x+P3w+P3///////89oev///+k0/X///////////////////+x2fY9ouv///+g0fQ/o+r///////+z2vb///88oen////l8/zk8/y43Pb///89oeo+oeo8oOm43feKxvK93vf7/f6KxvH7/f673vd/wfE9oOl2vfByue9Lp+yCwvG83vf6/P71+v4/oek9oOm33feAwfF9wPHE4vj5/P/3+/4+oek9oOm63fe83/hPqOzA4fn///9iZfGJAAAAynRSTlOZ+DbT/uj7zABv+Prn0EjQ8OR+1IHvzs7u3fjR/P3cg4sJMoO4Ktld++v7z3kwU83bxs635McI7ww6JfNO/ffN/fLQzBfk8oRN6fyjjQ3ShPXWziTWN/DP7u4L6Mwe9u33G86a0/H15dkGlvLYvq/6+ed+ZYl4PxyAgHsXf4GGGINIiT6EZHTn5hdViuVB+vpQQI0h5CBY/T4955Ze4z1h+ehKREf29urRhV+M6arr+qX76rHMrayds/b79urq9bGx+Pn45+f395/3H62p5AAAAmlJREFUeNqV1FOXI1EYheHqpJKqSdu2bds9bds2xrZt27Zt7F81K0mfSp9Cr8x7+e1nrSQXOQwvbsxmfGpyYmJyatxmTDKKed/AEISGBvoW5e013cDwyOhgf//g6Mgw0F3Trsy77oDtUXNC6h4W1l1KvKkDtxo5qsab6GiS5w1taG7hRLU0o61BjlfVobWTk9TZiroqGV6B2npOpvpaVEh5NFtezclWXc5GS3gQrDiFrBAk5sEIi1TikWEIFvEohJt2T3s3N3tPTigcUSKejDhh9dECgNZHOMQhmeYpbF4uGR29YcjbkVxy89gUih+HBUeyw3x2wskCJymejkxh8yLcSzhlIp3iWUglkwuEXMgtFVkUP4N80ycTbfp++ThL8QzkCJuGcI1wykEGxdOQHUs2Vw+j9nAll9hspFGct0YIR7J11mtnW+EQAmue5oHQcKbU7u5qzpQGgSKuwuEETqGEQ1CJOB+PJCWehHhezA9CWyCvC7Q4KuF8IkoK5XRhCRJ5KS8qxlI5rkFxkQznVTrskeqL0Knk35l9Edgt1ifAXlZ6xWIscY7WB3D6gvIbecQSV+k/dcSpxV7gsisLf68GljGLP9jXdHhA9G3oyngJp7vRi2cG/OIRem14Oe6/cp2Dk++mbX7HKivvP3yKTz/n5n68xeMnd0tLd/hu2ei0Zu0Gh2XrCQ9gFvbmHX59/PAXM88ZqlWEh9L3zzP4/RWz0wzdcsJXiIYv34DvLxlRfvN8NSNuevb9K0bSZiPfKl3+vGakbTfyXYx57TRw//Nm8v0GHsCY2149DzWbX9Lze0vM7bqe/0//ABFbAFbwbB7gAAAAAElFTkSuQmCC" >
+					<span>添加地址</span>
+				</li>
+				<li>
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAmVBMVEVjs+5ttu1isetjtO5mtO9Vqv9ltepMaXFjsu1jtO5ks+1ks+1js+9ktO6s1vZjs+5jtO5js+1ks+1jtO1ks+663vfG5Phjs+78/f7T6vqPyPJptu7l8v1mtO6Uy/Ov1/bE4/jH5PjG4/ir1var1vWEw/GEwvGo1fbx+P3y+f6v2PbE4viu2Pat1/bE4ffF4/iCwvGPyfL///9JQDT+AAAAMnRSTlPMDg2VQQMwAHSYrp7JmeHDS6yCgUrl6cL+7tjO9M3Z4enq6uDh1dXf+fni6OLh6enU2OsDOV4AAAEfSURBVHja5ZXHbsNADERHNZasZpW42+m98v8/LgkCBBxZXiI6Bcg7Eu/AXZBDnPyKP657bZOnZZnmTeuZephk+CFLQqceT9FjGh/VowkGmETDuh9gkMAf0v0ZjjDzD/UowFGC6ECnvlfL5Yr67+sxFNcLkcWNrsQ9nX6wk086+k/WQ2iKL72gUkh6As16I7JZUynRupeB2O52W65kntIrmFRKr229VnoO5r0o3sDkSk/BnItcgkmVXtp6qfQ5mAuRKzBz3Yytp46nnooUjqc2tt4ovbL11jEEryLPjiHojRjORPZcSXiALT10rAdeRJ44blzLh0eRByrEztXu7u9unattB8f4WLJDb3yk2oE9/hz08ar6+9jUlX1smP+sfwCMVC5b0TcdXwAAAABJRU5ErkJggg==" >
+					<span>修改地址</span>
+				</li>
+				<li>
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAABm1BMVEX2qDj3qDn5umH/zGb2qDv4qTj3qjxMaXH1qjz0pjn5umD/qlX/rUD6vmL//6r7uWP4uWH5umH/////yG35umH5uWH/xnH/u2b2qDn2pDfvn0D/v0D0qTj2qjn2pzn5pj3/tkn3pzn3pzn3qDr2rEX6uF73qTv5uWH2qz/5umL6u2H4r0r5uWH4umD4rkT5umL7vGL3qDj//4D4umD7tU7/w2n3qDn6umH/v0D3qDj4tVf4umD7umL5vGP5umD5uWH5umH5vmX5uWD/uXT5uWD6u2D5umH5uWH5umH5umD4uWH/v4D5umD4umD5uWH4uWH5uWD6u2L6umH6v2X4umD/wmH5vGT5vWH6uWH5umH4qTj7vGDxqjn5u2D4umH5vGT5uWD/u2b7vGL5umH6uWD/v2P5umD/1YD4umD5umH4uWD6u2T6uWT4umD4umD/qlX5qjn6umH4umH4qjn5u2D5umH4umD4u2P6umH5uWD5umH3qjr5umH5uWH/uWT5uWD/v3D/xmP4u2L/vGL5umD5umH/v2r4uWD3r0u75broAAAAh3RSTlPMuYEFOE0eADNI/gMcLwM+4/ABDtLYCQ+zHBAERBumLge3qddZbN/F4X1s3/KU2YVBewKXPhG4kQi16JxGUKp8XCvMC4dioP3779sI97n4+Pdt9zC8KldZbomIPRJ/ky75Hjl2jyTHBkr63zgz3sQGLYzgSFLI6Utn8alC86Uh0RAScCLP1RjMoYDOAAABNklEQVR42u3VVU8DURCG4bYLe2Ch3lLc3d3d3d3d3d3h42ez3TZN2D0DNOGCi75XM8kz16NjfvXvuWlsfGhyYkT4DTcamvuh1OmYWv6Bz4wCkCwDvYPDlg4AZxff8Ih5Cda82hbP1mM+OgfuHilu38finP3L/fMt3t75fGMd2wtM1csDnC4uX8XeEtP09IprHt+RtnYZp/srnHJ4HwyM2yUcNg03wuric+EYmxpegApGtIJ2DXfCTPE1dJlUvAy5xYyqG00qXogMRlaPRhXPRgnNG9Cq4gZk0bwNNT5uK0rS6/WZH2k0r0O1TMqnD2R+qHOXkp5K89KcfAXdyDxI5ymU5iFeEhzgAe4/982xNE/wkhOZVyYrY2Q0zRPjFVI1K3MWFiWKYngMrWUS5yaCn88mwP+MfwK0vWfdJLc+eAAAAABJRU5ErkJggg==" >
+					<span>联系客服</span>
+				</li>
+				<li>
+					<!-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAABm1BMVEX2qDj3qDn5umH/zGb2qDv4qTj3qjxMaXH1qjz0pjn5umD/qlX/rUD6vmL//6r7uWP4uWH5umH/////yG35umH5uWH/xnH/u2b2qDn2pDfvn0D/v0D0qTj2qjn2pzn5pj3/tkn3pzn3pzn3qDr2rEX6uF73qTv5uWH2qz/5umL6u2H4r0r5uWH4umD4rkT5umL7vGL3qDj//4D4umD7tU7/w2n3qDn6umH/v0D3qDj4tVf4umD7umL5vGP5umD5uWH5umH5vmX5uWD/uXT5uWD6u2D5umH5uWH5umH5umD4uWH/v4D5umD4umD5uWH4uWH5uWD6u2L6umH6v2X4umD/wmH5vGT5vWH6uWH5umH4qTj7vGDxqjn5u2D4umH5vGT5uWD/u2b7vGL5umH6uWD/v2P5umD/1YD4umD5umH4uWD6u2T6uWT4umD4umD/qlX5qjn6umH4umH4qjn5u2D5umH4umD4u2P6umH5uWD5umH3qjr5umH5uWH/uWT5uWD/v3D/xmP4u2L/vGL5umD5umH/v2r4uWD3r0u75broAAAAh3RSTlPMuYEFOE0eADNI/gMcLwM+4/ABDtLYCQ+zHBAERBumLge3qddZbN/F4X1s3/KU2YVBewKXPhG4kQi16JxGUKp8XCvMC4dioP3779sI97n4+Pdt9zC8KldZbomIPRJ/ky75Hjl2jyTHBkr63zgz3sQGLYzgSFLI6Utn8alC86Uh0RAScCLP1RjMoYDOAAABNklEQVR42u3VVU8DURCG4bYLe2Ch3lLc3d3d3d3d3d3h42ez3TZN2D0DNOGCi75XM8kz16NjfvXvuWlsfGhyYkT4DTcamvuh1OmYWv6Bz4wCkCwDvYPDlg4AZxff8Ih5Cda82hbP1mM+OgfuHilu38finP3L/fMt3t75fGMd2wtM1csDnC4uX8XeEtP09IprHt+RtnYZp/srnHJ4HwyM2yUcNg03wuric+EYmxpegApGtIJ2DXfCTPE1dJlUvAy5xYyqG00qXogMRlaPRhXPRgnNG9Cq4gZk0bwNNT5uK0rS6/WZH2k0r0O1TMqnD2R+qHOXkp5K89KcfAXdyDxI5ymU5iFeEhzgAe4/982xNE/wkhOZVyYrY2Q0zRPjFVI1K3MWFiWKYngMrWUS5yaCn88mwP+MfwK0vWfdJLc+eAAAAABJRU5ErkJggg==" > -->
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAA5CAMAAACh+pM5AAABlVBMVEVMaXH8hob6hYX6hIT/////qqr6hYX5hYX6hob/mZn7hob5hYX6hIT6hYX/////h4f5hYX6hYX6hIT/hob6hYX5hYX6hob/qqr5hYX5hYX6hIT/iYn/jY36h4f6hob6hYX6hYX6hYX/jo75hYX6hIT6hIT6hYX6hYX6hIT/jIz5hYX/v7/6hYX7iIj8hob5hYX5hIT7hYX5h4f6hIT5hYX7iIj5hYX6hYX6hYX6hYX5hYX5hIT8hIT5hYX/iYn7hYX6hIT/h4f7hob/n5/6hob8hob6hYX6iIj6hIT5hYX7hYX6hYX/kpL6hYX7iIj6hYX8hYX6hYX6hob5hIT6h4f5h4f6hIT6hYX6hIT8hYX5hIT/ior/hYX6hYX6hIT/i4v5hYX7hob5hYX/h4f7hob7hYX6hYX5hIT/hob5hYX6hIT/mZn6hIT/lZX6hYX/h4f/hob6hIT6hYX5hIT6hIT8hIT5hIT6hYX7hob7hob6hIT7h4f6hYX7hYX5hIT5hYX7hob8hIT5hYX5hYX6hIT5hIT5hITboZ0NAAAAhnRSTlMAUP79Agb8gF8Feqs27gEkuJnvFcKyZQPVtvcNHTFpkPbECS7xnJ/s1BThBKM+TCzaRVvF3zzkyozPsKpNWCdDwyA5CF1KcS/QtEfGDvo6a0lik9YzV8HMokuDJRe8+RbldLEiO3OXtSaCvwrtDJsRKjjJ4nBRiY5+eL1G+Hfg4z1TVoRuh6zJEbMAAAIQSURBVHja7ZXXUxNAEMY3JMHEUEPvvVdRpAvSOyhVARuCFelVkab7d3vLBTaSXMkMDzzwe7m77+abudnd2wUVOYP+fYiYQUR0QKRECdcBRAoKHty77qrL/Tr5i1fnins/m5cFNyhFxIc6l0ecE9LgP/pRkKJzrZLQDME8iiZtQudyINELTHwsKSkubTQSScmMYSGDhPQsfQy9ySS1xEGARjrGxpsin1RJWgcE6KKTw5yvGPpz9VXy0IeCxzZZbiMxVe4LaF9j43pGoX4in+uk/NlVVAmpAzLpglo7Vw5elZBPbPIL7VzwVKgjlIZisRkCo4tT7awAKEJBrq2rneRJgGFau21d2SS/CATjua3LHSXDcYiCHlsXlAn5JUCeWPxg7SoXsk/tekfFo3QdK17Y8AabvileqI4GvB1IA2U0fnLkTXDkOctmOMuyoj6BBVxRXL1muHr5p5jhn8K/0gT/yiJFB2BUHYC7jRnuNtzZ9HBnU3RRRtNFuWNr4I6tmg6MejrwJGpd08zSH9eTiNlBonwZFCwWINEcMmGJ768gLB+3EXnCMu55vOTrJoRQ1yrvMkYhhJVoefeh0xssu8arnfJiL2y0hv0oKfZ56ioowusbM9VlKMlsgPB8XkJm7OT3L2SapkFJ5xaGJX0XtDjmMIQpj8vcUHKH8oMeetS/AHYUjp9NXJSU/v1zfjoKt8c/qqE55lYcsZ8AAAAASUVORK5CYII=" >
+					<span>退出登录</span>
+				</li>
+			</ul>
+			
+			<div class="add">
+				<label>填写省份： <input type="text" name="province" value=""/></label>
+				<label>填写市区： <input type="text" name="city" value=""/></label>
+				<label>详细地址： <textarea rows="10" cols="23" name="address" value=""></textarea></label>
+				<label>手机号码： <input type="tel" name="tel" value=""/></label>
+				<div class="btn">
+					<button type="button">确定</button>
+					<button type="button">取消</button>
+				</div>
+			</div>
+			
+			<div class="modify">
+				<label>修改省份： <input type="text" name="province"/></label>
+				<label>修改市区： <input type="text" name="city"/></label>
+				<label>详细地址： <textarea rows="10" cols="23" name="address"></textarea></label>
+				<label>手机号码： <input type="tel" name="tel"/></label>
+				<div class="bton">
+					<button type="button">确定</button>
+					<button type="button">取消</button>
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload=function(){
+		var oSpan = document.querySelector('header .icon-jiankuohao-xi-zuo')
+		var aBtn = document.querySelectorAll('.btn button')
+		var aBtn1 = document.querySelectorAll('.modify button')
+		var add = document.querySelector('.add');
+		var modify = document.querySelector('.modify');
+		var aLi = document.querySelectorAll('#content ul li');
+		oSpan.onclick = function(){
+			window.location.href ='index.html';
+		}
+		aBtn[1].onclick = function(){
+			add.style.display = 'none';
+		}
+		aLi[0].onclick = function(){
+			add.style.display = 'block';
+		}	
+		aLi[1].onclick = function(){
+			modify.style.display = 'block';
+		}
+		aBtn1[1].onclick = function(){
+			modify.style.display = 'none';
+		}
+		aLi[2].onclick = function(){
+			window.location.href = 'customer.html';
+		}
+	}
+</script>

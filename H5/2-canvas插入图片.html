@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: white;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="500" height="500">
+			您的浏览器不支持canvas
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var mycanvas = document.querySelector('canvas');
+		
+		var ctx = mycanvas.getContext('2d');
+		
+		//定义一个img
+		var img = new Image();
+		img.src = 'canvas画板/img/bg.gif';
+		
+		var cat = new Image();
+		cat.src = '../html/img/Angelababy.jpg';
+		
+		
+		// img.onload = function(){
+		// 	var bg = ctx.createPattern(img,'repeat');
+		// 	ctx.fillStyle = bg;
+		// 	ctx.fillRect(0,0,mycanvas.offsetWidth,mycanvas.offsetHeight);
+		// }
+		
+		
+		cat.onload = function(){
+			console.log(cat);
+			ctx.drawImage(cat,100,100,200,200);
+		}
+		
+		
+	}
+</script>

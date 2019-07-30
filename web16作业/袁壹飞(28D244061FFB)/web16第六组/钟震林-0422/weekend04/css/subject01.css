@@ -1,0 +1,49 @@
+html,body,div,h1,textarea,button{margin: 0; padding: 0;}
+.container{
+	width: 500px;
+	height: 600px;
+	color: white;
+	background: url("../img/img02.jpg") no-repeat;
+	border: 1px solid black;
+	margin: 50px auto;
+}
+
+.active{
+	height: 80%;
+	border: 1px solid black;
+	background: url("../img/img01.jpg") no-repeat;
+	box-sizing: border-box;
+	color: black;
+}
+
+.active_box{
+	width: 500px;
+	height: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.active_box>textarea{
+	resize: none;
+	width: 80%;
+	height: 100%;
+	text-align: center;
+	font-size: 18px;
+	background: url("../img/img03.jpg") no-repeat;
+	color: green;
+}
+
+.active_box>button{
+	display: inline-block;
+	width: 20%;
+	height: 100%;
+	font-size: 18px;
+	background: url("../img/img04.jpg") no-repeat;
+	color: white;
+}
+
+p{
+	word-wrap: break-word;
+}

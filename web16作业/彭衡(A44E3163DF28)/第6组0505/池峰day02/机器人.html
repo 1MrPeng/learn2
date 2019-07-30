@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 170%;
+            height: 300px;
+            margin: 200px auto;
+            transition: 2s;
+            position: relative;
+            animation: ChangePosition 8s infinite linear;
+        }
+        img{
+            position: absolute;
+            animation: changePosition 8s infinite linear;
+            -webkit-box-reflect: below;
+        }
+        @keyframes changePosition{
+				0%{
+				    left: 0;
+                    transform: rotateY(180deg) /* skew(-30deg, 10deg) */;
+				}
+				49%{
+					left: 49%;
+                    transform: rotateY(180deg);
+				}
+				50%{
+					left: 50%;
+                    transform: rotateY(0deg)/*  skew(-30deg, 10deg) */;
+				}
+				100%{
+					left: 0;
+                    transform: rotateY(0deg);
+				}
+			}
+            @keyframes ChangePosition{
+			/* 	0%{
+				    background: black;
+				} */
+				/* 49%{
+					background: yellow;
+				} */
+				50%{
+					background: black;
+				}
+				100%{
+					background: red;
+				}
+			}
+        
+    </style>
+</head>
+<body>
+    <div>
+        <img src="../池峰day02/robot.png">
+    </div>
+</body>
+</html>

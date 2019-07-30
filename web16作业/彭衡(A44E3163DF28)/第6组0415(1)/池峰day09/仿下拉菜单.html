@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body,div,p,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{list-style: none;}
+        .A{
+            width: 600px;
+            height: 300px;
+            margin: 100px auto;
+        } 
+        .B{
+            display: flex;
+            flex-direction: row;
+        }
+        p{
+            width: 200px;
+            height: 40px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            background: pink;
+        }
+        li{
+            width: 200px;
+            height: 40px;
+            border: 1px solid black;
+            border-top: none;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+        }
+        .inp{
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="A">
+        <div class="B">
+            <b><p>歌曲</p></b> &nbsp; &nbsp; 
+            <input type="text" class="inp" value="" placeholder="说点啥吧">
+        </div>
+    <ul>
+        <li>歌曲</li>
+        <li>专辑</li>
+        <li>歌手</li>
+        <li>歌词</li>
+        <li>MV</li>
+        <li>票务</li>
+    </ul>
+
+    <script>
+        window.onload = function(){
+            var oP = document.getElementsByTagName("p")[0];
+            var oInp = document.getElementsByClassName("inp")[0];
+            var oLi = document.getElementsByTagName("li");
+        }
+    </script>
+</div>
+</body>
+</html>
+          

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<title>作业一</title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				background-color: gold;
+				border: 1px solid pink;
+				position: fixed;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script>
+//			1.页面加载后执行
+			window.onload = function(){
+//				2.获取元素
+				var oDiv = document.getElementsByTagName("div")[0];
+//				3.绑定鼠标按下事件
+				oDiv.onmousedown = function(){
+//					4.克隆出新的div
+					var cloneDiv = this.cloneNode(true);
+					
+//					4.创建新的div
+//					var newDiv = document.createElement("div");
+
+//					5.绑定鼠标移动事件
+					document.onmousemove = function(ev){
+//						6.将新克隆的div用一个变量储存
+						var aDiv = document.body.appendChild(cloneDiv);
+						
+//						6.将新建的div用一个变量储存
+//						var aDiv = document.body.appendChild(newDiv);
+						
+//						7.ev兼容
+						var ev = ev || window.event;
+//						8.获取鼠标位置
+						var MouseX = ev.pageX - (aDiv.offsetWidth/2);
+						var MouseY = ev.pageY - (aDiv.offsetHeight/2);
+//						9.根据鼠标的位置设置方块的位置
+						aDiv.style.cssText = "left: "+MouseX+"px; top: "+MouseY+"px;";
+//						10.绑定鼠标弹起事件
+						aDiv.onmouseup = function(){
+//							11.清除鼠标移动事件
+							document.onmousemove = "";
+//							12.设置方块随机背景色
+							aDiv.style.backgroundColor = "rgb("+getRandom(0, 255)+", "+getRandom(0, 255)+", "+getRandom(0, 255)+")";
+						}
+					}
+				}
+//				随机数函数
+				function getRandom(min, max){
+					return Math.floor(Math.random()*(max-min) + min);
+				}
+			}
+		</script>
+	</body>
+</html>

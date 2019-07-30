@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二个作业</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width: 345px;
+            height: 380px;
+            background: url("./img/bg2.png") repeat-x bottom;
+            margin: 20px auto;
+            /* 使用弹性布局，实现水平和垂直居中 */
+           display: flex;
+           align-items: center;
+           justify-content: center;
+        }
+        .content{
+            width: 245px;
+            height: 305px;
+            background-color: white;
+        }
+        .content div{
+            width: 245px;
+            height: 50px;
+            border-bottom: 1px #eee solid;
+            background: url("./img/c1.png") no-repeat 20px center;
+        }
+        /* 单独给每一个div设置图片 */
+        .content .box1{
+            background-image:  url("./img/c1.png");
+        }
+        .content .box2{
+            background-image:  url("./img/c2.png");
+        }
+        .content .box3{
+            background-image:  url("./img/c3.png");
+            border-left: 2px #cc6833 solid;    
+        }
+        .content .box4{
+            background-image:  url("./img/c4.png");
+        }
+        .content .box5{
+            background-image:  url("./img/c5.png");
+        }
+        .content .box6{
+            background-image:  url("./img/c6.png");
+        }
+
+    </style>
+
+</head>
+<body>  
+
+    <div id="main">
+        <div class="content">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+            <div class="box5"></div>
+            <div class="box6"></div>
+            
+        </div>
+    </div>
+
+ 
+</body>
+</html>

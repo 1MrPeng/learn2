@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        ul,li{
+            list-style: none;
+        }
+        #box{
+            width: 813px;
+            height: 573px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+        #top{
+            width: 813px;
+            height: 271px;
+        }
+        li{
+            margin-left: 150px;
+
+        }
+        #top input:first-child{
+            width: 250px;
+            height: 35px;
+            margin: 20px;
+        }
+        #top input:nth-of-type(2){
+            width: 250px;
+            height: 35px;
+            margin-left: 25px;
+        }
+        #top select{
+            width: 80px;
+            display: inline-block;
+            height: 40px;
+            margin: 20px;
+        }
+        #top li button{
+            width: 60px;
+            height: 35px;
+            background: #009A61;
+            color: #E9FAEE;
+        }
+        table{
+            width: 815px;
+            height: 271px;
+        }
+        th{
+            background: #42B983;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="top">
+            <li>
+                Name:<input type="text" name="" id="" v-model="msg"></br>
+                &nbsp;&nbsp;Age:<input type="text" value=""></br>
+                &nbsp;&nbsp;Sex:&nbsp;&nbsp;<select name="" id="">
+                   <option value="">Male</option>
+                   <option value="">halou</option>
+                </select></br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>Create</button>
+            </li>
+        </ul>
+        <div id="bottom">
+            <table border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#CFCFCF">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Delete</th>
+                </tr>
+                <tr>
+                    <td></td>	
+                    <td></td>	
+                    <td></td>
+                    <td></td>	
+                </tr>
+                <tr>
+                    <td></td>	
+                    <td></td>	
+                    <td></td>
+                    <td></td>	
+                </tr>
+                <tr>
+                    <td></td>	
+                    <td></td>	
+                    <td></td>
+                    <td></td>	
+                </tr>
+                <tr>
+                    <td></td>	
+                    <td></td>	
+                    <td></td>
+                    <td></td>	
+                </tr>
+                <tr>
+                    <td></td>	
+                    <td></td>	
+                    <td></td>
+                    <td></td>	
+                </tr>
+            </table>
+       <!--  <textarea name="" id="" cols="30" rows="10" v-model="msg"></textarea> -->
+        </div>
+    </div>
+        <script>
+            var vm = new Vue({
+                el:"#box",
+                data: {
+                    msg:"",
+                }
+            })
+        </script>
+</body>
+</html>

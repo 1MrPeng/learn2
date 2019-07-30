@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/xiaomi_iconfont.css">
+    <title>购物车</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #main_box{
+            min-width: 1000px;
+        }
+        /* 购物车的头部导航样式 */
+        .cat_top_nav{
+            width: 1000px;
+            margin: auto;
+            height: 100px;
+            line-height: 100px;
+        }
+        .cat_top_nav div{
+            float: right;
+        }
+        .cat_top_nav span{
+            font-size: 24px;
+            font-weight: bold;
+
+        }
+        .cat_top_nav div a{
+            margin-right: 5px;
+            text-decoration: none;
+            color: #999;
+        }
+        .cat_top_nav div a:hover{
+            text-decoration: underline;
+            color: orange;
+        }
+        /* 购物车内容主体样式 */
+        .cat_content{
+            /* background: #dcd8d8; */
+            background: #f7f6f6;
+            border-top: 3px orange solid;
+            padding-top: 40px;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+        }
+        .cat_content .produce_top_nav{
+            width: 900px;
+            height: 60px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            box-sizing: border-box;
+            border-bottom: 2px solid #eee;
+        }
+        .cat_content .produce_top_nav input{
+            /* width: 50px; */
+           margin-right: 20px;
+        }
+        .cat_content .content_produce_span1{
+            width: 40px;
+
+        } 
+        .cat_content  .content_produce_span2{
+            /* width: 50px; */
+            width:  100px;
+        } 
+         .cat_content  .content_produce_span3{
+            /* width: 50px; */
+            width:  300px;
+            /* 设置字体超出处理 */
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .cat_content  .content_produce_span4,
+        .cat_content  .content_produce_span6{
+            /* width: 50px; */
+            width:  100px;
+			text-align: center;
+        }
+        .cat_content  .content_produce_span5{
+            /* width: 50px; */
+            width:  150px;   
+			text-align: center;
+        }
+        .cat_content  .content_produce_span6{
+            color: orange;
+        }
+        .cat_content .content_produce_span7{
+            /* width: 50px; */
+            width:  90px;
+			text-align: center;
+        }
+        /* 单个商品 */
+        .cat_content .produce_box_1{
+            height: 110px;
+            background-color: white;
+            width: 900px;
+            padding-left: 20px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+        }
+        /* 数量输入框 */
+        .cat_content  .content_produce_span5 input{
+            /* width: 50px; */
+            width:  50px;      
+			
+        }
+        
+        /* 总计样式 */
+        .cat_content .produce_box_footer{
+            width: 900px;
+            height: 50px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: white;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            color: #999;
+        }
+        .cat_content .produce_box_footer a{
+            text-decoration: none;
+            margin: 0 20px;
+            color: #999;
+        }
+        .cat_content .produce_box_footer a:hover{
+            text-decoration: none;
+            margin: 0 20px;
+            color: orange;
+        }
+        .cat_content .produce_box_footer .color_span{
+            color: orangered;
+        }
+        .cat_content .produce_box_footer .color_span span{
+            font-size: 24px;
+            font-weight: bold;
+        }
+         .submit_btn{
+            height: 50px;
+            width: 100px;
+            background: #dcdada;
+            border: none;
+            color: #999;
+            margin-left: 50px;
+        }
+		/* 激活结算按钮*/
+		.active_submit_btn{
+			color: white;
+			background: #FF4500;
+		}
+		.icon-shanchu:hover{
+			color: #FF4500;
+		}
+
+    </style>
+</head>
+<body>
+    <div id="mian_box">
+ <!-- 购物车头部导航 -->
+        <div class="cat_top_nav">
+            <span>
+                我的购物车
+            </span>
+            <div>
+                <a href="#">登录</a>|
+                <a href="#">注册</a>
+            </div>
+        </div>
+        <!-- 头部导航栏结束 -->
+        <!-- 购物车内容主体开始 -->
+        <div class="cat_content">
+
+            <!-- 商品列表 -->
+            <div class="produce_top_nav">
+                <!-- 头部说明栏 -->
+                <!-- 全选按钮 -->
+                <span class="checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong"></span>
+                <span class="content_produce_span2">全选</span>
+                <span class="content_produce_span3">商品名称</span>
+                <span class="content_produce_span4">单价</span>
+                <span class="content_produce_span5">数量</span>
+                <span class="content_produce_span6">小计</span>
+                <span class="content_produce_span7">操作</span>
+            </div>
+           
+            <div class="produce_box_1">
+                    <!-- 头部说明栏 -->
+                    <!-- 全选按钮 -->
+                    <span class="checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong"></span>
+                    <span class="content_produce_span2">
+                        <img src="./img/produce01.jpg">
+                    </span>
+                    <span class="content_produce_span3"> 小米USB充电器快充版（18W） 白色 </span>
+                    <span class="content_produce_span4 one_produce_mony"> 30元 </span>
+                    <span class="content_produce_span5">
+                        <span class="iconfont icon-jianshao"></span>
+                        <input type="text" value="1">
+                        <span class="iconfont icon-tianjia"></span>
+                    </span>
+                    <span class="content_produce_span6 min_mony_spnan">30元</span>
+                    <span class="content_produce_span7 iconfont icon-shanchu shanchu"></span>
+             </div>
+                  
+            <div class="produce_box_1">
+                    <!-- 头部说明栏 -->
+                    <!-- 全选按钮 -->
+                    <span class="checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong"></span>
+                    <span class="content_produce_span2">
+                        <img src="./img/produce02.jpg">
+                    </span>
+                    <span class="content_produce_span3"> 小米USB充电器快充版（18W） 白色 </span>
+                    <span class="content_produce_span4 one_produce_mony"> 10元 </span>
+                    <span class="content_produce_span5">
+                        <span class="iconfont icon-jianshao"></span>
+                        <input type="text" value="1">
+                        <span class="iconfont icon-tianjia"></span>
+                    </span>
+                    <span class="content_produce_span6 min_mony_spnan">10元</span>
+                    <span class="content_produce_span7 iconfont icon-shanchu shanchu"></span>
+             </div>
+                  
+            <div class="produce_box_1">
+                    <!-- 头部说明栏 -->
+                    <!-- 全选按钮 -->
+                    <span class="checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong"></span>
+                    <span class="content_produce_span2">
+                        <img src="./img/produce03.jpg">
+                    </span>
+                    <span class="content_produce_span3"> 小米USB充电器快充版（18W） 白色 </span>
+                    <span class="content_produce_span4 one_produce_mony"> 20元 </span>
+                    <span class="content_produce_span5">
+                        <span class="iconfont icon-jianshao" ></span>
+                        <input type="text" value="1">
+                        <span class="iconfont icon-tianjia"></span>
+                    </span>
+                    <span class="content_produce_span6 min_mony_spnan">20元</span>
+                    <span class="content_produce_span7 iconfont icon-shanchu shanchu" ></span>
+             </div>
+             
+             <!-- 总计 -->
+             <div class="produce_box_footer">
+                  <div>
+                    <a href="#">继续购物</a>
+                    <span>
+                        共 <span class="color_span produce_num">3</span>件商品，已选择<span  class="check_num_span color_span"> 0 </span>件
+                    </span>
+                  </div>
+                
+                    <div >
+                            <span class="color_span">
+                                    合计:<span class="zongji">0</span>元
+                            </span>
+                            <button class="submit_btn ">去结算</button>
+                    </div>
+                 
+             </div>
+                  
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+		//页面加载完成
+		window.onload = function(){
+			
+			
+			//得到元素
+			var checkbox_btn = document.querySelectorAll('.checkbox_span');
+			var checkNumSpan = document.querySelectorAll('.check_num_span')[0];
+			var numInput = document.querySelectorAll('input');
+			//减少span
+			var jiansaoBtns = document.querySelectorAll('.icon-jianshao');
+			//添加span
+			var tinajiaBtns = document.querySelectorAll('.icon-tianjia');
+			var produceNum = document.querySelectorAll('.produce_num')[0];
+			var minMonySpan = document.querySelectorAll('.min_mony_spnan');
+			var oneProduceMony = document.querySelectorAll('.one_produce_mony');
+			var zongJi = document.querySelectorAll('.zongji')[0];
+			var submitBtn = document.querySelectorAll('.submit_btn')[0];
+			var shanchu = document.querySelectorAll('.shanchu');
+			var produceList = document.querySelectorAll('.produce_box_1');
+			var catContent = document.querySelectorAll('.cat_content')[0];
+			//定义全选的状态
+			var allCheckbox_state = false;
+			
+			
+			//设置商品的数量
+			produceNum.innerHTML = checkbox_btn.length - 1;
+			//给每一个复选框添加鼠标事件
+			for(var i = 0; i<checkbox_btn.length;i++){
+				checkbox_btn[i].index = '0';//初始化全不选
+				//得到焦点时显示已选择的复选框
+				checkbox_btn[i].onmouseover = function(){
+					if(this.index == '1'){
+						return ;
+					}
+					//显示已选择的样式
+					this.className = 'checkbox_span content_produce_span1 iconfont icon-fuxuankuang';
+				}
+				//失去焦点时显示未选择的复选框
+				checkbox_btn[i].onmouseout = function(){
+					if(this.index == '1'){
+						return ;
+					}
+					//显示未选择的样式
+					this.className = 'checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong';
+				}
+			}
+			
+			//给全选按钮绑定点击事件
+			checkbox_btn[0].onclick = function(){
+				allCheckbox_state = !allCheckbox_state;
+				if(allCheckbox_state){
+					//实现全选
+					changeCheckboxStyle('checkbox_span content_produce_span1 iconfont icon-fuxuankuang1');
+					//显示选中的数量
+//					checkNumSpan.innerHTML = checkbox_btn.length - 1;
+
+				}else{
+					//实现全不选
+					changeCheckboxStyle('checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong');
+//					checkNumSpan.innerHTML = 0;
+				}
+				//改变选择的数量
+						checkNumSpan.innerHTML = getCheckProdues();
+				 produceZongJi();//计算总计
+			}
+			//给每一个具体的购物项添加点击按钮
+			for(var i = 1;i<checkbox_btn.length;i++){
+				checkbox_btn[i].onclick = function(){
+					var checkNum = Number(checkNumSpan.innerHTML);
+					if(this.index == '1'){
+						//选中状态
+						this.index = '0';
+						this.className = 'checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong';
+						this.style.color = '';
+						//显示选中的数量
+						checkNum --;
+						//判断是否没有选中的项
+						if(checkNum == 0){
+							//清除全选的按钮
+							//实现全不选				
+							if(allCheckbox_state){
+								allCheckbox_state = !allCheckbox_state;
+							}
+							changeCheckboxStyle('checkbox_span content_produce_span1 iconfont icon-fuxuankuang_weixuanzhong');
+						}
+						
+					}else{
+						//未选中转态
+						this.index = '1';
+						this.className = 'checkbox_span content_produce_span1 iconfont icon-fuxuankuang1' ;
+						this.style.color = 'orange';
+						checkNum ++;
+					
+					}
+					//设置已选择的数量
+					checkNumSpan.innerHTML = checkNum;
+					 produceZongJi();//计算总计
+				}
+			}
+			
+			//实现复选框的样式切换
+			function changeCheckboxStyle(class_name){
+				for(var i = 0;i<checkbox_btn.length;i++){
+					if(allCheckbox_state){
+						//全选
+						checkbox_btn[i].style.color = 'orange';
+						checkbox_btn[i].index = '1';
+						
+					}else{
+						//全不选
+						checkbox_btn[i].index = '0';
+						checkbox_btn[i].style.color = '';
+					}
+					checkbox_btn[i].className = class_name;
+				}
+				
+			}
+			
+			//实现商品添加减少的业务=====
+			//给减少按钮绑定点击事件
+			for(var i = 0;i<jiansaoBtns.length;i++){
+				//保存按钮对应的小标
+				jiansaoBtns[i].index = i;
+				jiansaoBtns[i].onclick = function(){
+				
+					//减少相应input输入框中的数值
+					var count = Number(numInput[this.index].value);
+					console.log(count)
+					if(isNaN(count)){
+						//输入合法的数据
+						alert('请输入数字！');
+						return;
+					}
+					if(count == 0){
+						//不能在减少
+						return;
+					}
+					//数量减一
+					numInput[this.index].value = --count;
+						//修改商品的小计
+					addMin(this.index);
+					 produceZongJi();//计算总计
+				}
+			}
+			
+			//给添加按钮绑定点击事件
+			for(var i = 0;i<tinajiaBtns.length;i++){
+				//保存小标
+				tinajiaBtns[i].index = i;
+				tinajiaBtns[i].onclick = function(){
+					//得到输入框中的内容
+					//减少相应input输入框中的数值
+					var count = Number(numInput[this.index].value);
+					if(isNaN(count)){
+						//输入合法的数据
+						alert('请输入数字！');
+						return;
+					}
+					//数量加一
+					numInput[this.index].value = ++count;
+					//修改商品的小计
+					addMin(this.index);
+					 produceZongJi();//计算总计
+				}
+			}
+			//给输入框绑定点击事件
+			for(var i = 0;i<numInput.length;i++){
+				numInput[i].index = i;
+				numInput[i].onkeyup = function(){
+					//判断输入的是否是数字
+					if(isNaN(Number(this.value))){
+						alert('请输入数字');
+						var val =  parseInt(this.value);
+						if(val){
+							this.value = parseInt(this.value);
+						}else{
+							this.value = 1;
+						}
+//						return;
+					}
+					//设置数值
+					this.value = Number(this.value);
+						//修改商品的小计
+					addMin(this.index);
+					 produceZongJi();//计算总计
+				}
+				
+			}
+			
+			//商品价钱小计
+			function addMin(index){
+				//得到数量
+				var numCount = Number(numInput[index].value);
+				
+				//得到单价
+				var oneMony = parseInt(oneProduceMony[index].innerHTML);
+				console.log(oneMony)
+				minMonySpan[index].innerHTML = oneMony*numCount +"元";
+			}
+			//商品的总计
+			function produceZongJi(){
+				var countNum = 0;
+				var checkbox_btn01 = document.getElementsByClassName('checkbox_span');
+				var  minMony = document.getElementsByClassName('min_mony_spnan');
+				
+				//得到所有选中的商品
+				for(var i = 0;i<checkbox_btn01.length;i++){
+					if(checkbox_btn01[i].index == '1'&& i != 0){
+						//是勾选的商品
+						countNum += parseInt(minMony[i-1].innerHTML); 
+					}
+					
+				}
+				//设置总计
+				zongJi.innerHTML = countNum;
+				//当总计不为0是可以进行结算 active_submit_btn
+				if(countNum != 0){
+					submitBtn.className = 'submit_btn active_submit_btn';
+				}else{
+					submitBtn.className = 'submit_btn';
+				}
+			}
+			
+			
+			//删除商品
+			for(var i = 0;i<shanchu.length;i++){
+				shanchu[i].index = i;
+				shanchu[i].onclick = function(){
+					//删除点击的商品
+					var state = confirm('确认要删除该商品吗？');	
+					console.log(state)
+					if(state){
+						//删除该商品
+						catContent.removeChild(this.parentNode);
+						//修改选择的商品数量
+						produceNum.innerHTML = document.getElementsByClassName('produce_box_1').length;
+						//改变选择的数量
+						checkNumSpan.innerHTML = getCheckProdues();
+						produceZongJi();
+					}
+					
+				}
+			}
+			
+			//得到选中的商品数量
+			function getCheckProdues(){
+				var countNum = 0;
+				var checkbox_btn01 = document.getElementsByClassName('checkbox_span');
+				
+				//得到所有选中的商品
+				for(var i = 0;i<checkbox_btn01.length;i++){
+					if(checkbox_btn01[i].index == '1'&& i != 0){
+						//是勾选的商品
+						countNum ++; 
+					}
+					
+				}
+				return countNum;
+			}
+			
+			//=======================oload END ====
+		}
+</script>

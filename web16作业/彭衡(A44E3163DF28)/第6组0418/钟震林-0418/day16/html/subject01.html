@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+		<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<script src="../js/ajax.js"></script>
+		<style>
+			html,body,div,p,span,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			.titeli{
+				width: 100%;
+				height: 40px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.titeli>p:nth-child(1){
+				width: 66%;
+				height: 36px;
+				line-height: 36px;
+				text-align: left;
+				font-size: 24px;
+				color: red;
+				padding-left: 20px;
+			}
+			.titeli>p:nth-child(1) span{
+				font-size: 20px;
+				margin-left: 15px;
+			}
+			.titeli>p:nth-child(2){
+				width: 33%;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				background-color: red;
+				color: white;
+				border: 1px solid red;
+				border-radius: 5px;
+				margin-right: 20px;
+			}
+			.center{
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				font-size: 25px;
+				text-align: left;
+				padding-left: 20px;
+			}
+			.box{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+			.box ul{
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.box ul li{
+				width: 26%;
+				height: 200px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 10px;
+			}
+			.box ul li img{
+				width: 100%;
+				height: 160px;
+				padding: 20px 20px;
+			}
+			.box ul li div:nth-child(2){
+				width: 33%;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				font-size: 14px;
+			}
+			.box ul li div:nth-child(3){
+				width: 33%;
+				height: 20px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="titeli">
+				<p><b>豆瓣</b> <span class="iconfont"><b>&#xe68d;</b></span></p>
+				<p>打开豆瓣App</p>
+			</div>
+			<hr />
+			<div class="center">影院热映</div>
+			<div class="box">
+				<ul class="product_list">
+					<!--<li>
+						<div>
+							<img src="https://img3.doubanio.com/view/photo/m_ratio_poster/public/p2551353482.jpg" />
+						</div>
+						<div>反贪风暴5</div>
+						<div>
+							<p></p>
+							<span>6.3</span>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<script>
+			
+			window.onload = function(){
+				
+				var oUl = document.querySelector(".product_list");
+				
+				ajax("get", "https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/nowplaying", "", function(res){
+					
+					var myData = res.subject_collection_items;
+//					console.log(myData);
+					for (var i in myData) {
+						
+						var jsonData = myData[i];
+						
+						var value;
+						if (jsonData.rating) {
+							value = jsonData.rating.value;
+						} else{
+							value = " ";
+						}
+						
+						oUl.innerHTML += "<li><div><img src="+jsonData.cover.url+" /></div><div>"+jsonData.title+"</div><div><p>"+" "+"</p><span>"+value+"</span></div></li>";
+						
+					}
+				}, function(err){
+					console.log(err);
+				});
+				
+			}
+		</script>
+	</body>
+</html>

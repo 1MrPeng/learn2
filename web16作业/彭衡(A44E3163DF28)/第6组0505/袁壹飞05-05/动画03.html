@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>动画03</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				font-size: 50px;
+				text-align: center;
+				color: orange;
+				perspective: 200px;	
+				transform-style: preserve-3d;			
+			}
+			div>p{
+				margin: auto;
+				width: 360px;
+				animation: myFrame 1s ease-in;
+			}
+			/*定义动画*/
+			@keyframes myFrame{
+				0%{
+					opacity: 0;
+					transform: rotateZ(0deg) translateZ(200px);
+				}
+				75%{
+					opacity: 1;
+					transform: rotateZ(360deg)  translateZ(0);
+				}
+				76%{
+					transform: rotateZ(10deg);
+				}
+				86%{
+					transform: rotateZ(-10deg);
+				}
+				100%{
+					transform:rotateZ(0);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="main_box">
+			<p>
+				Animation动画
+			</p>
+			
+		</div>
+	</body>
+</html>

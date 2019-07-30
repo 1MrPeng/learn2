@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+<body>
+    <input type="text">
+    <button>获取验证码</button>
+    <script>
+
+        /* 页面加载后执行 */
+        window.onload = function(){
+
+            /* 获取元素 */
+            var inp = document.getElementsByTagName("input")[0];
+            var btn = document.getElementsByTagName("button")[0];
+
+            /* 定义字符串 */
+            
+            /* 绑定点击事件 */
+            btn.onclick = function(){
+                var num = 5;
+                var timer = null;
+               /*  禁用按钮 */
+                this.disabled = true;
+                console.log(this);
+                
+               /*  保存当前this */
+               var _this = this;
+
+                /* 清除定时器 */
+                clearInterval(timer);
+
+               /*  设置定时器 */
+                timer = setInterval(function(){
+
+                    /* 判断是否输入完成 */
+                    if(num == 0){
+    
+                        btn.innerHTML = "点击重新发送";
+
+                      /*   清除定时器 */
+                        clearInterval(timer);
+
+                     /*    按钮解禁 */
+                     _this.disabled = false;
+                    }else{
+                        num--;
+                        btn.innerHTML = num+"s";
+
+                    }
+                    console.log(num);
+                },1000)
+                
+            } 
+        }
+     
+    </script>
+</body>
+</html>

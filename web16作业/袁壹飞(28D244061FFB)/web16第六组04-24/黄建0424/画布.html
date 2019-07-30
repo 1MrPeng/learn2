@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: pink;
+            position: absolute;
+            bottom: 158px;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500" style="background: #eee;"></canvas>
+    <span></span>
+    <button>清除</button>
+    <input type="color">
+    <input type="text" placeholder="请输入笔的粗细">
+    <img id="" src="" alt="">
+
+    <script>
+        window.onload = function(){
+            var mycanvas = document.getElementsByTagName("canvas")[0];
+            var myimg = document.getElementsByTagName("img")[0];
+            var ctx = mycanvas.getContext("2d");
+            mycanvas.onmousedown = function(ev){
+                var oinp = document.getElementsByTagName("input")[1];
+					ctx.lineWidth = oinp.value;
+                var ev = ev || window.event;
+                var mouseX = ev.pageX - this.offsetLeft;
+                var mouseY = ev.pageY - this.offsetTop;
+                var oinp = document.getElementsByTagName("input")[0];
+                    ctx.strokeStyle = oinp.value;
+                ctx.beginPath();
+                ctx.moveTo(mouseX,mouseY);
+                document.onmousemove = function(ev){
+                    var omouseX = ev.pageX - mycanvas.offsetLeft;
+                    var omouseY = ev.pageY - mycanvas.offsetTop;
+                    ctx.lineTo(omouseX,omouseY);
+                    ctx.stroke();
+                }
+                document.onmouseup = function(){
+                    ctx.closePath();
+                    document.onmousemove = null;
+                    myimg.src = mycanvas.toDataURL();
+                }
+            }
+            var abtn = document.getElementsByTagName("button")[0];
+                abtn.onclick = function(){
+                    ctx.clearRect(0,0,mycanvas.width,mycanvas.height)
+                }
+                // 橡皮擦
+            var aspan = document.getElementsByTagName("span")[0];
+                aspan.onmousedown = function(){
+                    document.onmousemove=function(ev){
+                    console.log(11)
+                    var ev = ev ||window.event
+                    var amouseX = ev.pageX;
+                    var amouseY = ev.pageY;
+                    aspan.style.cssText = "left:"+(amouseX-15)+"px;top:"+(amouseY-15)+"px;";
+                    ctx.clearRect(amouseX-aspan.offsetWidth+7.5,amouseY-aspan.offsetHeight+7.5,aspan.offsetWidth,aspan.offsetHeight);
+                    aspan.onmouseup = function(){
+                        aspan.style.cssText = "bottom:158px;";
+                        }
+                    }
+                }
+        }
+    </script>
+</body>
+</html>

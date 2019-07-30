@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #f1f1f1;
+        }
+        canvas{
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500" height="500">
+        您的浏览器不支持canvas
+    </canvas>
+    
+    <script type="text/javascript">
+
+        // 页面加载后执行
+        window.onload = function(){
+            
+            // 获取元素
+            var myCanvas = document.getElementsByTagName("canvas")[0];
+            var timer = null;
+            
+            // 创建画布
+            var ctx = myCanvas.getContext("2d");
+            
+            // 绘制方块
+            var num = 0;
+            var num1 = 0;
+            ctx.fillRect(num,num,100,100);
+            
+            // 设置定时器
+            timer = setInterval(function(){
+                
+                ctx.clearRect(0,0,myCanvas.offsetWidth,myCanvas.offsetHeight);
+                if(num <= 400 && num1 == 0){
+                    num++;					
+                    ctx.fillRect(num,0,100,100);
+                    ctx.fillStyle = "green"
+                }
+                if(num == 400 && num1 <= 400){
+                    num1++;
+                    ctx.fillRect(400,num1,100,100);
+                    ctx.fillStyle = "red";
+                }
+                if(num <=400 && num1 == 400){
+                    num--;
+                    ctx.fillRect(num,400,100,100);
+                    ctx.fillStyle = "yellow";
+                }
+                if(num == 0 && num1 <= 400){
+                    num1--;
+                    ctx.fillRect(0,num1,100,100);
+                    ctx.fillStyle = "pink";
+                }
+            },1);
+            
+        }
+    </script>
+</body>
+</html>

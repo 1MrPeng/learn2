@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+$width: 100%;
+$height: 100%;
+$font-size: 14px;
+
+#main-box{
+    width: 750px;
+    background: white;
+    margin: auto; 
+    // 标题的样式
+    header{
+        width: 750px;
+        height: 70px;
+        background: #f8f8f8;
+        color: #428bca;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 70px;
+        margin: 30px auto;
+        border-bottom: 1px solid #bbb9b9;
+        margin-bottom: 0;
+    }
+
+    // 内容主体
+    #content{
+        width: $width;
+        padding: 25px;
+        box-sizing: border-box;
+        background: white;
+
+        // 发送留言内容的样式
+        .send-msg-box{
+            width: $width;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+
+            input{
+                width: $width;
+                height: 30px;
+                outline: none;
+                border-radius: 5px;
+                padding-left: 10px;
+                box-sizing: border-box;
+                border: {
+                    width: 1px; 
+                    style: solid;
+                    color: #ccc;
+                }
+            }
+            button{
+                width: $width;
+                height: 30px;
+                background:#428bca;
+                font-size: 14px;
+                color: white;
+                text-align: center;
+                line-height: 20px;
+                cursor: pointer;
+                box-sizing: border-box;
+                border: none;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                border-radius: 5px;
+            }
+        }
+
+        // 留言列表的样式
+        .msg-list-box{
+            width: $width;
+            min-width: 300px;
+            border: {
+                width: 1px; 
+                style: solid;
+                color: #ccc;
+            }
+            border-radius: 5px;
+
+            div:first-child{
+                width: 100%;
+                height: 40px;
+                background: #f5f5f5;
+                text-align: start;
+                box-sizing: border-box;
+                padding-left: 10px;
+                line-height: 40px;
+                font-size: 14px;
+            }
+            .msg-list-content{
+                width: $width;
+                box-sizing: border-box;
+                padding: 15px;
+
+                button{
+                    width: $width;
+                    height: 35px;
+                    background: #d9534f;
+                    color: white;
+                    font-size: 14px;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                ul{
+                    list-style: none;
+                    font-size: 14px;
+                    margin-bottom: 20px;
+                    li{
+                        width: $width;
+                        min-height: 40px;
+                        border-radius: 3px;
+                        border: {
+                            width: 1px; 
+                            style: solid;
+                            color: #ccc;
+                        } 
+                        // line-height: 40px;
+                        box-sizing: border-box;
+                        padding:10px;
+                        font-size: 14px;
+                        &:not(:first-child){
+                            border-top: none;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="500" height="500" style="background: #ccc;"></canvas>
+    <script>
+        window.onload = function(){
+            var mycanvas = document.getElementsByTagName("canvas")[0];
+            var ctx = mycanvas.getContext("2d");
+            var num1 = 0;//旋转角度
+            var num2 = 0;//缩放次数
+            var value = 1;
+            var timer = null;
+            clearInterval(timer)
+            timer = setInterval(function(){
+                num1++;
+                ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+                ctx.save();
+                ctx.translate(mycanvas.width/2,mycanvas.height/2);
+                if(num2==0){
+                    value =1;
+                }
+                if(num2==100){
+                    value =-1;
+                }
+                num2+=value;
+                //缩放
+                ctx.scale(num2/100,num2/100);		
+					
+                //旋转
+                ctx.rotate(num1*Math.PI/180);		
+                
+                //将方块移动到画布中间
+                ctx.translate(-50,-50);		
+                
+                ctx.fillRect(0,0,100,100);
+                
+                ctx.restore();
+
+            },10)
+        }
+    </script>
+</body>
+</html>

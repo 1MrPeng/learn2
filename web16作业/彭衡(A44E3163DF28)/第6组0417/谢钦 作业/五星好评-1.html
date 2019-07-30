@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul,li{
+            list-style: none;
+        }
+       
+         
+        li{
+            width: 30px;
+            height: 30px;
+            background: url(star.jpg) no-repeat 0 -70px;
+            
+        }
+        ul{
+            
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            margin-top: 200px;
+        }
+     
+    </style>
+</head>
+<body>
+        <div class="box">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+          
+        </div>
+        <script>
+                //  页面加载后执行
+                window.onload = function(){
+
+                    //获取元素
+                    var oLi = document.getElementsByTagName("li");
+                   
+                    for(i = 0; i< oLi.length; i++)
+                        oLi[i].index = i;
+                        console.log(oLi);
+                        oLi.onclick = function(){
+                           console.log(oLi[i])
+                            if(oLi[i]){
+                                oLi[i].style.backgroundColor = "red";
+                            }
+                            
+                            
+                        }
+　
+                }
+            
+        </script>
+</body>
+</html>

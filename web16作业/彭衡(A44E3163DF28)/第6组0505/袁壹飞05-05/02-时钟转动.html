@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟转动</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html , body ,.main_box{
+				width: 100%;
+				height: 100%;
+				background: black;
+			}
+			.main_box{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				perspective: 100px;
+				
+				transform-style: preserve-3d;
+				
+			}
+			.time_box{
+				width: 450px;
+				height: 450px;
+				background: url(img/time_bg.jpg) no-repeat;
+				background-size: 100% 100%;
+				position: relative;		
+			}
+			.time_box>p{
+				width: 15px;
+				height: 100px;
+				background: url(img/hour.gif) no-repeat center;
+				position: absolute;
+				left: 219px;
+				top: 135px;
+				/*设置旋转基点*/
+				transform-origin: 7px 95px;
+			
+			}
+			/*时针*/
+			.time_box>p:nth-of-type(1){ 
+				background-image: url(img/hour.gif);
+				height: 80px;
+				top: 165px;
+				animation: hourFrame 10800s linear infinite;
+				transform-origin: 7px 65px;
+			}
+			/*分针*/
+			.time_box>p:nth-of-type(2){	
+				height: 100px;
+				top: 147px;
+				transform-origin: 8px 85px;
+				background-image: url(img/minute.gif);
+				animation: minuteFrame 3600s linear infinite;
+			} 
+			/*秒针*/
+			.time_box>p:nth-of-type(3){	
+				height: 110px;
+				transform-origin: 8px 95px;
+				background-image: url(img/second.gif);
+				animation: secondFrame 60s linear infinite;
+			}
+			
+			/*定义时针的动画*/
+			@keyframes hourFrame{
+				from{transform: rotateZ(0);}
+				to{transform: rotateZ(360deg);}
+			}
+			/*定义分针的动画*/
+			@keyframes minuteFrame{
+				from{transform: rotateZ(0);}
+				to{transform: rotateZ(360deg);}
+			}
+			/*定义秒针的动画*/
+			@keyframes secondFrame{
+				from{transform: rotateZ(0);}
+				to{transform: rotateZ(360deg);}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="main_box">
+			<div class="time_box">
+				<p></p>
+				<p></p>
+				<p></p>
+			</div>
+		</div>
+	</body>
+</html>

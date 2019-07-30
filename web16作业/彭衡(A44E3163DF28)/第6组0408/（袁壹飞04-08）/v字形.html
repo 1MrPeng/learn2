@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v字形作业</title>
+    <style type="text/css">
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            ul{
+                list-style: none;
+                position: relative;
+                width: 800px;
+                height: 180px;
+                background: #999;
+                margin: 30px auto;
+            }
+            li{
+                background-color: red;
+                position: absolute;
+               
+                width: 20px;
+                height: 20px;
+            }
+
+    </style>
+
+</head>
+<body>
+    
+    <ul>
+      
+    </ul>
+    <!-- 9行  39列 -->
+
+    <script>
+          // v字形打印
+        window.onload = function(){
+            //得到元素节点
+             let oUl = document.getElementsByTagName('ul')[0];
+
+                var top_index = 0;
+                var state = true;//定义top的方向
+                 //循环打印
+                for(let y = 0; y < 40 ;y++){    
+                   //当y被8整除是改变top的坐标反向
+                   if(y % 8 == 0){
+                        state = !state;
+                    }
+                    if(state){
+                        top_index --;
+                    }else{
+                        top_index ++;
+                    }
+                    oUl.innerHTML += '<li style="top: '+20*top_index+'px;left: '+20*y+'px;">'+y+' </li>';
+            
+                }
+
+        }
+     
+
+
+    </script>
+</body>
+</html>

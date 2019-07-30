@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			ul li{
+				list-style: none;
+				margin-bottom: 3px;
+				background: lightcyan;
+			}
+			p{
+				background: pink;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			内部插入:
+				ele1.append(ele2): 给ele1内部添加ele2 
+				ele1.appendTo(ele2): 将ele1添加到ele2
+				
+				ele1.prepend(ele2): 给ele1内部的最前端插入ele2
+				ele1.prependTo(ele2): 将ele1插入到ele2的最前端
+				
+			外部插入:
+				ele1.after(ele2):	在ele1在后面添加ele2
+				ele1.before(ele2):	在ele1在前面添加ele2
+				ele1.insertAfter(ele2): 将ele1插入到ele2的后面
+				ele1.insertBefore(ele2): 将ele1插入到ele2的前面
+		-->
+		<ul>
+			<li>li1</li>
+		</ul>
+		
+		<div>
+			<p>p1</p>
+			<p>p2</p>
+			<p>p3</p>
+			<p>p4</p>
+		</div>
+		
+		<button type="button">清除</button>
+		<button>普通用户</button>
+		<button>超级用户</button>
+		<span>超级用户链接</span>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('<p>创建的p</p>').appendTo($('li').first());
+		$('ul').append($('<li>li2</li>'));
+		
+		
+		$('ul').prepend($('<li>li3</li>'));
+		$('<li>li4</li>').prependTo($('ul'));
+		
+		$('div p').eq(0).after($('div p').eq(3));
+		$('div p').eq(1).before($('div p').eq(2));
+		
+		$('div p').eq(2).insertAfter($('div p').eq(3));
+		$('div p').eq(1).insertBefore($('div p').eq(2));
+		
+		$('[type="button"]').on('click',function(){
+			$('div').empty();
+		})
+		
+		$('button').on('click',function(){
+			if($(this).html() == '超级用户'){
+				$('span').css('color','blue');
+				$('span').wrap('<a href="#">')
+			}else {
+				$('span').css('color','#eee');
+				$('span').unwrap();
+			}
+		})
+	})
+</script>

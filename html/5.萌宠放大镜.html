@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.smallBox{
+				position: relative;
+				width: 200px;
+				height: 140px;
+			}
+			#mask{
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background-color: rgba(0,0,0,.2);
+				position: absolute;
+				display: none;
+			}
+			.bigBox{
+				width: 125px;
+				height: 125px;
+				position: absolute;
+				left: 210px;
+				top: 10px;
+				overflow: hidden;
+				border: 1px solid #ccc;
+				display: none;
+			}
+			#oImg{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="smallBox">
+				<img src="./img/dog.jpg" width="200px" />
+				<span id="mask"></span>
+			</div>
+			<div class="bigBox">
+				<img id="oImg" src="./img/dog.jpg" />
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	window.onload = function(){
+		var oBigBox = document.querySelector(".bigBox");
+		var oSmallBox = document.querySelector(".smallBox");
+		var oMask = document.querySelector("#mask");
+		var oImg = document.querySelector("#oImg");
+		
+		
+		//绑定鼠标移入事件
+		oSmallBox.onmouseenter = function(ev){
+			oSmallBox.onmousemove = function(ev){
+				
+				oMask.style.display = 'block';
+				oBigBox.style.display = "block";
+				var ev = ev || window.event;
+				var oMouseX = ev.pageX - oSmallBox.offsetLeft - oMask.offsetWidth/2;
+				var oMouseY = ev.pageY - oSmallBox.offsetTop - oMask.offsetHeight/2;
+				
+				if(oMouseX < 0){
+					oMouseX = 0;
+				}else if((oMouseX+oMask.offsetWidth) > oSmallBox.offsetWidth){
+					oMouseX = oSmallBox.offsetWidth - oMask.offsetWidth;
+				}
+				
+				if(oMouseY < 0){
+					oMouseY = 0;
+				}else if((oMouseY+oMask.offsetHeight) > oSmallBox.offsetHeight){
+					oMouseY = oSmallBox.offsetHeight - oMask.offsetHeight;
+				}
+				oMask.style.cssText = "display: block; left: "+oMouseX+"px; top: "+oMouseY+"px;";
+				
+				
+				// // 6.算缩放比
+				// var oScaleX = oMouseX/(oSmallBox.offsetWidth - oMask.offsetWidth);
+				// var oScaleY = oMouseY/(oSmallBox.offsetHeight - oMask.offsetHeight);
+				// 
+				// //	7.根据缩放比设置oImg的位置
+				// oImg.style.left = -oScaleX*(oImg.offsetWidth - oBigBox.offsetWidth)+"px";
+				// oImg.style.top = -oScaleY*(oImg.offsetHeight - oBigBox.offsetHeight)+"px";
+				
+				
+				
+				// 算缩放比
+				var oScaleX = (oMask.offsetLeft/oSmallBox.offsetWidth)*oImg.offsetWidth;
+				var oScaleY = (oMask.offsetTop/oSmallBox.offsetHeight)*oImg.offsetHeight;
+				
+				// 设置大图片的位置(oMask往右移时,大图片往左走,所以设置成负值)
+				oImg.style.cssText = "left: "+(-oScaleX)+"px;top: "+(-oScaleY)+"px;";
+			}
+			
+		}
+		oSmallBox.onmouseleave = function(){
+			oMask.style.display = 'none';
+			oBigBox.style.display = "none";
+		}
+		
+		
+	}
+
+</script>

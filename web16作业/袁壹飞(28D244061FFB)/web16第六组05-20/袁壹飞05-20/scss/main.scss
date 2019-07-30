@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+// 用户列表
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+   padding-top: 30px;
+}
+#main-box{
+    width: 800px;
+    margin-top: 30px;
+    min-height: 477px;
+    border: {
+        width: 1px; 
+        style: solid;
+        color: #000;
+    }
+    margin: 20px auto;
+    position: relative;
+    font-size: 14px;
+
+    >p:nth-of-type(1){
+        background: white;
+        width: 135px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        position: absolute;
+        left: 20px;
+        top: -17px;
+        font-weight: bold;
+    }
+
+    //创建用户表单
+    form{
+        width: 400px;
+        height: 200px;
+        margin-left: 90px;
+        margin-top: 40px;
+
+        input{
+            height: 30px;
+            width: 200px;
+            outline-color: #009a61;
+        }
+        div{
+            margin-bottom: 10px;
+            span{
+                display: inline-block;
+                width: 100px;
+                text-align: end;
+                font-weight: bold;
+            }
+            select{
+                height: 35px;
+            }
+            button{
+                width:70px;
+                height: 30px;
+                border: none;
+                background: #009a61;
+                color: white;
+                font-weight: bold;
+                text-align: center;
+                line-height: 30px;
+                border-radius: 5px;
+                margin-left: 105px;
+                outline: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+    // 用户列表样式
+    .user-list-box{
+        width: 100%;
+        .user-list-title{
+            width: 100%;
+            height: 35px;
+            background: #42b983;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                line-height: 35px;
+                border: {
+                    width: 1px;
+                    style: solid;
+                    color: #ccc;
+                }
+                &:first-child,
+                &:last-child{
+                    width: 30%;
+                }
+                &:nth-of-type(2),
+                &:nth-of-type(3){
+                    width: 20%;
+                }
+            }
+          
+        }
+
+        //ul
+        ul{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+
+            li{
+                width: 100%;
+                height: 50px;
+                color: white;
+                font-weight: bold;     
+                box-sizing: border-box;
+                color: #6b5866;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    line-height: 50px;
+                    padding-left: 15px;
+                    
+                    border: {
+                        width: 1px;
+                        style: solid;
+                        color: #ccc;
+                    }
+                    &:first-child{
+                        width: 236px;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+                    &:first-child,
+                    &:last-child{
+                        width: 30%;
+                    }
+                    &:nth-of-type(2),
+                    &:nth-of-type(3){
+                        width: 20%;
+                    }
+                    &:last-child{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        span{
+                            display: inline-block;
+                            width: 70px;
+                            background: #009a61;
+                            height: 35px;
+                            border-radius: 7px;
+                            color: white;
+                            text-align: center;
+                            line-height: 35px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                &:nth-of-type(2n){
+                    background: #ededed; 
+                }
+            }
+
+
+        }
+    }
+    // 提示框
+    #alertMsg{
+        padding: 3px 15px;
+        border-radius: 15px;
+        color: white;
+        background: rgba(0, 0,0, 0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 14px;
+        margin-left: -70px;
+        display: none;
+    }
+
+}

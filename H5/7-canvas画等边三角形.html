@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: white;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500">
+			您的浏览器不支持canvas
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.querySelector('canvas');
+		var ctx =canvas.getContext('2d');
+		drawPoly();
+		//绘制三角形
+		function drawPoly(){ 
+
+			//设置全局变量，便于在匿名函数中使用
+			var startX;
+			var startY;
+			var endX;
+			var endY;
+			var distance;
+			//获取鼠标按下事件（起始点） //鼠标按下的为三角形的中心点
+			canvas.onmousedown = function(evt){
+			var evt = window.event || evt;
+			startX = evt.pageX - this.offsetLeft;
+			startY = evt.pageY - this.offsetTop; 
+			//alert(startX+'-----------'+startY);
+			}
+			//获取鼠标抬起事件（结束点，即右下角的点）
+			canvas.onmouseup = function(evt){
+			var evt = window.event || evt; //如果是IE浏览器就使用event事件，如果不是的话就使用我们传进去的参数evt
+			endX = evt.pageX -this.offsetLeft;
+			endY = evt.pageY - this.offsetTop;
+
+			//左下角的点 y为endY
+			var xLeft = 2*startX - endX;            //y = endY
+
+			//最上面的点
+			var B = Math.sqrt(3)*(endX-startX);     //得到三角形的中间的高，根据正三角形的长直角边=sqrt(斜边的平方-短直角边的平方)，运算后结果为如左边
+			var yTop = endY - B; //x= startX
+
+			//开始绘制
+			ctx.beginPath();
+			ctx.moveTo(endX,endY);
+			ctx.lineTo(xLeft,endY);
+			ctx.lineTo(startX,yTop);
+			ctx.closePath();
+			ctx.stroke();
+
+		   }
+		}
+	}
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			html,body,p,div,ul,li{margin: 0; padding: 0;}
+			ul,li{
+				list-style: none;
+			}
+			.container{
+				height: 850px;
+				background-color: skyblue;
+				display: flex;
+				justify-content: space-between;
+			}
+			ul{
+				width: 55%;
+				height: 830px;
+				display: flex;
+				justify-content: space-around;
+				flex-wrap: wrap;
+			}
+			li{
+				width: 30%;
+				height: 260px;
+				background-color: white;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			li>p{
+				text-align: center;
+			}
+			img{
+				width: 100%;
+				height: 200px;
+			}
+			.rt{
+				width: 30%;
+				height: 550px;
+				background-color: pink;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				position: relative;
+			}
+			.rt span:first-child{
+				display: inline-block;
+				width: 100%;
+				height: 50px;
+				background-color: white;
+				line-height: 50px;
+				text-align: center;
+			}
+			.rt span:nth-child(3){
+				width: 100%;
+				height: 50px;
+				background-color: white;
+				display: flex;
+				justify-content: space-between;
+			}
+			.wp{
+				width: 100%;
+				height: 450px;
+				background-color: pink;
+			}
+			.p1{
+				height: 50px;
+				background-color: black;
+				font-size: 30px;
+				font-family: 楷体;
+				line-height: 50px;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="p1">商品列表</p>
+		<div class="container">
+			<ul></ul>
+			<div class="rt">
+				<span>购物车</span>
+				<div class="wp"></div>
+				<span>
+					<span style="width: 50%; height: 50px; line-height: 50px; text-align: center; background-color: #eee;">总价</span>
+					<div style="display: inline-block; width: 50%; height: 50px;"></div>
+				</span>
+			</div>
+		</div>
+		<script>
+			window.onload = function(){
+				var oul = document.getElementsByTagName("ul")[0];
+				var op = document.querySelector("div>div>p");
+//				创建对象
+				var xhr;
+//				捕获异常
+				if(window.XMLHttpRequest){
+					xhr = new XMLHttpRequest();
+				}else{
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+//				打开请求
+				xhr.open("GET","https://www.easy-mock.com/mock/5cb69152c1d19650f26d7f3a/example/cellphone");
+//				发送请求
+				xhr.send();
+//				监听相应状态
+				xhr.onreadystatechange = function(){
+//					判断响应状态
+					if(xhr.readyState == 4 && xhr.status == 200){
+						var jsonData = JSON.parse(xhr.responseText);
+						console.log(jsonData);
+//						数据渲染
+						var myData = jsonData.commoditydata;
+						for(var i in myData){
+							var eachData = jsonData.commoditydata[i];
+//							将数据渲染到ul
+							oul.innerHTML += '<li><p>'+eachData.name+'</p><img src="'+eachData.src+'"/><p>'+eachData.price+'</p></li>';
+							console.log(eachData.name);
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
+

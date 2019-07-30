@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.0.min.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./font_1152974_98dko5g1u5n/iconfont.css">
+</head>
+<body>
+    <div class="All">
+        <!-- 切换 -->
+        <div class="item">
+            <div class="check">
+                <span class="aspan">
+                    <div class="iconfont">
+                        &#xe62f;
+                    </div>
+                    首页
+                </span>
+                <span>
+                    <div class="iconfont">
+                        &#xe640;
+                    </div>
+                    照片
+                </span>
+                <span>
+                    <div class="iconfont">
+                        &#xe61f;
+                    </div>
+                    游戏
+                </span>
+                <span>
+                    <div class="iconfont">
+                        &#xe678;
+                    </div>
+                    皮肤
+                </span>
+                <span>
+                    <div class="iconfont">
+                        &#xe61e;
+                    </div>
+                    留言</span>
+            </div>
+            <div class="item1">
+                <div class="item2">1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div class="div5">
+                    <div class="div5_a">
+                        <div>
+                            留言
+                            <span class="txt">你还可以输多少个字</span>
+                        </div>
+                        <div class="iconfont">
+                                &#xe628;
+                        </div>
+                    </div>
+
+                    
+                    <div class="div5_b">
+                        <span>发表留言</span>
+                        <input type="text" class="main_area">
+                        <button>发送</button>
+                        <div class="iconfont">
+                            &#xe774;
+                        </div>
+                    </div>
+
+
+
+                    <div class="show">
+                        <!-- <div class="show-content">
+                            <div>
+                                <div class="show-name">Xx</div>
+                                <div class="show-text">
+                                    <p class = "">这是内容</p>
+                                </div>
+                                <div class="show-time">2019年1月21日</div>
+                                <div class="show-close">X</div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+    <script>
+        $(function(){
+            var count = 140;
+            var flag = false;
+            // var flag
+            $(".check>span").click(function(){
+                var index = $(this).index()
+                $(".item1>div").eq(index).addClass("item2").siblings().removeClass("item2")
+                $('.check>span').eq(index).addClass("aspan").siblings().removeClass("aspan")
+            })
+
+            $(".main_area").focus(function (){
+                console.log("获取焦点");
+            if (count >= 0) {
+                $(".txt").html("还可以输入" + count + "个字");
+            } else {
+                $(".txt").html("你以超出" + (-count) + "个字");
+            }
+            })
+
+            $(".main_area").blur(function () {
+                console.log("失去焦点");
+                $(this).parent().removeClass('outline');
+                $(".txt").removeClass('title');
+                })
+            
+                $(".main_area").on('input', function () {
+                $(".main_area").val()
+                console.log("文本修改");
+                // 剩余可输入的字个数
+                count = 140 - $(".main_area").val().length;
+                if (count >= 0 && count <= 140) {
+                    $(".txt").html("还可以输入" + count + "个字");
+                    if (count != 140) {
+                        flag = true;
+                    } else {
+                        flag = false;
+                    }
+                } else {
+                    $(".txt").html("你以超出" + (-count) + "个字");
+                    flag = false;
+                }
+            })
+            $(".div5_b>button").click(function(){
+                if (flag) {
+                    console.log('可以发布');
+                    // 创建show对象的各个部位
+                    var $showContent = $('<div class="content"></div>')
+                    var $showName = $('<div class="name"></div>')
+                    var $showTxt = $('<div class="show-txt"></div>')
+                    var $showTime = $('<div class="time"></div>')
+                    var $showClose = $('<div class="close"></div>')
+                    var $showP = $('<p class=""></p>')
+        
+                    var date = new Date();
+                    // 设置，对象结构内内容
+                    $showName.text("XxXx");
+                    $showP.text($(".main_area").val());
+                    $showTime.text(date);
+                    $showClose.text("x");
+                    // 添加进入主结构
+                    $showTxt.append($showP);
+                    $showContent.append($showName);
+                    $showContent.append($showTxt);
+                    $showContent.append($showTime);
+                    $showContent.append($showClose);
+
+                    $('.show').prepend($showContent);
+ 
+                    // 添加动画
+                    // 位置从输入框处下移
+                    $(".content").css({
+                        top: '-150px'
+                    })
+                    $(".content").animate({
+                        top: 0
+                    }, 100)
+                    $(".close").click(function () {
+                        console.log(66)
+                    $(this).parent().animate({
+                        height: 0
+                    }, 200).remove();
+                })
+                $(".main_area").val(""); 
+                count = 140;
+                }
+            })
+        
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="" placeholder="请输入一个数">
+    <input type="text" name="" id="绝对值">
+    <button id="buttn">绝对值</button>
+</body>
+</html>
+<script>
+    var inp = document.getElementsByTagName("input");
+    var btn = document.getElementById("buttn");
+    btn.onclick = function(){
+        var value1 = Number(inp[0].value);
+        if(value1>=0){
+        }else{
+            value1=0-value1;
+        }
+        inp[1].value=value1;
+    }
+</script>

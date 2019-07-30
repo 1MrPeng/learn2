@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./font_1203724_7os2jk9wdkm/iconfont.css">
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+        <ul id="home1">
+            <template v-for='item in list'>
+                <li @click="change(item)">{{item |fn}}</li>
+            </template>
+        </ul>
+        <!-- <shopcar v-show='false'></shopcar> -->
+    </div>
+
+    <script>
+        var bus = new Vue();
+        var mixin = {
+            methods:{
+                change:function(item){
+                    this.$router.push({name:item,query:{name:item}})
+                }
+            }
+        }
+        var home = {
+            template:`
+            <div id="today">
+                <ul>
+                    <li class="li1" v-for="(item,key) in message" :key="key">
+                        <div class="div1">
+                            <img :src="item.over_image_url" alt="">
+                            <div class="div2">
+                                <span>{{item.item_name.slice(0,16)}}</span>
+                            </div>
+                            <div class="price1">
+                                    <span>￥{{item.min_app_price/100}}</span>
+                                    <span>{{item.min_market_price===0?"":"￥"+item.min_market_price/100}}</span>
+                                    <span class="iconfont" @click = change1(item)>&#xe62d;</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            `,
+            data:function(){
+                return{
+                    message:''
+                }
+            },
+            methods:{
+                change1:function(item){
+                    this.$router.push({path:'/shopcar',name:'shopcar',})
+                    setTimeout(()=>{
+                        bus.$emit('change1',item)
+                    },1000)
+                }
+            },
+            mounted(){
+                axios.get('https://www.easy-mock.com/mock/5cda7ae2491ce30a753faf66/example/qcsnine')
+                .then((resp)=>{
+                    this.message = resp.data.data.item_list
+                    console.log(resp.data.data.item_list)
+                })
+            }
+        }
+        var shopcar={
+            template:`
+            <div>
+                <div>
+                    <span><</span>
+                    <span>购物车</span>
+                    <span>编辑</span>
+                </div>
+                <div>
+                    <input type="checkbox">
+                    屈臣氏国内仓
+                </div>
+                <ul>
+                    <li v-for="(item,key) in msg" :key="key">
+                        <input type="checkbox">
+                        <div>
+                            <img :src="item.over_image_url" alt="">
+                        </div>
+                        <div>
+                            <div>
+                                <div>111</div>
+                                <div></div>
+                            </div>
+                            <div>150ml</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            `,
+            data:function(){
+                return{
+                    msg:[]
+                }
+            },
+            created:function(){
+                bus.$on('change1',val=>{
+                    this.msg.push(val)
+                    console.log(this.msg);
+                })
+            }
+        }
+        const aa = [
+            {path:'/home',name:'home',component:home},
+            {path:'/shopcar',name:'shopcar',component:shopcar}
+        ]
+        const bb = new VueRouter({
+            routes:aa
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                list:['home','shopcar']
+            },
+            mixins:[mixin],
+            router:bb,
+            filters:{
+                fn:val=>{
+                    if(val == 'home'){
+                        return "首页";
+                    }else if(val == 'shopcar'){
+                        return "购物车";
+                    }
+                }
+            },
+            components: {
+                'shopcar':shopcar
+            }
+        })
+    </script>
+</body>
+</html>

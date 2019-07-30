@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        .active{
+				display: block;
+			}
+		.active_li{
+				background-color: black;
+			}
+        ul{
+            width: 50px;
+            height: 250px;
+            position: fixed;
+            top: 30%;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+	        justify-content: space-around;
+            align-items: center;
+        }
+        li{
+            width: 40px;
+            height: 40px;
+			border-radius: 50%;
+            background: white;
+           /*  display: none; */
+        }
+    </style>
+</head>
+<body>
+
+        <div class="active" style="width: 100%; height: 1000px; background: red"></div>
+        <div style="width: 100%; height: 1000px; background: orange"></div>
+        <div style="width: 100%; height: 1000px; background: pink"></div>
+        <div style="width: 100%; height: 1000px; background: green"></div>
+        <div style="width: 100%; height: 1000px; background: blue"></div>
+
+        <ul type="none">
+            <li class="active_li"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    
+    <script>
+     //     页面加载后执行
+        window.onload = function(){
+      //     获取元素
+        var oLi = document.getElementsByTagName("li");
+        var oDiv = document.getElementsByTagName("div");
+
+         //  绑定点击事件
+        for(var i=0; i<oLi.length; i++){
+            // 另存下标
+            oLi[i].aa = i;
+            oLi[i].onclick = function(){
+                //  重置样式
+                for(var j=0; j<oLi.length; j++){
+                    oLi[j].className = "";
+                    oDiv[j].className = "";
+
+                }
+                // 对应下标设置类名 
+                this.className = "active_li";
+			    oDiv[this.aa].className = "active";
+            }
+        }
+
+        }
+
+        
+    </script>
+</body>
+</html>

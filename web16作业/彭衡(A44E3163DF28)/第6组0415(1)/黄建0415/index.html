@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url(index.css);
+    </style>
+</head>
+<body>
+    <div id="item">
+        <div id="img" style="left:-800px">
+            <img src="../黄建0415/img/4.jpg" alt="">
+            <img src="../黄建0415/img/0.jpg" alt="">
+            <img src="../黄建0415/img/1.jpg" alt="">
+            <img src="../黄建0415/img/2.jpg" alt="">
+            <img src="../黄建0415/img/3.jpg" alt="">
+            <img src="../黄建0415/img/0.jpg" alt="">
+        </div>
+            <span id="fist" class="span_a"><</span>
+            <span id="next" class="span_a">></span>
+    </div>
+    <script>
+        window.onload = function(){
+            var aitem = document.getElementById("item");
+            var anext = document.getElementById("next");
+            var aimg = document.getElementById("img");
+            var afist = document.getElementById("fist");
+            var a = 5;
+            var timer = null;
+            var timeout = null;
+
+            function play(offset){
+                var newleft = parseInt(aimg.style.left) +offset;
+                function start(){
+                    if(parseInt(aimg.style.left)>newleft){
+                        aimg.style.left = parseInt(aimg.style.left) - 20+"px";
+                        clearTimeout(timeout);
+                        timeout = setTimeout(start,10);
+                    }else{
+                        aimg.style.left = newleft + "px";
+                        if(newleft> -200){
+                            aimg.style.left = -800 * a +'px';
+                        }
+                        if(newleft < (-800*a)){
+                            aimg.style.left = '-800px';
+                        }
+                    }
+                }  
+                start();
+            }
+
+            aitem.onmouseover = stop;
+            aitem.onmouseout = autoPlay;
+            autoPlay();
+
+            anext.onclick = function(){
+                play(-800);
+            }
+            afist.onclick = function(){
+                play(800);
+            }
+            function autoPlay(){
+                clearInterval(timer);
+                    
+					timer = setInterval(function() {
+
+						play(-800);
+
+					}, 2000);
+            }
+
+            function stop() {
+
+                clearInterval(timer);
+
+            }
+        }
+    </script>
+</body>
+</html>

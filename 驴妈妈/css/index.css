@@ -1,0 +1,276 @@
+*{margin: 0;padding: 0;touch-action: pan-y;}
+ul li{
+	list-style: none;
+}
+header{
+	position: relative;
+	height: 210px;
+}
+#banner_imgs{
+	position: relative;
+	z-index: 10;
+}
+#banner_imgs>img{
+	display: none;
+	margin-top: 44px;
+}
+#banner_imgs .active_img{
+	display: block;
+}
+#circle{
+	width: 70px;
+	height: 30px;
+	/* background: #eee; */
+	line-height: 30px;
+	position: absolute;
+	top: 180px;
+	right: 20px;
+}
+#circle>span {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border: 2px solid #aaa;
+	border-radius: 50%;
+}
+.active_span{
+	background: pink;
+}
+.title{
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 44px;
+	display: flex;
+	padding: 10px;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+	background: #FD4470;
+	box-sizing: border-box;
+	z-index: 100;
+}
+.title_middle{
+	position: relative;
+	
+}
+.title_middle i{
+	position: absolute;
+	left: 5px;
+	top: 6px;
+	color: #999;
+}
+.title_middle input{
+	width: 230px;
+	height: 30px;
+	background: #F6F6FA;
+	padding-left: 28px;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+}
+.title_right i{
+	font-size: 20px;
+}
+/*header end*/
+#warp{
+	padding: 0 10px;
+}
+.hotCity{
+	margin-top: 40px;
+}
+.hotCity div:nth-of-type(1){
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
+.hotCity div:nth-of-type(1) p{
+	color: #333;
+	font-size: 18px;
+	font-weight: bold;
+}
+.hotCity div:nth-of-type(1) span{
+	color: #888;
+	font-size: 13px;
+}
+.expectItems{
+	overflow: hidden;
+	margin-bottom: 30px;
+	height: 108px;
+	position: relative;
+}
+.hotCity ul{
+	background: #eee;
+	display: flex;
+	background: white;
+	position: absolute;
+}
+.hotCity ul li{
+	width: 108px;
+	height: 108px;
+	position: relative;
+	margin-right: 5px;
+}
+.hotCity ul li span:nth-of-type(1){
+	background: white;
+	display: inline-block;
+	width: 44px;
+	height: 20px;
+	border-radius: 10px;
+	font-size: 14px;
+	position: absolute;
+	bottom: 30px;
+	left: 8px;
+	text-align: center;
+	color: #333;
+}
+.hotCity ul li span:nth-of-type(2){
+	position: absolute;
+	left: 8px;
+	bottom: 8px;
+	color: white;
+	font-size: 13px;
+}
+.xinren img{
+	
+	width: 100%;
+}
+.hotActivity{
+	margin-top: 30px;
+}
+.hotActivity div:nth-of-type(1){
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
+.hotActivity div:nth-of-type(1) p{
+	color: #333;
+	font-size: 18px;
+	font-weight: bold;
+}
+.hotActivity div:nth-of-type(1) span{
+	color: #888;
+	font-size: 13px;
+}
+.remenData {
+	height: 228px;
+	background: white;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+.remenData>div:nth-of-type(1){
+	width: 232px;
+}
+.remenData>div{
+	margin-bottom: 5px;
+	margin-right: 5px;
+	width: 112px;
+	height: 98px;
+}
+.remenData img:nth-of-type(1){
+	width: 100%;
+}
+/*end*/
+#like{
+	min-height: 500px;
+	background: #F9FAF9;
+}
+.like_h1{
+	height: 50px;
+	background: #F9FAF9;
+	display: flex;
+	align-items: flex-end;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+.like_h1 div{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 10px;
+}
+.like_h1 div p{
+	color: #333;
+	font-size: 18px;
+	font-weight: bold;
+	
+}
+.like_h1 div span{
+	color: #888;
+	font-size: 13px;
+}
+.nav{
+	height: 44px;
+	background: white;
+}
+.nav ul{
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.nav ul li{
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+.nav ul li.active{
+	border-bottom: 2px solid red;
+}
+.nav_div{
+	display: none;
+}
+.nav_div.active{
+	display: flex;
+}
+.ticket{
+	/* display: flex; */
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 20px 10px;
+	color: #333;
+	font-size: 13px;
+}
+.ticket_item{
+	width: 46vw;
+	background: white;
+	height: 200px;
+	margin-bottom: 10px;
+}
+.ticket_item img{
+	width: 100%;
+}
+.ticket_item>p:nth-of-type(1){
+	margin-bottom: 18px;
+	margin-left: 5px;
+}
+.ticket_item>span{
+	display: inline-block;
+	border: 1px solid #ff8800;
+	color: #ff8800;
+	font-size: 12px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+.ticket_item>div{
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	color: #999;
+}
+.ticket_item>div span{
+	font-size: 16px;
+	color: #ff6600;
+	font-weight: bold;
+}

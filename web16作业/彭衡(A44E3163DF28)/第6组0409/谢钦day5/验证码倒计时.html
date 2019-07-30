@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button>获取验证码</button>
+    <script>
+            //  1.页面加载后执行
+        window.onload = function(){
+            //  2.获取元素
+          /*   var oInp = document.getElementsByTagName("input")[0]; */
+            var oBtn = document.getElementsByTagName("button")[0];
+            var timer = null;
+              
+            //  3.绑定点击事件
+            oBtn.onclick = function(){
+                //  设置定时器
+                clearTimeout(timer);
+                //  4.设置时间范围
+                var time = 5;
+                var _this = this;
+                //  5.设置定时器
+                function oTime(){
+                    if(time==0){
+                        _this.innerHTNL="重新发送";
+                       _this.disabled = false;
+                    }else{
+                        _this.disabled = true;
+                        _this.innerHTML="剩余"+(time)+"秒";
+                        time--;
+                    }
+                    timer=setTimeout(oTime,1000);
+                }
+                oTime();
+            }
+        }
+    </script>
+</body>
+</html>

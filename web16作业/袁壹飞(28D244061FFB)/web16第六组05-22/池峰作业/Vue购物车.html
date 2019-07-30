@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="con">
+        <h1>购物车</h1>
+        
+        <table class="table">
+            <tr>
+                <th>序号</th>
+                <th>商品</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="x in goods_list">
+                <td>{{x.id}}</td>
+                <td>{{x.name}}</td>
+                <td class="price">￥{{x.price}}</td>
+                <td>
+                    <input type="button" value="-" class="add" v-on:click="jian(x)">
+                    <input type="text" :value="x.num" class="num num2" data-max="5" v-on:input="changeNumber($event,x)">
+                    <input type="button" value="+" class="sub" v-on:click="jia(x)">
+               </td>
+                <td class="tprice price1">￥{{ x.price * x.num}}</td>
+                <td><input type="button" value="移除购物车" class="del" v-on:click="remove(x)"></td>
+            </tr>
+        
+        </table>
+        <table>
+            <tr>
+                <th>购买商品总数量</th>
+                <th>总价</th>
+            </tr>
+            <tr>
+                <td class="tnum">{{count}}</td>
+                <td class="sumprice">￥{{total}}元</td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+                        /* var model = new Vue({
+                            el: "#con",		
+                            data: {
+                                goodsList: [
+                                    {name: "怡宝", num: 0, price: 10},
+                                    {name: "雪碧", num: 0, price: 20},
+                                    {name: "脉动", num: 0, price: 30},
+                                    {name: "红牛", num: 0, price: 40}
+                                ] 
+                            },
+                            methods: {
+                                
+                                sub: function(item){
+                                    item.num++
+                                },
+                                add: function(item){
+                                    if(item.num>0){
+                                        item.num--;
+                                    }
+                                }
+                            }
+                        });  */
+                var model = {
+                    goods_list: [{name : "怡宝",num : 0, price : 10},
+                                {name : "雪碧",num : 0, price : 20},
+                                {name : "脉动",num : 0, price : 30},
+                                {name: "红牛", num: 0, price: 40}
+                                ]
+                };
+
+                new Vue({
+                    el: ".con",
+                    data : model
+                }); 
+        
+        
+    </script>
+</body>
+</html>

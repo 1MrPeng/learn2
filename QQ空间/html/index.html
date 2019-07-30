@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>QQ空间</title>
+	<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/Animate.css"/>
+	<script src="../../jQuery/jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="container">
+		<div id="warp">
+			<header>
+				<p>冷小沫的空间</p>
+				<p>http://1278066813.qzone.qq.com</p>
+				<div class="zan">
+					<span class="iconfont icon-zan"></span>
+					<span class="num">0</span>
+				</div>
+				<div class="nav">
+					<img src="../img/头像.jpg" >
+					<p>感情淡了不会放盐么...</p>
+					<img src="../img/icon-vip-open.png" >
+				</div>
+			</header>
+			<div id="liuyan">
+				<div class="textarea">
+					<ul>
+						<li>我的说说</li>
+					</ul>
+					<textarea></textarea>
+					<div>
+						<button type="button">发表</button>
+					</div>
+				</div>
+				
+				
+				<div class="content">
+					<div class="item">
+						<div class="content_left">
+							<img src="../img/头像.jpg" width="50px" >
+						</div>
+						<div class="content_right">
+							<p>我喜欢你我喜欢你我喜欢你我喜欢你我喜欢你</p>
+							<div>
+								<span>昨天22：10</span>
+								<div>
+									<span>赞</span>
+									<span class="pinglun">评论</span>
+									<span>转发</span>
+									<span class="shanchu">删除</span>
+								</div>
+							</div>
+							<div class="pingtext">
+								<div class="lou">
+
+								</div>
+								<input type="text" placeholder="我也来说一句" />
+								<button type="button">发送</button>
+								<span class="shouqi">收起</span>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		$('.textarea button').click(function(){
+			var content = document.querySelector('.content');
+			var time = new Date().getTime();
+			content.innerHTML += `
+				<div class="item">
+					<div class="content_left">
+						<img src="../img/头像.jpg" width="50px" >
+					</div>
+					<div class="content_right">
+						<p>${$('.textarea textarea').val()}</p>
+						<div>
+							<span>${timestampToTime(time)}</span>
+							<div>
+								<span>赞</span>
+								<span class='pinglun'>评论</span>
+								<span>转发</span>
+								<span class='shanchu'>删除</span>
+							</div>
+						</div>
+						<div class='pingtext'>
+								<div class="lou">
+
+								</div>
+							<input type="text" placeholder="我也来说一句" />
+							<button type="button">发送</button>
+							<span class='shouqi'>收起</span>
+						</div>
+						
+					</div>
+				</div>
+			`
+			shouqi();
+		})
+		shouqi();
+		var num=0;
+		$('.zan').click(function(){
+			num++
+			$('.icon-zan').css('color','red');
+			$('.num').html(num);
+		})
+
+
+
+
+
+
+
+
+
+		function shouqi(){
+			var pinglun = document.querySelectorAll('.pinglun');
+			var pingtext = document.querySelectorAll('.pingtext');
+			var shanchu = document.querySelectorAll('.shanchu')
+			for(i=0;i<pinglun.length;i++){
+				pinglun[i].index = i;
+				pinglun[i].onclick = function(){
+					pingtext[this.index].style.display = 'block';
+
+					var shouqi = document.querySelectorAll('.shouqi')
+					for(i=0;i<shouqi.length;i++){
+						shouqi[i].onclick = function(){
+							this.parentNode.style.display = 'none';
+						}
+					}
+
+					var send = document.querySelectorAll('.pingtext button');
+					
+					console.log(send);
+					for(i=0;i<send.length;i++){
+						send[i].onclick = function(){
+							if(this.previousElementSibling.value.trim()){
+								
+								console.log(this.previousElementSibling.value);
+								this.previousElementSibling.previousElementSibling.innerHTML+=`
+									<p>你的评论：${this.previousElementSibling.value}<button class='del'>删除</button></p>
+								`
+								$('.del').click(function(){
+									this.parentNode.parentNode.removeChild(this.parentNode)
+								})
+							}
+							this.previousElementSibling.value = '';
+							this.previousElementSibling.focus();
+							var shouqi = document.querySelectorAll('.shouqi')
+							for(i=0;i<shouqi.length;i++){
+								shouqi[i].onclick = function(){
+									this.parentNode.style.display = 'none';
+								}
+							}
+						}
+					}
+					var shouqi = document.querySelectorAll('.shouqi')
+					for(i=0;i<shouqi.length;i++){
+						shouqi[i].onclick = function(){
+							this.parentNode.style.display = 'none';
+						}
+					}
+				}
+				shanchu[i].onclick = function(){
+					this.parentNode.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode.parentNode)
+					var shouqi = document.querySelectorAll('.shouqi')
+					for(i=0;i<shouqi.length;i++){
+						shouqi[i].onclick = function(){
+							this.parentNode.style.display = 'none';
+						}
+					}
+				}
+
+			}
+		}
+		
+		function timestampToTime(timestamp) {
+		    var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+		    var Y = date.getFullYear() + '-';
+		    // var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+		    var M = (date.getMonth()+1);
+		    // var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + ' ';
+		    var D = (date.getDate());
+		    var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+		    var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + ':';
+		    var s = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());
+		    var weekArr = ["周日","周一","周二","周三","周四","周五","周六"] 
+		    var oDay = weekArr[date.getDay()];
+			// return Y+M+D+h+m+s+oDay;
+			return oDay+' '+h+m+s;
+		}
+	})
+</script>

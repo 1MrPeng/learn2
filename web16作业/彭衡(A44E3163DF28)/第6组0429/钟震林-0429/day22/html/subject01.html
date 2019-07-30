@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模拟微信聊天</title>
+		<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+		<style>
+			html,body,div,label,span,img,input,button{margin: 0; padding: 0;}
+			.container{
+				width: 256px;
+				height: 536px;
+				border: 1px solid black;
+				border-radius: 40px;
+				background-image: url("../img/iPhone.png");
+				background-repeat: no-repeat;
+				margin: 100px auto;
+			}
+			.bgbox{
+				width: 216px;
+				height: 382px;
+				border: 3px solid black;
+				margin-top: 75px;
+				margin-left: 18px;
+			}
+			.box{
+				width: 100%;
+				height: 338px;
+				border-bottom: 1px solid gray;
+				background-image: url("../img/img16.jpg");
+				background-size: 216px 338px;
+				background-repeat: no-repeat;
+				overflow: auto;
+				color: orange;
+			}
+			/*隐藏滚动条*/
+			.box::-webkit-scrollbar{
+				display: none;
+			}
+			.active{
+				width: 100%;
+				height: 44px;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+			.active>label>span{
+				display: inline-block;
+				width: 29px;
+				height: 31px;
+				line-height: 31px;
+				text-align: center;
+				border: 1px solid gray;
+				border-radius: 5px;
+			}
+			.active>input{
+				width: 126px;
+				height: 30px;
+				line-height: 30px;
+				border: 1px solid gray;
+				border-radius: 8px;
+			}
+			.active>button{
+				width: 42px;
+				height: 30px;
+				border: none;
+				border-radius: 5px;
+				background-color: rgba(0, 0, 0, .1);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="bgbox">
+				<div class="box"></div>
+				<div class="active">
+					<label><span><img src="../img/qq1.gif" /></span></label>
+					<input type="text" placeholder="请输入内容！" />
+					<button></button>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			
+			window.onload = function(){
+				
+				var oTexdiv = document.querySelector(".box");
+				var oSpan = document.querySelector("span");
+				var oInput = document.querySelector("input");
+				var oBtn = document.querySelector("button");
+				
+				var mySocket = new WebSocket("ws://192.168.2.74:3000");
+				
+				mySocket.onopen = function(){
+					
+					console.log("连接以建立。");
+				}
+				
+				mySocket.onmessage = function(ev){
+					
+					if (ev.data.indexOf("ip") != -1) {
+						
+						oTexdiv.innerHTML += "<p class='ip'>"+ev.data+"</p>";
+					} else {
+						
+						var newTime = new Date().toLocaleDateString();
+						oTexdiv.innerHTML += "<p><span>"+ev.data+"</span><span>"+newTime+"</span></p>";
+					}
+					
+					oTexdiv.scrollTop = oTexdiv.scrollHeight;
+				}
+				
+				mySocket.onclose = function(){
+					
+					console.log("连接以关闭。")
+				}
+				
+				oBtn.onclick = fasong;
+				
+				oInput.onkeydown = function(ev){
+					
+					var ev = ev || window.event
+					
+					if (ev.keyCode == 13) {
+						
+						fasong();
+						oInput.stopPropagation();
+					}
+				}
+				
+				function fasong(){
+					
+					var val = oInput.value;
+					
+					if (val.trim() != "") {
+						
+						mySocket.send(val);
+						oInput.value = "";
+					}
+				}
+				
+			}
+		</script>pt
+	</body>
+</html>

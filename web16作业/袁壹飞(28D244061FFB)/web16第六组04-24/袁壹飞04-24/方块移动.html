@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>方块移动</title>
+		<script type="text/javascript" src="js/jquery-3.4.0.min.js" ></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			canvas{
+				background: white;
+				margin: 20px auto;
+			}
+			body{
+				background: wheat;
+				display: flex;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas width="600" height="500"></canvas>
+	</body>	<title>方块移动</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script>
+	
+	$(function(){
+		
+		//创建画板
+		 var myCan = $('canvas')[0].getContext('2d');
+			
+		//改变样式
+		myCan.fillStyle = 'pink'
+		//画一个方块
+		myCan.fillRect(0,0,100,100);
+	
+		//设置定时器
+		var timer = null;
+		var oX = 0;
+		var oY = 0;
+		var state = true;
+	
+		//清除定时器
+		clearInterval(timer);
+		timer = setInterval(function(){
+			//清除画板
+			myCan.clearRect(0,0,$('canvas')[0].offsetWidth,$('canvas')[0].offsetHeight);
+			if(state){//正向移动
+				if(oX <= $('canvas')[0].offsetWidth - 100){
+					oX ++;
+				}else if(oY <= $('canvas')[0].offsetHeight - 100){
+					oY ++;
+				}else{
+					state = !state;
+				}
+			}else{//反向移动
+				if(oX >= 0){
+					oX --;
+				}else if(oY >= 0){
+					oY --;
+				}else{
+					state = !state;
+				}
+			}
+			//画方块
+			myCan.fillRect(oX,oY ,100,100);
+		},10);
+		
+	});
+	
+</script>

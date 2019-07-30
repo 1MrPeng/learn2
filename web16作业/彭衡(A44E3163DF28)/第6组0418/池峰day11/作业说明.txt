@@ -1,0 +1,7 @@
+豆瓣--影院热映
+
+接口地址: https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/nowplaying
+
+要求: 
+	完美还原设计图
+	通过ajax获取数据进行渲染

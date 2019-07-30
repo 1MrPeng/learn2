@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../黄建0409/font_1131453_oc2su9uphr/iconfont.css">
+    <script src="../黄建0409/index.js"></script>
+    <style>
+        @import url(index.css);
+    </style>
+</head>
+<body>
+    <div class="top_on">
+        <div class="top_all">
+            <div class="top">
+                <div class="iconfont font">&#xe6fb;</div>
+                <div class="iconfont inp">
+                    <div class="iconfont font">&#xe609;</div>
+                    <input type="text" name="" id="">
+                </div>
+                <div class="iconfont font">&#xe621;</div>
+            </div>
+        </div>
+        <div class="top1">
+            <span class="aps">今日推荐</span>
+            <span>面膜中心</span>
+            <span>居家生活</span>
+            <span>购全球</span>
+        </div>
+        <div class="item">
+            <div class="item1">今日推荐</div>
+            <div >面膜中心</div>
+            <div >居家生活</div>
+            <div id="golad">
+                <img src="https://image.watsons.com.cn//upload/3c150224.jpg?x-oss-process=image/indexcrop,y_800,i_0/quality,q_80/format,webp" alt="">
+                <img src="https://image.watsons.com.cn//upload/3c150224.jpg?x-oss-process=image/indexcrop,y_800,i_1/quality,q_80/format,webp" alt="">
+                <img src="https://image.watsons.com.cn//upload/13c7c4ca.jpg?x-oss-process=image/indexcrop,y_800,i_0/quality,q_80/format,webp" alt="">
+                <img src="https://image.watsons.com.cn//upload/5fa13917.jpg?x-oss-process=image/indexcrop,y_800,i_0/quality,q_80/format,webp" alt="">
+                <img src="https://image.watsons.com.cn//upload/53595dfb.jpg?x-oss-process=image/indexcrop,y_800,i_0/quality,q_80/format,webp" alt="">
+                <img src="https://image.watsons.com.cn//upload/bde0f5f7.jpg?x-oss-process=image/indexcrop,y_800,i_0/quality,q_80/format,webp" alt="">
+            
+                <ul id="container">
+                    <li>
+                        <img src="https://image.watsons.com.cn//upload/1b2467f3.jpg?x-oss-process=image/resize,w_375/quality,q_80/format,webp" alt="">
+                        <p>wqdeqwdsad</p>
+                        <p>wdqwqwewqewq</p>
+                        <p>
+                            <!-- ￥<span>100</span>￥<span>30</span> -->
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            //切换
+            var aspan = document.getElementsByTagName("span");
+            var aitem = document.getElementsByClassName("item")[0];
+            var adiv = aitem.getElementsByTagName("div");
+            var oul = document.getElementsByTagName("ul")[0];
+            for(var i = 0;i<aspan.length;i++){
+                aspan[i].index = i;
+                aspan[i].onclick= function(){
+                    for (var j = 0;j<aspan.length;j++){
+                        aspan[j].className = "";
+                        adiv[j].className = "";
+                    }
+                    this.className = "aps";
+                    adiv[this.index].className = "item1"; 
+                }
+            }
+
+            //渲染
+            // for(var a in jsondata.data.item_list){
+            //     // var eachdata = jsondata.data.item_list[a]
+            //     // console.log(jsondata.data.item_list[a]);
+            //     // console.log(eachdata.brand_name)
+            // }
+        }
+    </script>
+</body>
+</html>

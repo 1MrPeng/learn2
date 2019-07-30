@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>画板</title>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<script src="../../../jQuery/jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mycanvas1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="canvas1">
+			<canvas id="mycanvas1" width="1000" height="100"></canvas>
+		</div>
+		<div id="warp">
+			<div style="height: 400px;width: 550px;position: relative;" class="canvas">
+				<canvas id="mycanvas2" width="550" height="400">
+					您的浏览器不支持canvas
+				</canvas>
+				<div class="clear">
+					<span class="iconfont icon-xiangpica"></span>
+				</div>
+			</div>
+			
+			<div class="tools">
+				<div class="pen">
+					<span class="iconfont icon-bianjixiugaiqianbishuxie"></span>
+				</div>
+				
+				<div class="xiangpica">
+					<span class="iconfont icon-xiangpica"></span>
+				</div>
+				
+				<div class="lineWith">
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+				<div>
+					<input type="color"  />
+				</div>
+				
+				<div class="qingkong">
+					<span class="iconfont icon-qingkong"></span>
+				</div>
+				
+				<div class="save">
+					<span class="iconfont icon-shengchenghuiyuanqia"></span>
+				</div>
+			</div>
+			
+			
+			<div class="image">
+				<img src="" >
+				<a href="" download="download">下载</a>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		var ctx = $('#mycanvas2')[0].getContext('2d');
+		var bol1 = true;
+		
+		//画笔点击事件开始
+		$('.pen').on('click',function(){
+			if(bol1){
+				$('.pen span').css('color','red');
+				$('#mycanvas2').on('mousedown',function(ev){
+					//获取鼠标按下的坐标
+					var oMouseX = ev.pageX - $(this).offset().left;
+					var oMouseY = ev.pageY - $(this).offset().top;
+					
+					//开始绘制路径
+					ctx.beginPath();
+					
+					//将此坐标设置为起始位置
+					ctx.moveTo(oMouseX,oMouseY);
+					
+					$(document).on('mousemove',function(ev){
+						
+						var moveX = ev.pageX - $('#mycanvas2').offset().left;
+						var moveY = ev.pageY - $('#mycanvas2').offset().top;
+						
+						ctx.lineTo(moveX,moveY)
+						
+						ctx.stroke();
+					})
+					$(document).on('mouseup',function(){
+						ctx.closePath();
+						$(document).off('mousemove');
+						// var oSrc = $('#mycanvas2')[0].toDataURL();
+						// 
+						// $('img').attr('src',oSrc)
+						
+					})
+				})
+				
+				
+				
+			}else{
+				$('.pen span').css('color','black');
+				$('#mycanvas2').off('mousedown');
+				$(document).off('mousemove');
+			}
+			bol1 = !bol1;
+		})
+		//画笔点击事件结束
+		
+		//颜色改变开始
+		$('[type="color"]').on('change',function(){
+			ctx.strokeStyle = $(this).val();
+		})
+		//颜色改变结束
+		
+		//线条粗细开始
+		$('.lineWith p').eq(0).on('click',function(){
+			$(this).css('background-color','red');
+			$(this).siblings().css('background-color','black');
+			ctx.lineWidth = 2;
+		})
+		$('.lineWith p').eq(1).on('click',function(){
+			$(this).siblings().css('background-color','black');
+			$(this).css('background-color','red');
+			ctx.lineWidth = 5;
+		})
+		$('.lineWith p').eq(2).on('click',function(){
+			$(this).css('background-color','red');
+			$(this).siblings().css('background-color','black');
+			ctx.lineWidth = 8;
+		})
+		//线条粗细结束
+		
+		//橡皮檫功能开始
+		var bol2 = true;
+		$('.xiangpica').on('click',function(){
+			if(bol2){
+				$(this).css('color','red');
+				$('.canvas').on('mousemove',function(ev){
+					var ev = ev || window.event;
+					var oMouseX = ev.pageX - $('.canvas').offset().left - $('.clear').width()/2;
+					var oMouseY = ev.pageY - $('.canvas').offset().top - $('.clear').height()/2;
+					
+					if(oMouseX < 0){
+						oMouseX = 0;
+					}else if((oMouseX+$('.clear').width()) > $('.canvas').width()){
+						oMouseX = $('.canvas').width() - $('.clear').width();
+					}
+					
+					if(oMouseY < 0){
+						oMouseY = 0;
+					}else if((oMouseY+$('.clear').height()) > $('.canvas').height()){
+						oMouseY = $('.canvas').height() - $('.clear').height();
+					}
+					$('.clear').css({
+						display: 'flex',
+						left: oMouseX+'px',
+						top: oMouseY+'px'
+					}) 
+					ctx.clearRect(oMouseX,oMouseY,$('.clear').width(),$('.clear').height())
+					
+				})
+			}else{
+				$(this).css('color','black');
+				$('.canvas').off('mousemove');
+				$('.clear').css('display','none');
+			}
+			bol2 = !bol2;
+			// $('.canvas').on('mouseout',function(){
+			// 	$('.clear').css('display','none'); 
+			// })
+			
+		})
+		//橡皮檫功能结束
+		
+		//点击显示图片开始
+		var oDownload;
+		$('.save').on('click',function(){
+			$(this).css('color','red');
+			$('.image').css('display','block');
+			
+			
+			var src = $('#mycanvas2')[0].toDataURL();
+			// console.log()
+			$('.image img').attr('src',src);
+			
+			// 下载生成的图片
+			var blob = dataURLtoBlob(src);	//调用url数据转blob格式函数
+			if(window.URL){
+				// oDownload = document.createElement("a");	//创建a标签
+				// oDownload.download = "download";	//添加download(谷歌浏览器默认预览, 添加该属性可以调用资源管理器进行下载)
+				// oDownload.innerHTML = "下载";
+				// oDownload.href= window.URL.createObjectURL(blob);	//生成url, 赋值给a标签的href
+				
+				$('.image a').attr('href',window.URL.createObjectURL(blob));
+			}
+			
+			$('.image a').on('click',function(){
+				$('.image').css('display','none');
+				$('.save').css('color','black');
+			})
+		})
+		//点击显示图片结束
+		
+		//清空开始
+		$('.qingkong').on('click',function(){
+			ctx.clearRect(0,0,$('#mycanvas2').width(),$('#mycanvas2').height())
+		})
+		//清空结束
+		
+		
+		 //将base64格式的数据转成blob
+		function dataURLtoBlob(dataurl) {
+			var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+				bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+			while (n--) {
+				u8arr[n] = bstr.charCodeAt(n);
+			}
+			return new Blob([u8arr], { type: mime });
+		}
+	})
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="mycanvas" width="600" height="600">
+			您的浏览器不支持canvas
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.querySelector('canvas');
+		var ctx = canvas.getContext('2d');
+		var x = 0,y = 0;
+		
+		var img = new Image();
+		img.src = '叮当猫.jpg';
+		
+		img.onload = function(){
+			ctx.drawImage(img,x,y,100,100);
+			
+			document.onkeydown = function(ev){
+				switch (ev.keyCode){
+					case 37:
+						if(x > 0){
+							x-=10;
+						}
+						break;
+					case 38:
+						if(y > 0){
+							y-=10;
+						}
+						break;
+					case 39:
+						if(x < mycanvas.offsetWidth - 100){
+							x+=10;
+						}
+						break;
+					case 40:
+						if(y < mycanvas.offsetHeight - 100){
+							y+=10;
+						}
+						break;
+					default:
+						break;
+				}
+				ctx.clearRect(0,0,mycanvas.offsetWidth,mycanvas.offsetHeight);
+				ctx.drawImage(img,x,y,100,100);
+			}
+		}
+		
+		
+	}
+</script>

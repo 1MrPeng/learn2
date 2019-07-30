@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+        }
+        .box:nth-child(1){
+            background: lawngreen;
+        }
+        .box:nth-child(2){
+            background: lightgreen;
+        }
+        .box:nth-child(3){
+            background: lemonchiffon;
+        }
+        .box:nth-child(4){
+            background: lightsalmon;
+        }
+        .box:nth-child(5){
+            background: lightslategrey;
+        }
+        ul{
+            position: fixed;
+            right: 10px;
+            top: 100px;
+        }
+        li{
+            width: 40px;
+            height: 40px;
+            border-radius:50%;
+            border: 1px solid #ccc; 
+        }
+        .item{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <ul>
+        <li class="item"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        window.onload = function(){
+            var obox = document.getElementsByClassName("box");
+            var ali = document.getElementsByTagName("li");
+            var oHeight = window.innerHeight;
+            // console.log(oHeight)
+            for(var i = 0;i<obox.length;i++){
+                obox[i].style.height = oHeight+"px";
+            }
+            //点击事件
+            for(var j =0;j<ali.length;j++){
+                ali[j].index = j;
+                ali[j].onclick = function(){
+                    setScrollY(this.index*oHeight);
+                    console.log(this.index*oHeight)
+                    clearDefaultCSS();
+                    this.className = "item"
+                }
+            }
+            //滚动事件
+            window.onscroll = function(){
+                var oScroll = getScrollY();
+                var Index = Math.round(oScroll/oHeight);
+                // console.log(oScroll)
+                // console.log(oHeight)
+                // console.log(Index)
+                clearDefaultCSS()
+                ali[Index].className="item"
+            }
+            //重置样式
+            function clearDefaultCSS(){
+					for(var k=0; k<ali.length; k++){
+						ali[k].className = ""	
+					}
+				}
+                // 设置滚动高度
+				function setScrollY( num ){
+					document.documentElement.scrollTop = document.body.scrollTop = num;
+				}
+				// 获取滚动高度
+				function getScrollY( ){
+					return window.pageYOffset || document.documentElement.scrollTop; 
+				}
+        }
+    </script>
+</body>
+</html>

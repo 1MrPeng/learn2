@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 600px;
+				height: 600px;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			1.获取文件
+				ev.dataTransfer.files
+				
+			2.创建文件阅读器
+				new FileReader()
+		
+			3.使用阅读器读取文件
+				readAsDataURL()
+				
+			4.监听文件阅读器加载完成之后再执行
+				文件阅读器.onload
+				
+			5.判断文件类型是图片
+				myFile[0].type
+		
+		-->
+		<div></div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.querySelector('div');
+		oDiv.ondragover = function(ev){
+			var ev = ev || window.event;
+			ev.preventDefault();
+		}
+		
+		oDiv.ondrop = function(ev){
+			var ev = ev || window.event;
+			ev.preventDefault();
+			//获取文件
+			var myFile = ev.dataTransfer.files;
+			
+			//创建文件阅读器
+			var fileReader = new FileReader();
+			fileReader.readAsDataURL(myFile[0]);
+			
+			fileReader.onload = function(){
+				if(this.result.indexOf('image') != -1){
+					var img = new Image();
+					img.src = this.result;
+					img.width = 400;
+					oDiv.appendChild(img);
+				}
+				
+			}
+		}
+	}
+</script>

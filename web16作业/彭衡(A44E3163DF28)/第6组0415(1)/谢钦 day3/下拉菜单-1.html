@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        p {
+            width: 130px;
+            border: 1px solid #ccc;
+            background-color: lightgreen;
+        }
+
+        input {
+            width: 150px;
+        }
+
+        .container {
+            display: inline-block;
+            display: flex;
+            flex-direction: row;
+            margin-left: 100px;
+            margin-top: 100px;
+            text-align: center;
+           
+        }
+
+        ul {
+            width: 130px;
+            height: 131px;
+             border: 1px solid #ccc;
+            background-color: rgb(245, 247, 246);
+            display: none;
+             margin-left: 100px;
+            
+        }
+
+        li {
+
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        li:hover{
+            background: lightpink;
+        }
+       ul li:nth-child(2):hover{
+           background: greenyellow;
+       }
+        ul li:nth-child(3):hover{
+           background: rgb(224, 10, 99);
+       }
+       ul li:nth-child(4):hover{
+           background: hsl(261, 75%, 69%);
+       }
+       ul li:nth-child(5):hover{
+           background: rgba(228, 137, 33, 0.788);
+       } 
+        ul li:nth-child(6):hover{
+           background: rgb(236, 144, 149);
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>歌曲</p>
+        <input type="text" placeholder=" 请输入歌曲名">
+    </div>
+    <ul>
+        <li>歌曲</li>
+        <li>专辑</li>
+        <li>歌手</li>
+        <li>歌词</li>
+        <li>MV</li>
+        <li>票务</li>
+    </ul>
+
+    <script>
+            //加载后执行
+			window.onload = function(){
+                //获取元素
+				var oP = document.getElementsByTagName("p")[0];
+				var oInput = document.getElementsByTagName("input")[0];
+				var oUl = document.getElementsByTagName("ul")[0];
+				var oLi = document.getElementsByTagName("li");
+                    //事件监听调用写法
+                bindEvent(oP,"click",heiUl);
+                    function heiUl(ev){
+                       
+                        // ev兼容
+                        var ev = ev || window.event;
+                        oUl.style.display = "block";
+                        
+                              //  循环绑定li点击事件
+                            for(var i=0; i<oLi.length;i++){
+                                stopPrevent()
+
+                                bindEvent(oLi[i],"click",changeLi);
+
+                                oUl.changeLi = function(ev){
+
+                                var ev = ev.target||ev.srcElement;      //  事件源兼容
+						    }
+                            function changeLi(){
+							
+                                // 给placeholder值
+                               oInput.placeholder = "输入"+this.innerHTML;
+                                                        
+                                // ul隐藏
+                              oUl.style.display = "none";
+                              
+                                                      
+                            }
+                        }
+                        	
+				   }
+                        //    事件监听的兼容函数
+                        function bindEvent(ele,eventName,fn,bool){
+                            
+                            if(ele.addEventListener){	//大多数浏览器
+                                
+                                ele.addEventListener(eventName,fn,bool);
+                                
+                            }else{
+                                
+                                ele.attachEvent("on"+eventName,fn);
+                                
+                            }
+                            
+                        }
+                        
+//				阻止默认事件
+				function stopPrevent(ev) {
+					if (ev && ev.preventDefault) {
+						ev.preventDefault();
+					} else {	//IE浏览器
+						window.event.returnValue = false;
+					}			
+					return false;
+				}
+
+                    }
+    </script>
+</body>
+</html>

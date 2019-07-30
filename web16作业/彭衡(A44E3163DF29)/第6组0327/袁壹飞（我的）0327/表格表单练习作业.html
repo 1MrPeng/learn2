@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表格表单练习作业</title>
+    <style type="text/css">
+       
+
+    </style>
+
+</head>
+<body>
+    
+        <form >
+            <table border="2px" cellspacing="0" align="center" >
+                <tr>
+                    <td align="right">用户名&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="text" placeholder="请输入用户名">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">密码&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="password" placeholder="请输入密码">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">确认密码&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="password" placeholder="请再次输入密码">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">喜欢的颜色&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="color">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">性别&nbsp;:&nbsp;</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="gander" checked="true" value="男">男
+                        </label>
+                        <label>
+                            <input type="radio" name="gander" value="女">女
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">出生日期&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">爱好&nbsp;:&nbsp;</td>
+                    <td>
+                            <!-- multiple:是否允许多选 -->
+                        <select multiple="true" size="1">
+                            <option value="购物" selected>购物</option>
+                            <option value="写代码">写代码</option>
+                            <option value="打游戏">打游戏</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">你喜欢的游戏&nbsp;:&nbsp;</td>
+                    <td>
+                        <label >
+                            <input type="checkbox" name="holder" value="穿越火线">穿越火线
+                        </label>
+                        <label > 
+                            <input type="checkbox" name="holder" checked="true" value="英雄联盟">英雄联盟
+                        </label>
+                        <label >
+                                <input type="checkbox" name="holder" value="逆战">逆战
+                        </label>
+                        <label >
+                                <input type="checkbox" name="holder" value="守望先锋">守望先锋
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">邮箱&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="text" placeholder="请输入邮箱">
+                        @
+                        <select>
+                            <option value="qq.com" selected>qq.com</option>
+                            <option value="qq.com" selected>162.com</option>
+                            <option value="qq.com" selected>163.com</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">邮箱密码&nbsp;:&nbsp;</td>
+                    <td>
+                        <input type="password" placeholder="请输入邮箱密码">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit">
+                        <input type="reset">
+                    </td>
+                </tr>
+            </table>
+
+        </form>
+
+</body>
+</html>

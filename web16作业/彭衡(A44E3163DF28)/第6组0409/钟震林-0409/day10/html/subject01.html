@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+	</head>
+	<body>
+		<input type="text" />
+		<button>发送</button>
+		<script>
+//			1.页面加载后执行
+			window.onload = function(){
+//				2.获取元素
+				var oInp = document.getElementsByTagName("input")[0];
+				var oBtt = document.getElementsByTagName("button")[0];
+				var timer = null;
+//				3.绑定按钮点击事件
+				oBtt.onclick = function(){
+					var num = 10;
+//					4.点击按钮后禁用按钮
+					this.disabled = true;
+					var _this = this;
+//					清除定时器原来时间
+					clearInterval(timer);
+//					5.设置定时器
+					timer = setInterval(function(){
+//						6.判断定时器是否结束
+						if (num == 0) {
+							clearInterval(timer);
+							oBtt.innerText = "请重新发送!";
+							_this.disabled = false;
+						} else{
+							oBtt.innerText = "请重新发送（" + num + "）";
+							num--;
+						}
+					}, 1000);
+				}
+			}
+		</script>
+	</body>
+</html>

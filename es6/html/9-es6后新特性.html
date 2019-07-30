@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../../jquery/代码/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// ES7(ES2016)
+			// 指数运算符	**
+			console.log(2**10);	//2的10次方
+			console.log(Math.pow(2,10));	//幂运算
+			
+			// 数组方法: includes
+			
+			// ES8(ES2017)
+			// async/await(异步仿同步效果)
+			async function show(){
+				let res1 = await $.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/guessLike");
+				let res2 = await $.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/guessLike");
+				console.log(res1);
+				console.log(res2);
+			}
+			show();
+			
+			// Object.values
+			var obj = {name: "小花", age:18, gender: "女"};
+			console.log(Object.keys(obj));	//ES6
+			console.log(Object.values(obj));	//获取到对象的value, 存为一个数组
+			
+			// 将空字符串或其他字符串添加到原始字符串的开头[padStart(该字符串需要达到的长度, 添加的字符串)]
+			console.log('20'.padStart(8, '*'));
+			// 将空字符串或其他字符串添加到原始字符串的结尾[padEnd(该字符串需要达到的长度, 添加的字符串)]
+			console.log('20'.padEnd(6, '*'));
+			
+			// ES9(ES2018)
+			// 异步迭代(同步循环内调用异步函数)
+			async function process(array){
+				for await(let i of [$.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/guessLike"),$.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/guessLike"),$.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/guessLike")]) {
+					console.log(i + new Date().toLocaleTimeString()); 
+				}
+			}
+			process([1,3,5]);
+			
+			// ES10(ES2019)
+			// 去除前面或者后面的空格
+			console.log("          111        ".trimStart());
+			console.log("          111        ".trimEnd());
+			
+		</script>
+	</body>
+</html>

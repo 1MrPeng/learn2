@@ -1,0 +1,198 @@
+/* 清楚默认样式 */
+*{
+	padding: 0;
+	margin: 0;
+}
+/*  主体内容的div*/
+.main_box{
+	width: 803px;
+	padding: 10px;
+	background-color: #e5e8ef;
+	box-sizing: border-box;
+	/* height: 100px; */
+	margin: 100px auto;
+	position: relative;
+}
+/* 表格布局 */
+table{
+	color: #b8b8b8;
+	font-size: 12px;
+}
+/* 行 */
+table tr{
+	height: 40px;
+}
+table a{
+	color: #b8b8b8;
+}
+table tr:nth-child(2n){
+	background: #f3f4f6;
+}
+table tr:nth-child(2n-1){
+	background: #ffffff;
+}
+table tr:nth-child(1){
+	background: #81a7e8;
+	font-size: 14px;
+	color: white;
+	font-weight: normal;
+}
+table tr>th .icon-fuxuankuang_weixuanzhong{
+	font-size: 12px;
+}
+table tr th:nth-child(1){
+	width: 40px;
+}
+table tr th:nth-child(2),
+table tr th:nth-child(4),
+table tr th:nth-child(5),
+table tr th:nth-child(6){
+	width: 110px;
+}
+table tr th:nth-child(3),
+table tr th:nth-child(7),
+table tr th:nth-child(8){
+	width: 95px;
+}
+/* 操作字体图标 span */
+table tr th:last-child>span{
+	font-size: 14px;
+}
+table tr th:last-child>span:first-child{
+	margin-right: 32px;
+}
+
+/* 底部导航栏的样式 */
+.footer_nav{
+	width: 100%;
+	background: #e6e9ee;
+	margin-top: 15px;
+	height: 30px;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 40px;
+	box-sizing: border-box;
+}
+/* 左边的样式 */
+.footer_nav_left{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	color: white;
+	font-size: 14px;
+}
+.footer_nav_left>p:first-child{
+	background: #ea908c;
+	padding: 5px 10px;
+	border-radius: 3px;
+	margin-right: 22px;
+	cursor: pointer;
+}
+.footer_nav_left>p:last-child{
+	background: #6ccbe0;
+	padding: 5px 10px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+/* 右边的样式 */
+.footer_nav_right{
+	vertical-align: middle;
+}
+.footer_nav_right>button{
+	font-size: 12px;
+	border: none;
+	background: #f2f3f5;
+	padding: 4px 6px;
+	margin-left: 5px;
+	color: #87888a;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.footer_nav_right>button:nth-child(3){
+	background: #5a8adc;
+	color: white;
+}
+.iconfont{
+	cursor: pointer;
+}
+/* 添加列表项的样式 */
+.add_box{
+	width: 300px;
+	height: 252px;
+	/*background: #b6c5e0;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;*/
+	/*  使用绝对定位*/
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -135px;
+	margin-top: -121px;
+	display: none;
+	z-index: 10;
+}
+form{
+	width: 300px;
+	height: 252px;
+	background: #b6c5e0;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	/*  使用绝对定位*/
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -135px;
+	/*display: none;*/
+}
+
+.add_box span{
+	display: inline-block;
+	width: 70px;
+}
+.add_box div{
+	margin: 5px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+}
+.add_box div input{
+	height: 20px;
+	border: none;
+	border-bottom: 1px solid black;
+	border-radius: 4px;
+	outline: none;
+}
+.add_box div:last-child{
+	margin-bottom: 0;
+}
+.add_box div:last-child>button{
+	padding: 3px 10px;
+	background: green;
+	border: 1px solid #EEEEEE;
+	border-radius: 5px;
+	color: white;
+}
+.add_box div:last-child>button:last-child{
+	background: #8c8383;
+	margin-left: 15px;
+}
+.add_box div:last-child>button.moveBtn{
+	background: green;
+}
+/*遮罩div*/
+#noContent{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,0,0,.3);
+	display: none;
+	z-index: 8;
+}

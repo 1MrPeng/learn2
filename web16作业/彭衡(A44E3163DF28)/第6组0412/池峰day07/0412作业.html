@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         /*  清除默认样式 */
+        body{
+            margin: 0;
+            padding: 0;
+        }    
+           /* 表头添加背景色 */
+        #header{
+            background: #81A7E8;
+        }
+          /*  偶数行添加背景色 */
+        tr:nth-child(even){
+            background: #E6E9EE;
+        }
+           /* 批量删除添加背景色 */
+        .a{
+            background: #F08E8D;
+        } 
+           /*  + 新增添加背景色 */
+        .b{
+            background: #6DCCDE;
+        } 
+         /*  1 添加背景色 */
+        .c{
+            background: #4A84E1;
+        }
+         /*  最后一行添加背景色 */
+        .A{
+            background: rgba(220, 220, 220);
+        }
+          /* 弹框设置宽高 背景色 隐藏 */
+        div{
+            width: 300px;
+            height: 150px;
+            background: #E6E9EE;
+            display: none;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <table border="1" cellpadding="8" cellspacing="0" align="center" bordercolor="#DADADA">
+        <tr id="header">
+            <th><input type="checkbox" name="" id=""></th>
+            <th>展项ID</th>
+            <th>名称</th>
+            <th>所处楼层</th>
+            <th>所处位置</th>
+            <th>所属展区</th>
+            <th>更多</th>
+            <th>操作</th>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>大门ee</td>
+            <td>4</td>
+            <td>100,300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center"> 
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr align="center">
+            <td><input type="checkbox" name="" id=""></td>
+            <td>item-01</td>
+            <td>小V平台组</td>
+            <td>3</td>
+            <td>100，300</td>
+            <td>zone-03</td>
+            <td><u>查看更多></u></td>
+            <td></td>
+        </tr>
+        <tr class="A">
+            <td colspan="8">&nbsp;
+                <input type="checkbox" name="" id=""> &nbsp;
+                <button class="a"><b>批量删除</b></button> &nbsp;&nbsp;&nbsp;
+                <button class="b"><b>+ 新增</b></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button>首页</button> &nbsp;
+                <button>上一页</button> &nbsp;
+                <button class="c">1</button> &nbsp;
+                <button>2</button> &nbsp;
+                <button>3</button> &nbsp;
+                <button>下一页</button>
+            </td>
+        </tr>
+        <div>
+            <ul type="none">
+                <li>展项ID: &nbsp;&nbsp;&nbsp;<input type="text"></li>
+                <li>名称:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></li>
+                <li>所处楼层: <input type="text"></li>
+                <li>所处位置: <input type="text"></li>
+                <li>所属展区: <input type="text"></li>
+                <button>确定</button>
+                <button>取消</button>
+            </ul>
+        </div>
+    </table>
+
+    <script>
+         /*  加载页面后执行 */
+        window.onload = function(){
+          //  获取元素 
+          var oB = document.getElementsByClassName("b")[0];
+          var oDiv =document.getElementsByTagName("div")[0];
+           /* 绑定点击事件 */
+            oB.onclick = function(){
+                oDiv.style.display = "block"
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>屈臣氏</title>
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<!--引入数据js文件-->
+		<script src="js/produce_list.js"></script>
+		<style>
+			/* 清楚默认样式 */
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body,#main_box{
+				width: 100%;
+				height: 100%;
+				font-size: 18px;
+			}
+			/* 总体布局 */
+			#main_box{
+				display: flex;
+				flex-direction: column;
+				
+			}
+			
+			/* 头部功能栏 */
+			.top_nav{
+				width: 100%;
+				height: 41.5px;
+				border-bottom: 1px solid #eee;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 15px;
+				box-sizing: border-box;
+				/* 不压缩 */
+				flex-shrink: 0;
+			}
+			.top_nav span{
+				font-size: 22px;
+			}
+			.top_nav_sosuo_div {
+				flex-grow: 1;
+				border: 1px #bebdbd solid;
+				border-radius: 15px;
+				margin: 0 20px;
+				height: 26px;
+				display: flex;
+				align-items: center;
+			}
+			.top_nav_sosuo_div span{
+				font-size: 18px;
+				margin: 0 6px 0 5px;
+			}
+			
+			.top_nav_sosuo_div input{
+				border: none;
+				height: 100%;
+				outline: none;
+				font-size: 13px;
+			}
+			.top_nav .icon-gouwuche{
+				font-size: 25px;
+			}
+			/* 选显卡的样式 */
+			.content_tags{
+				height: 40px;
+				width: 100%;
+				display: flex;
+				justify-content: space-around;
+				font-size: 15px;
+				font-weight: bold;
+				align-items: center;
+				/* 不压缩 */
+				flex-shrink: 0;
+			}
+			.content_tags span{
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+				box-sizing: border-box;
+			}
+			/* 内容主体 */
+			.content_box{
+				width: 100%;
+				flex-grow: 1;
+				overflow: auto;
+				line-height: 0;
+			}
+			.content_box::-webkit-scrollbar,
+			.content::-webkit-scrollbar{
+				width: 0;
+			}
+			.content{
+				width: 100%;
+				height: 100%;
+				background: url('https://image.watsons.com.cn//upload/3c150224.jpg') no-repeat center;
+				background-size: 100%;
+				/* 开始 隐藏*/
+				display: none;
+				overflow: auto;
+			} 
+			.content_box div:nth-child(2){
+				 background-image: url('https://image.watsons.com.cn//upload/13c7c4ca.jpg') ; 
+			
+			}
+			.content_box div:nth-child(3){
+				background-image: url('https://image.watsons.com.cn//upload/5fa13917.jpg');
+			}
+			.content_box div:nth-child(4){
+				background-image: none;
+			}
+			/* 激活的选项按钮span */
+			.active_tag{
+				color: #ff6692;
+				border-bottom: 2px #ff6692 solid;
+			}
+			
+			/* 激活的内容主体div */
+			.active_div{
+				display: block;
+			}
+			/* 购全球的样式*/
+			.content_box img{
+				width: 100%;
+				margin: 0;
+			}
+			.content_box .content:last-child{
+				background: #ffdad7;
+				padding: 0 5px;
+				box-sizing: border-box;
+			}
+			.content_box .content ul{
+				width: 100%;
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				/*换行显示*/
+				flex-wrap: wrap;
+			}
+			.content li{
+				width: 32.5%;
+				height: 186px;
+				background: white;
+				box-sizing: border-box;
+				padding-left: 5px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				margin-top: 5px;
+				font-size: 12px;
+				position: relative;
+			}
+			.content li img{
+				width: 114px;
+				height: 114px;
+			}
+			.content li .item_name{
+				line-height: 1.5;
+				height: 33px;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				/* 这里是在第二行有省略号 */
+				-webkit-line-clamp: 2;  
+				overflow: hidden;
+
+				font-size: 11px;
+			}
+			#main_box  .content .item_desc{
+				width: 100%;
+				height: 34px;
+				display: flex;
+				align-items: center;
+				background: white;
+				/*justify-content: space-between;*/
+			}
+			.content .item_desc p{
+				width: 79px;
+				height: 15px;
+				/*line-height: 34px;*/
+				display: flex;
+				align-items: center;
+				/*background: pink;*/
+			}
+			/*.content .item_desc>span{
+				display: inline-block;
+				height: 34px;
+				line-height: 34px;
+				font-size: 15px;
+			}*/
+			.content .item_desc>span{
+				display: inline-block;
+				height: 34px;
+				line-height: 34px;
+				width: 34px;
+				background: url("https://image.watsons.com.cn/upload/6232b1ca.png") no-repeat center;
+				background-size: 100%;
+				/*margin-left: 15px;*/
+				
+			}
+			.content .item_desc p span:nth-child(1){
+				color: #ff1f32;
+				font-size: 15px;
+				height: 17px;
+				line-height: 17px;
+			}
+			.content .item_desc p span:nth-child(2){
+				text-decoration: line-through;
+				color: #999;
+				margin-left: 5px;
+				height: 12px;
+				line-height: 12px;
+				font-size: 12px;
+			}
+			/*促销信息*/
+			.promotions_p{
+				position: absolute;
+				left: 0;
+				top: 95px;
+				height: 15px;
+				line-height: 15px;
+				font-size: 12px;
+				color: white;
+				background: #FF4449;
+				padding-right: 5px;
+				border-radius: 0 15px 15px 0;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div id="main_box">
+			<!-- 头部功能栏 -->
+			<div class="top_nav">
+				<span class="iconfont icon-gerenzhongxin"></span>
+				<!-- 搜索输入框 -->
+				<div class="top_nav_sosuo_div">
+					<span class="iconfont icon-sousuo" ></span>
+					<input type="text" placeholder="精华" />
+				</div>
+				<span  class="iconfont icon-gouwuche"></span>
+			</div>
+			
+			<!-- 选项卡 -->
+			<div class="content_tags">
+				<span class="active_tag">今日推荐</span>
+				<span>面膜中心</span>
+				<span>居家生活</span>
+				<span>购全球</span>
+			</div>
+			<!-- 主体内容 -->
+			<div class="content_box">
+				<div class="content active_div"></div>
+				<div class="content"></div>
+				<div class="content"></div>
+				<!-- 购全球的内容 -->
+				<div class="content">
+					<img src="https://image.watsons.com.cn//upload/3c150224.jpg" alt="">
+					<img src="https://image.watsons.com.cn//upload/13c7c4ca.jpg" alt="">
+					<img src="https://image.watsons.com.cn//upload/5fa13917.jpg" alt="">
+					<img src="https://image.watsons.com.cn//upload/53595dfb.jpg" alt="">
+					<img src="https://image.watsons.com.cn//upload/bde0f5f7.jpg" alt="">
+					 
+					 <!-- 商品列表 -->
+					<ul></ul>
+					 
+				</div>
+			</div>
+		
+			
+		</div>
+		
+	</body>
+</html>
+<script>
+	//页面加载完成是触发
+	window.onload = function(){
+		//获取元素
+		var content_tags = document.getElementsByClassName('content_tags')[0];
+		var content_box = document.getElementsByClassName('content_box')[0];
+		var oSpanTags = content_tags.getElementsByTagName('span');
+		var content_Div = content_box.getElementsByTagName('div');
+		var content_ul = document.getElementsByTagName('ul')[0];
+		
+		
+		//给每一个选项卡添加点击事件
+		for(var i = 0;i<oSpanTags.length;i++){
+			//保存下标标记
+			oSpanTags[i].index = i;
+			oSpanTags[i].onclick = changeTage;
+		}
+		
+		//选项卡具体的实现切换功能
+		function changeTage(){
+			//重置样式
+			resetCss();
+			//个点击的选项卡添加激活的样式
+			this.className = 'active_tag';
+			//显示对应的内容
+			content_Div[this.index].className = 'content active_div'
+			//如果是点击的是购全球的选项卡则加载显示数据
+			if(this.index == 3){
+				reloadItem();
+			}
+			
+		}
+		
+		//重置样式
+		function resetCss(){
+			for(var i = 0;i<oSpanTags.length ;i++){
+				oSpanTags[i].className = ''; //重置选项卡的样式
+				content_Div[i].className = 'content'; //重置内容主体的样式
+			}
+		}
+		
+		//载入商品列表数据
+		function reloadItem(){
+//			console.log(item_data.data.item_list);
+			var items = item_data.data.item_list;//解析得到商品列表项数组
+			//遍历添加商品列表项
+			for(var i = 0 ;i<items.length;i++){
+				//商品的价格处理
+				var min_app_price = parseFloat(items[i].min_app_price/100);
+				var min_market_price = parseFloat(items[i].min_market_price/100);
+				//得到促销信息
+				var promotions = items[i].promotions;
+				
+				
+				
+				var textInnerHTML = '<li><img src="'+items[i].over_image_url+'" />';
+				//判断是否有促销信息
+				if(promotions){
+					//拼接促销信息
+					textInnerHTML += '<p class="promotions_p">'+promotions[0]+'</p>';
+				}
+				textInnerHTML += '<p class="item_name">'+items[i].item_name+'</p><div class="item_desc"><p><span><i>¥</i>'+min_app_price+'</span>';
+				
+				//判断对比价格是否为0
+				if(min_market_price != 0){
+					//显示对比价格
+					textInnerHTML += '<span><i>¥</i>'+min_market_price+'</span>';
+				}
+				textInnerHTML += '</p><span></span></div></li>';
+				content_ul.innerHTML += textInnerHTML;
+			}
+			
+		}
+		
+	}
+	
+</script>
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<p>请选择自己喜欢的水果：</p>
+		<p style="color: #aaa;">（全选效果：点击一下全选,再点击取消全选）</p>
+		<p style="color: #aaa;">（反选效果：点击反选按钮时，之前选中的项取消选中,未选中的项就选中）</p>
+		<form action="javascript:;" method="" id="myForm">
+			
+			<input type="checkbox" id="getall" onclick="get()">全选<br><br>
+			
+			<input type="checkbox" name="fruit" value="apple">苹果
+			
+			<input type="checkbox" name="fruit" value="peer">梨子
+			
+			<input type="checkbox" name="fruit" value="banana">香蕉
+			
+			<input type="checkbox" name="fruit" value="pineapple">菠萝
+			
+			<input type="checkbox" name="fruit" value="watermelon">西瓜<br>
+			<br>	
+			<button onclick="fanxuan()">反选</button>	
+	
+		</form>
+		<script>
+			//全选全不选操作,效果：点击一下全选,再点击取消全选
+			var fruit = document.getElementsByName('fruit');
+			function get(){
+				var getall = document.getElementById('getall');
+				if(getall.checked){
+					for(i=0;i<fruit.length;i++){
+						fruit[i].checked = true;
+					}
+				}else{
+					for(i=0;i<fruit.length;i++){
+						fruit[i].checked = false;
+					}
+				}
+			}
+			
+			//反选,效果:点击反选按钮时，之前选中的项取消选中,未选中的项就选中
+			function fanxuan(){
+				for(j=0;j<fruit.length;j++){
+					if(fruit[j].checked){
+						fruit[j].checked = false;
+					}	
+					else{
+						fruit[j].checked = true;
+					}		
+				}
+						
+// 				document.getElementById("myForm").onsubmit = function() {
+// 					return false;
+// 				};	
+			}
+			
+		</script>
+	</body>
+</html>

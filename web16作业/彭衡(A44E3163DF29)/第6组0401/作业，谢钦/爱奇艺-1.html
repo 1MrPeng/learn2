@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100%;
+            background: url("./爱奇艺蒙版弹窗/aiqiyi.png") no-repeat;
+        }
+
+        .mask {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgb(27, 27, 27);
+            opacity: 0.5;
+        }
+
+        .content {
+            width: 460px;
+            height: 300px;
+            background: rgb(253, 252, 252);
+            position: absolute;
+            left: 50%;
+            margin-left: -230px;
+            top: 50%;
+            margin-top: -150px;
+        }
+
+        .header span {
+            display: inline-block;
+
+        }
+
+        .left {
+            width: 88%;
+            height: 50px;
+        }
+
+        .left img {
+            width: 100%;
+        }
+
+        .right {
+            width: 10%;
+            height: 30px;
+        }
+
+        .right img {
+            margin-bottom: 15px;
+
+        }
+
+        .center {
+            padding: 0 20px;
+        }
+
+        .a1>input {
+            border: 0;
+        }
+
+        .a1 {
+            border-bottom: 1px solid black;
+        }
+
+        .bg {
+            display: none;
+        }
+        .a1:hover .bg {
+            display: block;
+            z-index: 1000;
+        }
+        .a3>input {
+            border: 0;
+        }
+
+        .a3 {
+            margin-top: 50px;
+            border-bottom: 1px solid black;
+        }
+
+        .a4 {
+            background: url("./爱奇艺蒙版弹窗/yj.png") no-repeat;
+            padding-left: 22px;
+            margin-left: 217px;
+        }
+
+        .a4:hover {
+            background: url("./爱奇艺蒙版弹窗/yj2.png") no-repeat;
+        }
+
+        .a5 {
+            float: right;
+        }
+
+        .a6 {
+            margin-left: 143px;
+            margin-top: 48px;
+            width: 150px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            height: 50px;
+            background:gray;
+            padding: 0 10px;
+        }
+
+        .a8 {
+            float: right;
+            line-height: 50px;
+        }
+
+        .footer-left {
+            line-height: 50px;
+        }
+        .right:hover{
+                background: url("./爱奇艺蒙版弹窗/dax.png") no-repeat;
+        }
+        .right{
+            background: url("./爱奇艺蒙版弹窗/logox.png") no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mask">
+        <div class="content">
+            <div class="header">
+                <span class="left">
+                    <img src="./爱奇艺蒙版弹窗/login-logo.png" alt="">
+                </span>
+                <span class="right"></span>
+            </div>
+            <div class="center">
+                <div class="a1">
+                    <label class="a2">中国大陆</label>
+                    <input type="text" placeholder="请输入手机号或邮箱">
+                    <div class="bg">
+                        <div>中国香港</div>
+                        <div>中国台湾</div>
+                    </div>
+                </div>
+                
+                <div class="a3">
+                    <input type="text" placeholder="请输入密码">
+                    <span class="a4"></span>
+                </div>
+                <div class="a5">忘记密码</div>
+                <button class="a6">登录</button>
+            </div>
+
+            <div class="footer">
+                <span class="footer-left"><a href="">注册</a></span>
+                <span class="a8"><a href="">手机扫码登录 | 其他方式登录</a></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

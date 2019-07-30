@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>精灵图表单</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* 设置最大一个div容器的样式 */
+        #main_box{
+            width: 722px;
+           
+            border: 32px  #f2f2f2 solid;
+            /* 水平居中显示 */
+            margin: 20px auto;
+           
+            color: #666666;
+        }
+           /* 头部导航栏 */
+        #main_box .search_box{
+            text-align: center;
+            border: 1px #e0e0e0 solid;
+            height: 70px;
+            /* 可以通过设置line-height来设置垂直方向居中 */
+            line-height: 70px;
+        }
+        /* 头部下拉框 */
+        #main_box .search_box  span{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        #main_box .search_box  select{
+           width: 100px;
+        }
+        #main_box .leixin_span{
+            padding-left: 30px;
+        }
+
+         #main_box .search_button{
+             padding: 2px 15px;
+             font-size: 10px;
+             margin-left: 30px;
+         }
+         /* ======门诊分类栏样式 */
+         #main_box .menzhen_box{
+            text-align: center;
+            border: 1px #e0e0e0 solid;
+            height: 50px;
+            /* 可以通过设置line-height来设置垂直方向居中 */
+            line-height: 50px;
+         }
+         #main_box .menzhen_box span{
+            font-size: 14px;
+            color: #333333;
+            margin-left: 15px;
+            padding-left: 15px;
+         }
+         #main_box .menzhen_box .menzhen_span1{
+             background: url("./img/paiban.gif") no-repeat -9px -28px;
+         }
+         #main_box .menzhen_box .menzhen_span2{
+             background: url("./img/paiban.gif") no-repeat -72px -61px;
+         }
+         #main_box .menzhen_box .menzhen_span3{
+             background: url("./img/paiban.gif") no-repeat -112px -28px;
+         }
+         #main_box .menzhen_box .menzhen_span4{
+             background: url("./img/paiban.gif") no-repeat -194px -28px;
+         }
+
+         /* 表格中的样式 */
+         #main_box table{
+            /* border: 1px #e0e0e0 solid; */
+            font-size: 12px;
+         }
+         #main_box table .th_01{
+            width:84px;
+            height:23px;
+         }
+         #main_box table th{
+            height:23px;
+         }
+         #main_box table .th_02{
+            width:30px;
+            height:23px;
+         }
+         #main_box table .th_03{
+            width:50px;
+            height:23px;
+         }
+         #main_box .menzhen_tr01{
+            color: #326801;
+            font-family: '宋体';
+         }
+
+         #main_box .menke_tr_name{
+             color: #4ca100;
+             font-weight: bold;
+             font-size: 15px;
+            
+         }
+         #main_box .men_th_time{
+            color: #4ca100;
+            font-family: "仿宋";
+         }
+         #main_box .time_span01{
+             display: inline-block;
+             width: 15px;
+             height: 18px;
+             background: url("./img/paiban.gif") no-repeat -72px -61px;
+         }
+         #main_box .time_span02{
+             display: inline-block;
+             width: 15px;
+             height: 18px;
+             background: url("./img/paiban.gif") no-repeat -9px -28px;
+         }
+         #main_box .time_span03{
+             display: inline-block;
+             width: 15px;
+             height: 18px;
+             background: url("./img/paiban.gif") no-repeat -112px -28px;
+         }
+
+         /* =========自定义下拉框功能================ */
+
+           select#selectPointOfInterest
+            {
+               width                    : 88px;
+               height                   : 17px;
+               line-height              : 17px;
+               text-align               : left;
+               vertical-align           : middle;
+               border                   : 1px solid #e0e0e0;
+               appearance               : none;  
+               font-family              : SimHei;
+               font-size                : 12px;
+           
+               color                    : RGBA(102,102,102,0.7);
+               cursor                   : pointer;
+               /* outline                  : none; */
+            }
+
+            label#lblSelect{ position: relative; display: inline-block;}
+        
+            label#lblSelect::after
+            {
+                content                 : "\25bc";
+                font-size: 12px;     
+                position                : absolute;
+                top                     : 28px;
+                right                   : 0;
+                bottom                  : 0;
+                width                   : 20px;
+                height:                 14px;
+                line-height             : 14px;
+             
+                border                   : 1px solid #f0f0f0;
+               
+                background              : #d1d1d1;
+                color                   : #000000;
+                /* 实现下拉框的功能 */
+                pointer-events          : none;
+            }
+    </style>
+
+
+</head>
+<body>
+    <div  id="main_box">
+        <!-- 查询功能div -->
+        <div class="search_box">
+            <span>出诊时间:&nbsp;</span>
+            <label id="lblSelect">
+                    <select id="selectPointOfInterest" >
+                            <option>--请选择--</option>
+                            <option>2019-1-8</option>
+                            <option>2019-1-8</option>
+                            <option>2019-1-8</option>
+                    </select>
+                </label>
+         
+            &nbsp;&nbsp;
+            <label id="lblSelect">
+                    <select id="selectPointOfInterest" >
+                            <option>--请选择--</option>
+                            <option>2019-1-8</option>
+                            <option>2019-1-8</option>
+                            <option>2019-1-8</option>
+                    </select>
+                </label>
+
+            <span class="leixin_span">门诊类型:&nbsp;</span>
+           
+            <label id="lblSelect">
+                    <select id="selectPointOfInterest" >
+                            <option>--请选择--</option>
+                            <option>普外科</option>
+                            <option>牙科</option>
+                            <option>消化内科</option>
+                    </select>
+                </label>
+            <button class="search_button">查询</button>
+        </div>
+
+    <!-- 门诊分类栏 -->
+        <div class="menzhen_box">
+                <span class="menzhen_span1">普通门诊</span>
+                <span class="menzhen_span2">专家门诊</span>
+                <span class="menzhen_span3">特需门诊</span>
+                <span class="menzhen_span4">夜间门诊</span>
+
+        </div>
+
+
+        <!-- 表格 -->
+        <form>
+            <table border="1px" cellspacing="0" bordercolor="#e0e0e0">
+                 <tr class="menzhen_tr01" bgcolor="#f7ffef">
+                    <th class="th_01" >医生姓名</th>
+                    <th class="th_01">所在科室</th>
+                    <th style="width:115px;">擅长</th>
+                    <th class="th_02"></th>
+                    <th class="th_03" >一</th>
+                    <th class="th_03">二</th>
+                    <th class="th_03">三</th>
+                    <th class="th_03">四</th>
+                    <th class="th_03">五</th>
+                    <th class="th_03">六</th>
+                    <th class="th_03">日</th>
+                    <th class="th_01">联系医生</th>
+                 </tr>
+                 <tr>
+                    <th rowspan="3"><p class="menke_tr_name">马雯</p>副主任医师</th>
+                    <th rowspan="3">眼科</th>
+                    <th rowspan="3">视神经、视网络、脉络膜疾...[详细]</th>
+                    <th class="men_th_time">上</th>
+                    <th><span class="time_span01"></span></th>
+                    <th></th>
+                    <th><span class="time_span01"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th rowspan="3"></th>
+                </tr>
+                 <tr>
+                  
+                    <th class="men_th_time">下</th>
+                    <th></th>
+                    <th><span class="time_span01"></span></th>
+                    <th><span class="time_span01"></span></th>
+                    <th></th>
+                    <th><span class="time_span01"></span></th>
+                    <th></th>
+                    <th></th>
+                   
+               </tr>
+               <tr>
+               
+                <th class="men_th_time">晚</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+               
+           </tr>
+            <tr>
+                <th rowspan="3"><p class="menke_tr_name">刘运良</p>其他</th>
+                <th rowspan="3">神经内科</th>
+                <th rowspan="3">视神经、视网络、脉络膜疾...[详细]</th>
+                <th class="men_th_time">上</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><span class="time_span01"></span></th>
+                <th></th>
+                <th></th>
+                <th rowspan="3"></th>
+            </tr>
+            <tr>
+               
+                <th class="men_th_time">下</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+               
+             </tr>
+                <tr>
+                  
+                    <th class="men_th_time">晚</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                   
+                </tr>
+                <tr>
+                    <th rowspan="3"><p class="menke_tr_name">将剑</p>主治医师</th>
+                    <th rowspan="3">眼科</th>
+                    <th rowspan="3"></th>
+                    <th class="men_th_time">上</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span class="time_span02"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th rowspan="3"></th>
+                </tr>
+                <tr>
+                   
+                    <th class="men_th_time">下</th>
+                    <th></th>
+                    <th></th>
+                    <th><span class="time_span02"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+                <tr>
+                   
+                    <th class="men_th_time">晚</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                   
+                </tr>
+                <tr>
+                    <th rowspan="3"><p class="menke_tr_name">贺楚峰</p>眼科</th>
+                    <th rowspan="3">神经内科</th>
+                    <th rowspan="3"></th>
+                    <th class="men_th_time">上</th>
+                    <th><span class="time_span02"></span></th>
+                    <th></th>
+                    <th><span class="time_span02"></span></th>
+                    <th><span class="time_span02"></span></th>
+                    <th><span class="time_span02"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th rowspan="3"></th>
+                </tr>
+                <tr>
+                   
+                    <th class="men_th_time">下</th>
+                    <th><span class="time_span02"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><span class="time_span02"></span>   </th>
+                    <th></th>
+                    <th></th>
+                   
+                </tr>
+                <tr>
+                   
+                    <th class="men_th_time">晚</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                   
+                </tr>
+                <tr>
+                    <th rowspan="3"><p class="menke_tr_name">吕冰清</p>其他</th>
+                    <th rowspan="3">神经内科</th>
+                    <th rowspan="3">视神经、视网络、脉络膜疾...[详细]</th>
+                    <th class="men_th_time">上</th>
+                    <th><span class="time_span03"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th rowspan="3"></th>
+                </tr>
+                <tr>
+                   
+                    <th class="men_th_time">下</th>
+                    <th></th>
+                    <th><span class="time_span03"></span></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
+                </tr>
+                <tr>
+                  
+                    <th class="men_th_time">晚</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                   
+                </tr>
+            </table>
+          
+        </form>
+
+    </div>
+
+   
+</body>
+</html>

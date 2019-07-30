@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background: deepskyblue;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var oDiv = document.querySelector('div');
+		var count = 0;
+		oDiv.onmousedown = function(){
+			var oP = document.createElement('p');
+			oP.style.cssText = 'width: '+getRandom(20,200)+'px;height: '+getRandom(20,200)+'px;display: flex;justify-content: center;align-items: center;background: rgb('+getRandom(0,255)+','+getRandom(0,255)+','+getRandom(0,255)+');border-radius: '+getRandom(0,50)+'%;position: absolute;color: white;';
+			oP.innerHTML = count++;
+			document.body.appendChild(oP);
+			document.onmousemove = function(ev){
+				var ev = ev || window.event;
+				var oMouseX = ev.pageX;
+				var oMouseY = ev.pageY;
+				oP.style.cssText += "left: "+(oMouseX-(oP.offsetWidth/2))+"px; top: "+(oMouseY-(oP.offsetHeight/2))+"px;";
+				
+			}
+			oP.onmouseup = function(){
+				document.onmousemove = '';
+				var oTop = oP.offsetTop;
+				var oLeft = oP.offsetLeft;
+				console.log(oTop)
+				var timer = setInterval(function(){
+					if(oP.getBoundingClientRect().top <= window.innerHeight - oP.offsetHeight-10){
+						oP.style['top'] = (oTop++) +'px';
+					}else{
+						clearInterval(timer)
+					}
+				},.5)
+			}
+		}
+		function getRandom(min,max){
+			return Math.floor(Math.random()*(max-min)+min);
+		}
+		
+	}
+</script>

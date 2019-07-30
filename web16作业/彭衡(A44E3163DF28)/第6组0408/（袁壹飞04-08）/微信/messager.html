@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/iconfont02.css"/>
+    <title>联系人详情</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body,#msg_main{
+            width: 100%;
+            height: 100%;
+            background-color: #ededed;
+        }
+        #msg_main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #msg_main div{
+            background: white;
+        }
+        
+        /* 头部信息 */
+        #msg_main .msg_top_nav{
+            height: 50px;
+            line-height:50px;
+            background-color: #ededed;
+           
+        }
+
+        .msg_top_nav .break_span{
+            display: inline-block;
+            line-height:50px;
+            width: 35px;
+            height: 50px;
+            padding-left: 10px;
+            float: left;
+            font-size: 30px;
+        }
+        .username_span{
+            display: inline-block;
+            height: 50px;
+            line-height: 58px;
+        }
+        .top_img{
+            height: 15%;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+        }
+       
+        .top_img img{
+            width: 50px;
+        }
+        .top_img span{
+            display: inline-block;
+            margin-left: 20px;
+            width: 50px;
+            height: 50px;
+            font-size: 50px;
+        }
+        /* 共同样式 */
+        .msg_liaotian,
+        .msg_bg,
+        .msg_tousu,
+        .msg_clear,
+        .right_span{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .msg_liaotian span,
+        .msg_bg span,
+        .msg_set span,
+        .msg_tousu span,
+        .msg_clear span{
+            padding: 0 15px;
+        }
+        .msg_liaotian{
+            height: 10%;
+        }
+
+        .msg_set{
+            height: 30%;
+            display: flex;
+            flex-direction: column;
+           
+        }
+        .msg_set p{
+            height: 30%;
+            border-bottom: 1px #a7a5a5 solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .msg_set p:last-child{
+            border-bottom: none;
+        }
+        .msg_bg{
+            height: 10%;
+        }
+        .msg_clear{
+            height: 10%;
+        }
+        
+        .msg_tousu{
+            height: 10%;
+        }
+        
+        .right_span{
+           font-size: 25px;
+           color: #999;
+        }
+        .icon_span{
+            font-size: 45px;
+            color: #999;
+        }
+        .yifei{
+             color: green;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    
+    <div id="msg_main">
+        <!-- 头部功能栏 -->
+        <div class="msg_top_nav">
+            <span class="break_span">&lt;</span>
+            <span class="username_span">聊天信息</span>
+        </div>  
+
+        <!-- 头部头像 -->
+        <div class="top_img">
+            <img class="top_img_span" src="./img/top01.jpg" alt="个人头像"/>
+            <span class="iconfont icon-icontjzp"></span>
+
+        </div>
+        <!--聊天记录  -->
+        <div class="msg_liaotian">
+            <span >查找聊天记录</span>
+            <span class="right_span">&gt;</span>
+        </div>
+        <!-- 功能 -->
+        <div class="msg_set">
+            <p>
+                <span >置顶聊天</span>
+                <span class="icon_span iconfont icon-huadonganniuyes yifei" title="1"></span>
+            </p>
+            <p>
+                <span >消息免打扰</span>
+                <span class="icon_span iconfont icon-huadongkaiguan-"  title="2"></span>
+            </p>
+            <p>
+                <span >强提醒</span>
+                <span class="icon_span iconfont icon-huadongkaiguan-"  title="3"></span>
+            </p>
+        </div>
+         <!-- 聊天背景 -->
+         <div class="msg_bg">
+            <span >设置聊天背景</span>
+            <span class="right_span">&gt;</span>
+        </div>
+         <!-- 清楚聊天记录 -->
+         <div class="msg_clear">
+            <span >清空聊天记录</span>
+            <span class="right_span"> &gt;</span>
+        </div>
+           <!-- 投诉 -->
+        <div class="msg_tousu">
+            <span >投诉</span>
+            <span class="right_span">&gt;</span>
+        </div>
+
+    </div>
+
+    <script>
+        //得到请求参数
+        var url = window.location.href;
+        var username = url.substring(url.indexOf("=")+1);
+        var span_btns = document.getElementsByClassName('icon_span');
+        var break_span = document.getElementsByClassName('break_span')[0];
+        var top_img = document.getElementsByClassName('top_img')[0];
+
+        //切换头像
+        // top_img.innerHTML = '<img src="./img/top'+username+'.jpg" alt="个人头像"/>'+
+        //                     '<span class="iconfont icon-icontjzp"></span>'
+        var top_img_span = document.getElementsByTagName('img')[0];
+        // console.log(top_img_span.src);
+        top_img_span.src = "./img/top"+username+".jpg";
+            
+        window.onload = function(){
+            //得到相应的DOM对象
+          
+            var span_btn1 = true;
+            var span_btn2 = false;
+            var span_btn3 = false;
+            // 给功能按钮绑定点击事件
+            for(let i = 0 ;i<span_btns.length;i++){
+                span_btns[i].onclick = function(){
+                    // console.log('name='+this.title)
+                    var index = Number(this.title);
+                    // 判断点击的是哪一个开关
+                    switch(index){
+                        
+                        case 1: 
+                       
+                            if(span_btn1){
+                                //关闭huadonganniuyes
+                                span_btns[0].style.color = '#999';
+                                span_btns[0].className = 'icon_span iconfont icon-huadongkaiguan- yifei'
+                            }else{
+                                //打开
+                                span_btns[0].style.color = 'green';
+                                span_btns[0].className = 'icon_span iconfont icon-huadonganniuyes yifei'
+                            }
+                            span_btn1 = !span_btn1;
+                        break;
+                        case 2: 
+                            if(span_btn2){
+                                //关闭
+                                span_btns[1].style.color = '#999';  
+                                span_btns[1].className = 'icon_span iconfont icon-huadongkaiguan-'     
+                            }else{
+                                //打开
+                                span_btns[1].style.color = 'green';
+                                span_btns[1].className = 'icon_span iconfont icon-huadonganniuyes'
+                            }
+                            span_btn2 = !span_btn2;
+                        break;
+                        case 3: 
+                            if(span_btn3){
+                                //关闭
+                                span_btns[2].style.color = '#999';
+                                span_btns[2].className = 'icon_span iconfont icon-huadongkaiguan-'       
+                            }else{
+                                //打开
+                                span_btns[2].style.color = 'green';
+                                span_btns[2].className = 'icon_span iconfont icon-huadonganniuyes'
+                            }
+                            span_btn3 = !span_btn3;
+                        break;
+                    }
+                }
+
+            }
+        }
+        
+        // 跳转回去
+        break_span.onclick = function(){
+            window.location.href = "./sayPage.html?index="+username;
+        }
+
+    </script>
+
+</body>
+</html>

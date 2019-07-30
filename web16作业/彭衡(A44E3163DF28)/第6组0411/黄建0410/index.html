@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @import url(index.css);
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="item1"></div>
+        <div class="item2">
+            <button>MC</button>
+            <button>MR</button>
+            <button>MS</button>
+            <button>M+</button>
+            <button>M-</button>
+            <button class="detle">←</button>
+            <button>CE</button>
+            <button class="detle">C</button>
+            <button>±</button>
+            <button>√</button>
+            <button class="num">7</button>
+            <button class="num">8</button>
+            <button class="num">9</button>
+            <button class="result">/</button>
+            <button>%</button>
+            <button class="num">4</button>
+            <button class="num">5</button>
+            <button class="num">6</button>
+            <button class="result">*</button>
+            <button>1/x</button>
+            <button class="num">1</button>
+            <button class="num">2</button>
+            <button class="num">3</button>
+            <button class="result">-</button>
+            <button id="item_a" class="result">=</button>
+            <button id="item_b" class="item3 num">0</button>
+            <button class="item4 num">.</button>
+            <button class="item5 result">+</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    window.onload = function(){
+        var onum = document.getElementsByClassName("num");
+        var odiv = document.getElementsByClassName("item1")[0];
+        var deTle = document.getElementsByClassName("detle");
+        var oresult = document.getElementsByClassName("result");
+        var value = ""
+        // odiv.innerHTML = 0;
+        //绑定数字点击事件
+        for(var i = 0;i<onum.length;i++){
+            console.log(onum.length)
+            onum[i].index = i
+            onum[i].onclick = function(){
+                odiv.innerHTML += this.innerHTML
+            }
+        }
+        //删除
+        deTle[1].onclick = function(){
+            odiv.innerHTML = ""
+        }
+        deTle[0].onclick = function(){
+            odiv.innerHTML = odiv.innerHTML.slice(0,-1)
+        }
+        //结果
+        for(var j =0;j<oresult.length;j++){
+            oresult[j].index = j
+            oresult[j].onclick = function(){
+                odiv.innerHTML += this.innerHTML 
+            }
+        }
+        oresult[3].onclick = function(){
+            value = eval(odiv.innerHTML);
+            odiv.innerHTML = value;
+        }
+    }
+</script>

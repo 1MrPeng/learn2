@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            width: 49px;
+            height: 49px;
+            background: red;
+            position: absolute;
+		}
+        ul li{list-style: none;}
+    </style>
+</head>
+<body>
+    <ul></ul>
+</body>
+</html>
+<script>
+    var oul = document.getElementsByTagName("ul")[0];
+
+    for(var i = 0;i<5;i++){
+        for(var j=0;j<10;j++){
+            oul.innerHTML += "<li style='top: "+i*50+"px;left:"+j*50+"px;background:url(img/1.png)"+j*-50+"px "+i*-50+"px'></li>" 
+        }
+    }
+
+</script>

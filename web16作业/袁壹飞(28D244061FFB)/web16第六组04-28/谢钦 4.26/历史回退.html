@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 1200px;
+            height: 500px;
+            background-color: #ccc;
+            position: relative;
+        }
+        span{
+            display: inline-block;
+            background-color:black; 
+            width: 1200px;
+            height: 50px;
+            color: white;
+            line-height: 50px;
+        }
+        ul,li{
+            list-style: none;
+        }
+        li{
+            width: 200px;
+            height: 50px;
+            text-align: left;
+           padding-left: 10px;
+            line-height: 50px;
+           /*  text-align: center; */
+            font-size: 20px;
+        }
+        .nav_left{
+            width: 300px;
+            height: 300px;
+            background-color: #44ABFE;
+            color: white;
+            margin-left: 150px;
+        }
+        p{
+            padding-top: 15px;
+            padding-left: 20px;
+            font-size:30px;
+            font-weight: bold; 
+            margin-top: 10px;
+            
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        .nav_right div{
+                width: 500px;
+				height: 250px;
+				border: 1px solid #ccc;
+				display: none;
+        }
+        .nav_right .active{
+            display: block;
+        }
+        .nav_right div img{
+           height: 400px;
+           width: 400px;
+        }
+        .nav_right{
+            position: absolute;
+            left: 472px;
+            top: 60px;
+        }
+        .active_li{
+            background: rgb(92, 90, 90);
+            border-left: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span>H5 histroy api histroy</span>
+        <div class="nav_left">
+            <p>NAV</p>
+             <ul>
+                <li class="active_li" data-index="kebi">科比</li>
+                <li data-index="hadeng">哈登</li>
+                <li data-index="yaoming">姚明</li>
+                <li data-index="maidi">麦迪</li>
+            </ul>
+        </div>
+        <div class="nav_right">
+            <div class="active">
+                <img src="./img/kebi.jpg" alt="">
+            </div>
+             <div>
+                <img src="./img/hadeng.jpg" alt="">
+            </div>
+            <div>
+                <img src="./img/yaoming.jpg" alt="">
+            </div>
+            <div>
+                <img src="./img/maidi.jpg" alt="">
+            </div> 
+        </div>
+    </div>
+
+    <script>
+        // 页面加载后执行
+        window.onload = function(){
+
+            // 获取元素
+            var oLi = document.getElementsByTagName('li');
+            var oBox = document.getElementsByClassName('nav_right')[0];
+            var oDiv = oBox.getElementsByTagName("div");
+            var oImg = document.querySelectorAll('img');
+            var oNow = window.location.hash?window.location.hash.substring(1):0;
+            // oImg[] .src = "./img/kebi.jpg"+oNow+".jpg";
+             window.location.hash = "#"+oNow;
+           
+            // 循环绑定点击事件
+            for(var i = 0; i<oLi.length; i++){
+
+                oLi[i].index = i;       //另存下标
+                console.log(oLi[i])
+                    // 绑定oLi  的点击事件
+                    oLi[i].onclick = function(){
+                        
+                        // 调用重置样式(将原来时active或active_span的元素的className置为空)
+                        resetCSS();
+
+                        // 对应下标设置active的类名
+                        this.className = "active_li";
+
+                        // oDiv[this.index].className = "active";
+                        oImg[0].src =  "./img/"+this.dataset.index+".jpg";
+                        window.location.hash = "#"+this.dataset.index;
+                    }
+                }
+                window.onhashchange = function(){
+                	
+                    var ind = window.location.hash.substring(1);
+                    console.log( oImg[0])
+                    oImg[0].src =  "./img/"+ind+".jpg";
+                    resetCSS();
+                    for(var i = 0;i<oLi.length ;i++){
+                       if( oLi[i].dataset.index == ind){
+                        oLi[i].className = "active_li";
+                       }
+                    }
+                }
+                    // 重置样式函数
+				function resetCSS(){
+					for(var j=0; j<oLi.length; j++){
+						oLi[j].className = "";
+						// oDiv[j].className = "";
+					}
+				}
+            }
+    </script>
+</body>
+</html>

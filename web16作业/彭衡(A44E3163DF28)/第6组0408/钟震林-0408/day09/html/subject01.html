@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+		<style>
+			html,body,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			div{
+				width: 1040px;
+				height: 280px;
+				position: relative;
+				top: 50%;
+				left: 50%;
+			}
+			li{
+				width: 50px;
+				height: 50px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul></ul>
+		</div>
+		<script>
+//			页面加载后执行
+			window.onload = function(){
+//				获取元素
+				var oUl = document.getElementsByTagName("ul")[0];
+//				for循环添加li
+				for(var i = 0; i < 5; i++){
+					for(var j = 0; j < 10; j++){
+						oUl.innerHTML += "<li style='background: url(\"../img/1.png\") no-repeat " + (-50)*j + "px " + (-50)*i + "px; top:" + 53 * i +"px; left:" + 53 * j +"px;'></li>";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

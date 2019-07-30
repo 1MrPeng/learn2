@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        p,div,button,body,html{
+            padding: 0;
+            margin: 0;
+        }
+         p{
+            width: 200px;
+            height: 300px;
+            border: 3px solid black;
+            background-color: pink;
+            float: left; }
+         
+        .box{
+            width: 200px;
+            height: 300px;
+            border: 1px solid black;
+            background-color:yellow;
+            float: left; 
+           
+        }
+        button{
+            width: 50px;
+            height: 30px;
+            background-color: green;
+            float: left;
+             margin: 192px auto; 
+        }
+    </style>
+</head>
+<body>
+   <p>
+        再天晴了的时候，<br>
+        该到小径中去走走；<br>
+        给雨润过的泥路<br>
+        一定是凉爽又温柔；<br>
+        炫耀着新绿的小草，<br>
+        已一下子洗净了尘垢；<br>
+        不在胆怯的小白菊，<br>
+        慢慢地抬起了它们的头<br>
+        试试寒，试试暖，<br>
+        然后一瓣瓣地绽透；<br>
+
+   </p>
+    <button>转移</button>
+    <div class="box"></div>
+    <script>
+        // 页面加载后执行
+        window.onload= function(){
+            //  获取元素
+            var op =document.getElementsByTagName("p")[0];
+            var oBt = document.getElementsByTagName("button")[0];
+            var oDiv = document.getElementsByClassName("box")[0];
+            //定义字符串
+            var str = "在天晴了的时候，该到小径中去走走；给雨润过的泥路，一定是凉爽又温柔，炫耀着新绿的小草，已一下子洗净了尘垢，不再胆怯的小白菊，慢慢地抬起了它们的头，试试寒，试试暖，然后一瓣瓣地绽透";
+            var num = 0; 
+			var timer = null;
+            oBt.onclick = function(){
+				  //禁用按钮
+					this.disabled = true;
+					console.log(this);
+					
+                        //保存当前this
+					var _this = this;
+					
+                        //清除定时器
+					clearInterval(timer);
+					
+                        //设置定时器
+					timer = setInterval(function(){
+						
+                        //判断是否输入完成
+						if(num == str.length){	
+							clearInterval(timer);	
+							//解禁按钮
+							_this.disabled = false;
+	
+						}else{
+	                       oDiv.innerHTML += str.charAt(num);
+                            num++;						
+                        }
+						
+					}, 100);
+					
+				}
+        }
+    </script>
+</body>
+</html>

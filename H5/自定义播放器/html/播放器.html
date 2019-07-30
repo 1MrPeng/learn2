@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自定义播放器</title>
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/range.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="warp">
+			<video width="800">
+				<source src="../mp4/2.mp4" type="video/mp4"></source>
+				当前浏览器不支持 video直接播放，点击这里下载视频： <a href="mp4/2.mp4">下载视频</a>
+			</video>
+			
+			<div id="controls">
+				<!-- 进度条 -->
+				<div class="progress">
+					<div class="curProgress"></div>
+				</div>
+				<div class="tools">
+					<div class="tools_left">
+						<i class="iconfont icon-zanting play"></i>
+						<p><span class="curTime">00:00</span>/<span class="duration">01:34</span></p>
+					</div>
+					<div class="tools_right">
+						<span>高清</span>
+						<span class="speed">倍速</span>
+						<ul>
+							<li>1x</li>
+							<li>2x</li>
+						</ul>
+						<i class="iconfont icon-shengyin volume"></i>
+						<input type="range" value="50"/>
+						<span class="volNum">50</span>
+						<i class="iconfont icon-shezhi"></i>
+						<i class="iconfont icon-quanping"></i>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		//移出隐藏,移入显示开始
+		$('#warp').on('mouseover',function(){
+			$('#controls').animate({
+				opacity: 1
+			},1000);
+		})
+		$('#warp').on('mouseleave',function(){
+			$('#controls').animate({
+				opacity: 0
+			},1000)
+		})
+		//移出隐藏,移入显示结束
+		
+		var v = $('video')[0];
+		//暂停/播放功能开始
+		var bol1 = true;
+		$('.play').on('click',function(){
+			if(bol1){
+				v.play();
+				$(this).removeClass('icon-zanting');
+				$(this).addClass('icon-stop');
+			}else{
+				v.pause();
+				$(this).removeClass('icon-stop');
+				$(this).addClass('icon-zanting');
+			}
+			bol1 = !bol1;
+		})
+		//暂停/播放功能结束
+		
+		//倍速开始
+		$('.speed').on('click',function(){
+			$('.tools_right ul').css('display','flex');
+		})
+		$(".tools_right ul li:nth-of-type(1)").on("click",function(){
+		    v.playbackRate = 1;
+		   $('.tools_right ul').css('display','none');
+		});
+		$(".tools_right ul li:nth-of-type(2)").on("click",function(){
+		    v.playbackRate = 2;
+		    $('.tools_right ul').css('display','none');
+		});
+		//倍速结束
+		var vol =50;
+		//音量的样式效果开始
+		var change = function($input) {
+			var val = $('[type="range"]').val();
+			v.volume = val/100;
+			vol = val;
+			$('.volNum').html(Math.floor(val))
+			if(val > 0){
+				v.muted = false;
+				$('.volume').addClass('icon-shengyin');
+				$('.volume').removeClass('icon-jingyin');
+			}else{
+				$('.volume').removeClass('icon-shengyin');
+				$('.volume').addClass('icon-jingyin');
+			}
+        }
+		$('input').RangeSlider({min:0,max: 100,step: 0.1,callback:change});
+		//音量的样式效果结束
+		
+		//点击静音开始
+		$('.volume').on('click',function(){
+			if($(this).hasClass('icon-shengyin')){
+				$(this).removeClass('icon-shengyin');
+				$(this).addClass('icon-jingyin');
+				$('[type="range"]').val(0);
+				$('.volNum').html(0)
+		
+			}else{
+				$(this).removeClass('icon-jingyin');
+				$(this).addClass('icon-shengyin');
+				$('[type="range"]').val(vol);
+				$('.volNum').html(Math.floor(vol) )
+			}
+			v.muted = !v.muted;
+		})
+		//点击静音结束
+		
+		//全屏效果开始
+		$('.icon-quanping').on('click',function(){
+			if(navigator.userAgent.indexOf("Chrome") != -1){	//谷歌浏览器
+				v.webkitRequestFullScreen();
+			}else if(navigator.userAgent.indexOf("Firefox") != -1){	//火狐浏览器
+				v.mozRequestFullScreen(); 
+			}
+		})
+		//全屏效果结束
+		
+		//时间显示加进度条更新开始
+		 //获取总时长开始
+		 $("video").on("loadedmetadata",function(){
+		     var dur = v.duration;
+		     var durM = Math.floor(dur/60);
+		     if(durM<10){
+		         durM = "0" + durM;
+		     }
+		     var durS = parseInt(dur%60);
+		 	if(durS<10){
+		 		durS = "0" + durS;
+		 	}
+		     $(".duration").html(durM + ":" + durS);
+		 });
+		 //获取总时长结束
+		
+		
+		//更新缓冲时长
+		$("video").on("progress",function(){
+		    console.log(v.buffered.start(0),v.buffered.end(0))
+		});
+		
+		
+		//更新当前播放时长开始
+		$("video").on("timeupdate",function(){
+		    //更新数字
+		    var cur = v.currentTime;
+		    var curM = Math.floor(cur/60);
+		    if(curM<10){
+		        curM = "0" + curM;
+		    }
+		    var curS = Math.floor(cur%60);
+		    if(curS<10){
+		        curS = "0" +curS;
+		    }
+		    $(".curTime").html(curM + ":" + curS);
+		    //更新进度条
+		    var progressPercent = cur/v.duration;
+		    $(".curProgress").css("width",progressPercent*100 + "%");
+		});
+		//更新当前播放时长结束
+		//时间显示加进度条更新结束
+		
+		//拖拽进度条开始
+		var ifdown;
+		var wth = $('.progress').width();
+		$(".progress").on("mousedown",function(e){
+		    ifdown = true;
+			console.log(e.offsetX)
+		    v.currentTime = (e.offsetX*v.duration)/wth;
+			
+		});
+		$(document).on("mousemove",function(e){
+		    if(ifdown){
+		        var progressX = e.pageX-$(".progress").offset().left;
+		        if(progressX<0){
+		            progressX = 0;
+		        }else if(progressX>wth){
+		            progressX = wth;
+		        }
+		        $(".current").css("width",progressX/wth*100 + "%");
+		        v.currentTime = progressX/wth*v.duration;
+				
+		    }
+		});
+		$(document).on("mouseup",function(e){
+		    ifdown = false;
+		});
+		//拖拽进度条结束
+		
+		
+		//键盘控制
+		$(document).on("keydown",function(e){
+		    if(e.keyCode == 37){
+		        v.currentTime -= 5;
+		    }else if(e.keyCode == 39){
+		        v.currentTime += 5;
+		    }else if(e.keyCode == 38){
+				// if(v.volume+0.1 <=1){
+				// 	v.volume += 0.1;
+				// }else{
+				// 	v.volume = 1;
+				// }
+		        
+		    }else if(e.keyCode == 40){
+				// if(v.volume-0.1 >= 0){
+				// 	v.volume -= 0.1;
+				// }else{
+				// 	v.volume = 0;
+				// }
+		    }
+		});
+		
+		 //播放结束重置播放器开始
+		 $("video").on("ended",function(){
+		     v.currentTime = 0;
+		     $('.play').removeClass('icon-stop');
+		     $('.play').addClass('icon-zanting');
+		 });
+		 //播放结束重置播放器结束
+		
+	})
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.span1{
+				display: inline-block;
+				width: 200px;
+				height: 300px;
+				margin-right: 20px;
+				border: 1px solid red;
+				float: left;
+			}
+			.span2{
+				display: inline-block;
+				width: 200px;
+				height: 300px;
+				border: 1px solid red;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<span class="span1">新华社北京4月8日电（记者史竞男）为深入学习贯彻习近平新时代中国特色社会主义思想，中国社会科学院组织专家学者编写了“习近平新时代中国特色社会主义思想学习丛书”，日前已由中国社会科学出版社发行。</span>
+		<span class="span2"></span>
+		<button type="button">文字转移</button>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aSpan = document.getElementsByTagName('span');
+		var str = aSpan[0].innerHTML;
+		var btn = document.getElementsByTagName('button')[0];
+		var timer;
+		var i = 0;
+		btn.onclick = function(){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(i==str.length){
+					console.log('结束');
+					clearInterval(timer);
+				}else{
+					aSpan[1].innerHTML += str.charAt(i);
+					i++;
+					aSpan[0].innerHTML = str.substring(i,str.length);
+				}
+			},100)
+		}
+		
+	}
+</script>

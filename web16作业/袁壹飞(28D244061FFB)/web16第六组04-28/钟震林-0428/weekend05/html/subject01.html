@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>回退轮播图</title>
+		<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+		<style>
+			html,body,div,ul,li,img{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			.container{
+				width: 650px;
+				height: 320px;
+				border: 1px solid black;
+				display: flex;
+				margin: 200px auto;
+				padding: 10px 10px;
+			}
+			.ul_box{
+				width: 150px;
+				height: 280px;
+				background: blue;
+				color: white;
+				display: flex;
+			}
+			.ul_box>ul{
+				width: 100%;
+				margin: 60px 0;
+			}
+			.ul_box>ul>li{
+				height: 40px;
+				line-height: 40px;
+				text-align: left;
+				padding-left: 10px;
+			}
+			.img_box{
+				width: 500px;
+				height: 310px;
+				margin-left: 10px;
+			}
+			.img_box>img{
+				width: 500px;
+				height: 310px;
+				display: none;
+			}
+			.ul_box .active_li{
+				background: black;
+			}
+			.img_box .active_img{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="ul_box">
+				<h2>NAV</h2>
+				<ul>
+					<li class="active_li">风景</li>
+					<li>美女</li>
+					<li>萌宠</li>
+					<li>跑车</li>
+					<li>明星</li>
+				</ul>
+			</div>
+			<div class="img_box">
+				<img class="active_img" src="../img/img21.jpg" />
+				<img src="../img/img26.jpg" />
+				<img src="../img/img23.jpg" />
+				<img src="../img/img24.jpg" />
+				<img src="../img/img25.jpg" />
+			</div>
+		</div>
+		<script>
+//			页面加载后执行
+			window.onload = function(){
+//				1.获取元素
+				var oDiv = document.getElementsByClassName("container")[0];
+				var aLi = document.querySelectorAll("li");
+				var aImg = document.querySelectorAll("img");
+				var ind = 0;
+				var timer = null
+//				2.循环绑定aLi点击事件
+				for(var i = 0; i < aLi.length; i++){
+//					3.存储下标
+					aLi[i].index = i;
+//					调用轮播图片函数
+					aLi[i].onclick = slideShow;
+				}
+//				4.轮播图片函数
+				function slideShow(){
+//					5.重置样式
+					setCSS();
+//					6.激活样式
+					getCSS(this.index);
+//					7.存储当前下标
+					ind = this.index;
+//					8.将当前下标当做hash值存储
+					window.location.hash = ind;
+				}
+//				9.监听hash变化事件
+				window.onhashchange = function(){
+//					10.将hash值截取数值部分存储
+					var changeHash = window.location.hash.substring(1);
+//					11.判断hash值是否为到顶了
+					if (changeHash) {
+						clearInterval(timer);
+						setCSS();
+						getCSS(changeHash);
+					}
+//					timer = setInterval(autoPlay, 1000);
+				}
+//				清空定时器
+				clearInterval(timer);
+				timer = setInterval(autoPlay, 1000);
+//				绑定鼠标移出事件,启动定时器
+				oDiv.onmouseover = function(){
+					clearInterval(timer);
+				}
+//				绑定鼠标移出事件,启动定时器
+				oDiv.onmouseout = function(){
+					clearInterval(timer);
+					timer = setInterval(autoPlay, 1000);
+				}
+//				向右轮播函数
+				function autoPlay(){
+					if (ind == aLi.length-1) {
+						ind = 0;
+					} else{
+						ind++;
+					}
+					setCSS();
+					getCSS(ind);
+				}
+//				重置样式函数
+				function setCSS(){
+					for (var j = 0; j < aLi.length; j++) {
+						aLi[j].className = "";
+						aImg[j].className = "";
+					}
+				}
+//				激活样式函数
+				function getCSS(flag){
+					aLi[flag].className = "active_li";
+					aImg[flag].className = "active_img";
+				}
+			}
+		</script>
+	</body>
+</html>

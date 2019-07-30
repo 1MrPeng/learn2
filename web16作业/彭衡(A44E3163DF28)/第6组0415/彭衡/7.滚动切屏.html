@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			div{
+				height: 640px;
+				font-size: 50px;
+				color: white;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			div:nth-child(1){
+				background: pink;
+			}
+			div:nth-child(2){
+				background: lightblue;
+			}
+			div:nth-child(3){
+				background: orange;
+			}
+			div:nth-child(4){
+				background: skyblue;
+			}
+			div:nth-child(5){
+				background: mediumpurple;
+			}
+			.dots{
+				display: flex;
+				flex-flow: column;
+				width: 50px;
+				height: 300px;
+				position: fixed;
+				right: 0;
+				top: 50%;
+				margin-top: -150px;
+			}
+			p{
+				width: 30px;
+				height: 30px;
+				background: white;
+				border-radius: 50%;
+				margin-bottom: 20px;
+			}
+			.active{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div class="dots">
+			<p class="active"></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+		</div>
+		
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var oP = document.querySelectorAll('p');
+				//滚动切屏
+				document.onscroll = function(){
+
+					for(i=0;i<oP.length;i++){
+						oP[i].className = '';
+						if(getScrollY()<384){	
+							oP[0].className = 'active';
+						}else if(getScrollY()<975){
+							oP[1].className = 'active';
+							
+						}else if(getScrollY()<1568){
+							oP[2].className = 'active';
+						}else if(getScrollY()<2158){
+							oP[3].className = 'active';
+						}else{
+							oP[4].className = 'active';
+						}
+					}
+					
+				}
+				//点击切屏
+				for(i=0;i<oP.length;i++){
+					oP[i].index = i;
+					oP[i].onclick = function(){
+						setScrollY(640*this.index);
+					}
+				}
+				
+//				设置滚动高度
+				function setScrollY(num){
+					document.documentElement.scrollTop = document.body.scrollTop = num;
+				}				
+//				获取滚动高度
+				function getScrollY(){
+					return window.pageYOffset || document.documentElement.scrollTop; 
+				}
+			}
+		</script>
+	</body>
+</html>

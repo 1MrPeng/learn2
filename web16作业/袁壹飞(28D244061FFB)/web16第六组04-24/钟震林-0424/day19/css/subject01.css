@@ -1,0 +1,18 @@
+.canva_box>canvas{
+	background-color: rgba(0, 0, 0, .3);
+}
+.active_box{
+	position: relative;
+}
+.active_box>span{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	line-height: 5px;
+	text-align: center;
+	font-size: 28px;
+	background-color: gold;
+	color: blue;
+	position: absolute;
+	top: 10px;
+}

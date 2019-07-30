@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <style>
+        html,body,div,button{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+                width: 600px;
+                height: 600px;
+                background: rgb(247, 247, 242);
+                margin: auto;
+                box-sizing:border-box;
+        }
+        .A{
+            display: flex;
+            justify-content: center;
+        }
+        .A>button{
+            width: 25%;
+            height: 35px;
+            margin-top: 20px;
+        }
+        .B{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .C{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .D{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .E{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .F{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .G{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .H{
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+        .I{
+            width: 120px;
+            line-height: 35px;
+            background: #4BA736; 
+            text-align: center;
+            border-radius: 3px;
+            margin-top: 20px;
+            margin-left: 165px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="A">
+               <button style="background:#2169B3; color: white">注册字母邮箱</button><button>注册手机号邮箱</button><button>注册VIP邮箱</button>
+        </div>
+        <div class="B">
+            &nbsp;&nbsp;&nbsp;&nbsp;*邮件地址 &nbsp;&nbsp;
+            <input type="text" style="width: 205px; line-height: 20px; border-radius: 5px">
+            @ <button style="width: 100px; line-height: 20px; font-size: 14px">163.com &nbsp;&nbsp;↓</button>
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+        </div>
+        <div class="C">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*密码 &nbsp;&nbsp;
+            <input type="text" style="width: 300px; line-height: 20px; border-radius: 5px">
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6~16个字符，区分大小写</span> 
+        </div>
+        <div class="D">
+            &nbsp;&nbsp;&nbsp;&nbsp;*确认密码 &nbsp;&nbsp;
+            <input type="text" style="width: 300px; line-height: 20px; border-radius: 5px">
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请再次填写密码</span>
+        </div>
+        <div class="E">
+            &nbsp;&nbsp;&nbsp;&nbsp;*手机号码 &nbsp;&nbsp;
+            <input type="text" style="width: 300px; line-height: 20px; border-radius: 5px">
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;忘记密码时，可以通过该手机号码快速找回密码</span>
+        </div>
+        <div class="F">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*验证码 &nbsp;&nbsp;
+            <input type="text" style="width: 300px; line-height: 20px; border-radius: 5px">
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请填写图片中的字符，不区分大小写</span>
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="width: 140px; line-height: 22px; border-radius: 5px">免费获取验证码</button>
+        </div>
+        <div class="G">
+            *短信验证码 &nbsp;&nbsp;
+            <input type="text" style="width: 300px; line-height: 20px; border-radius: 5px">
+            <br /><span style="font-size: 12px; color: #A5A8AC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请查收手机短信，并填写短信中的验证码</span>
+        </div>
+        <div class="H">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="" id=""><span style="font-size: 12px; color: #A5A8AC">同意<span style="color: #1D4AA5">"服务条款”</span>和"<span style="color: #1D4AA5">"隐私权相关政策"</span></span>
+        </div>
+        <div class="I">
+            <span style="color: white">立即注册</span>
+        </div>
+    </div>
+</body>
+</html>

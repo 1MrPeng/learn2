@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function sum(num){
+				
+				if(num == 2 || num == 1){
+					return 1
+				}
+				
+				return sum(num - 1) + sum(num - 2);
+			}
+			var num = Number(prompt("请输入数字"));
+			var result = sum(num);
+			alert("你输入的数字 " + num+ " 的斐波那契数列为：" + result);
+		</script>
+	</body>
+</html>

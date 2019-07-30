@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button">打开新窗口</button>
+		<button type="button">关闭新窗口</button>
+		<hr>
+		<input type="text" name="wd" />
+		<button type="button">百度一下你就知道</button>
+		<hr >
+		<a href="https://www.baidu.com/s?&wd=oppo#666">跳转</a>
+		<button type="button">刷新页面</button>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aBtn = document.querySelectorAll('button');
+		var newWindow;
+		aBtn[0].onclick = function(){
+			newWindow = window.open('https://www.baidu.com','_blank','height=100px,width=100px',false)
+		}
+		aBtn[1].onclick = function(){
+			newWindow.close();
+			window.close();
+		}
+		
+		aBtn[2].onclick = function(){
+			var val = document.querySelector('input').value;
+			if(val.trim() != ''){
+				window.location.href = 'https://www.baidu.com/s?&wd='+val;
+			}else{
+				alert('请出入搜索内容');
+			}
+		}
+		var oA = document.querySelector('a');
+		//获取oA的href,search,hash
+		console.log(oA.href);
+		console.log(oA.search);
+		console.log(oA.hash);
+		
+		//可以修改oA的href,search,hash
+		oA.href = 'https://search.jd.com/Search';
+		oA.search = '?keyword=华为p30&enc=utf-8';
+		oA.hash = '#1';
+		console.log(oA.href);
+		//刷新页面
+		aBtn[3].onclick = function(){
+			window.location.reload();
+		}
+		
+		
+	}
+</script>

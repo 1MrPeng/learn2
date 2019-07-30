@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link  rel="stylesheet" href="css/font-awesome/css/font-awesome.css" />
+		<title>开机动画</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.main_box{
+				width: 350px;
+				height: 600px;
+				background: #4d4d4d;
+				margin-left: 40px;
+				position: relative;
+			}
+			.main_box ul{
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				font-size: 12px;
+				padding: 3px 10px;
+			}
+			ul li:nth-of-type(2){
+				font-weight: bold;
+			}
+			.main_box>div{
+				display: flex;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+				align-items: center;
+			}
+			.main_box>div>p{
+				font-size: 30px;
+				font-weight: bold;
+				text-align: center;
+			}
+			.main_box>div.box2{
+				position: absolute;
+				left: 0;
+				top:22px ;
+				color: white;
+				/*遮罩*/
+				 -webkit-mask-image: linear-gradient(-90deg, rgba(255,255,255,0) 0, rgba(255,255,255,0) 160px, rgba(255,255,255,1) 180px, rgba(255,255,255,1) 190px, rgba(255,255,255,0) 210px) ;
+				 -webkit-mask-position-x: -100px;
+				 /*transition: 2s;*/
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+		
+		<div class="main_box">
+			<ul>
+				<li>
+					<span>Carrier</span>
+					<span class="fa fa-wifi"></span>
+				</li>
+				<li>
+					<span>10:00 PM</span>
+				</li>
+				<li>
+					<span class="fa fa-battery-quarter"></span>
+				</li>
+				
+			</ul>	
+			
+			<div>
+				<p>DevTalking</p>
+			</div>
+			<div class="box2">
+				<p>DevTalking</p>
+			</div>
+			
+		</div>
+	
+	</body>
+</html>
+
+<script>
+	window.onload = function(){
+		//获取元素
+		var oBox = document.querySelector('.box2');
+		
+		var timer = null;
+		var sum = -100;
+		clearInterval(timer);
+		timer = window.setInterval(function(){
+			sum += 5;
+			if(sum >= 120){
+				sum = -100;
+			}
+			//改变遮罩的x轴位置
+			oBox.style['-webkit-mask-position-x'] = sum+"px";
+			
+		},50);
+		
+	}
+</script>

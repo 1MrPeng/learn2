@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			数组方法:
+				sort()		排序
+				concat()	连接数组
+				join()		将数组连接成字符串
+				reverse()	倒序
+				indexOf()	查找对应下标(找不到返回-1)
+				slice()		截取(下标)
+				find()		查找
+				isArray()	判断数组
+				splice()	增删改
+				push()		数组最末尾添加元素
+				pop()		删除数组最后一个元素
+				unshift()	插入到最前面
+				shift()		删除最前面的一个元素
+				
+			forEach()
+			filter()
+			every()
+			some()
+			reduce()
+			find()
+			includes()		//对NAN查找比indexOf更准确,返回true  或  fasle
+			flat()
+		-->
+	</body>
+</html>
+<script type="text/javascript">
+	//flat降数组维度
+	{
+		let arr = [1,[2,[3,4,[5,6]]]];
+		let arr1 =  arr.flat(Infinity);
+		console.log(arr);
+	}
+	//filter去重
+	{
+		let arr = [1,1,2,2,3,3];
+		let arr1 = arr.filter((val,ind,arr)=>{
+			return arr.indexOf(val) === ind;
+		})
+		console.log(arr1);
+	}
+	//foreach遍历数组
+	{
+		let arr = [1,2,3,4,5,6,7];
+		arr.forEach((val,ind,arr)=>{
+			console.log(ind,val);	//值
+			// console.log(ind);	//下标
+			// console.log(arr);	//原数组
+		})
+	}
+	//求1-100的和
+	{
+		//递归求和,积
+		function count(num){
+			if(num == 1){
+				return 1;
+			}else{
+				return count(num-1)+num;
+			}
+		}
+		console.log(count(100));
+		
+		//for循环求和,积
+		var j = 1;
+		for(let i=2;i<=100;i++){
+			j*=i;
+		}
+		console.log(j);
+		
+		//reduce求和,积
+		var arr = [];
+		for(let i=1;i<=100;i++){
+			arr.push(i);
+		}
+		let result = arr.reduce((a,b)=>{
+			return a*b;
+		})
+		console.log(result);
+	}
+</script>

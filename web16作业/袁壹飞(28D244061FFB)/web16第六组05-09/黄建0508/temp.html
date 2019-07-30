@@ -1,0 +1,27 @@
+
+    {{each films val ind}}
+    <li>
+        <div class="li_left">
+            <img src="{{val.poster}}"/>
+        </div>
+        <div class="li_right">
+            <div class="txt">
+                <p>{{val.name}}<span>{{val.filmType.name}}</span></p>
+                {{if val.grade}}
+                <p>观众评分<span>{{val.grade}}</span></p>
+                {{else}}
+                <p></p>
+                {{/if}}
+                <p>主演:
+                    {{each val.actors val ind}}
+                        {{val.name}}
+                    {{/each}}
+                </p>
+                <p><span>{{val.nation}}</span> | <span>{{val.runtime}}</span>分钟</p>
+            </div>
+            <div class="btn">
+                <span>购票</span>
+            </div>
+        </div>
+    </li>
+    {{/each}}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 400px;
+				height: 400px;
+				padding: 40px;
+				border: 10px solid transparent;
+				background: url('../img/2.jpg') no-repeat, url('../img/border.jpg') repeat-y 100px 100px,url('../img/xiaomi.png') no-repeat 300px 0;
+				background-color: pink;
+				background-size: 100px 100px;
+				background-origin: padding-box;
+				background-clip: padding-box;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			background-size: 
+				contain: 将最大边显示在容器内, 最小边可能没有撑满容器
+				cover: 将最小边显示在容器内, 最大边可能没有显示完整
+				两个值时: 分别对应宽度和高度
+				
+			background-origin ： border | padding | content 
+				border-box： 从border区域开始显示背景。 
+				padding-box： 从padding区域开始显示背景。 
+				content-box： 从content区域开始显示背景。
+				
+			background-clip
+				border： 从border区域向外裁剪背景。 
+				padding： 从padding区域向外裁剪背景。 
+				content： 从content区域向外裁剪背景。 
+		
+		-->
+		<div></div>
+	</body>
+</html>

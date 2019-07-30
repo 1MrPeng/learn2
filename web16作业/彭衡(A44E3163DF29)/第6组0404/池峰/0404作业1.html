@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="text" class="width" value="">
+        <input type="text" class="height" value="">
+        <button id="buttn">计算矩形面积</button>
+        <div id="box"></div>
+
+    <script>
+
+        var inp = document.getElementsByTagName("input");
+        var btn = document.getElementById("buttn");
+        var obox = document.getElementById("box");
+
+        btn.onclick = function(){
+            var value1 = inp[0].value;
+            var value2 = inp[1].value;
+
+            var value3 = Number(value1)*Number(value2);
+            obox.innerHTML = value3;
+        }
+
+    </script>
+</body>
+</html>

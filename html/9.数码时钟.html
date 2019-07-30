@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数码时钟</title>
+		<style type="text/css">
+			div{
+				width: 100%;
+				height: 600px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			img{
+				width: 45px;
+				height: 61px;
+				border: none;
+			}
+			img:nth-of-type(4){
+				margin-right: 40px;
+			}
+			img:nth-of-type(8){
+				margin-right: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="img/2.png" alt="">
+			<img src="img/0.png" alt="">
+			<img src="img/1.png" alt="">
+			<img src="img/9.png" alt="">
+
+			<img src="img/0.png" alt="">
+			<img src="img/0.png" alt="">
+			
+			<img src="img/0.png" alt="">
+			<img src="img/0.png" alt="">
+			
+			<img src="img/0.png" alt="">
+			<img src="img/0.png" alt="">
+			<img src="img/second1.png" alt="">
+			<img src="img/0.png" alt="">
+			<img src="img/0.png" alt="">
+			<img src="img/second1.png" alt="">
+			<img src="img/0.png" alt="">
+			<img src="img/0.png" alt="">
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aImg = document.querySelectorAll("img");
+		var timer;
+		timer = setInterval(function(){
+			var myDate = new Date();
+			var oYear = myDate.getFullYear();//2019
+			var oMonth = myDate.getMonth()+1;	//7月
+			var oDate = myDate.getDate();	//3号
+			var oHour = myDate.getHours();
+			var oMinute = myDate.getMinutes();
+			var oSecond = myDate.getSeconds();
+			if(oSecond<10){
+				aImg[15].src = "img/"+oSecond+".png"
+				aImg[14].src = "img/0.png"
+			}else{
+				aImg[15].src = "img/"+oSecond.toString().substring(1)+".png"
+				aImg[14].src = "img/"+oSecond.toString().substring(0,1)+".png"
+			}
+			
+			if(oMinute<10){
+				aImg[12].src = "img/"+oMinute+".png"
+				aImg[11].src = "img/0.png"
+			}else{
+				aImg[12].src = "img/"+oMinute.toString().substring(1)+".png"
+				aImg[11].src = "img/"+oMinute.toString().substring(0,1)+".png"
+			}
+			
+			if(oHour<10){
+				aImg[9].src = "img/"+oHour+".png"
+				aImg[8].src = "img/0.png"
+			}else{
+				aImg[9].src = "img/"+oHour.toString().substring(1)+".png"
+				aImg[8].src = "img/"+oHour.toString().substring(0,1)+".png"
+			}
+			
+			if(oDate<10){
+				aImg[7].src = "img/"+oDate+".png"
+				aImg[6].src = "img/0.png"
+			}else{
+				aImg[7].src = "img/"+oDate.toString().substring(1)+".png"
+				aImg[6].src = "img/"+oDate.toString().substring(0,1)+".png"
+			}
+			
+			if(oMonth<10){
+				aImg[5].src = "img/"+oMonth+".png"
+				aImg[4].src = "img/0.png"
+			}else{
+				aImg[5].src = "img/"+oMonth.toString().substring(1)+".png"
+				aImg[4].src = "img/"+oMonth.toString().substring(0,1)+".png"
+			}
+		},1000)
+
+	}
+</script>

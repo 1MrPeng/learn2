@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        img{
+            position: absolute;
+            right: 0;
+            animation: 5s changeleft infinite linear;
+        }
+        #box{
+            width: 950px;
+            height: 180px;
+            border: 1px solid #ccc;
+            transition: 0.1s
+        }
+        @keyframes changeleft{
+            0%{
+                left: 800px;
+                transform: rotateY(0deg);
+            }
+            49%{
+                transform: rotateY(0deg);
+            }
+            50%{
+                left: 0;
+                transform: rotateY(180deg)
+            }
+            100%{
+                left: 800px;
+                transform: rotateY(180deg)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="./img/robot.png" alt="">
+    </div>
+</body>
+</html>

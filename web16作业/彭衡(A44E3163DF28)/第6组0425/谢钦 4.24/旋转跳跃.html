@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../../jq/新建文件夹/jquery3.4.0.js"></script>
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #ccc;
+        }
+        canvas{
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="600">
+        您的浏览器不支持canvas
+    </canvas>
+
+    <script>
+            var myCan = $('canvas')[0];
+            var ctx = myCan.getContext('2d');    
+            /*偏移*/
+            ctx.translate(200, 200);
+
+            ctx.fillRect(100,100,100,100);
+            var num = 0;    //角度
+             var value = 1;     
+        setInterval(function(){
+            num++;
+
+        },10)
+               ctx.fillStyle = "red";
+				ctx.translate(100,200);	//位移(x,y)
+				ctx.rotate(num*Math.PI/180);	//旋转(参数为弧度)
+				ctx.scale(1,1);	//缩放(x轴比例,y轴比例)--1为不缩放
+                
+    </script>
+</body>
+</html>

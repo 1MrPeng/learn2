@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>五星好评</title>
+		<meta name="viewport" content="width=device-width initial-scale=0 user-scalable=no" />
+		<style>
+			html,body,div,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			div{
+				width: 200px;
+				height: 40px;
+				margin: 200px auto;
+			}
+			ul{
+				width: 200px;
+				height: 40px;
+				border: 1px solid gray;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+			li{
+				width: 26px;
+				height: 26px;
+				background-image: url("../img/star.jpg");
+				background-repeat: no-repeat;
+				transform: scale(1.5);		/*css精灵图缩放比例*/
+			}
+			li{
+				background-position: -2px -73px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		<script>
+//			页面加载后执行
+			window.onload = function(){
+//				获取元素
+				var oUl = document.querySelector("ul");
+				var aLi = document.querySelectorAll("li");
+//				循环绑定li点击事件
+				for (var i = 0; i < aLi.length; i++) {
+//					存储下标
+					aLi[i].index = i;
+					aLi[i].onclick = function(){
+//						循环获取有颜色的星星
+						for (var j = 0; j <= this.index; j++){
+							if (j < 3 ) {
+								aLi[j].style.cssText = "background-position: "+(-2)+"px "+(-3)+"px;";
+							}else{
+								aLi[j].style.cssText = "background-position: "+(-2)+"px "+(-37)+"px;";
+							}
+						}
+//						循环取消星星
+						for (var x = this.index +1; x < 5; x++){
+							aLi[x].style.cssText = "background-position: "+(-2)+"px "+(-73)+"px;";
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

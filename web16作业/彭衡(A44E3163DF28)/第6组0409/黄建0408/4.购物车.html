@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #box{
+            width: 500px;
+            height: 300px;
+            text-align: center;
+            line-height: 50px;
+        }
+        ul li{
+            list-style: none;
+        }
+        li{
+            padding: 10px;
+        }
+        button{
+            display: inline-block;
+            width:30px;
+            height: 30px;
+        }
+        .a{
+            width: 70px;
+        }
+        .left{
+            width: 200px;
+        }
+        span{
+            display: inline-block;	
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h1>购物车</h1>
+        <ul>
+            <li><button>-</button><span>00</span>件<button>+</button><em>5</em>元
+                小计<input type="text" name="" id="" value="" />
+            </li>
+            <li><button>-</button><span>00</span>件<button>+</button><em>25</em>元
+                小计<input type="text" name="" id="" value="" />
+            </li>
+            <li><button>-</button><span>00</span>件<button>+</button><em>55</em>元
+                小计<input type="text" name="" id="" value="" /></li>
+            <li><button>-</button><span>00</span>件<button>+</button><em>100</em>元
+                小计<input type="text" name="" id="" value="" /></li>
+            <li><button class="a">数量总计</button>
+                <input class="left" type="text" name="" id="" value="00" /></li>
+            <li><button class="a">价格总计</button>
+                <input class="left" type="text" name="" id="" value="00" /></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oLi = document.getElementsByTagName("li");
+            var oBtn = document.getElementsByTagName("button");
+            var oSpan = document.getElementsByTagName("span");
+            var oInput = document.getElementsByClassName("left");
+            
+            
+            for (var i=0;i<oBtn.length;i++) {
+                var cont = oBtn[i].innerHTML;
+                    oBtn[i].index = i ;					
+                oBtn[i].onclick = function(){	
+                    var oCont = oBtn[this.index].parentElement;
+//						console.log(oCont);
+                    var num = oCont.firstElementChild.nextElementSibling; 
+                    var price = oCont.lastElementChild.previousElementSibling;
+//						console.log(price.innerHTML);
+                                
+                                
+                        if(this.innerHTML == "+"){
+                            num.innerHTML++;		
+//								console.log(Number(num.innerHTML)+=1);
+                            num.innerHTML =	addZero(Number(num.innerHTML));
+                            oCont.lastElementChild.value  = num.innerHTML* price.innerHTML;
+//								console.log(this);
+                        }else if(this.innerHTML=="-"&&num.innerHTML>0){
+                            num.innerHTML--;//点击后span内的数量递减
+                            num.innerHTML =	addZero((num.innerHTML));//赋值给span
+                            oCont.lastElementChild.value  = num.innerHTML* price.innerHTML;
+//								console.log(this);
+                        }
+                                var m = 0;
+                                var money = 0;
+                                var mUl = oCont.parentElement;
+                                var sMoney = mUl.getElementsByTagName("input");
+                                for(var k=0;k<oSpan.length;k++){
+                                    
+                                         m += Number(oSpan[k].innerHTML);
+                                    
+                                         money +=Number(sMoney[k].value);
+                                }
+//									console.log(money);
+                        var Num =	oCont.parentElement.lastElementChild.previousElementSibling.firstElementChild.nextElementSibling;
+                                //获取价格总计内输入框,并赋值,可以用oInput[1]代替
+                        var Money =	oCont.parentElement.lastElementChild.lastElementChild;
+//							console.log(Money);
+                        Num.value  = addZero(m);
+                        Money.value = addZero(money);
+                }
+                
+            }
+            function addZero(num){
+                if(num<10){
+                return 	num = "0"+num;
+                }else{
+                    return num;
+                }
+            }
+            
+        }
+    </script>
+</body>
+</html>

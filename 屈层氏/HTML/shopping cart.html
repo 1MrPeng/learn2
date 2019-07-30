@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../JS/jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="../css/gouwuche.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont1.css"/>
+	</head>
+	<body>
+		<header>
+			<span class="iconfont icon-jiankuohao-xi-zuo"></span>
+			<span>
+				购物车
+			</span>
+			<span>编辑</span>
+		</header>
+		<div class="image">
+			<ul>
+				<li>
+					<img src="../img/zheng.png" width="15px" >
+					<span>正品保证</span>
+				</li>
+				<li>
+					<img src="../img/qu.png" width="15px" >
+					<span>品牌好货</span>
+				</li>
+				<li>
+					<img src="../img/tui.png" width="15px" >
+					<span>7天退货</span>
+				</li>
+			</ul>
+		</div>
+		<div class="yunfei">
+			<p>
+				<input type="checkbox" name="checkbox" id="checkAll" />
+				<span>屈臣氏国际仓</span>
+			</p>
+			<p>( 满99包邮 )</p>
+		</div>
+		<div class="content">
+			<ul>
+				<li>
+					<input type="checkbox" name="checkbox" />
+					<img src="../img/pic1.jpg" width="83px" >
+					<div>
+						<div class="li_top">
+							<p>安热沙水能户外防晒乳SPF50 + PA ++++ 60ml</p>
+							<div>
+								<span>￥79</span>
+								<div>
+									<button>-</button><span>1</span><button>+</button>
+								</div>
+							</div>
+						</div>
+						<p></p>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" name="checkbox" />
+					<img src="../img/pic2.jpg" width="83px" >
+					<div>
+						<div class="li_top">
+							<p>玥之秘水晶防晒喷雾SPF50+PA+++ 150ml</p>
+							<div>
+								<span>￥79</span>
+								<div>
+									<button>-</button><span>1</span><button>+</button>
+								</div>
+							</div>
+						</div>
+						<p></p>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" name="checkbox" />
+					<img src="../img/pic3.jpg" width="83px" >
+					<div>
+						<div class="li_top">
+							<p>PAPARECIPE春雨黑蜂胶面膜25g*5片</p>
+							<div>
+								<span>￥129</span>
+								<div>
+									<button>-</button><span>1</span><button>+</button>
+								</div>
+							</div>
+						</div>
+						<p></p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<footer>
+			<p>商品总价为：<span></span></p>
+			<p>商品总件数为：<span></span></p>
+		</footer>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var oSpan = document.querySelector('.icon-jiankuohao-xi-zuo');
+		var checkAll = document.querySelector('#checkAll');
+		var aInput = document.querySelectorAll('.content input');
+		var aSpan = document.querySelectorAll('.content span');
+		var aBtn = document.querySelectorAll('.content button');
+		var total = document.querySelectorAll('footer span');
+		console.log(aSpan);
+		console.log(aBtn);
+		var isChecked = true;
+		//页面跳转
+		oSpan.onclick = function(){
+			window.location.href = 'index.html';
+		}
+
+		//全选全不选功能start
+		checkAll.onclick = function(){
+
+			for(i=0;i<aInput.length;i++){
+				aInput[i].checked = isChecked;
+			}
+			isChecked = !isChecked;
+		}
+		//全选全不选功能end
+
+		aBtn[0].onclick = function(){
+			if(aSpan[1].innerHTML>1){
+				aSpan[1].innerHTML--;
+			}
+			aSpan[0].innerHTML = '￥'+ 79*aSpan[1].innerHTML;
+			totals();
+			counts();
+		}
+		aBtn[1].onclick = function(){
+			aSpan[1].innerHTML++;
+			aSpan[0].innerHTML = '￥'+ 79*aSpan[1].innerHTML;
+			totals();
+			counts();
+		}
+
+		aBtn[2].onclick = function(){
+			if(aSpan[3].innerHTML>1){
+				aSpan[3].innerHTML--;
+			}
+			aSpan[2].innerHTML = '￥'+ 79*aSpan[3].innerHTML;
+			totals();
+			counts();
+		}
+		aBtn[3].onclick = function(){
+			aSpan[3].innerHTML++;
+			aSpan[2].innerHTML = '￥'+ 79*aSpan[3].innerHTML;
+			totals();
+			counts();
+		}
+
+		aBtn[4].onclick = function(){
+			if(aSpan[5].innerHTML>1){
+				aSpan[5].innerHTML--;
+			}
+			aSpan[4].innerHTML = '￥'+ 129*aSpan[5].innerHTML;
+			totals();
+			counts();
+		}
+		aBtn[5].onclick = function(){
+			aSpan[5].innerHTML++;
+			aSpan[4].innerHTML = '￥'+ 129*aSpan[5].innerHTML;
+			totals();
+			counts();
+			
+		}
+		function totals(){
+			return total[0].innerHTML =Number(aSpan[4].innerHTML.substring(1)) +Number(aSpan[2].innerHTML.substring(1))+Number(aSpan[0].innerHTML.substring(1));
+		}
+		function counts(){
+			return total[1].innerHTML =Number(aSpan[5].innerHTML) +Number(aSpan[3].innerHTML)+Number(aSpan[1].innerHTML);
+		}
+	}
+</script>

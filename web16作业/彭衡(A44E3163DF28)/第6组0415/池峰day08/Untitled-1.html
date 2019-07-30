@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: black;
+            position: fixed;
+            border-radius: 50%;
+
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+         //    页面加载后执行
+         window.onload = function(){
+             
+            //     获取元素
+            var oDiv = document.getElementsByTagName("div")[0];
+                // 绑定点击事件
+               /*  oDiv.onclick = function(){
+                    var cloneDiv = this.cloneNode(true);
+                    document.body.appendChild(cloneDiv);
+                } */
+                
+           //     绑定鼠标按下事件
+            oDiv.onmousedown = function(){
+
+                // 创建新的元素节点
+            var iDiv = document.createElement("div");
+
+            // 添加随机色
+            iDiv.style.backgroundColor = "rgb("+getRandom(0,255)+","+getRandom(0,255)+","+getRandom(0,255)+")"
+            iDiv.style.position = 'absolute';
+            // 添加元素节点 
+            document.body.insertBefore(iDiv,oDiv);
+
+              //   绑定鼠标移动事件
+            document.onmousemove = function(ev){
+
+               // ev兼容
+            var ev = ev || window.event;
+
+              //  获取鼠标位置
+			var oMouseX = ev.pageX - iDiv.offsetWidth/2;
+			var oMouseY = ev.pageY - iDiv.offsetHeight/2;
+						
+//						根据鼠标位置设置方块的位置
+			iDiv.style.cssText = "left: "+oMouseX+"px; top: "+oMouseY+"px;"
+						
+//						绑定鼠标松开事件
+
+			oDiv.onmouseup = function(){
+							
+//							清除鼠标移动事件
+			document.onmousemove = null;
+										
+                    }
+            // 绑定新元素节点按下事件 
+            iDiv.onmousedown = function(){
+                // 绑定新元素节点移动事件 
+                document.onmousemove = function(){
+                    // ev兼容
+                    var ev = ev || window.event;
+                    // 获取新元素节点鼠标位置
+                    var oMouseX = ev.pageX - iDiv.offsetWidth/2;
+                    var oMouseY = ev.pageY - iDiv.offsetHeight/2;
+                    iDiv.style.cssText = "left: "+oMouseX+"px; top: "+oMouseY+"px;"
+                }
+            document.onmouseup = function(){
+                return Math.floor(Math.random()*(max-min)+min);
+            }
+            }
+                }
+
+            }
+         //    随机数函数
+				function getRandom(min,max){
+					
+					return Math.floor(Math.random()*(max-min)+min);
+        }
+    }
+         
+    </script>
+   
+    
+                 
+</body>
+</html>

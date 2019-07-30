@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../黄建0416/font_1145881_w9cf4j7hafp/iconfont.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div{
+            margin-left:50px; 
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            width: 200px;
+            display: flex;
+            justify-content: space-around; 
+        }
+        .iconfont{
+            color: red;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <span class="iconfont item">&#xe64b;</span>
+        <span class="iconfont">&#xe64b;</span>
+        <span class="iconfont">&#xe64b;</span>
+        <span class="iconfont">&#xe64b;</span>
+        <span class="iconfont">&#xe64b;</span>
+    </div>
+    <script>
+        var ospan = document.getElementsByTagName("span");
+        window.onload = function(){
+            for(var i =0;i<ospan.length;i++){
+                ospan[i].index = i;
+                ospan[i].onclick =  function(){
+                    for(var i =0;i<=this.index;i++){
+                        ospan[i].innerHTML = "&#xe64a;"
+                    }
+                    for(var j =this.index+1;j<5;j++){
+                        ospan[j].innerHTML = "&#xe64b;"
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

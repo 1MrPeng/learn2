@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>计算器</title>
+		<style>
+			html,body,table,button,input{margin: 0; padding: 0;}
+			div{
+				width: 300px;
+				height: 338px;
+				border: 1px solid black;
+				background-color: #D5E0EE;
+				margin: 80px auto;
+			}
+			table{
+				margin: 10px auto;
+				text-align: center;
+			}
+			#div{
+				width: 272px;
+				height: 60px;
+				text-align: left;
+				border-radius: 2px;
+				background-color: white;
+				word-break: break-all;
+				margin: 0;
+			}
+			button{
+				width: 50px;
+				height: 35px;
+				font-size: 18px;
+				text-align: center;
+			}
+			#resule{
+				width: 50px;
+				height: 74px;
+			}
+			#zero{
+				width: 109px;
+				height: 35px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<table border="0" cellspacing="0" cellpadding="3px">
+				<tr >
+					<td colspan="5">
+						<div id="div"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button>MC</button>
+					</td>
+					<td>
+						<button>MR</button>
+					</td>
+					<td>
+						<button>MS</button>
+					</td>
+					<td>
+						<button>M+</button>
+					</td>
+					<td>
+						<button>M+</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="left">←</button>
+					</td>
+					<td>
+						<button>CE</button>
+					</td>
+					<td>
+						<button class="set">C</button>
+					</td>
+					<td>
+						<button>±</button>
+					</td>
+					<td>
+						<button>√</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="num">7</button>
+					</td>
+					<td>
+						<button class="num">8</button>
+					</td>
+					<td>
+						<button class="num">9</button>
+					</td>
+					<td>
+						<button class="num">/</button>
+					</td>
+					<td>
+						<button>%</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="num">4</button>
+					</td>
+					<td>
+						<button class="num">5</button>
+					</td>
+					<td>
+						<button class="num">6</button>
+					</td>
+					<td>
+						<button class="num">*</button>
+					</td>
+					<td>
+						<button>1/x</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="num">1</button>
+					</td>
+					<td>
+						<button class="num">2</button>
+					</td>
+					<td>
+						<button class="num">3</button>
+					</td>
+					<td>
+						<button class="num">-</button>
+					</td>
+					<td rowspan="2">
+						<button id="resule">=</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button id="zero" class="num">0</button>
+					</td>
+					<td>
+						<button class="num">.</button>
+					</td>
+					<td>
+						<button class="num">+</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script>
+			window.onload = function(){
+				var aBtn = document.getElementsByClassName("num");
+				var oBtns = document.getElementsByClassName("set")[0];
+				var oBtnl = document.getElementsByClassName("left")[0];
+				var oBtnr = document.getElementById("resule");
+				var oDiv = document.getElementById("div");
+				for (var i = 0; i < aBtn.length; i++) {
+					aBtn[i].indexs = i;
+					aBtn[i].onclick = function(){
+						oDiv.innerHTML +=this.innerHTML;
+					}
+				}
+				oBtnr.onclick = function(){
+					oDiv.innerHTML = eval("(" + oDiv.innerHTML + ")");
+				}
+				oBtns.onclick = function(){
+					oDiv.innerHTML = "";
+				}
+				oBtnl.onclick = function(){
+					oDiv.innerHTML = oDiv.innerHTML.slice(0, -1);
+				}
+			}
+		</script>
+	</body>
+</html>

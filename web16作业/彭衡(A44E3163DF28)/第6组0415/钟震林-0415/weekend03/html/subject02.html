@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width, initial-scale=1, user-scalable=no" />
+		<title>作业二</title>
+		<style>
+			html,body,div,p,span{margin: 0; padding: 0;}
+			div{
+				width: 100%;
+			}
+			div:nth-child(1){
+				background-color: red;
+			}
+			div:nth-child(2){
+				background-color: gold;
+			}
+			div:nth-child(3){
+				background-color: green;
+			}
+			div:nth-child(4){
+				background-color: blue;
+			}
+			div:nth-child(5){
+				background-color: brown;
+			}
+			p{
+				width: 50px;
+				height: 250px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+				position: fixed;
+				top: 50%;
+				margin-top: -125px;
+				right: 0;
+			}
+			p span{
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background-color: rgba(0, 0, 0, .1);
+				border: 3px solid gray;
+				border-radius: 50%;
+			}
+			.active_span{
+				background-color: rgba(0, 0, 0, .6);
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<p>
+			<span class="active_span"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</p>
+		<script>
+//			1.页面加载后执行
+			window.onload = function(){
+//				2.获取元素
+				var aDiv = document.getElementsByTagName("div");
+				var aSpan = document.getElementsByTagName("span");
+//				3.循环给每个div赋值高度
+				for (var i = 0; i <aDiv.length; i++) {
+					var pheight = window.innerHeight;
+					aDiv[i].style.height = pheight +"px";
+				}
+//				4.循环绑定点击事件
+				for (var j = 0; j < aSpan.length; j++) {
+//					5.存储下标
+					aSpan[j].index = j;
+					aSpan[j].onclick = function(){
+//						6.设置滚动高度
+						setScrollY(this.index*pheight);
+//						7.重置样式
+						setCSS();
+//						8.激活样式
+						getCSS(this.index);
+					}
+				}
+//				9.绑定滚动事件
+				window.onscroll = function(){
+//					10.获取滚动高度
+					var oscroll = getScrollY();
+//					11.当滚动超过频宽一半时四舍五入取整
+					var Index = Math.round(oscroll/pheight);
+					setCSS();
+					getCSS(Index);
+				}
+//				重置样式
+				function setCSS(){
+					for (var z = 0; z < aDiv.length; z++) {
+						aSpan[z].className = "";
+					}
+				}
+//				激活样式
+				function getCSS(flag){
+					aSpan[flag].className = "active_span";
+				}
+//				设置滚动高度
+				function setScrollY(num){
+					document.documentElement.scrollTop = document.body.scrollTop = num;
+				}
+//				获取滚动高度
+				function getScrollY(){
+					return window.pageYOffset || document.documentElement.scrollTop; 
+				}
+			}
+		</script>
+	</body>
+</html>

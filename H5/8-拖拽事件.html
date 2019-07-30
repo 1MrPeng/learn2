@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			ul li{list-style: none;}
+			html,body,ul,li,div{margin: 0; padding: 0;}
+			.ul1{
+				width: 200px;
+				margin-left: 100px;
+				margin-top: 50px;
+			}
+			li{
+				background: lightsalmon;
+				margin-bottom: 5px;
+				color: black;
+				height: 30px;
+			}
+			div{
+				margin-left: 50px;
+				width: 300px;
+				height: 300px;
+				border: 2px solid red;
+			}
+			div ul{
+				width: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			拖拽事件的执行顺序:
+				不放置: ondrapstart--ondrag--ondragenter--ondragover--ondragleave--ondragend
+				放置: ondrapstart--ondrag--ondragenter--ondragover--ondrop--ondragend
+		-->
+		<ul class="ul1">
+			<li draggable="true">1</li>
+			<li draggable="true">2</li>
+			<li draggable="true">3</li>
+			<li draggable="true">4</li>
+		</ul>
+		<div>
+			<ul></ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aLi = document.querySelectorAll('li');
+		var oDiv = document.querySelector('div');
+		var oUl = document.querySelector('div ul');
+		var cloneLi;
+		
+		for(i=0;i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].ondragstart = function(ev){
+				
+				// cloneLi = this.cloneNode(true);
+				// console.log('开始拖拽了！');
+				var ev = ev || window.event;
+				ev.dataTransfer.setData('index',this.index);
+				ev.dataTransfer.setData('txt',this.innerHTML);
+				
+				//设置光标样式(设置为允许所有效果)
+				ev.dataTransfer.effectAllowed = 'all';
+				this.innerHTML = '开始拖拽我了';
+				
+				//拖拽过程中
+				this.ondrag = function(){
+					console.log('正在拖拽中！')
+				}
+				
+				//拖拽结束
+				this.ondragend = function(){
+					console.log('拖拽结束了！');
+					this.innerHTML = this.index + 1
+				}
+				
+			}
+		}
+		
+		oDiv.ondragenter = function(){
+			// this.innerHTML = '欢迎光临！';
+			
+			this.ondragover = function(ev){
+				var ev = ev || window.event;	//为了ondragleave,ondrop生效
+				ev.preventDefault();
+				
+				//拖拽鼠标的样式设置鼠标样式
+				ev.dataTransfer.dropEffect = 'copy';
+				this.style.borderColor = 'rgb('+getRandom(0,255)+','+getRandom(0,255)+','+getRandom(0,255)+')';
+			}
+			
+			this.ondragleave = function(){
+				// this.innerHTML = "爱我别走";
+				
+			}
+			this.ondrop = function(ev){
+				var ev = ev || window.event;
+				var index = ev.dataTransfer.getData('index');
+				var txt = ev.dataTransfer.getData('txt');
+				
+				oUl.appendChild(aLi[index]);
+				// oUl.appendChild(cloneLi);
+			}
+		}
+		
+		function getRandom(min,max){
+			return Math.floor(Math.random()*(max-min)+min);
+		}
+	}
+</script>

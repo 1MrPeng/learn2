@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				color: white;
+				width: 100px;
+				height: 100px;
+				background: hotpink;
+				font-size: 20px;
+				text-align: center;
+				line-height: 100px;
+				transition: 1s all 0s linear;
+				transform-origin: right bottom;  /* 旋转基点 */
+				margin-bottom: 10px;
+			}
+			div:nth-child(1):hover{
+				transform: rotate(90deg);
+			}
+			div:nth-child(2):hover{
+				transform: scale(0.5,0.5);
+			}
+			div:nth-child(3):hover{
+				transform: translate(100px,100px); /*X轴位移，Y轴位移*/
+			}
+			div:nth-child(4):hover{
+				transform: skew(-30deg,-30deg);	/*X轴倾斜，Y轴倾斜*/
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div>旋转
+			<!--
+				1.设置过渡效果
+					transition
+				2.旋转:
+					rotate(角度deg)
+				3.设置旋转基点:
+					transform-origin: X轴 Y轴
+						left right top bottom 固定像素值 百分比
+			-->
+		</div>
+		<div>缩放
+			<!--
+				1.设置过渡效果
+					transition
+				2.缩放:
+					scale(X轴缩放, Y轴缩放)
+						大于1为放大
+						0~1为缩小
+						
+						为负值时, 在以上基础上添加反转效果
+					
+					scaleX: 指定X轴缩放
+					scaleY: 指定Y轴缩放
+			
+			-->
+		</div>
+		<div>位移
+			
+		</div>
+		
+		<div>倾斜</div>
+	</body>
+</html>

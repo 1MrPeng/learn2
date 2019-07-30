@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+	</head>
+	<body>
+		<input type="text" value="" />
+		<input type="text" value="" />
+		<button>矩形面积</button><br />
+		<input type="text" value="" />
+		<button>圆的面积</button><br />
+		<input type="text" value="" />
+		<input type="text" value="" />
+		<input type="text" value="" />
+		<button>求最大最小数</button><br />
+		<input type="text" value="" />
+		<button>绝对值</button>
+		<script>
+			var aInput = document.getElementsByTagName("input");
+			var aBut = document.getElementsByTagName("button");
+			aBut[0].onclick = function(){
+				var oInput1 = aInput[0].value;
+				var oInput2 = aInput[1].value;
+				area(oInput1, oInput2);
+			}
+			aBut[1].onclick = function(){
+				var oInput3 = aInput[2].value;
+				area2(oInput3);
+			}
+			aBut[2].onclick = function(){
+				var oInput4 = aInput[3].value;
+				var oInput5 = aInput[4].value;
+				var oInput6 = aInput[5].value;
+				compare(oInput4, oInput5, oInput6);
+			}
+			aBut[3].onclick = function(){
+				var oInput7 = aInput[6].value;
+				abresult(oInput7);
+			}
+			function area(aInp1, aInp2){
+				var area1 = Number(aInp1) * Number(aInp2);
+				alert(area1);
+			}
+			function area2(aInp3){
+				var area3 = 3.14 * Number(aInp3) * Number(aInp3);
+				console.log(area3);
+			}
+			function compare(aInp4, aInp5, aInp6){
+				var result1 = (Number(aInp4)>Number(aInp5)?Number(aInp4):Number(aInp5))>Number(aInp6)?Number(aInp4)>Number(aInp5)?Number(aInp4):Number(aInp5):Number(aInp6);
+				alert("最大值为：" + result1);
+				var result2 = (Number(aInp4)<Number(aInp5)?Number(aInp4):Number(aInp5))<Number(aInp6)?Number(aInp4)<Number(aInp5)?Number(aInp4):Number(aInp5):Number(aInp6);
+				alert("最小值为：" + result2);
+			}
+			function abresult(aInp7){
+				var result2 = Number(aInp7);
+				if(result2 > 0){
+					console.log(result2);
+				}else{
+					console.log(-result2);
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>微信界面练习</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<style>
+			* {margin: 0;padding: 0;}
+			li {list-style: none;}
+			header ul {
+				display: flex;
+				justify-content: space-between;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			header {
+				position: relative;
+				width: 350px;
+				height: 610px;
+				margin: 10px auto 0;
+				background: #4D4D4D;
+				color: #030303;
+			}
+			.icon-xinhao {font-size: 14px;}
+			.icon-naozhong {font-size: 12px;}
+			.icon-dianliang {
+				color: green;
+				font-size: 14px;
+			}
+			header div{
+				height: 97%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 28px;
+				font-weight: bold;
+			}
+			header div {
+			    /* 背景颜色线性渐变 */
+			        /* 老式写法 */
+			            /* linear为线性渐变，也可以用下面的那种写法。left top，right top指的是渐变方向，左上到右上 */
+			            /* color-stop函数，第一个表示渐变的位置，0为起点，0.5为中点，1为结束点；第二个表示该点的颜色。所以本次渐变为两边灰色，中间渐白色 */
+			    background: -webkit-gradient(linear, left top, right top, color-stop(0, #000),color-stop(.1, #000),color-stop(.2, #000),color-stop(.3, #000), color-stop(.4, #000), color-stop(.5, white), color-stop(.6, #000),color-stop(.7, #000),color-stop(.8, #000),color-stop(.9, #000), color-stop(1, #000));
+			        /* 新式写法 */
+			    /* background: -webkit-linear-gradient(left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d)); */
+			 
+			    /* 设置为text，意思是把文本内容之外的背景给裁剪掉 */
+			    -webkit-background-clip: text;
+			    /* 设置对象中的文字填充颜色 这里设置为透明 */
+			    -webkit-text-fill-color: transparent;
+			    /* 每隔2秒调用下面的CSS3动画 infinite属性为循环执行animate */
+			    -webkit-animation: animate 3s ease-in-out infinite;
+			}
+			/* 兼容写法，要放在@keyframes前面 */
+			@-webkit-keyframes animate {
+			    /* 背景从-100px的水平位置，移动到+100px的水平位置。如果要移动Y轴的，设置第二个数值 */
+			    from {background-position: -100px;}
+			    to {background-position: 100px;}
+			}
+			@keyframes animate {
+			    from {background-position: -100px;}
+			    to {background-position: 100px;}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li><span class="iconfont icon-xinhao"></span> 中国电信 4G</li>
+				<li>下午4：48</li>
+				<li><span class="iconfont icon-naozhong"></span> 41% <span class="iconfont icon-dianliang"></span></li>
+			</ul>
+			<div>
+				DevTalking
+			</div>
+		</header>
+		
+	</body>
+</html>

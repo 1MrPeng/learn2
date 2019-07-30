@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        #app{
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+        .top{
+            width: 400px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+            color: red;
+        }
+        #inp{
+            width: 330px;
+            height: 30px;
+        }
+        #inp1{
+            width: 60px;
+            height: 35px;
+            background: blue;
+            border: none;
+        }
+        .spa{
+            display: inline-block;
+            width: 360px;
+            height: 30px;
+            border-bottom: 1px solid #ccc;
+            margin-top:5px; 
+        }
+        .inp3{
+            width: 396px;
+            height: 30px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="top">
+            todos
+        </div>
+        <div>
+            <input type="text" name="" id="inp" v-model='name' placeholder="What needs to do done?">
+            <input type="button" name="" id="inp1" value="创建" @click="add()">
+        </div>
+        <div v-for="item in list">
+            <span class="spa" v-if="!editing" @dblclick = "edit">{{item.name}}</span>
+            <span class="del" @click.prevent="del(item.name)">X</span>
+            <input class="inp3" type="text" v-if="editing">
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                name:'',
+                editing:false,
+                list:[
+                    {name:"那伞给MoMo"},
+                    {name:"买股票"},
+                    {name:"交话费"}
+                ]
+            },
+            methods: {
+                edit:function(){
+                    this.editing = true
+                    this.$nextTick(function(){
+                        // this.$els.input.focus()
+                    })
+                },
+                add(){
+                    var car = {name:this.name}
+                    this.list.push(car)
+                    this.name = ''
+                },
+                del(name){
+                    this.list.some((item,i)=>{
+                        if(item.name == name){
+                            this.list.splice(i,1)
+                            return true
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

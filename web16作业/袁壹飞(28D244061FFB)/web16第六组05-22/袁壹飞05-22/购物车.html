@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/index.css"/>
+    <link rel="stylesheet" href="./css/iconfont.css"/>
+    <link rel="stylesheet" href="./css/itemCat.css"/>
+    <link rel="stylesheet" href="./css/item-list.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./lib/jquery-3.4.0.min.js"></script>
+
+    <title>购物车</title>
+</head>
+<body>
+    
+    <div id="main">
+        <header class="title-box"></header>
+
+        <!-- 内容主体 -->
+        <div class="content">
+            <ul class="tarbarUl">
+                <!-- 切换按钮 -->
+                <template v-for='tarbar in tarbars'>
+                    <li @click='switchView(tarbar)' :class='{active: isTarbarActive == tarbar.name}'>{{tarbar.title}}</li>
+                </template>
+            </ul>
+
+            <!-- 切换窗口容器 -->
+            <div class="view-content">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+               
+            </div>
+            
+
+        </div>
+        <!-- 预创建 -->
+        <!-- <cartcomponent v-show="false"></cartcomponent> -->
+
+    </div>
+
+    <!-- 定义购物页面组件模板 -->
+    <template id="shopTemplate">
+            <!-- 购物页面 -->
+            <ul id="itemList"> 
+                <!-- 商品列表 -->
+                <template v-for='product in shopItems' >
+                    <shop-item-component :product='product' :key='product.prodId'></shop-item-component>
+                </template>
+            </ul>
+    </template>
+
+    <!-- 定义购物车组件模板 -->
+    <template id="cartTemplate">
+       <!-- 购物车列表 -->
+        <div id="itemCat">
+
+            <!-- 购物车商品列表项 -->
+            <div class="full-cat" v-if = "cartItems.length > 0">
+                <ul class="cat-title">
+                    <li><input v-model='checkAll' type="checkbox"/>全选</li>
+                    <li></li>
+                    <li>商品名称</li>
+                    <li>单价</li>
+                    <li>数量</li>
+                    <li>小计</li>
+                    <li>操作</li>
+                </ul>
+                <!-- 商品 -->
+               <cart-item-component @changecount='changeCount' @deleteitem='deleteItem' :item='item' :index='index' v-for = "(item, index) in cartItems" :key='item.prodId' >
+                   <!-- 复选框 -->
+                   <template v-slot:default>
+                        <li><input v-model='item.status' @click='checkItem(item)' type="checkbox"/></li>
+                   </template>
+               </cart-item-component>
+
+                <!-- 结算栏 -->
+                <div class="cat-footer">
+                    <p>
+                        <a>继续购物</a>
+                        <label>
+                                共 <span class="sumItem">{{countProduct}}</span> 件商品，已选择 <span>{{countSelect}}</span> 件
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                                合计：<span class="sumItemMony">{{sumMony}}</span>元
+                        </label>
+                        <span>去结算</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- 购物车为空时显示 -->
+           <empty-cat v-if="cartItems.length == 0"></empty-cat>
+           
+
+        </div>
+    </template>
+    <!-- 定义购物车为空时的组件模板 -->
+    <template id="empty-cat">
+        <div class="empty-cat">
+                <img src="./img/cart-empty.png">
+                <div>
+                    <p>您的购物车还是空的!</p>
+                    <p>登录后将显示您之前加入的商品</p>
+                    <p>
+                        <button>立即登录</button>
+                        <button>马上购物</button>
+                    </p>
+                </div>
+            </div>
+    </template>
+
+    <!--定义购物车商品项  -->
+    <template id="cartItemTemplate">
+        <ul class="cat-items">
+            <!-- <li><input type="checkbox"/></li> -->
+            <slot name='default'></slot>
+            <li><img :src="item.prodImg"/></li>
+            <li>{{item.prodDescription}}</li>
+            <li>{{item.prodMony}}元</li>
+            <li>
+                <p>
+                    <span @click="preCount(item,index)">-</span>
+                    <span>{{item.count}}</span>
+                    <span @click="nextCount(item,index)">+</span>
+                </p>
+            </li>
+            <li class="itemMony">{{item.countItemMony}}元</li>
+            <li><span @click="deleteItem(item, index)" class="iconfont icon-shanchu"></span></li>
+        </ul>
+    </template>
+
+    <!-- 定义商品组件 -->
+    <template id="shopItemTemplate">
+        <li>
+            <span>成功添加购物车</span>
+            <img :src="product.prodImg" />
+            <p>{{product.prodName}}</p>
+            <p>{{product.prodDescription}}</p>
+            <p>{{product.prodMony}}元</p>
+            <p @click="addCart(product)">加入购物车</p>
+        </li>
+    </template>
+
+
+</body>
+</html>
+
+<script>
+    //定义数据传输vue实例
+    let bus = new Vue();
+
+
+    //定义商品组件
+    let shopItemComponent = {
+            template: '#shopItemTemplate',
+            props: ['product'],
+            data: function(){
+                return {
+                   
+                }
+            },
+            methods: {
+                addCart: function(item){
+                    // console.log(item);
+                    //发送数据到购物车组件
+                    bus.$emit('add-cart-item', item);
+                    $('#itemList>li>span').eq(item.prodId-1).slideDown(600);
+                    $('#itemList>li>span').eq(item.prodId-1).delay(500);
+                    $('#itemList>li>span').eq(item.prodId-1).slideUp(500);
+                }
+            }
+        }
+
+    //定义购物页面组件
+    let shopComponent = {
+        template: '#shopTemplate',
+        data: function(){
+            return {
+                shopItems:  [
+                    {prodId: 1, prodName: '小米9 6GB+128GB', prodDescription: '骁龙855，索尼4800万超广角微距三摄',prodImg: 'img/product01.jpg',prodMony: 2999,count: 1},
+                    {prodId: 2, prodName: '华为9 6GB+128GB', prodDescription: '骁龙855，索尼4800万超广角微距三摄',prodImg: 'img/product02.jpg',prodMony: 4999,count: 1},
+                    {prodId: 3, prodName: '诺基亚 6GB+128GB', prodDescription: '骁龙855，索尼4800万超广角微距三摄',prodImg: 'img/product03.jpg',prodMony: 1999,count: 1},
+                    {prodId: 4, prodName: 'OPPOR9 6GB+128GB', prodDescription: '骁龙855，索尼4800万超广角微距三摄',prodImg: 'img/product04.jpg',prodMony: 3999,count: 1},
+                ] 
+            }
+        },
+        components: { //注册子组件
+            'shop-item-component': shopItemComponent
+        }
+
+    };
+
+    //定义空购物车组件
+    let emptyCat = {
+        template: '#empty-cat'
+    }
+    //定义购物车商品项组件
+    let cartItemComponent = {
+        template: '#cartItemTemplate',
+        props: ['item','index'],
+        data: function(){
+            return {
+
+            }
+        },
+        methods: {
+            preCount: function(item,index){ //数量减一
+                console.log(item);
+                if(item.count > 1){
+                    item.count -= 1;
+                    //小计
+                    item.countItemMony -= item.prodMony;
+                   this.$emit('changecount',0);
+                }
+            },
+            nextCount: function(item,index){//数量加一
+                item.count += 1;
+                item.countItemMony += item.prodMony;
+                this.$emit('changecount',1);
+            },
+            deleteItem: function(item,index){//删除
+                this.$emit('deleteitem',index);
+
+            }
+        }
+    }
+
+
+    //定义购物车页面组件
+    let cartcomponent = {
+        template: '#cartTemplate',
+        data: function(){
+            return {
+                //定义购物车商品数据
+                cartItems: [],
+                countProduct: 0, //总件数
+                countSelect: 0, //选择的数量
+                sumMony: 0, //总价
+                checkAll: false, //全选
+                message: [],
+            }
+        },
+        watch: {
+            checkAll: function(){//实现全选按钮
+        
+                if(this.checkAll){//全选
+                    console.log(this.checkAll)
+                    this.cartItems.forEach((el,index) => {
+                        el.status = true;
+                        this.cartItems.splice(index,1 ,el);
+                    
+                    });
+                  
+                }else{//取消全选
+                    // this.cartItems.forEach((el,index) => {
+                    //     el.status = false;
+                    //     this.cartItems.splice(index,1 ,el);
+                    // });
+                    console.log(this.cartItems)
+                    var fal = true;
+                    this.cartItems.forEach(el => {  
+                        // console.log(el.status);
+                        if(!el.status){
+                            fal = false;
+                        }   
+                        
+                    });
+                    // console.log(fal);
+                    // if(fal){
+                    //      //取消全选
+                    //      this.cartItems.forEach((el,index) => {
+                    //         el.status = false;
+                    //         this.cartItems.splice(index,1 ,el);
+                    //     });
+                  
+                    // }
+                }
+            }  ,
+            message: function(){
+                console.log(this.message);
+            } 
+        },
+        mounted: function(){
+            bus.$on('add-cart-item', item => {
+                // console.log(this.cartItems.indexOf(item))
+                if(this.cartItems.indexOf(item) == -1){
+                    //添加到购物车
+                    item.countItemMony = item.prodMony;
+                    item.count = 1;
+                    item.status = false;
+                    this.cartItems.push(item);
+                  
+                }else{
+                    var result = this.cartItems[this.cartItems.indexOf(item)];
+                    //数量加一
+                    result.count += 1;
+                    //小计
+                    result.countItemMony += item.prodMony;
+                    this.cartItems.splice(this.cartItems.indexOf(item),1,result);
+                }
+                //总件数加一
+                this.countProduct += 1;
+            
+            });
+
+        },
+        methods: {
+            changeCount: function(val){
+                console.log(val)
+                if(val){//总件数加一
+                    this.countProduct += 1;
+                }else{
+                    this.countProduct -= 1;
+                }
+            },
+            deleteItem: function(index){ //删除
+                console.log(index); 
+                this.countProduct -= this.cartItems[index].count;
+                this.cartItems.splice(index,1);
+            },
+            checkItem: function(item){ //当个复选框
+                this.checkAll = false;
+                // console.log(item);
+            }
+        },
+        components: {
+            'empty-cat': emptyCat,
+            'cart-item-component': cartItemComponent
+        }
+
+    };
+
+   
+
+    //创建路由实例
+    let router =  new VueRouter({
+        routes: [
+            {path: '/shopPage', name: 'shopPage', component: shopComponent},
+            {path: '/cartPage', name: 'cartPage', component: cartcomponent}
+        ]
+    });
+
+
+    //创建vue实例
+    let vm =  new Vue({
+        el: '#main',
+        router, //注册路由
+        data: {
+            isTarbarActive: 'cartPage',
+            tarbars: [
+                {id: 1, title: '购物吧', path: '/shopPage', name: 'shopPage'},
+                {id: 2, title: '购物车', path: '/cartPage', name: 'cartPage'}
+            ]
+        },
+        methods: {
+            switchView: function(item){ //切换页面视图
+                this.$router.push({path: item.path,query: {}});
+                this.isTarbarActive = item.name;
+            }
+        },
+        components: {
+            'cart-component': cartcomponent
+        }
+
+    });
+
+    // ====初始化页面
+    function initView(){
+        //初始化hash
+        window.location.hash = '#/cartPage';
+
+    }
+    initView();
+
+
+</script>

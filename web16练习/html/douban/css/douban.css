@@ -1,0 +1,99 @@
+*{margin: 0;padding: 0;}
+ul li{list-style: none;}
+
+/*header start*/
+header{
+	height: 47px;
+	box-sizing: border-box;
+	padding: 0 18px;
+	border-bottom: 2px solid #eee;
+}
+header div{
+	/* width: 100%; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+header div h1{
+	margin-right: 20px;
+	color: #00b600;
+	font-size: 24px;
+}
+header div .iconfont{
+	font-size: 24px;
+	color: #00b600;
+}
+header div a{
+	text-decoration: none;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	background: #00b600;
+	color: white;
+	font-size: 13px;
+	padding: 0 10px;
+}
+/*header end*/
+/*content start*/
+#content{
+	padding: 0 2%;
+}
+.content_top{
+	margin: 16.8px 0 6px;
+	height: 31px;
+	text-indent: 15px;
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+	color: #494949;
+}
+.content_bottom{
+	padding: 20px 0;
+	
+}
+.content_bottom ul{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	
+}
+.content_bottom ul li{
+	width: 33.33%;
+	height: 175px;
+	box-sizing: border-box;
+	padding: 0 15px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.content_bottom ul li img{
+	height: 127px;
+}
+.content_bottom ul li h3{
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	text-align: center;
+	font-size: 13px;
+	color: #494949;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+.content_bottom ul li p{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.content_bottom ul li p .score{
+	margin-left: 5px;
+	color: #9b9b9b;
+}
+.content_bottom ul li p>span{
+	font-size: 12px;
+	color: #9b9b9b;
+}
+/*content end*/

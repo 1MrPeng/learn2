@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #hour{
+            width:6px;
+            height:45px;
+            background:#000;
+            position:absolute;
+            left:175px;
+            top:129px;
+            transform-origin:bottom;
+        }
+        #min{
+            width:4px;
+            height:65px;
+            background:#999;
+            position:absolute;
+            left:178px;
+            top:110px;
+            transform-origin:bottom;
+        }
+        #sec{
+            width:2px;
+            height:80px;
+            background:red;
+            position:absolute;
+            left:180px;
+            top:94px;
+            transform-origin:bottom;
+        }
+        #box{
+            width:20px;
+            height:20px;
+            background:#000;
+            border-radius:50%;
+            position:absolute;
+            left:170px;
+            top: 165px;
+        }
+    </style>
+</head>
+<body>
+    <div><img src="./img/clock.png" alt="">
+        <div id="hour"></div>
+        <div id="min"></div>
+        <div id="sec"></div>
+        <div id="box"></div>
+    </div>
+
+    <script>
+        var oHour=document.getElementById("hour");
+        var oMin=document.getElementById("min");
+        var oSec=document.getElementById("sec");
+        settime();
+        setInterval(settime,1000);
+        function settime(){
+            var oDate=new Date();
+            var iSec=oDate.getSeconds();
+            var iMin=oDate.getMinutes()+iSec/60;
+            var iHour=oDate.getHours()+iMin/60;
+            console.log(iSec)
+            console.log(iMin)
+            //秒针1秒6度
+            oSec.style.transform="rotate("+iSec*6+"deg)";
+            //分钟1分6度
+            oMin.style.transform="rotate("+iMin*6+"deg)";
+            //时针一小时30度
+            oHour.style.transform="rotate("+iHour*30+"deg)";
+        };
+    </script>
+</body>
+</html>

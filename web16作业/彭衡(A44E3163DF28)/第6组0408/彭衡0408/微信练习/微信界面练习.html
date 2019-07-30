@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>微信界面练习</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="iconfont.css"/>
+		<style>
+			* {margin: 0;padding: 0;}
+			li {list-style: none;}
+			header ul {
+				display: flex;
+				justify-content: space-between;
+				font-size: 12px;
+				color: #111;
+				/* align-items: baseline; */
+			}
+			header {
+				position: relative;
+				width: 100%;
+				height: 120px;
+				background: #ededed;
+			}
+			.icon-xinhao {font-size: 14px;}
+			.icon-naozhong {font-size: 12px;}
+			.icon-dianliang {
+				color: green;
+				font-size: 14px;
+			}
+			header h4 {
+				color: #111;
+				font-size: 16px;
+				text-align: center;
+				margin-top: 16px;
+				margin-bottom: 22px;
+			}
+			header h4+.icon-add {
+				display: inline-block;
+				position: absolute;
+				right: 10px;
+				top: 27%;
+				font-size: 22px;
+			}
+			form {
+				display: flex;
+				justify-content: center;
+			}
+			header input {
+				width: 357px;
+				height: 36px;
+				background: white;
+				border: none;
+				border-radius: 5px;
+			}
+			form input {
+				text-align: center;
+			}
+			#content {
+				overflow: hidden;
+				overflow-y: auto;	
+				display: flex;
+				justify-content: space-between;
+				height: 496px;
+			}
+
+			#content li {
+				padding: 9px 16px;
+			}
+			#content .ul2{
+				width: 77%;
+			}
+			
+			#content .ul2 li{
+				padding: 9px 16px 9px 0;
+				height: 52px;
+				border-bottom: 1px solid #ccc;
+			}
+			#content .ul2 li:last-child {
+				border-bottom:none;
+			}
+			footer ul{
+				display: flex;
+				flex-flow: row nowrap;
+				background: #eee;
+			}
+			footer li {
+				width: 25%;
+				/* border: 1px solid red; */
+				margin-top: -3px;
+				height: 54px;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+				color: #111;
+			}
+			footer span {
+				text-align: center;
+			}
+			.icon-iconfonticonfontxinxi,.icon-contacts-o,.icon-faxian,.icon-gerenzhongxin {
+				font-size: 22px;
+			}
+			.size {
+				font-size: 16px;
+			}
+			footer li:hover span {
+				color: #07c062;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<ul>
+				<li><span class="iconfont icon-xinhao"></span> 中国电信 4G</li>
+				<li>下午4：48</li>
+				<li><span class="iconfont icon-naozhong"></span> 41% <span class="iconfont icon-dianliang"></span></li>
+			</ul>
+			<h4>微信</h4>
+			<span class="iconfont icon-add"></span>
+			<form>
+				<input type="text" class="iconfont" placeholder="&#xe611;搜索"/>
+			</form>
+		</header>
+		<div id="content">
+			<ul class="ul1">
+				<li>
+					<img src="img/meinv.jpg" width="49px">
+				</li>
+				<li>
+					<img src="img/qun.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/youxiang.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/yuan.jpg" width="49px">
+				</li>
+				<li>
+					<img src="img/qun.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/youxiang.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/qun.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/meinv.jpg" width="49px">
+				</li>
+				<li>
+					<img src="img/qun.jpg" width="49px" >
+				</li>
+				<li>
+					<img src="img/youxiang.jpg" width="49px" >
+				</li>
+			</ul>
+			<ul class="ul2" id="ul2">
+				<li>
+					<p><b>守护家园</b></p>
+				</li>
+				<li>
+					<p><b>海城新村39栋</b></p>
+				</li>
+				<li>
+					<p><b>QQ邮箱提醒</b></p>
+				</li>
+				<li>
+					<p><b>远总</b></p>
+				</li>
+				<li>
+					<p><b>海城新村39栋</b></p>
+				</li>
+				<li>
+					<p><b>QQ邮箱提醒</b></p>
+				</li>
+				<li>
+					<p><b>海城新村39栋</b></p>
+				</li>
+				<li>
+					<p><b>守护家园</b></p>
+				</li>
+				<li>
+					<p><b>海城新村39栋</b></p>
+				</li>
+				<li>
+					<p><b>QQ邮箱提醒</b></p>
+				</li>
+			</ul>
+		</div>
+		<footer>
+			<ul>
+				<li>
+					<span class="iconfont icon-iconfonticonfontxinxi"><p class="size">微信</p></span>	
+				</li>
+				<li>
+					<span class="iconfont icon-contacts-o"><p class="size">通讯录</p></span>	
+				</li>
+				<li>
+					<span class="iconfont icon-faxian"><p class="size">发现</p></span>
+				</li>
+				<li>
+					<span class=" iconfont icon-gerenzhongxin"><p class="size">我</p></span>
+				</li>
+			</ul>
+		</footer>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				// 1.获取元素
+				var oUl2 = document.getElementById('ul2');
+				// 2.绑定点击事件
+				oUl2.onclick = function(){
+					window.location.href = "微信聊天界面.html"
+					
+					
+				}
+				
+			}
+			
+		</script>
+		
+	</body>
+</html>

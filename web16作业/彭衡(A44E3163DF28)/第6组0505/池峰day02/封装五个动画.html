@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+        <style>
+            #box1{
+				width: 200px;
+				height: 200px;
+				background: lightblue;
+				transition: 5s;
+				animation: A 2s infinite ease-out;
+            }
+            #box1:hover{
+                transform: rotate(3600deg);
+            }
+			#box2{
+				width: 200px;
+                height: 200px;
+                background: yellow;
+                transition: 5s;
+				animation: B 2s 1 linear;
+            }
+            #box2:hover{
+				transform: scale(2.2);
+			}
+			#box3{
+				width: 200px;
+				height: 200px;
+                background: red;	
+                transition: 5s;		
+				animation: C 5s infinite linear;
+            }
+            #box3:hover{
+                transform: translate(300px, 200px);
+            }
+			#box4{
+				width: 200px;
+                height: 200px;
+				background: pink;
+				transition: 5s;			
+				animation: D 5s infinite linear;
+			}
+			#box4:hover{
+                transform: skew(-60deg, 45deg);
+            }
+			#box5{
+				width: 200px;
+                height: 200px;
+                margin: 200px 300px;
+                transition: 5s;
+				background: black;
+				animation: E 1s infinite linear;
+            }
+            #box5:hover{
+            transform: skew(-60deg, 45deg) translate(20px, 20px) scale(2,2) rotate(36000deg);
+            }
+
+    </style>
+</head>
+<body>
+        <div id="box1"></div>
+		<div id="box2"></div>
+		<div id="box3"></div>
+		<div id="box4"></div>
+		<div id="box5"></div>
+		
+		<script type="text/javascript">
+			
+			var oBox = document.getElementsByTagName("div");
+			
+			for(var i=0; i<oBox.length; i++){
+				
+				oBox[i].index = i;
+				
+				oBox[i].addEventListener("webkitAnimationEnd", function(){
+					
+					
+				})
+				
+			}
+			
+		</script>
+</body>
+</html>

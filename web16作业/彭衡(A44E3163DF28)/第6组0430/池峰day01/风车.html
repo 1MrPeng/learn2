@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 50px;
+            height: 50px;
+            transition: 10s;
+            margin: 0 600px;
+        }
+        .A{
+            width: 20px;
+            height: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-left: 30px;
+            background: red;
+        }
+        .B{
+            width: 20px;
+            height: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            margin-top: -20px;
+            background: green;
+        }
+        .C{
+            width: 20px;
+            height: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-top: 10px;
+            background: blue;
+        }
+        .D{
+            width: 20px;
+            height: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+            background: black;
+            margin-left: 30px;
+            margin-top: -20px;
+        }
+        .box:hover{
+            transform: skew(-60deg, 45deg) translate(200px, 100px) scale(5,5) rotate(36000deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="A"></div>
+        <div class="B"></div>
+        <div class="C"></div>
+        <div class="D"></div>
+    </div>
+</body>
+</html>

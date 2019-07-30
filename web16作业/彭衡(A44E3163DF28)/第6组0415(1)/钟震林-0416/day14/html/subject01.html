@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+		<meta name="viewport" content="width= device-width initial-scale=1 user-scalable=no" />
+		<style>
+			html,body,div,ul,li,input{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			.container{
+				width: 300px;
+				display: flex;
+				margin: 180px auto;
+			}
+			.titeli{
+				width: 100px;
+				border: 1px solid black;
+				border-radius: 5px;
+				border-bottom: 0;
+				display: flex;
+				flex-direction: column;
+			}
+			.titeli li{
+				height: 42px;
+				border-bottom: 2px solid gray;
+				border-radius: 5px;
+				font-size: 18px;
+				flex: 1;
+				background-color: lightblue;
+				display: flex;
+				align-items: center;
+			}
+			.ali{
+				width: 100px;
+				height: 264px;
+				border: 1px solid black;
+				border-bottom: 0;
+				display: flex;
+				flex-direction: column;
+				display: none;
+			}
+			.ali li{
+				height: 42px;
+				border-bottom: 2px solid gray;
+				font-size: 18px;
+				flex: 1;
+				display: flex;
+				align-items: center;
+			}
+			.aInp{
+				margin-left: 10px;
+			}
+			input{
+				width: 150px;
+				height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="uldiv">
+				<ul class="titeli">
+					<li><b>歌曲</b></li>
+				</ul>
+				<ul class="ali">
+					<li><b>歌曲</b></li>
+					<li><b>专辑</b></li>
+					<li><b>歌手</b></li>
+					<li><b>歌词</b></li>
+					<li><b>M V</b></li>
+					<li><b>票务</b></li>
+				</ul>
+			</div>
+			<div class="aInp">
+				<input type="text" placeholder="请输入内容！" />
+			</div>
+		</div>
+		
+		<script>
+//			页面加载后zhix
+			window.onload = function(){
+//				获取元素
+				var otiteliUl = document.getElementsByClassName("titeli")[0];
+				var oLi = otiteliUl.getElementsByTagName("li")[0];
+				var oaliUl = document.getElementsByClassName("ali")[0];
+				var aLi =oaliUl.getElementsByTagName("li");
+				var oInput = document.getElementsByTagName("input")[0];
+//				绑定系统菜单弹窗事件
+				window.oncontextmenu = function(ev){
+//					ev兼容
+					var ev = ev || window.event;
+//					阻止默认系统默认菜单
+					stopPrevent(ev);
+//					激活样式
+					oaliUl.style.cssText = "display: block;";
+//					绑定列表点击事件
+					otiteliUl.onclick = function(){
+//						隐藏样式
+						oaliUl.style.cssText = "display: none;";
+					}
+//					for循环点击事件
+					for (var i = 0; i < aLi.length; i++) {
+//						存储下标
+						aLi[i].index = i;
+						aLi[i].onclick = function(){
+//							传值
+							oLi.innerHTML = aLi[this.index].innerHTML;
+							oInput.value = aLi[this.index].innerHTML;
+						}
+					}
+//					绑定输入框聚焦事件
+					oInput.onfocus = function(){
+						
+						oInput.value = "";
+					}
+					
+					oInput.onblur = function(){
+						if(oInput.value.trim() == ""){
+							alert("请输入内容！")
+						}else{
+							oInput.value = oInput.value;
+						}
+					}
+				}
+				
+//				阻止默认事件
+				function stopPrevent(ev) {
+					if (ev && ev.preventDefault) {
+						ev.preventDefault();
+					} else {	//IE浏览器
+						window.event.returnValue = false;
+					}			
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

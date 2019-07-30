@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body,div,span{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 280px;
+            height: 50px;
+            border: 1px solid pink;
+            background: lightgreen;
+            margin: 200px 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+        }
+        img{
+            width: 50px;
+            height: 50px;
+        }
+        div>span :first-child:hover{
+            background-color:  yellow;
+        } 
+    </style>
+  
+</head>
+<body>
+    <div>
+        <span id="0"><img src="../池峰day10/星星.png"></span>
+        <span id="1"><img src="../池峰day10/星星.png"></span>
+        <span id="2"><img src="../池峰day10/星星.png"></span>
+        <span id="3"><img src="../池峰day10/星星.png"></span>
+        <span id="4"><img src="../池峰day10/星星.png"></span>
+    </div>
+    <div class="xx">
+        <img src="../池峰day10/星星变色.png">
+    </div> 
+        
+    <script>
+        // 页面加载后执行
+        window.onload = function(){
+            // 获取元素
+            var oSpan = document.getElementsByTagName("span");
+           /*  var oPan = document.getElementsByClassName("xx")[0]; */
+            // 绑定循环移动事件 
+            for(var i = 0; i<oSpan.length; i++){
+            oSpan[i].onmousemove = function(){
+                var id = parseInt(this.id);
+                for(var i= 0; i<id; i++){
+                    oSpan[i].innerHTML = "../池峰day10/星星变色.png";
+                }
+                for(var j = id+1; j<5; j++){
+                    oSpan[j].innerHTML = "../池峰day10/星星.png";
+                }
+            //  绑定循环点击事件 
+                for(var i=0;i<oSpan.length;i++){
+　　　　             oSpan[i].onclick=function(){
+　　　　　　     var oI=parseInt(this.oI);
+　　　　　　         flag=id;
+　　　　　　     for(var i=0;i<=id;i++){
+　　　　　　　　     oSpan[i].innerHTML="../池峰day10/星星变色.png";
+            }
+        }
+    }
+         //   绑定移出事件
+             document.getElementById("div").onmouseout = function(){
+                if(flag>=0 && flag<=4){
+　　　　　　     for(var i=0;i<=flag;i++){
+　　　　　　　oSpan[i].innerHTML="../池峰day10/星星变色.png";
+　　　　　　}
+　　　　　　     for(var j=flag+1;j<5;j++){
+　　　　　　　oSpan[j].innerHTML="../池峰day10/星星.png";
+　　　　　}
+　　         }else{
+　　　　　　     for(var i=0;i<oSpan.length;i++){
+　　　　　　　oSpan[i].innerHTML="../池峰day10/星星.png";
+　　　　　　}
+　　　　}
+　　}
+}
+            }
+        }
+            
+    </script>
+</body>
+</html>

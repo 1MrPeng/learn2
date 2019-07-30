@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font_1167406_d4clci6ulj/iconfont.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .all{
+            border: 1px solid #ccc;
+            width: 800px;
+            height: 580px;
+            background: #DEDEDE;
+            display: flex;
+            position: absolute;
+            /* justify-content: space-between; */
+        }
+        .left{
+            width: 50px;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .left img{
+            width: 30px;
+            margin: 10px;
+        }
+        .left1{
+            height: 500px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+        /* .iconfont{
+            text-align: center;
+            margin: 20px 10px 0 10px;
+            font-size: 30px;
+            color: #aaa;
+        } */
+        .middle{
+            width: 250px;
+            height: 580px;
+            /* border: 1px solid red; */
+        }
+        .top{
+            width: 250px;
+            height: 60px;
+            display: flex;
+            background: #EEEAE8;
+            position: fixed;
+            top: 0;
+        }
+        .top input{
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            background: #ccc;
+            margin: 15px 0 0 20px;
+        }
+        .top1{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: #ccc;
+            border-radius: 5px;
+            margin-left: 10px; 
+            margin-top: 15px;
+        }
+        .middle .content{
+            width: 250px;
+            height: 580px;
+            overflow-y: auto;
+        }
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+        .ite{
+            margin-top: 60px;
+        }
+        .now{
+            background: #ccc;
+        }
+        .item1{
+            display: flex;
+            width: 100%;
+            height: 60px;
+            margin: 5px;
+        }
+        .item_img{
+            width: 20%;
+        }
+        .item img{
+            width: 100%;
+        }
+        .item2{
+            width: 70%;
+            margin-left: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+        .name{
+            font-size: 12px;
+            color: black;
+        }
+        .name1{
+            font-size: 12px;
+            color: #999999;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .item3{
+            display: inline-block;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 30px;
+        }
+        .bottom{
+            display: flex;
+            flex: 1;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #F0F0F0;
+            height: 60px;
+        }
+        .btm{
+            margin-bottom: 60px;
+        }
+        .name_a{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .left1 .iconfont{
+            text-align: center;
+            margin: 20px 10px 0 10px;
+            font-size: 30px;
+            color: #aaa;
+        }
+        .icon{
+            text-align: center;
+        }
+        .icon1{
+            font-size: 20px;
+        }
+        .right{
+            width: 500px;
+            height: 100%;
+            background: #F5F5F5;
+            position: relative;
+        }
+        .right1{
+            border-bottom:1px solid #ccc; 
+        }
+        .right1 div{
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            margin-left: 30px;
+        }
+        .box{
+            width: 500px;
+            min-height: 200px;
+            /* border: 1px solid #ccc; */
+            position: fixed;
+            top: 378px;
+            overflow: auto;
+            background: white;
+            resize: vertical;
+        }
+        .box1{
+            display: flex;
+            width: 100%;
+            height: 30px;
+        }
+        .box1 div{
+            margin: 10px 0 0 20px;
+
+        }
+        .box>.iconfont{
+            font-size: 12px;
+            line-height: 30px;
+        }
+        .box2{
+            width: 100%;
+            height: 144px;
+            border: none;
+            resize: vertical;
+        }
+        .box_a{
+            height: 313px;
+            overflow-y: auto;
+        }
+        .box_a::-webkit-scrollbar {
+            display: none;
+        }
+        button{
+            position: fixed;
+            left: 740px;
+        }
+        .box_a img{
+            width: 30px;
+            height: 30px;
+            margin: 10px 0 0 10px;
+        }
+       
+        p{
+            margin-top: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+        p span span:nth-child(2){
+            background: greenyellow;
+            border: 1px solid greenyellow;
+            padding: 5px 3px;
+            border-radius:5px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="left">
+            <img src="./img/微信图片_20190428190619.png" alt="">
+            <div class="left1">
+                <div>
+                    <div class="iconfont">&#xe60e;</div>
+                    <div class="iconfont">&#xe655;</div>
+                    <div class="iconfont">&#xe639;</div>
+                </div>
+                <div>
+                    <div class="iconfont">&#xe66c;</div>
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="top">
+                <input type="text" placeholder="搜索">
+                <div class="top1">+</div>
+            </div>
+            <div class="content">
+                    <div class="ite">
+                            <div class="item item_a">
+                                <div class="item1">
+                                    <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                    <div class="item2">
+                                        <div class="item3">
+                                            <div class="name">渣男程序员</div>
+                                            <div class="name1">昨天</div>
+                                        </div>
+                                        <div class="name1">foreile:var upDetails=function(){$("")}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <div class="item item_a">
+                                <div class="item1">
+                                    <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                    <div class="item2">
+                                        <div class="item3">
+                                            <div class="name">相亲相爱的一家人</div>
+                                            <div class="name1">昨天</div>
+                                        </div>
+                                        <div class="name1">超越梦想:今天来找我玩啊！过来打我电话哦！</div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        <div class="item item_a">
+                                <div class="item1">
+                                    <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                    <div class="item2">
+                                        <div class="item3">
+                                            <div class="name">吉祥三宝</div>
+                                            <div class="name1">昨天</div>
+                                        </div>
+                                        <div class="name1">angle:晚上吃啥啊！</div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        <div class="item item_a">
+                                <div class="item1">
+                                    <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                    <div class="item2">
+                                        <div class="item3">
+                                            <div class="name">我们都是一家人</div>
+                                            <div class="name1">昨天</div>
+                                        </div>
+                                        <div class="name1">[微信红包]恭喜发财，大吉大利</div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        <div class="item">
+                            <div class="item1">
+                                <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                <div class="item2">
+                                    <div class="item3">
+                                        <div class="name">web16</div>
+                                        <div class="name1">昨天</div>
+                                    </div>
+                                    <div class="name1">班长-张志豪:自习除***请假都在</div>
+                                </div>
+                            </div>
+                        </div>     
+                        <div class="item">
+                            <div class="item1">
+                                <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                <div class="item2">
+                                    <div class="item3">
+                                        <div class="name">web交流群</div>
+                                        <div class="name1">昨天</div>
+                                    </div>
+                                    <div class="name1">蒋文杰:+1</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item1">
+                                <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                <div class="item2">
+                                    <div class="item3">
+                                        <div class="name">普通话交流</div>
+                                        <div class="name1">昨天</div>
+                                    </div>
+                                    <div class="name1 name_a"><div>[3条]天诚教育证书:嗯嗯，</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="item1 now">
+                                <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                <div class="item2">
+                                    <div class="item3">
+                                        <div class="name">文件传输助手</div>
+                                        <div class="name1">昨天</div>
+                                    </div>
+                                    <div class="name1">[文件]</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btm">
+                            <div class="item">
+                                <div class="item1">
+                                    <div class="item_img"><img src="./img/微信图片_20190428190619.png" alt=""></div>
+                                    <div class="item2">
+                                        <div class="item3">
+                                            <div class="name">微信支付</div>
+                                            <div class="name1">昨天</div>
+                                        </div>
+                                        <div class="name1">扣费通知</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right1">
+                <div>
+                    文件传输助手
+                </div>
+            </div>
+            <div class="box_a" id="content">
+
+            </div>
+            <div class="box">
+                <div class="box1">
+                    <div class="iconfont">&#xe61e;</div>
+                    <div class="iconfont">&#xe64e;</div>
+                    <div class="iconfont">&#xe60e;</div>
+                </div>
+                <div contenteditable="true" class="box2" id="txt">
+                </div>
+                <button id="btn">发送(S)</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+			
+        window.onload = function(){
+            
+            var oTxt = document.getElementById("txt");
+            var oSend = document.getElementById("btn");
+            var oBox = document.getElementById("content");
+
+            var ws = new WebSocket("ws://192.168.2.62:3001");	
+            
+            ws.onopen = function(){
+                console.log("连接已建立");
+            }
+            
+            ws.onmessage = function(ev){
+
+                if(ev.data.indexOf("tips") != -1){
+                    
+                    oBox.innerHTML += "<p class='tips'>"+ev.data+"</p>";
+                    
+                }else{
+                    var nowTime = new Date().toLocaleTimeString();
+                    oBox.innerHTML += "<p><span>"+ev.data+"</span></p>";
+                }
+                oBox.scrollTop = oBox.scrollHeight;
+
+                
+            }
+            ws.onclose = function(){
+                
+                console.log("连接已关闭");
+                
+            }
+            
+            oSend.onclick = function(){
+                
+                var val = oTxt.innerHTML;
+                if(val.trim() != ""){
+                    
+                    ws.send(val);
+
+                    oTxt.innerHTML = ""
+                }
+                
+            }
+            document.onkeydown = function(ev){
+            var ev = ev || window.event
+            if(ev.keyCode==13) {
+                var val = oTxt.innerHTML;
+                if(val.trim() != ""){
+                    
+                    ws.send(val);
+                    
+                    oTxt.innerHTML = ""
+                }
+        }
+    }
+            
+        }
+        
+    </script>
+</body>
+</html>

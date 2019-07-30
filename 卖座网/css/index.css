@@ -1,0 +1,225 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul li{list-style: none;}
+/*banner轮播效果start*/
+header{
+	position: relative;
+	height: 210px;
+}
+#banner_imgs>img{
+	display: none;
+}
+#banner_imgs .active_img{
+	display: block;
+}
+#circle{
+	width: 70px;
+	height: 30px;
+	/* background: #eee; */
+	line-height: 30px;
+	position: absolute;
+	top: 180px;
+	right: 20px;
+}
+#circle>span {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border: 2px solid #aaa;
+	border-radius: 50%;
+}
+.active_span{
+	background: pink;
+}
+/*banner轮播效果end*/
+
+/*选项切换start*/
+#nav{
+	margin-top: 20px;
+	height: 49px;
+	background: #fff;
+}
+#nav ul{
+	display: flex;
+	height: 100%;
+	justify-content: space-around;
+	align-items: center;
+}
+#nav ul li{
+	box-sizing: border-box;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.active_li{
+	color: #FF7231;
+	border-bottom: 2px solid #FF7231;
+}
+
+/*正在热映start*/
+.film{
+	height: 60px;
+	line-height: 40px;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	border-bottom: 1px solid #eee;
+	display: none;
+}
+.hotPlaying{
+	display: none;
+}
+.hotPlaying ul{
+	margin-left: 15px;
+}
+.hotPlaying ul li{
+	padding: 15px 15px 15px 0;
+	border-bottom: 1px solid #eee;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.hotPlaying ul li .item_img{
+	width: 66px;
+}
+.hotPlaying ul li .item_info{
+	width: calc(100% - 137px);
+	height: 81px;
+	overflow: hidden;
+	margin: 0 10px;
+	/* box-sizing: border-box; */
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+}
+
+.hotPlaying ul li .item_info p:nth-of-type(1){
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.hotPlaying ul li .item_info p:nth-of-type(1) span:nth-of-type(2){
+	margin-left: 5px;
+	font-size: 12px;
+	background: #D2D6DC;
+	color: #FBFCFC;
+	padding: 0 3px;
+	border-radius: 2px;
+}
+.hotPlaying ul li .item_info p:nth-of-type(2){
+	height: 19px;
+}
+.hotPlaying ul li .item_info p:nth-of-type(2),.hotPlaying ul li .item_info p:nth-of-type(4) {
+	color: #797D82;
+	font-size: 12px;
+}
+.hotPlaying ul li .item_info p:nth-of-type(2) span{
+	font-size: 14px;
+	color: #ffb232;
+}
+.hotPlaying ul li .item_info p:nth-of-type(3){
+	width: 100%;
+	color: #797D82;
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.hotPlaying ul li .ticket{
+	width: 50px;
+	height: 25px;
+	border: 1px solid #FF5F16;
+	color: #FF5F16;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	font-size: 13px;
+	border-radius: 5px;
+}
+
+/*正在热映end*/
+
+/*即将上映开始*/
+.comingsoon{
+	display: none;
+}
+.comingsoon ul{
+	margin-left: 15px;
+}
+.comingsoon ul li{
+	padding: 15px 15px 15px 0;
+	border-bottom: 1px solid #eee;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.comingsoon ul li .item_img{
+	width: 66px;
+}
+.comingsoon ul li .item_info{
+	width: calc(100% - 137px);
+	height: 81px;
+	overflow: hidden;
+	margin: 0 10px;
+	/* box-sizing: border-box; */
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+}
+.comingsoon ul li .item_info p:nth-of-type(1){
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.comingsoon ul li .item_info p:nth-of-type(1) span:nth-of-type(2){
+	margin-left: 5px;
+	font-size: 12px;
+	background: #D2D6DC;
+	color: #FBFCFC;
+	padding: 0 3px;
+	border-radius: 2px;
+}
+.comingsoon ul li .item_info p:nth-of-type(2){
+	height: 19px;
+}
+.comingsoon ul li .item_info p:nth-of-type(2),.comingsoon ul li .item_info p:nth-of-type(4) {
+	color: #797D82;
+	font-size: 12px;
+}
+.comingsoon ul li .item_info p:nth-of-type(2) span{
+	font-size: 14px;
+	color: #ffb232;
+}
+.comingsoon ul li .item_info p:nth-of-type(3){
+	width: 100%;
+	color: #797D82;
+	font-size: 12px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.comingsoon ul li .ticket{
+	width: 50px;
+	height: 25px;
+	border: 1px solid #FF5F16;
+	color: #FF5F16;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	font-size: 13px;
+	border-radius: 5px;
+}
+/*即将上映结束*/
+
+.active_item{
+	display: block;
+}
+/*选项切换end*/

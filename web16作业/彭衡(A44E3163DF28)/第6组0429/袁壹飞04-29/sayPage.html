@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/iconfont02.css"/>
+    <link rel="stylesheet" href="css/say_main.css" />
+    <script type="text/javascript" src="./js/username.js"></script>
+    <script type="text/javascript" src="js/weixin_main.js"></script>
+    
+    <title>聊天页面</title>
+	
+</head>
+<body>
+    
+    <div id="main_box">
+		
+		<!--保存当前用户的id-->
+		<input id="friendId" type="hidden" value="" />
+
+        <!-- 头部功能栏 -->
+        <div class="say_top_nav">
+            <span class="break_span">&lt;</span>
+            <span class="username_span">杨幂</span>
+            <!-- 右边的更多 -->
+            <span class="nav_right_set">...</span>
+        </div>  
+
+        <!-- 聊天内容 -->
+        <div class="say_content">
+            
+            
+           
+        </div>
+        
+        
+    
+        <div class="footer_box">
+
+            <!-- 底部输入框 -->
+            <div class="weixin_footer">
+                <span class="img_top">
+                	<img src="img/1111.jpg" />
+                </span>
+                <!-- 变为可编辑的文本域 -->
+                <p contenteditable="true"  class="input_msg"></p>
+                <span class="iconfont look_span icon-biaoqing"></span>
+                <button type="button">发送</button>
+            
+            </div>
+            <!-- 表情包 -->
+            <div class="look_box">
+                <img src="http://img.baidu.com/hi/tsj/t_0001.gif" id="t_0001" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0002.gif" id="t_0002" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0003.gif" id="t_0003" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0004.gif" id="t_0004" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0005.gif" id="t_0005" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0006.gif" id="t_0006" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0007.gif" id="t_0007" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0008.gif" id="t_0008" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0009.gif" id="t_0009" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0010.gif" id="t_0010" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0011.gif" id="t_0011" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0012.gif" id="t_0012" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0013.gif" id="t_0013" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0014.gif" id="t_0014" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0015.gif" id="t_0015" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0016.gif" id="t_0016" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0017.gif" id="t_0017" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0018.gif" id="t_0018" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0019.gif" id="t_0019" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0020.gif" id="t_0020" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0021.gif" id="t_0021" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0022.gif" id="t_0022" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0023.gif" id="t_0023" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0024.gif" id="t_0024" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0025.gif" id="t_0025" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0026.gif" id="t_0026" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0027.gif" id="t_0027" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0028.gif" id="t_0028" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0029.gif" id="t_0029" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0030.gif" id="t_0030" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0031.gif" id="t_0031" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0032.gif" id="t_0032" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0033.gif" id="t_0033" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0034.gif" id="t_0034" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0035.gif" id="t_0035" width="30px">  
+             
+              
+            </div>
+        </div>
+
+    </div>
+
+   <script>
+          //得到要操作的DOM对象
+        var input_msg = document.getElementsByClassName('input_msg')[0];
+        var sendBtn = document.getElementsByTagName('button')[0];
+        var content_box = document.getElementsByClassName('say_content')[0];
+    
+        var main_box = document.getElementById('main_box');
+        var look_box = document.getElementsByClassName('look_box')[0];
+        var look_span = document.getElementsByClassName('look_span')[0];
+        var footer_box = document.getElementsByClassName('footer_box')[0];
+  
+        // 得到所有的表情包
+        var face_img = document.getElementsByTagName('img');
+      
+        
+   </script>
+  
+</body>
+</html>

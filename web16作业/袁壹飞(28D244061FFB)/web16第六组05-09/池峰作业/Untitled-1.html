@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./jquery3.4.0.js"></script>
+    <script src="artTemplate.js"></script>
+    <script src="ajax.js"></script>
+    <title>Document</title>
+    <style>
+        html,body,ul,li,div,img,p,span{margin: 0; padding: 0;}
+        ul,li{list-style: none;}
+        #container{
+            padding-left: 15px;
+        }
+        #container>li{
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 15px 15px 0;
+            height: 124px;
+            box-sizing: border-box;
+        }
+        .li_left{
+            width: 66px;
+        }
+        .li_left img{
+            width: 100%;
+        }
+        .li_right{
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+        }
+        .txt{
+            width: 209px;
+            height: 100%;
+            color: #999;
+            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .txt p{
+            width: 209px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+        }
+        .txt p:first-child{
+            font-size: 16px;
+            color: #333;
+        }
+        .txt p:first-child span{
+            color: #fff;
+            background-color: #D2D6DC;
+            padding: 0 3px;
+            font-size: 12px;
+            border-radius: 3px;
+            margin-left: 5px;
+        }
+        .txt p:nth-child(2) span{
+            color: #FFB232;
+            margin-left: 5px;
+        }
+        .btn span{
+            border: 1px solid #FFB232;
+            color: #FF6700;
+            font-size: 13px;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container"></ul>
+
+    <script type="text/javascript">
+        ajax("GET","https://www.easy-mock.com/mock/5cb697be611c6a301b7fb492/cFheng/maizuo",function(data){} ,function(res){
+            console.log(res);
+            var data = res.data;
+       
+        $.get("temp.html",function(html){
+
+            let myContent = template.render(html,data);
+            document.getElementById("container").innerHTML = myContent;
+        })
+    },function(fail){})
+    </script>
+</body>
+</html>

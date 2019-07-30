@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		var arr = [12,23,21,3123,1,23]
+		
+		var obj = {
+			name: '小明',
+			age: 18
+		}
+		$.each(arr,function(i,ele){
+			console.log(i);	//	下标
+			console.log(ele);	//值
+		})
+		
+		$.each(obj,function(key,val){
+			console.log(key)	//key
+			console.log(val)	//val
+		})
+	})
+</script>

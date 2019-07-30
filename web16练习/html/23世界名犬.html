@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			li {list-style: none;}
+			@media only screen and (max-width: 780px) {
+				header {
+					position: relative;
+					height: 70px;
+					background: #348bec;
+					padding-top: 36px;
+					padding-left: 20px;
+					margin-bottom: 2px;
+				}
+				header ul {
+					position: absolute;
+					right: 10px;
+					top: 36px;
+				}
+				header ul:hover{cursor: pointer;}
+				header ul li {
+					width: 20px;
+					height: 4px;
+					background: white;
+					margin-bottom: 6px;
+				}
+				header h3 {
+					color: white;
+					font-size: 24px;
+				}
+				header p {
+					font-size: 12px;
+					color: #ccccd2;
+				}
+				nav {display: none;}
+				#image img {width: 100%;margin-bottom: 4px;}
+				.jiesao {
+					height: 280px;
+					background: #eee;
+					padding: 20px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 11;
+					-webkit-box-orient: vertical;
+					margin-bottom: 4px;
+				}
+				.p1 {
+					text-align: center;
+					font-weight: bold;
+					font-size: 18px;
+					color: #999;
+					margin-bottom: 46px;
+				}
+				.jiesao .p2 {
+					color: #999;
+				}
+				.jiwawa {
+					position: relative;
+					background: #eee;
+					padding: 20px;
+				}
+				.jiwawa img {
+					width: 100%;
+				}
+				.jiwawa span {
+					font-size: 12px;
+					font-weight: bold;
+					color: #aaa;
+					position: absolute;
+					left: 50%;
+					top: 60%;
+					transform: translate(-50%,-50%);
+				}
+				footer {
+					display: none;
+				}
+			}
+			@media only screen and (min-width:780px) {
+				header {
+					box-sizing: border-box;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					height: 122px;
+					background: #348bec;
+					flex-flow: column;
+				}	
+				header ul {display: none;}
+				header h3 {
+					color: white;
+					font-size: 34px;
+				}
+				header p {
+					color: #ccccd2;
+				}
+				nav {
+					display: flex;
+					justify-content: center;
+				}
+				nav ul {
+					display: flex;
+					width: 550px;
+					height: 110px;
+					flex-flow: row nowrap;
+					justify-content: space-between;
+				 }
+				ul li {
+					display: flex;
+					align-items: center;
+					height: 110px;
+				}
+				a {
+					text-decoration: none;
+					color: #3b3b3b;
+				}
+				a:hover{text-decoration: underline;}
+				#image {
+					width: 78.47%;
+					height: 600px;
+					margin: 0 auto;
+					display: flex;
+					justify-content: center;
+				}
+				#image img {
+					width: 100%;
+				}
+				#presentation {
+					width: 78.47%;
+					margin: 0 auto;
+					display: flex;
+					flex-flow: row nowrap;
+					justify-content: space-between;
+					margin-top: 24px;
+					margin-bottom: 35px;
+				}
+				.jiesao {
+					width: 60%;
+					height: 312px;
+					background: #eee;
+					padding: 20px;
+					overflow: hidden;
+					display: -webkit-box;
+					-webkit-line-clamp: 11;
+					-webkit-box-orient: vertical;
+					text-overflow: ellipsis;
+					box-sizing: border-box;
+				}
+				.p1 {
+					text-align: center;
+					font-weight: bold;
+					font-size: 18px;
+					color: #999;
+					margin-bottom: 46px;
+				}
+				.jiesao .p2 {
+					color: #999;
+				}
+				.jiwawa {
+					width: 30%;
+					height: 312px;
+					background: #eee;
+					padding: 20px;
+					box-sizing: border-box;
+				}
+				.jiwawa img {
+					width: 100%;
+				}
+				.jiwawa span {display: none;}
+				footer {
+					height: 76px;
+					border-top: 1px solid #eee;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-size: 12px;
+					font-weight: bold;
+					color: #aaa;
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header>
+			<h3>世界名犬</h3>
+			<p>世界名犬集合</p>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="">吉娃娃</a></li>
+				<li><a href="">德国牧羊犬</a></li>
+				<li><a href="">中国藏獒</a></li>
+				<li><a href="">哈士奇</a></li>
+				<li><a href="">贵宾犬</a></li>
+			</ul>
+		</nav>
+		<div id="image">
+			<img src="../img/sucai/jww1.jpeg">
+		</div>
+		<div id="presentation">
+			<div class="jiesao">
+				<p class="p1">吉娃娃介绍</p>
+				<p class="p2">吉娃娃是目前人们所知道的最古老的犬种之一，原产于美洲，和墨西哥的古老文明有深厚而密切的关系。吉娃娃属于小型犬种里最小型，优雅、警惕、动作迅速，以匀称的体格和娇小的体型广受人们的喜爱。他们是相当受欢迎的狗狗，功用也相当广泛。它们可以是宗教的守护者，也是平民的好伴侣，上至贵族下至百姓，不分等级不分贵贱，吉娃娃是大家的好朋友。它不喜欢外来的同品种的狗狗。有和梗类相似的特点。精力充沛。体型娇小，适合家养。</p>
+			</div>
+			<div class="jiwawa">
+				<p class="p1">吉娃娃</p>
+				<img src="../img/sucai/small.jpg">
+				<span>&copy;Copyright 狗狗乐园</span>
+			</div>
+		</div>
+		<footer>
+			&copy;Copyright 狗狗乐园
+		</footer>
+	</body>
+</html>

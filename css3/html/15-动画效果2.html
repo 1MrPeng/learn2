@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#wrap{
+				width: 600px;
+				height: 250px;
+				background: #8A2BE2;
+				display: flex;
+				align-items: center;
+				margin: 0 auto;
+			}
+			#wrap div{
+				width: 100px;
+				height: 100px;
+				margin-left: 50px;
+				border-radius: 50%;
+				border: 1px solid #B77EED;
+				position: relative;
+				animation: 5s run linear infinite;
+			}
+			p{
+				width: 20px;
+				height: 20px;
+				background: #DDDDDD;
+				border-radius: 50%;
+				position: absolute;
+				top: 2px;
+				left: 40px;
+			}
+			@keyframes run{
+				from{
+					transform: rotate(0);
+					box-shadow: 0 0 7px 0 #B77EED;
+				}
+				50%{
+					box-shadow: 0 0 7px 8px #B77EED;
+				}
+				to{
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div>
+				<p></p>
+			</div>
+		</div>
+	</body>
+</html>

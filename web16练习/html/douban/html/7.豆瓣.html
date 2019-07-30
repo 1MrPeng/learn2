@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/douban.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<script src="../JS/Ajax封装.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="warp">
+			<header>
+				<div>
+					<div>
+						<h1>豆瓣</h1>
+						<span class="iconfont">&#xe68d;</span>
+					</div>
+					<a href="#">打开豆瓣App</a>
+				</div>
+			</header>
+			<div id="content">
+				<div class="content_top">
+					影院热映
+				</div>
+				<div class="content_bottom">
+					<ul class="content_ul">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				Ajax("get","https://www.easy-mock.com/mock/5cb69038c1d19650f26d7edd/example/douban","",function(success){
+					var jsonData = success.subject_collection_items;
+					// console.log(jsonData)
+					var oUl = document.querySelector('.content_ul');
+					for(var i in jsonData){
+						// console.log(jsonData[i])
+						
+						var Span;
+						if(jsonData[i].rating){
+							var flo = jsonData[i].rating.value;
+							Span = '<span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="score">'+parseFloat(flo).toFixed(1)+'</span>'
+							if(jsonData[i].rating.value<=3.5){
+								Span = '<span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="score">'+parseFloat(flo).toFixed(1)+'</span>'
+							}else if(jsonData[i].rating.value<=5.5){
+								Span = '<span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="score">'+parseFloat(flo).toFixed(1)+'</span>'
+							}else if(jsonData[i].rating.value<=7.5){
+								Span = '<span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont">&#xe71e;</span><span class="iconfont">&#xe71e;</span><span class="score">'+parseFloat(flo).toFixed(1)+'</span>'
+							}else if(jsonData[i].rating.value<=9.5){
+								Span = '<span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont" style="color: #FFB712;">&#xe632;</span><span class="iconfont">&#xe71e;</span><span class="score">'+parseFloat(flo).toFixed(1)+'</span>'
+							}
+						}else{
+							Span = '<span>暂无评分</span>'
+						}
+						oUl.innerHTML +='<li><img src="'+jsonData[i].cover.url+'" width="100%" ><h3>'+jsonData[i].title+'</h3><p>'+Span+'</p></li>';
+					}
+					
+				},function(fail){console.log(fail)})
+				
+				
+			}
+		</script>
+	</body>
+</html>

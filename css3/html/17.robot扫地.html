@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#warp{
+				width: 800px;
+				height: 509px;
+				margin: 0 auto;
+				background: url(../img/robotimg/floorBg.jpg);
+				position: relative;
+			}
+			.robot{
+				width: 167px;
+				height: 191px;
+				position: absolute;
+				left: 10px;
+				bottom: 10px;
+				background: url(../img/robotimg/robot.png);
+				animation: changeLeft 10s infinite linear;
+			}
+			@keyframes changeLeft{
+				0%{
+					transform: rotateY(180deg);
+					left: 10px;
+				}
+				49.9%{
+					left: 623px;
+					transform: rotateY(180deg);
+				}
+				50%{
+					transform: rotateY(0deg);
+					left: 620px;
+				}
+				100%{
+					left: 10px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<div class="robot"></div>
+		</div>
+	</body>
+</html>

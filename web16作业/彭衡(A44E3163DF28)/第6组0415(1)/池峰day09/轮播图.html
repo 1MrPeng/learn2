@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body,div,img,span{margin: 0; padding: 0;}
+		.container{
+			width: 1000px;
+			height: 500px;
+			margin: 50px auto;
+			position: relative;
+		}
+        .container img{
+            width: 100%;
+            height: 100%;
+        }
+        .img_box{
+            height: 500px;
+        }
+        .img_box img{
+            display: none;
+        }
+        .img_box .active{
+            display: block;
+        } 
+        .span_box{
+            display: inline-block;
+            top: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img_box">
+            <img classs="active" src="./day09/轮播图素材/0.jpg">
+            <img src="./day09/轮播图素材/1.jpg">
+            <img src="./day09/轮播图素材/2.jpg">
+            <img src="./day09/轮播图素材/3.jpg">
+            <img src="./day09/轮播图素材/4.jpg">
+        </div>
+        <div class="span_box">
+            <span class="active_dot"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <span class="switch_btn"></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var oCon = document.getElementsByClassName("container")[0];
+			var aImg = document.getElementsByTagName("img");
+            var spanBoxDiv = document.getElementsByClassName("span_box")[0];
+			var dots = spanBoxDiv.getElementsByTagName("span");
+            var switchBtn = document.getElementsByClassName("switch_btn")[0];
+			var directsBtn = switchBtn.getElementsByTagName("span");
+            var ind = 0;
+            var timer = null;
+
+            for(var i=0; i<dots.length; i++){
+                dots[i].index = i;
+                dots[i].onclick = function(){
+                    resetCSS();
+                    activeCSS(this.index);
+                        ind = this.index;
+                }
+            }
+
+            directsBtn[0].onclick = function(){
+                if(ind == 0){
+                    ind = dots.length - 1;
+                }else{
+                    ind--;
+                }
+                resetCSS();
+                activeCSS(ind);
+            }
+            directsBtn[1].onclick = autoPlay;
+            clearInterval(timer);
+            timer = setInterval(autoPlay,5000);
+            oCon.onmouseover = function(){
+                clearInterval(timer);
+                                            
+            }
+            oCon.onmouseout = function(){
+                clearInterval(timer);
+                timer = setInterval(autoPlay,5000);
+            }
+            function autoPlay(){
+                if(ind == dots.length - 1){
+                ind = 0;
+                    }else{
+                        ind++;
+            }
+            resetCSS();
+            activeCSS(ind);
+        }
+		function resetCSS(){
+		    for(var j=0; j<dots.length; j++){
+                dots[j].className = "";
+                aImg[j].className = "";
+            }
+        }
+        function activeCSS(a){	
+            dots[a].className = "active_dot";
+            aImg[a].className = "active";
+                
+        }
+
+				
+        }
+
+    </script>
+</body>
+</html>

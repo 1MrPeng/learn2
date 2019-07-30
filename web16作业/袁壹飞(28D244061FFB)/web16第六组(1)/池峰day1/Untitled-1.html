@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .AA{
+            width: 100%;
+            height: 500px;
+        }
+        button{
+            width: 60px;
+            height: 50px;
+        }
+        img{
+            width: 40px;
+            height: 40px;
+        }
+        .A{
+            width: 711px;
+            background: black;
+            margin-top: -4px;
+            margin-left: 319px;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="AA">
+        <video width="100%" height="80%">
+            <source src="../day1/2.mp4" type="video/mp4"></source>
+            当前浏览器不支持 video直接播放，点击这里下载视频： <a href="../day1/2.mp4">下载视频</a>
+        </video>
+        <div class="A">
+            <button><img src="../day1/播放.png" alt=""></button>
+            <button><img src="../day1/_    暂停.png" alt=""></button>
+            <button><img src="../day1/重新加载第三方加密.png" alt=""></button>
+            <input type="range" name="" id="">
+            <button><img src="../day1/静音.png" alt=""></button>
+        	<input type="range" step="0.1" name="" id="">
+            <button><img src="../day1/全屏.png" alt=""></button>
+        </div>
+    </div>
+
+    <script>
+		window.onload = function(){
+			var oVideo = document.getElementsByTagName("video")[0];
+			var oPlay = document.getElementsByTagName("button")[0];	
+			var oPause = document.getElementsByTagName("button")[1];	
+			var oLoad = document.getElementsByTagName("button")[2];	
+            var oVol = document.getElementsByTagName("input")[0];
+			var oMute = document.getElementsByTagName("button")[3];	
+            var oProcess = document.getElementsByTagName("input")[1];
+			var oFullScreen = document.getElementsByTagName("button")[4];	
+
+            oPlay.onclick = function(){
+				oVideo.play();
+			}
+            oPause.onclick = function(){
+				oVideo.pause();
+			}
+            oLoad.onclick = function(){
+				oVideo.load();
+			}				
+            oVol.onchange = function(){
+				oVideo.volume = this.value/100;
+			}
+            oMute.onclick = function(){
+			    oVideo.muted = !oVideo.muted;
+			}
+            oProcess.setAttribute("max",oVideo.duration);
+				oProcess.onchange = function(){	
+				var currentProcess = oProcess.value;
+			    oVideo.currentTime = currentProcess;
+			}
+            oFullScreen.onclick = function(){
+				if(navigator.userAgent.indexOf("Chrome") != -1){	
+				oVideo.webkitRequestFullScreen();
+				    }else if(navigator.userAgent.indexOf("Firefox") != -1){	
+				oVideo.mozRequestFullScreen(); 
+						
+			}
+        }
+    }
+	</script>	
+</body>
+</html>

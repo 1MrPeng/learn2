@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!--
+			对象的特点：封装，继承，抽象
+				拥有属性和方法
+			
+			创建对象的几种方式
+				1.字面量方式
+				2.new Object的方式
+				3.工厂方式
+				4.构造函数的方式
+				5.原型继承的方式
+				6.call和apply继承的方式
+		-->
+		<script type="text/javascript">
+			//1.字面量方式
+			var obj1 = {
+				name: 'ph',
+				age: 18,
+				height: 170,
+				say:function(){
+					console.log(this.name+" say: Hello world");
+				}
+			}
+			
+			console.log(obj1);
+			obj1.say();
+			//2.new Object方式
+			var obj2 = new Object();
+			
+				obj2.name= '小明',
+				obj2.age= 12,
+				obj2.height= 168,
+				obj2.say=function(){
+					console.log(this.name+" say: Hello ph");
+				}
+			
+			console.log(obj2);
+			obj2.say();
+			//3.工厂方式创建对象,在函数内创建一个对象模版,需要return这一个obj模版,在外面传参数.
+			function creatObj(name,age,height,say){
+				var obj = new Object();
+				obj.name = name;
+				obj.age = age;
+				obj.height = height;
+				obj.say = function(){
+					console.log(this.name+" say: "+say);
+				}
+				return obj;
+			}
+			var obj3 = creatObj('小红',18,165,'LOVE');
+			console.log(obj3);
+			obj3.say();
+			//4.构造函数创建对象,函数名第一个字母必须大写,通过new的方式调用该构造函数来创建对象.
+			function Animal(name,age,play){
+				this.name = name;
+				this.age = age;
+				this.play = function(){
+					console.log(this.name+" 正在"+play)
+				}
+				return this;
+			}
+			var cat = new Animal('kitty',3,"抓老鼠");
+			console.log(cat);
+			cat.play();
+			//5.原型继承
+			function Bird(name,age,play){
+				this.name = name;
+				this.age = age;
+				this.play = function(){
+					console.log(this.name+" 正在"+play)
+				}
+			}
+			Bird.prototype.height = 180;
+			
+			var maque = new Bird('麻雀',5,"叫喳喳")
+			console.log(maque);
+			maque.play();
+			console.log(maque.height);
+			//6.call和apply继承
+			function Animal(name,age,play){
+				this.name = name;
+				this.age = age;
+				this.play = function(){
+					console.log(this.name+" 正在"+play)
+				}
+				return this;
+			}
+			function animal1(){
+				var ani1 = new Object();
+				Animal.call(ani1,"羊","3","吃草");
+				return ani1
+			}
+			console.log(animal1());
+			animal1().play();
+			function animal2(){
+				var ani2 = new Object();
+				Animal.call(ani2,"猪","4","睡觉");
+				return ani2;
+			}
+			console.log(animal2());
+			animal2().play();
+		</script>
+	</body>
+</html>

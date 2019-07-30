@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>获取和设置值</title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div>
+			我爱祖国天安门
+		</div>
+		<input type="text" value="我喜欢你很久了" />
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		var text = $('div').html().trim();
+		console.log(text);
+		
+		var val = $('[type=text]').val();
+		console.log(val);
+		
+		$('div').html('天安门前太阳升');
+		$('[type=text]').val('嫁给我吧');
+	})
+</script>

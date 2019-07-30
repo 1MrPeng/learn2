@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作业02</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+            padding: 40px 0;
+        }
+        label{
+            padding: 10px 10px;
+        }
+        button{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <label><input type="checkbox" name="" >苹果</label>
+    <label><input type="checkbox" name="" >手机</label>
+    <label><input type="checkbox" name="">电脑</label>
+    <label><input type="checkbox" name="" >手表</label>
+    <label><input type="checkbox" name="">耳机</label>
+    <button type="button" >反选</button>
+
+
+    <script>
+        // 将复选框反选
+        //得到复选框
+        var input_boxs = document.getElementsByTagName('input');
+        document.getElementsByTagName('button')[0].onclick = function(){
+            //实现如何反选
+            for(let index = 0;index < input_boxs.length;index++){
+                input_boxs[index].checked = !input_boxs[index].checked;
+            }
+
+        }
+
+    </script>
+</body>
+</html>

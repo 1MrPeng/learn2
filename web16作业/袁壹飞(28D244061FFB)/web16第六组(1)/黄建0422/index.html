@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="font_1156316_9yn6u03g22t/iconfont.css">
+    <style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+        ul li{
+				list-style: none;
+			}
+		.box{
+			width: 800px;
+			margin-top: 50px;
+			margin-left: 100px;
+			position: relative;
+		}
+		ul{
+			width: 800px;
+			height: 50px;
+			position: absolute;
+			bottom: 5px;
+		}
+		ul li{
+			display: flex;
+			justify-content: space-between;
+
+		}
+		ul li>div{
+			width: 40px;
+			height: 100%;
+			text-align: center;
+			line-height: 18px;
+		}
+		.play2{
+			display: none;
+		}
+		.play3{
+			position: absolute;
+			bottom: 77px;
+			right: 33px;
+			font-size: 40px;
+			display: none;
+			z-index: 100;
+		}
+		.iconfont{
+			color: white;
+		}
+		.mute1{
+			display: none;
+		}
+		.right{
+			display: flex;
+			width: 30%;
+			justify-content: space-between;
+			margin-right: 30px;
+		}
+		progress{
+			width: 798px;
+			position: relative;
+			top: -12px;
+			left: 1px;
+			height: 5px;
+		}
+    </style>
+</head>
+<body>
+	<div class="box">
+			<div class="play3 iconfont">&#xe6ab;</div>
+                <video width="800" loop="loop" >
+                    <source src="./img/23.mp4" type="video/mp4"></source>
+                    当前浏览器不支持 video直接播放，点击这里下载视频： <a href="myvideo.webm">下载视频</a>
+                </video>
+                <ul class="play">
+                    <progress max="100" value="0"></progress>
+                    <li>
+                            <div class="play1 iconfont">&#xe62b;</div>
+							<div class="play2 iconfont">&#xe62a;</div>
+							<div class="right">
+								<div class="redraw iconfont">&#xe636;</div>
+								<div class="mute iconfont">&#xe747;</div>
+								<div class="mute1 iconfont">&#xe632;</div>
+								<div class="all iconfont">&#xe62c;</div>
+							</div>
+                        </li>
+                    </ul>
+                </div>
+    <script>
+        window.onload = function(){
+            var adiv = document.getElementsByClassName("play")[0];
+			var ovideo = document.getElementsByTagName("video")[0];
+			var oul = document.getElementsByTagName("ul")[0];
+			var adiv3 = document.getElementsByClassName("play3")[0];
+//				鼠标移上效果
+					ovideo.onmouseenter = function(){
+						adiv.style.display = "block";
+						console.log('video进入');
+						adiv.onmouseover = function(){
+							console.log('adiv进入');
+							adiv.style.display = "block";
+						}
+					}
+					oul.onmouseleave = function(){
+						console.log('ovideo离开');
+						adiv.style.display = "none";
+					}
+				var stop1 = document.getElementsByClassName("play1")[0];
+				var stop2 = document.getElementsByClassName("play2")[0];
+					//开始、暂停点击事件
+					stop1.onclick = function(){
+						ovideo.play();
+//						this.style.backgroundPosition = "-366px -169px";
+						stop2.style.display = "block";
+						stop1.style.display = "none";
+						adiv3.style.display = "none";
+						oprogress();
+					}
+					stop2.onclick = function(){
+						ovideo.pause();
+						stop1.style.display = "block";
+						stop2.style.display = "none";
+						adiv3.style.display = "block";
+					}
+					adiv3.onclick = function(){
+						ovideo.play();
+						stop2.style.display = "block";
+						stop1.style.display = "none";
+						adiv3.style.display = "none";
+					}
+				//静音效果
+				var omute = document.getElementsByClassName("mute")[0];//声音
+				var omute1 = document.getElementsByClassName("mute1")[0];//静音
+					omute.onclick = function(){
+	//					ovideo.();
+						ovideo.volume = 0;
+						omute1.style.display = "block";
+						omute.style.display = "none";
+					}
+					omute1.onclick = function(){
+	//					ovideo.pause();
+						ovideo.volume = 1;
+						omute.style.display = "block";
+						omute1.style.display = "none";
+					}
+				//全屏效果
+				var oall = document.getElementsByClassName("all")[0];
+					oall.onclick = function(){
+						if(navigator.userAgent.indexOf("Chrome") != -1){
+							ovideo.webkitRequestFullScreen();	//谷歌浏览器
+						}else if(navigator.userAgent.indexOf("Firefox") != -1){
+							ovideo.mozRequestFullScreen();  //火狐浏览器
+						}else{
+							ovideo.msRequestFullscreen();	//IE浏览器
+						}
+                    }
+                    var oredraw = document.getElementsByClassName("redraw")[0];
+					oredraw.onclick = function(){
+						location.reload();
+					}
+					var oprog = document.getElementsByTagName("progress")[0];
+					    //进度条
+					    function oprogress(){
+			    	
+					    	timeout = setTimeout(oprogress,1000);
+			    	
+					    	if(!ovideo.paused){
+			    		
+					    		oprog.value = (ovideo.currentTime/ovideo.duration)*100
+					    	}
+			    	
+					    }
+        }
+    </script>
+</body>
+</html>

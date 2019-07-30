@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单练习</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			form {
+				
+				margin: 0 auto;
+				padding: 20px 0 10px;
+			}
+			ul {
+				list-style: none;
+				width: 410px;
+				margin: 0 auto;
+				margin-bottom: 20px;
+			}
+			form button {
+				width: 136px;
+				height: 34px;
+				line-height: 34px;
+			}
+			form .btn_blue {
+				background: #3179c3;
+				color: white;
+				border-color: #3179c3;
+			}
+			span {
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+			table {
+				width: 600px;
+				margin: 0 auto;
+			}
+			.zx {
+				font-size: 12px;
+				color: #999999;
+			}
+			.left {
+				width: 350px;
+				vertical-align: top;
+				text-align: right;
+				
+			}
+			.right {
+				width: 500px;
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			.longinput {
+				width: 300px;
+			}
+			.tdleft {
+				float: left;
+				display: inline-block;
+			}
+			.tdright {
+				float: left;
+			}
+			a {
+				text-decoration: none;
+				font-size: 12px;
+			}
+			.radio {
+				font-size: 12px;
+			}
+			.submit {
+				background: #5db348;
+				border-color: #5db348;
+			}
+			.star {
+				color: red;
+			}
+			.emailinp {
+				width: 202px;
+			}
+		</style>
+	</head>
+	<body>
+		<form method="">
+			<ul>
+				<li>
+					
+						<button type="button" class="btn_blue">注册字母邮箱</button><button type="button">注册手机号码邮箱</button><button type="button">注册VIP邮箱</button>
+					
+				</li>
+			</ul>
+			
+			<table cellspacing="0">
+				<tr>
+					<td class="left"><span class="star">*</span>邮件地址</td>
+					<td class="right">
+						<input type="text" name="email" class="emailinp" />@
+						<select>
+							<option value ="">163.com</option>
+							<option value ="">139.com</option>
+						</select><br>
+						<span class="zx">6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>密码</td>
+					<td class="right">
+						<input type="password" class="longinput"><br>
+						<span class="zx">6~16个字符，区分大小写</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>确认密码</td>
+					<td class="right">
+						<input type="password" class="longinput"><br>
+						<span class="zx">请再次输入密码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>手机号码</td>
+					<td class="right">
+						<input type="tel" class="longinput" /><br>
+						<span class="zx">忘记密码时，可使用该手机号码快速找回密码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>验证码</td>
+					<td class="right" class="clearfix">
+						<div class="tdleft">
+							<input type="text" class="yanz"><br>
+							<span class="zx">请填写图片中的字符，不区分大小写</span>
+						</div>
+						<div class="tdright">
+							<img src="../img/yzm.png" ><br>
+							<a href="javascript:void(0);">看不清，换一张</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right"><button type="button">免费获取验证码</button></td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>短信验证码</td>
+					<td class="right">
+						<input type="text" class="longinput"><br>
+						<span class="zx">请查收手机短信，并填写短信中的验证码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right radio">
+						<input type="radio">同意“服务条款”和“隐私相关政策”
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right">
+						<button type="submit" class="submit" >立即注册</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var oEmail = document.querySelector('.emailinp');
+		var aInput = document.querySelectorAll('.longinput');
+		var oYanz = document.querySelector('.yanz');
+		var Btn = document.querySelector('.submit');
+		
+		var emailUrlRel = /^[a-zA-Z]\w{5,17}/;
+		var pswRel = /\d{6,16}/;
+		var phoneRel = /^1[3|4|5|6|7|8|9]\d{9}$/;
+		var messageRel = /\d{6}/;
+		var str = '87RBRM';
+		
+		oEmail.onblur = function(){
+			if(!emailUrlRel.test(oEmail.value)){
+				oEmail.value ='';
+				oEmail.placeholder = '邮件地址错误，请重新输入！';
+			}
+		}
+		aInput[0].onblur = function(){
+			if(!pswRel.test(aInput[0].value)){
+				aInput[0].value ='';
+				aInput[0].placeholder = '密码错误，请重新输入！';
+			}
+		}
+		aInput[1].onblur = function(){
+			if(!pswRel.test(aInput[1].value)){
+				aInput[1].value ='';
+				aInput[1].placeholder = '密码错误，请重新输入！';
+			}
+			if(aInput[1].value != aInput[0].value){
+				aInput[1].value ='';
+				aInput[1].placeholder = '两次密码输入不一致，请重新输入！';
+			}
+		}
+		aInput[2].onblur = function(){
+			if(!phoneRel.test(aInput[2].value)){
+				aInput[2].value ='';
+				aInput[2].placeholder = '手机号码格式错误，请重新输入！';
+			}
+		}
+		oYanz.onblur = function(){
+			if(!str.match(oYanz.value)){
+				oYanz.value = '';
+				oYanz.placeholder = '验证码输入错误';
+			}
+		}
+		aInput[3].onblur = function(){
+			if(!messageRel.test(aInput[3].value)){
+				aInput[3].value = '';
+				aInput[3].placeholder = '请输入6位数的验证码！'
+			}
+		}
+		Btn.onclick = function(){
+			if(emailUrlRel.test(oEmail.value)&&pswRel.test(aInput[0].value)&&pswRel.test(aInput[1].value)&&phoneRel.test(aInput[2].value)&&messageRel.test(aInput[3].value)&&str.match(oYanz.value)){
+				alert('注册成功')
+			}else{
+				alert('您的信息有误，请重新输入！')
+			}
+
+		}
+	}
+</script>

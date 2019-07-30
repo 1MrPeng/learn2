@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        ul,li{
+            list-style: none;
+        }
+        body{
+            background: #ccc;
+        }
+        #container{
+            width: 1000px;
+            height: 600px;
+            background:white;;
+        }
+        .top{
+            padding-top: 30px;
+            padding-bottom: 30px;
+            display: inline-block;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+        #goods>ul li:nth-of-type(1){
+           
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+        }
+        #goods>ul li input:nth-of-type(1){
+            width: 40px;
+            text-align: center;
+        }
+        #goods>ul li p:nth-of-type(1){
+           padding-left: 100px;
+        }
+        #goods>ul li button:nth-of-type(1){
+           margin-left: 180px;
+        }
+        #goods>ul li p:last-child{
+           margin-left: 160px;
+        }
+        #goods>ul li:nth-of-type(2){
+           
+           display: flex;
+           justify-content:flex-start;
+           align-items: center;
+       }
+       #goods>ul li input:nth-of-type(1){
+           width: 40px;
+           text-align: center;
+       }
+       #goods>ul li p:nth-of-type(1){
+          padding-left: 100px;
+       }
+       #goods>ul li button:nth-of-type(1){
+          margin-left: 180px;
+       }
+       #goods>ul li p:last-child{
+          margin-left: 160px;
+       }
+     
+     </style>
+</head>
+<body>
+        <div id="container">
+            <ul class="top">
+                <li>商品名称</li>
+                <li>单价</li>
+                <li>数量</li>
+                <li>小计</li>
+            </ul>
+            <div id="goods">
+                <ul>
+                    <li v-for="(item,ind) in last">
+                    <img :src="item.imgUrl" alt="">	
+                        <span>{{item.name}}</span>
+                        <p>{{item.price}}</p>
+                        <button type="button" @click="minusPad(item)">-</button>
+                        <input type="text" :value="item.num">
+                        <button type="button" @click="addpad(item)">+</button>
+                        <p>{{item.total}}</p>
+                    
+                    </li>
+                </ul>
+            </div>
+        </div>
+       <script>
+           var vm = new Vue({
+               el:"#goods",
+               data: {
+                   last: [
+                        { imgUrl:"https://i1.mifile.cn/a1/T19OV_BgKT1RXrhCrK!80x80.jpg",name:"小米水质TDS检测笔白色",price:"39元",num:"0",total:"39元"},
+                        { imgUrl:"https://i1.mifile.cn/a1/pms_1538138719.13548106!80x80.jpg",name:"	小米净水器厨上式增强版",price:"1499",num:"0",total:"1499元"},
+                   ]
+               },
+               methods:{
+                addpad:function(item){
+                    item.num++
+                },
+                minusPad:function(item){
+                    if(item.num>0){
+                        item.num--
+                    }
+                }
+               }
+           })
+       </script>
+</body>
+</html>

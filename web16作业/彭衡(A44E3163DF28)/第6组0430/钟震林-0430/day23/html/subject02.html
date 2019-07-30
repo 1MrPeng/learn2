@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>大风车</title>
+		<style>
+			html,body,div,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			div{
+				width: 420px;
+				height: 420px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 130px auto;
+				transition: 5s;
+			}
+			ul{
+				width: 410px;
+				height: 410px;
+				display: flex;
+				flex-wrap: wrap;
+			}
+			li{
+				width: 200px;
+				height: 200px;
+				border: 1px solid black;
+				background-color: green;
+				margin: 1px;
+			}
+			li:nth-child(1),li:nth-child(4){
+				border-radius: 0 150px 0 150px ;
+			}
+			li:nth-child(2),li:nth-child(3){
+				border-radius: 150px 0 150px 0 ;
+			}
+			div:hover{
+				transform: rotate(3600deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>

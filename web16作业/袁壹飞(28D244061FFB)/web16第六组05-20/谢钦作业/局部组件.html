@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+       ul,li{
+           list-style: none;
+       }
+        #box{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin :auto;
+        }
+       #box_top input:first-child{
+            width: 160px;
+            height: 25px;
+            margin:10px;
+        }
+       #box_top input:nth-of-type(2){
+            width: 160px;
+            height: 25px;
+            margin-left: 25px; 
+        }
+        #box_top select{
+            display: inline-block;
+            height: 25px;
+            margin-left: 20px;
+            margin:10px;
+        }
+        #box_top li button{
+            height: 30px;
+            background: green;
+            color: white;
+            margin-left:40px;
+        }
+        .nav li{
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #ccc;
+           
+        }
+        .nav{
+            
+            display: flex;
+            flex: 1;
+            justify-content: space-around;
+            text-align: center;
+            background: rgb(64, 245, 64);
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul id="box_top">
+            <li>
+                Name:<input type="text" name="" id="" v-model="msg"><br>
+                
+                Age:<input type="text" value=""><br>
+                Sex:<select name="" id="">
+                    <option value="">Male</option>
+                    <option value="">halou</option>
+                </select><br>
+                <button>Create</button>
+            </li>
+        </ul>
+    <ul class="nav">
+        <li>Name</li>
+        <li>Age</li>
+        <li>Sex</li>
+        <li>Delete</li>
+    </ul>
+    <textarea name="" id="" cols="15" rows="2" v-model="msg"></textarea>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data: {
+                msg:"",
+              
+            }
+        })
+    </script>
+</body>
+</html>

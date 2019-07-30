@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./maizuo.js"></script>
+    <script src="./artTemplate.js"></script>
+    <script src="./jquery3.4.0.js"></script>
+    <title>Document</title>
+    <style>
+			html,body,ul,li,div,img,p,span{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			.conten{
+				padding-left: 15px;
+			}
+			.conten>li{
+				border-bottom: 1px solid #ccc;
+				display: flex;
+				justify-content: space-between;
+				padding: 15px 15px 15px 0;
+				height: 124px;
+				box-sizing: border-box;
+			}
+			.li_left{
+				width: 66px;
+			}
+			.li_left img{
+				width: 100%;
+			}
+			.li_right{
+				flex: 1;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding-left: 10px;
+			}
+			.txt{
+				width: 209px;
+				height: 100%;
+				color: #999;
+				font-size: 13px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			.txt p{
+				width: 209px;
+				overflow: hidden;
+			    text-overflow:ellipsis;
+			    white-space:nowrap;
+			}
+			.txt p:first-child{
+				font-size: 16px;
+				color: #333;
+			}
+			.txt p:first-child span{
+				color: #fff;
+				background-color: #D2D6DC;
+				padding: 0 3px;
+				font-size: 12px;
+				border-radius: 3px;
+				margin-left: 5px;
+			}
+			.txt p:nth-child(2) span{
+				color: #FFB232;
+				margin-left: 5px;
+			}
+			.btn span{
+				border: 1px solid #FFB232;
+				color: #FF6700;
+				font-size: 13px;
+				padding: 3px 10px;
+				border-radius: 3px;
+			}
+		</style>
+</head>
+<body>
+    <div id="container">
+          
+    </div>
+    <script type="text/html">
+        
+    </script>
+
+    <script>
+        let data = {
+            film:[
+            {name:"复仇者联盟4：终局之战",nation: "美国",actors: [{name: "克里斯·埃文斯"},{name: " 布丽·拉尔森 ", role: "惊奇队长 "},{grade: "8.6"}]}
+            ]
+        }
+        $.get("temp.html",function(html){
+            let render = template.compile(html);
+            let myContent = render(data);
+            document.getElementById("container").innerHTML = myContent;
+        })
+    </script>
+</body>
+</html>

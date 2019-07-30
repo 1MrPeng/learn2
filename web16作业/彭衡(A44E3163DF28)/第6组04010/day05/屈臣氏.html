@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   <!--  link导入阿里矢量图 -->
+    <link rel="stylesheet" href="E:/第一阶段/JavaScript/作业/day05/iconfont.css">
+    <!-- 设置移动端视口 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <style>
+       /*  清除浏览器默认样式 */
+       html,body,span,div,img{margin: 0; padding: 0;}
+			.cla>span{
+				display: inline-block;
+				width: 90px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				color: black;
+            }
+			.cla{
+				width: 500px;
+				height: 60px;
+                border: 1px solid #ccc;
+            }
+            .header{
+                width: 500px;
+                height: 40px;
+            }
+			div img{
+				width: 100%;
+				height: 100%;
+			}
+			
+			.active{
+				display: block;
+			}
+			.active_span{
+				background-color: lightpink;
+			}
+            .cla>class:hover{
+                color: pink;
+            }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="header">
+            <span class="iconfont">&#xe60d;</span>
+            <input type="text" class="iconfont" value="&#xe633;">
+            <span class="iconfont">&#xe601;</span>
+        </div>
+
+        <div class="cla">
+            <span class="active_span">今日推荐</span>
+            <span class="">面膜中心</span>
+            <span class="">居家生活</span>
+            <span class="">购全球</span>
+        </div>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>
+                <img src="";
+            </div>
+         </div>
+         <script>
+			/* 页面加载后执行 */
+            window.onload = function(){
+           /*  获取元素 */
+            var aSpan = document.getElementsByTagName("span");
+            var aDiv = document.getElementsByTagName("div");
+                绑定点击事件
+                for(var i=0; i<aSpan.length; i++){
+                 /*   另存下标 */                 
+                aSpan[i].aa = i;		
+                                    
+                aSpan[i].onclick = function(){
+                                        
+                     /*    重置样式 */
+                for(var j=0; j<aSpan.length; j++){
+                    aSpan[j].className = "";
+                    aDiv[j].className = "";
+                }
+                 /*  对应下标设置active的类名 */
+                this.className = "active_span";
+                aDiv[this.aa].className = "active";
+               }
+            }
+        }
+         </script>
+</body>
+</html>

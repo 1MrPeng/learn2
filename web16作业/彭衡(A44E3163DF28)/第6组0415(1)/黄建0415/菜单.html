@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+				margin: 0;
+				padding: 0;
+			}
+			ul li{
+				list-style: none;				
+			}
+			#item{
+				width: 300px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+			p{
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+				border: 1px solid #ccc;
+			}
+			input{
+				height: 36px;
+				/* border: none; */
+			}
+			ul{
+				border: 1px solid #ccc;
+				position: absolute;
+				top: 0;
+				left: 23px;
+				display: none;
+			}
+			li{
+				border-bottom: 1px solid #ccc;
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+			}
+			li:hover{
+				background: lightblue;
+			}
+    </style>
+</head>
+<body>
+    <div id="item">
+        <p>歌曲</p>
+        <input type="text" name="" id="inp" placeholder="请输入内容">
+        <ul>
+            <li>歌曲</li>
+            <li>专辑</li>
+            <li>歌手</li>
+            <li>歌词</li>
+            <li>MV</li>
+            <li>票务</li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function(){
+            var op = document.getElementsByTagName("p")[0];
+            var oinput = document.getElementsByTagName("input")[0];
+            var oul = document.getElementsByTagName("ul")[0];
+            var oli = document.getElementsByTagName("li");
+            bindEvent(op,"click",showUl,false);
+            function showUl(ev){
+                var ev = ev || window.event;
+                ev.cancelBubble = true;
+                
+                oul.style.display = "block";
+                this.style.visibility = "hidden";
+                for(var i=0; i<oli.length; i++){
+                    
+                    bindEvent(oli[i],"click",changeLi,false);
+                    oul.changeLi = function(ev){
+                        var ev = ev.target||ev.srcElement;
+                    }
+                    function changeLi(){
+                        oinput.placeholder = "请输入"+this.innerHTML;
+                        oul.style.display = "none";
+                        op.style.visibility = "visible";
+                        op.innerHTML = this.innerHTML;
+                        oinput.focus();
+                        oinput.value = "";
+                    }
+                }
+                bindEvent(document,"click",function(){
+                    oul.style.display = "none";
+                    op.style.visibility = "visible";
+                },false);
+                bindEvent(oInput,"focus",function(){
+                    
+                });
+                bindEvent(oinput,"blur",function(){
+                    
+                    this.style.background = "#fff";
+                });
+            }
+            function bindEvent(ele,eventName,fn,bool){
+                
+                if(ele.addEventListener){
+                    ele.addEventListener(eventName,fn,bool);
+                }else{
+                    ele.attachEvent("on"+eventName,fn);
+                }
+            }
+        }
+
+        // var arr = [1,29,35,8,9,8]
+        // console.log(typeof arr[0])
+        // var rs = arr.sort().reverse().join("")
+        // console.log(rs)
+        </script>
+    </body>
+</html>

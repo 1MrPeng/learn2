@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button,
+        div,
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        .bnt button {
+            margin-top: 10px;
+            width: 14%;
+            height: 100%;
+            margin-left: 10px;
+
+        }
+
+        .content {
+            background-color: #ccc;
+            height: 350px;
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .box {
+            height: 80px;
+            line-height: 80px;
+            width: 260px;
+            border: 1px solid black;
+            text-align: center;
+            float: left;
+            margin-left: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="content">
+        <div class="box">
+
+        </div>
+        <div class="bnt">
+            <button>MC</button>
+            <button>MR</button>
+            <button>MS</button>
+            <button>M+</button>
+            <button>M-</button>
+
+            <button>←</button>
+            <button>CE</button>
+            <button class="zero">C</button>
+            <button>±</button>
+            <button>√</button>
+
+            <button class="num">7</button>
+            <button class="num">8</button>
+            <button class="num">9</button>
+            <button class="zero">/</button>
+            <button>%</button>
+
+            <button class="num">4</button>
+            <button class="num">5</button>
+            <button class="num">6</button>
+            <button class="zero">*</button>
+            <button>1/x</button>
+
+            <button class="num">1</button>
+            <button class="num">2</button>
+            <button class="num">3</button>
+            <button class="zero">-</button>
+            <button class="zero">+</button>
+
+            <button>.</button>
+            <button class="num">0</button>
+            <button class="zero">=</button>
+        </div>
+    </div>
+    </div>
+    <script>
+        //   页面加载后执行
+        window.onload = function () {
+            //   获取元素
+            var box = document.getElementsByClassName('box')[0];
+            var num = document.querySelectorAll('.bnt .num');
+            var zero = document.querySelectorAll('.bnt .zero');
+            //      绑定数字的循环点击事件
+            for (i = 0; i < num.length; i++) {
+                num[i].index = i;
+                if (i < 3) {
+                    num[i].onclick = function () {
+                        box.innerHTML += this.index ;
+                    }
+                }else if(i<6){
+                    num[i].onclick = function(){
+                        box.innerHTML += this.index + 1;
+                    }
+                }else if(i<9){
+                    num[i].onclick = function(){
+                        box.innerHTML += this.index - 5;
+                    }
+                }else if(i=9){
+                    num[i].onclick = function(){
+                        box.innerHTML += this.index - 9;
+                    }
+                }
+            }
+                //      绑定归零点击事件
+                zero[0].onclick = function(){
+                    box.innerHTML = '';
+                }
+
+                //   绑定加减乘除点击事件
+                zero[1].onclick = function(){
+                    box.innerHTML = box.innerHTML + '/';
+                }
+                zero[2].onclick = function(){
+                    box.innerHTML = box.innerHTML + '*';
+                }
+                zero[3].onclick = function(){
+                    box.innerHTML = box.innerHTML + '-';
+                }
+                zero[4].onclick = function(){
+                    box.innerHTML = box.innerHTML + '+';
+                }
+                
+                //     绑定计算结果点击事件
+                zero[5].onclick = function(){
+                    var str = box.innerHTML;
+                    box.innerHTML = eval("("+str+")");
+                }
+        }
+    </script>
+</body>
+
+</html>

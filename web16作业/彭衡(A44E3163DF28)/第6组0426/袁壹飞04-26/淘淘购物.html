@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="css/iconfont.css"/>
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/iconfont01.css" />
+		<link rel="stylesheet" href="css/iconfontTaotao.css" />
+		<script type="text/javascript" src="js/jquery-3.4.0.min.js" ></script>
+		
+		
+		<title>淘淘购物</title>
+	</head>
+	<body>
+		<div class="main_box">
+			<!-- 头部导航 -->
+			<header class="top_nav">
+				<div>
+					<nav class="left_nav">
+						<ul>
+							<li>小米商城</li>|
+							<li>MIUI</li>|
+							<li>IoT</li>|
+							<li>云服务</li>|
+							<li>金融</li>|
+							<li>有品</li>|
+							<li>小爱开放平台</li>|
+							<li>政企服务</li>|
+							<li>资质证照</li>|
+							<li>协议规则</li>|
+							<li>下载app</li>|
+							<li>Select Region</li>
+						</ul>
+					</nav>
+					<nav class="right_nav">
+						<ul>
+							<li>登录</li>|
+							<li>注册</li>|
+							<li>消息通知</li>|
+							<li>云服务</li>|
+							<li>购物车</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+			
+			
+			<!-- 轮播图 -->
+			<section class="banner_conter">
+				<div class="banner_box">
+					<span class="banner_left iconfont icon-zuojiantou"></span>
+					
+					<img class="banner_img_center" src="img/01.jpg" />
+					
+					<span class="banner_right iconfont icon-youjiantou"></span>
+					
+					<!-- 圆点 -->
+					<p class="banner_pointer">
+						<span class="active_banner"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</p>
+				</div>
+			</section>
+			
+			<!--左侧的购物车列表-->
+			<aside class="left_cat_box">
+				<div class="cat_left">
+					<div>
+						<ul class="msg_box_btn">
+							<li data-index="0" class=" iconfont icon-wo"></li>
+							<li data-index="1" id="cat_btn" class="iconfont icon-gouwuche1"></li>
+							<li data-index="2" class="iconfont icon-shoucang"></li>
+							<li data-index="3" class="iconfont icon-shizhong"></li>
+							<li data-index="4" class="iconfont icon-iconset0337"></li>
+							<li data-index="5" class="iconfont icon-zixun"></li>
+							<li data-index="6" class="iconfont icon-fankuiyijian"></li>
+						</ul>
+						<ul class="msg_box_btn">
+							<li data-index="7" class="iconfont icon-huidaodingbu"></li>
+						</ul>
+						
+						<!--提示信息-->
+						<ul class="msg_box">
+							<li>京东会员</li>
+							<li>购物车</li>
+							<li>我的关注</li>
+							<li>我的足迹</li>
+							<li>我的消息</li>
+							<li>咨询JIMI</li>
+							<li>反馈</li>
+							<li>顶部</li>
+						</ul>
+					</div>
+				</div>
+				<!--购物项-->
+				<div class="cat_right">
+					<div>
+						<p>
+							<label>
+								<span class="iconfont icon-gouwuche1"></span>
+								<span>购物车</span>
+							</label>
+							<span  class="iconfont icon-guanbi "></span>
+						</p>
+						<p>
+							还没有登录，登录后商品将被保存<span>登录</span>
+						</p>
+					</div>
+					<div></div>
+					<div>
+						<p>
+							<label>数量：<span class="count">1</span></label>
+							<label>总计：<span class="mony">￥333.00</span></label>
+						</p>
+						<p>
+							去购物车结算
+						</p>
+					</div>
+					
+				</div>
+			</aside>
+			
+			
+			<!--商品列表-->
+			<section class="product_list_box">
+				<ul class="product_list_ul">
+					<!--<li>
+						<img src="https://image.watsons.com.cn//upload/50de8ce0.jpg" />
+						<p>碧尔缇希嫩肌护肤精华水 150ml</p>
+						<p>
+							<span>￥149</span>
+							<span class="iconfont icon-gouwuche1"></span>
+						</p>
+					</li>
+					-->
+				</ul>
+				
+			</section>
+			
+			
+		</div>
+		<!--效果图-->
+			<img class="product_img" src="https://image.watsons.com.cn//upload/d429b0e2.jpg" width="270" height="250"/>
+		<!-- 内容主体结束 -->
+	</body>
+</html>
+
+<script>
+	
+	//页面完成加载
+	window.onload = function(){
+	
+		//轮播图
+		var banner_img_left = document.getElementsByClassName('banner_img_left')[0];
+		var banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+		var banner_img_right = document.getElementsByClassName('banner_img_right')[0];
+		var banner_content = document.getElementsByClassName('banner_box')[0];
+		var banner_pointer = document.querySelectorAll('.banner_pointer>span');
+		var bannerSpan = document.querySelectorAll('.banner_box>span');
+		
+		//=============处理banner的业务===========
+		var bannerImgs = ['img/01.jpg','img/02.jpg','img/03.jpg','img/04.jpg','img/05.jpg'];
+		
+		
+		createBanner(bannerImgs);
+		//轮播图的渲染
+		var staticTimer = null;
+		var index = 0;
+		var timer = null;
+		function createBanner(bannerImgs){
+		
+			clearInterval(staticTimer);
+			//设置定时器
+			staticTimer = setInterval(lunboStatic,2000);
+			
+		}
+		function lunboStatic(){
+				//在左边生成一张图片
+			var oImg = document.createElement('img');
+			oImg.className = 'banner_img_left';
+			index = (index+1)%bannerImgs.length;
+			//激活圆点
+			resetBannerCss();
+			banner_pointer[index].className = 'active_banner';
+			
+			oImg.src = bannerImgs[index];
+			//添加图片
+			
+			banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+			banner_content.insertBefore(oImg,banner_img_center);
+			banner_img_left = document.getElementsByClassName('banner_img_left')[0];
+			//添加定时器
+			//设置定时器
+			var sum =0;
+			var oRight = 375;
+			timer = setInterval(function(){ 
+				sum += 100;
+				oRight -= 100;
+				
+				if(sum >= 375){
+					//清楚定时器
+					clearInterval(timer);
+					
+					timer = null;
+					//把左边的给删除
+					if(banner_img_center){
+						banner_content.removeChild(banner_img_center);
+					}
+					banner_img_left.className = 'banner_img_center';
+					banner_img_left.style.left = '0px';//left 0;
+				}else{
+					banner_img_center.style.left = sum+'px';//left 890px
+					banner_img_left.style.left = '-'+oRight+'px';//left 0;
+				}
+			
+			},100);
+		}
+		//右边切换按钮
+		var timerState = false;
+		clearInterval(timer);
+		//轮播图的切换
+		bannerSpan[1].onclick = function(){
+	
+			if(timer){
+				return ;
+			}
+			clearInterval(staticTimer);
+			//在右边生成一张图片<img class="banner_img_right" src="img/1.jpg" />
+			var oImg = document.createElement('img');
+			index = (index+1)%bannerImgs.length;
+			//激活圆点
+			resetBannerCss();
+			banner_pointer[index].className = 'active_banner';
+			
+			oImg.className = 'banner_img_left';
+			oImg.src = bannerImgs[index];
+			//添加图片
+			banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+			banner_content.insertBefore(oImg,banner_img_center);
+			// banner_content.insertBefore(oImg,banner_img_center);
+			banner_img_left = document.getElementsByClassName('banner_img_left')[0];
+
+			//添加定时器
+			//设置定时器
+			var sum =0;
+			var oRight = -375;
+			timer = setInterval(function(){ 
+				sum += 100;
+				oRight += 100;
+				if(sum >= 375){
+					//清楚定时器
+					clearInterval(timer);
+					staticTimer = setInterval(lunboStatic,2000);
+					timer = null;
+					//把左边的给删除
+					banner_content.removeChild(banner_img_center);
+					banner_img_left.className = 'banner_img_center';
+					banner_img_left.style.left = '0px';//left 0;
+				}else{
+					banner_img_center.style.left = sum+'px';//left -890px
+					banner_img_left.style.left = oRight+'px';//left 0;
+				}
+			
+			},100);
+			
+		}	
+		//给左边的切换按钮绑定事件
+		bannerSpan[0].onclick = function(){
+			
+			if(timer){
+				return ;
+			}
+			clearInterval(staticTimer);
+			//在左边生成一张图片
+			var oImg = document.createElement('img');
+			oImg.className = 'banner_img_right';
+			if(index == 0){
+				index = bannerImgs.length-1;	
+			}else{
+				index -- ;
+			}
+			console.log(index);
+			//激活圆点
+			resetBannerCss();
+			banner_pointer[index].className = 'active_banner';
+			
+			oImg.src = bannerImgs[index];
+			//添加图片
+			
+			banner_img_center = document.getElementsByClassName('banner_img_center')[0];
+			banner_content.insertBefore(oImg,banner_img_center.nextElementSibling);
+			banner_img_right = document.getElementsByClassName('banner_img_right')[0];
+			//添加定时器
+			//设置定时器
+			var sum =0;
+			var oRight = 375;
+			timer = setInterval(function(){ 
+				sum -= 100;
+				oRight -= 100;
+				if(oRight <= 0){
+					//清楚定时器
+					clearInterval(timer);
+					staticTimer = setInterval(lunboStatic,2000);
+					timer = null;
+					//把右边的给删除
+					banner_content.removeChild(banner_img_center);
+					banner_img_right.className = 'banner_img_center';
+					banner_img_right.style.left = '0px';//left 0;
+				}else{
+					banner_img_center.style.left = sum+'px';//left 890px
+					banner_img_right.style.left = oRight+'px';//left 0;
+				}
+			
+			},100);
+			
+		}
+		
+		//重置banner的样式
+		function resetBannerCss(){
+			for(var i = 0;i<banner_pointer.length;i++){
+				banner_pointer[i].className = '';
+			}
+		}
+		
+		
+		//==========购物车按钮
+		 var catState = false;
+		$('#cat_btn').click(function(){
+			
+			catState = !catState;
+			$('.msg_box_btn>li:nth-of-type(2)').toggleClass('active_btn')
+			
+			if(catState){
+				//显示和关闭购物车页面active_btn
+				$('.left_cat_box').animate({right:'0'},500)
+
+			}else{
+				//隐藏购物车
+				$('.left_cat_box').animate({right:'-270px'},500)
+			}
+		})
+		//关闭按钮鼠标经过的旋转效果
+		$('.cat_right .icon-guanbi').mouseover(function(){
+			console.log(12)
+			$(this).toggleClass('move_btnFrame');
+		});
+		$('.cat_right .icon-guanbi').mouseout(function(){
+			console.log(12)
+			$(this).toggleClass('move_btnFrame');
+		});
+		//关闭购物车按钮'
+		$('.cat_right .icon-guanbi').click(function(){
+			catState = false;
+			//隐藏购物车
+			$('.left_cat_box').animate({right:'-270px'},500);
+		});	
+		
+		//给功能按钮绑事件定鼠标msg_box
+		$('.msg_box_btn li').mouseover(function(){
+			if(!$(this).hasClass('active_btn')){
+				$('.msg_box li').eq(this.dataset.index).animate({left:'-100px'},300);
+			}
+		});
+		$('.msg_box_btn li').mouseout(function(){
+			$('.msg_box li').eq(this.dataset.index).animate({left:'0'},300);
+			
+		});
+		
+		
+		//==========商品数据的渲染
+		$.get('https://www.easy-mock.com/mock/5cb69688611c6a301b7fb462/yuan/taotao',function(result){
+			
+			createProductList(result.data.item_list);
+		});
+		
+		//==渲染商品
+		function createProductList(data){
+			$.each(data,function(index,val){
+				
+				var pruduct = '<li><img src="'+val.over_image_url+'" /><p>'+val.item_short_name+'</p><p><span>￥'+(val.max_app_price/100)+'</span><span class="iconfont icon-gouwuche1"></span></p></li>'
+					
+					
+				$('.product_list_box>ul')[0].insertAdjacentHTML('beforeEnd',pruduct);
+			});
+			//绑定加入购物车事件
+			
+			$('.product_list_box ul>li>p:nth-of-type(2)>span:nth-of-type(2)').click(function(){
+
+				toMyCat(this)
+				
+			});
+		}
+		
+		//============添加购物车.attr('src')product_img
+		function toMyCat(oProduct){
+			var oImg = $(oProduct).parent().parent().children().eq(0);
+			
+			//移动位置
+			var obj = oImg[0].getBoundingClientRect();
+			var objTragger = $('#cat_btn')[0].getBoundingClientRect();
+			//生成图片
+			$('.product_img').attr({'src':oImg.attr('src')});
+			
+			console.log(objTragger.left)
+			$('.product_img')[0].style.display = 'block';
+			$('.product_img')[0].style.top = obj.top+"px";
+			$('.product_img')[0].style.left = obj.left+"px";
+			$('.product_img')[0].style.width = 270+"px";
+			$('.product_img')[0].style.height = 250+"px";
+			var oLeft = window.innerWidth
+			//添加动画width="270" height="250"
+			$('.product_img').animate({left:objTragger.left,top:objTragger.top,width:30,height:30},1000);
+			
+		}
+		
+		//===给置顶按钮绑定事件
+		$('.msg_box_btn .icon-huidaodingbu').click(function(){
+			
+			$(window).scrollTop(0);
+		});
+		
+		
+//		=========end============
+	}
+
+</script>

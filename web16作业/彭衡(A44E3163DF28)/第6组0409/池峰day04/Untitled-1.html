@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+        
+
+</head>
+<body>    
+
+    <div>
+        <textarea name="" id="A" cols="30" rows="10"></textarea>;
+        <button>点击右移</button>；
+        <textarea name="" id="B" cols="30" rows="10"></textarea>
+    </div> 
+    <script>
+
+       /*  <!--  页面加载后执行 --> */
+            window.onload = function(){ 
+
+            /*  获取元素 */ 
+            var btn = document.getElementsByTagName("button")[0]; 
+            var txa = document.getElementById("A")[0];
+            var txb = document.getElementById("B")[1];
+            var timer = null;
+
+          /*   绑定点击事件 */
+            btn.onclick = function(){
+                clearInterval(timer);
+                oP.innerHTML += str.charAt(num);
+							num++;
+
+            }
+
+       }
+
+
+    </script>
+    
+    
+</body>
+</html>

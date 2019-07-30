@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>播放器</title>
+		<script type="text/javascript" src="js/jquery-3.4.0.min.js" ></script>
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<link rel="stylesheet" href="css/noxunhuan.css" />
+		<link rel="stylesheet" href="css/myRange.css" />
+		<script type="text/javascript" src="js/myRange.js"></script>
+		<style>
+			
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				text-align: center;
+				min-width: 900px;
+			}
+			.main_box{
+				display: inline-block;
+				margin: auto;
+				padding: 20px 10px;
+				position: relative;
+				background: black;
+			}
+			/*工具栏*/
+			.tools_box{
+				width: 100%;
+				padding: 5px 15px;
+				box-sizing: border-box;
+				height: 50px;
+				background: gold;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				display: none;
+			}
+			/*进度条*/
+			.progress{
+				width: 100%;
+				height: 5px;
+				background: #eee;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.progress_run{
+				width: 0;
+				height: 5px;
+				background: lightblue;
+				border-radius: 5px;
+				cursor: pointer;
+				position: absolute;
+				top: 5px;
+				left: 15px;
+				pointer-events: none;
+			}
+			.iconfont{
+				cursor: pointer;
+			}
+			.tools_btn{
+				width: 100%;
+				height: 35px;
+				padding: 5px 10px;
+				background: gold;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.left_p{
+				font-size: 14px;
+			}
+			.left_p span:nth-of-type(1){
+				font-size: 20px;
+				padding-right: 10px;
+			}
+			.right_p{
+				width: 270px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.right_p .iconfont{
+				font-size: 18px;
+				font-weight: bold;
+			}
+			.right_p>span:nth-of-type(3){
+				font-size: 20px;
+			}
+			.rang_p{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 148px;
+			}
+			.rang_p input{
+				margin-left: 3px;
+			}
+			.rang_p span{
+				font-size: 20px;
+			}
+			.rang_p .range_val{
+				font-size: 12px;
+				margin-left: 3px;
+				display: inline-block;
+				width: 22px ;
+			}
+		</style>	
+	</head>
+	<body>
+		<div class="main_box">
+			<video width="800" height="500">
+				<source src="statics/shai.mp4" type="video/mp4" ></source>
+					<!-- <source src="http://ykugc.cp31.ott.cibntv.net/69755A60D994871D43E57240D/03002001005890A646C7B300000001E583E40A-855F-A9B3-5F43-7C6086533016.mp4?ccode=050F&duration=283&expire=18000&psid=12ac11e31341080cc89308f67282cf96&ups_client_netip=715780e2&ups_ts=1555950793&ups_userid=&utid=eiX%2BFKw8%2BWkCAXd7SkOyYdHF&vid=XMjEyMDY5NjYwOA%3D%3D&vkey=A3339439d4a36f2a179624bf6cfd8f059&sp="  type="video/mp4" ></source> -->
+				<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+					<param name="movie" value="myvideo.swf" />
+					<param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+				</object>
+				当前浏览器不支持 video直接播放，点击这里下载视频： <a href="statics/2.mp4">下载视频</a>
+			
+			</video>
+		
+		<!--功能栏-->
+			<div class="tools_box">
+				<!--进度条-->
+				<p class="progress"></p>
+				<p class="progress_run"></p>
+				
+				<div class="tools_btn">
+					<p class="left_p">
+						<span class="iconfont icon-zanting"></span>
+						<span >00:03</span>/<span >04:33</span>
+					</p>
+					<p class="right_p">
+						<p class="rang_p">
+							<span class="iconfont icon-jingyin"></span>
+							<input type="range" value="0"/>
+							<span class="range_val">0</span>
+						</p>
+						<span>自动</span>
+						<span class="iconfont icon-shezhi"></span>
+						<span class="iconfont xunhuan  icon-buxunhuanbofang-"></span>
+						<span class="iconfont icon-quanping"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
+
+<script>
+	
+	//页面完成加载
+	$(function(){
+			
+			//给大的div设置鼠标事件
+			$('.main_box').mouseover(function(){
+				//显示工具栏
+				$('.tools_box').css('display','block');
+			});
+			$('.main_box').mouseout(function(){
+				//隐藏工具栏
+				$('.tools_box').css('display','none');
+			})
+		
+			//静音
+        	$('video')[0].muted = true;
+            
+			 var change = function(result) {
+	                /*内容可自行定义*/
+	  
+	                $('.range_val').html(result.value)
+	                if(result.value == 0){
+	                	//静音
+	                	$('video')[0].muted = true;
+	                	$('.rang_p span:nth-of-type(1)').removeClass('icon-shengyin');
+	                	$('.rang_p span:nth-of-type(1)').addClass('icon-jingyin');
+	                }else{
+	                	$('video')[0].muted = false;
+	                	$('.rang_p span:nth-of-type(1)').removeClass('icon-jingyin');
+	                	$('.rang_p span:nth-of-type(1)').addClass('icon-shengyin');
+	                }
+//	                console.log(result.value/100)
+					$('video')[0].volume = result.value/100;
+					
+	          }
+			 //自定义音量条
+			$('input').RangeSlider({ min: 0,max: 100,step: 1,callback: change});
+            
+			//给音量绑定点击事件
+			$('.rang_p span:nth-of-type(1)').click(function(){
+				  if(!$('video')[0].muted){
+	                	//静音
+	                	$('video')[0].muted = true;
+	                	$('.rang_p span:nth-of-type(1)').removeClass('icon-shengyin');
+	                	$('.rang_p span:nth-of-type(1)').addClass('icon-jingyin');
+	                	  $('.range_val').html(0);
+	                	  $('input[type="range"]').val(0);
+	                	   $('input[type="range"]').css( 'background', 'linear-gradient(to right, #059CFA, white ' + 0 + '%, white)' );
+	                }else{
+	                	$('video')[0].muted = false;
+	                	$('.rang_p span:nth-of-type(1)').removeClass('icon-jingyin');
+	                	$('.rang_p span:nth-of-type(1)').addClass('icon-shengyin');
+	                	 $('.range_val').html(50);
+	                	 $('video')[0].volume = 50/100;
+	                	 $('input[type="range"]').val(50)
+	                	 $('input[type="range"]').css( 'background', 'linear-gradient(to right, #059CFA, white ' + 50 + '%, white)' );
+	                }
+			});
+		
+		//给进度条绑定点击事件
+		$('.progress').click(function(ev){
+			var ev = ev || window.event;
+			var oLeft = ev.pageX - $(this).offset().left;
+
+			//设置进度条 791/$('video')[0].duration*oLeft = oLeft
+			$('.progress_run').width(oLeft);
+			//设置视屏的当前时间
+			$('video')[0].currentTime =  (($('video')[0].duration/791)*oLeft).toFixed(1);
+		
+		});
+		
+		//给切换单播放按钮绑定点击事件
+		$('.xunhuan').click(function(){
+				$('video')[0].loop = !$('video')[0].loop;
+			if($('video')[0].loop){
+				//循环播放		
+				$('.xunhuan').removeClass('icon-buxunhuanbofang-');
+				$('.xunhuan').addClass('icon-xunhuanbofang01');
+			}else{
+				$('.xunhuan').removeClass('icon-xunhuanbofang01');
+				$('.xunhuan').addClass('icon-buxunhuanbofang-');
+			}
+		
+		});
+	
+		//给全屏效果绑定点击事件
+		$('.icon-quanping').click(function(){
+			//兼容
+			if($('video')[0].webkitRequestFullScreen){
+				$('video')[0].webkitRequestFullScreen();
+			}else if($('video')[0].mozRequestFullScreen){
+				$('video')[0].mozRequestFullScreen();
+			}else if($('video')[0].msRequestFullscreen){
+				$('video')[0].msRequestFullscreen();
+			}
+//			$('video').attr( 'controls',"controls");
+		});
+		
+		//设置视屏的总时长$('video')[0].duration
+			//设置总时长 244.8
+		$('.left_p span:nth-of-type(3)').html("4:43");
+		//=======暂定播放功能
+		$('.left_p span:nth-of-type(1)').click(function(){
+//			console.log($('video')[0].duration)
+			var str = $('video')[0].duration/60+"";
+//			$('.left_p span:nth-of-type(3)').html(parseInt($('video')[0].duration/60)+":"+(str.split('.')[1]));
+			
+			if($('video')[0].paused){
+				//播放视屏
+				$('video')[0].play();
+				$('.left_p span:nth-of-type(1)').removeClass('icon-zanting');
+				$('.left_p span:nth-of-type(1)').addClass('icon-stop');
+			}else{
+				//暂停视屏
+				$('video')[0].pause();
+				$('.left_p span:nth-of-type(1)').removeClass('icon-stop');
+				$('.left_p span:nth-of-type(1)').addClass('icon-zanting');
+			}
+			
+		});
+		
+		
+		//监听视屏的时间改变事件
+		$('video')[0].addEventListener('timeupdate',function(){
+			
+			var miao = parseInt($('video')[0].currentTime)%60;
+			var fen = parseInt($('video')[0].currentTime/60);
+//			//更新时间=
+			$('.left_p span:nth-of-type(2)').html((fen < 10 ?"0"+fen:fen)+":"+(miao < 10 ?"0"+miao:miao));
+			
+//			console.log(791/$('video')[0].duration*$('video')[0].currentTime)
+			//改变进度条 791px
+			$('.progress_run').width(791/$('video')[0].duration*$('video')[0].currentTime);
+//				$('video')[0].play();
+		},false);
+		
+	});
+</script>

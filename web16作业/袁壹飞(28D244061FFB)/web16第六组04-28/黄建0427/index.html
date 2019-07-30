@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+		ul{
+			display: flex;
+			width: 800px;
+			margin: 0 auto;
+		}
+        ul li{
+            list-style: none;
+            width: 200px;
+            height: 50px;
+            background: lightblue;
+            margin: 10px 0;
+            text-align: center;
+            line-height: 50px;
+        }
+        .box{
+            width: 500px;
+            height: 400px;
+			margin: 0 auto;
+        }
+        .box>div{
+            display: none;
+        }
+        div.box1{
+            width: 500px;
+            display: block;
+            margin-top: 20px;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .item1{
+           background: pink;    
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <ul>
+            <li class="item1">迪丽热巴</li>
+            <li>古力娜扎</li>
+            <li>BABY</li>
+            <li>关晓彤</li>
+            <li>刘亦菲</li>
+        </ul>
+        <div class="box">
+            <div class="box1">
+                <img src="img/迪丽热巴.jpg" alt="">
+            </div>
+            <div>
+                <img src="img/古力娜扎.jpg" alt="">
+            </div>
+            <div>
+                <img src="img/Angelababy.jpg" alt="">
+            </div>
+            <div>
+                <img src="img/关晓彤.jpg" alt="">
+            </div>
+            <div>
+                <img src="img/刘亦菲.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var ali = document.querySelectorAll("li");
+            var adiv = document.querySelectorAll(".box div")
+            for(var i = 0;i<ali.length;i++){
+                ali[i].index = i;
+                ali[i].onclick = function(){
+                        setCss();
+                        var num1 = this.index;
+                        // console.log(this.innerHTML)
+                        window.location.hash = num1; 
+                    
+                    this.className = "item1";
+					adiv[this.index].className = "box1";
+                    window.onhashchange = function(){
+                        var myhash = window.location.hash.substring(1);
+                        if(myhash){
+                            setCss();
+                            ali[myhash].className = "item1"
+                            adiv[myhash].className = "box1"
+                        }
+                    }
+                }
+            }
+            function setCss(){
+                for(var j=0;j<ali.length;j++){
+					ali[j].className = "";
+					adiv[j].className = "";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

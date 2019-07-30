@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			查找节点:
+				.eq()	获取第N个jq对象(参数大于等于0时, 根据对应下标选取元素; 当参数为负数时, 从后往前选取元素, -1表示倒数第一个元素)
+				.first()	第一个元素
+				.last()		最后一个元素
+				.hasClass()	判断是否含有某class(返回true||false)
+				.filter()	筛选符合条件的元素
+				.map()		遍历元素(将返回值添加到数组中)
+				.has()		返回后代含有某元素的元素
+				.not()		筛选除了某元素的元素集合
+		-->
+		<ul>
+			<li>娱乐</li>
+			<li class="active">科技</li>
+			<li class="active">数码
+				<p>111</p>
+			</li>
+			<li>军事
+				<div>
+					<p>222</p>
+				</div>
+			</li>
+			<li class="active_li">历史</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		console.log($('li').eq(1));		//科技,下标为1的li
+		console.log($('li').first());	//娱乐,第一个元素
+		console.log($('li').last());	//历史,最后一个元素
+		
+		console.log($('li').eq(0).hasClass('active'));	//fasle
+		console.log($('li').eq(1).hasClass('active'));	//true
+		
+		var arr1 = $('li').filter(function(i,ele){
+			// console.log(i);
+			// console.log(ele);
+			
+			return i%2;		//	把奇数下标的元素push到数组中
+		})
+		console.log(arr1);
+		
+		var arr2 = $('li').filter(function(i,ele){
+			
+			return $(ele).hasClass('active');		//	把有active的class的 元素push到一个数组中
+		})
+		console.log(arr2)
+		
+		
+		var arr3 = $('li').map(function(i,ele){
+			// console.log(i,ele)
+			return $(ele).text().trim()			//把每个元素的text文本值push进一个数组
+		})
+		console.log(arr3)
+		
+		console.log($('li').has('p'));			//返回含有p的li
+		
+		console.log($('li').not($('li').has('div')))	//去除含有div的li
+	})
+</script>

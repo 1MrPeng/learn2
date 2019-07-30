@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>计算器</title>
+		<style>
+			*{margin: 0;padding: 0}
+			#computer{
+				background: #000000;
+				width: 375px;
+			}
+			#result{
+				height: 200px;
+				/* border: 1px solid red; */
+				color: white;
+				display: flex;
+				justify-content: flex-end;
+				align-items: flex-end;
+				font-size: 40px;
+			}
+			#num{
+				height: 465px;
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+			}
+			span{
+				display: inline-block;
+				width: 80px;
+				height: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #333333;
+				border-radius: 50%;
+				color: white;
+				font-size: 18px;
+			}
+			#num span:nth-of-type(17){
+				width: 180px;
+				border-radius: 50px;
+			}
+			.gray{
+				background: #A6A6A6;
+				color: #4a4a4a;
+			}
+			.yellow{
+				background: #FF9500;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="computer">
+			<div id="result"></div>
+			<div id="num">
+				<span class="gray">AC</span>
+				<span class="gray">+/-</span>
+				<span class="gray">%</span>
+				<span class="yellow">/</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+				<span class="yellow">*</span>
+				<span>4</span>
+				<span>5</span>
+				<span>6</span>
+				<span class="yellow">-</span>
+				<span>1</span>
+				<span>2</span>
+				<span>3</span>
+				<span class="yellow">+</span>
+				<span>0</span>
+				<span>.</span>
+				<span class="yellow">=</span>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	var aSpan = document.querySelectorAll('span');
+	var result = document.querySelector('#result');
+	
+	for(i=2;i<aSpan.length-1;i++){
+		aSpan[i].onclick = function(){
+			result.innerHTML += this.innerHTML;
+		}
+	}
+	aSpan[2].onclick = function(){
+		result.innerHTML += '/100';		
+	}
+	aSpan[0].onclick = function(){
+		result.innerHTML = '';
+	}
+	aSpan[1].onclick = function(){
+		if(result.innerHTML.charAt(0) == '-'){
+			result.innerHTML = Math.abs(result.innerHTML);
+		}else{
+			result.innerHTML = '-'+result.innerHTML;			
+		}
+	}
+	aSpan[18].onclick = function(){
+		result.innerHTML = eval(result.innerHTML);
+	}
+
+</script>

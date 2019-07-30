@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/jquery-3.4.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/iconfont.css"/>
+    <link rel="stylesheet" href="./css/index.css"/>
+    <title>TODOS</title>
+    
+</head>
+<body>
+
+    <div id="main-box">
+        <!-- 标题 -->
+        <h1>todos</h1>
+
+        <!-- todos列表 -->
+        <section>
+            <!-- 内容输入框 -->
+            <input-component @sendmsg='gotMsg' @countmsg='gotCount' :items='items'></input-component>
+
+            <!-- 内容列表 -->
+            <div class="items-content"  v-show="items.length != 0">
+                <item-component @update="updateItem" v-if='isActive == 0?true:isActive==1?item.status == false:item.status'  @deleteitem='deleteItem' :item='item' v-for='item in items' :key='item.id'></item-component>
+
+                <div class="footer">
+                    <p>{{count}} items left</p>
+                    <p>
+                        <span @click='switchTag(0)' :class="{active: isActive==0}">All</span>
+                        <span @click='switchTag(1)' :class="{active: isActive==1}" >Active</span>
+                        <span @click='switchTag(2)' :class="{active: isActive==2}" >Completed</span>
+                    </p>
+                </div>
+
+                <p></p>
+                <p></p>
+            </div>
+            
+
+        </section>
+
+    </div>
+
+    <!-- 定义内容列表组件模板 -->
+    <template id="input-template">
+         <!-- 内容输入框 -->
+         <div class="input-box">
+            <input v-show="items.length != 0" v-model='allStatus'  type="checkbox"/>
+            <input type="text" @keypress.enter='addMsg' v-model='msg' placeholder="what needs to be done?"/>
+        </div>
+    </template>
+
+    <!-- 内容列表组件模板 :contenteditable="isEdit"-->
+    <template id="items-template">
+        <!-- 内容输入框 -->
+        <div class="items-box">
+            <input v-model='item.status' @click='checkBtn'  type="checkbox"/>
+            <input @dblclick='editItem' @blur='updateItem' readonly='' type="text"  :class="{active: item.status}" :value='item.msg'/>
+            <span @click='deleteItem' class="iconfont icon-shanchu"></span>
+        </div>
+    </template>
+
+
+</body>
+</html>
+<script>
+
+    //定义数据传递的vue实例
+    let bus = new Vue();
+
+    //定义输入框组件
+    let inputComponent = {
+        template: '#input-template',
+        props: ['items'],
+        data: function(){
+            return {
+                msg: '',
+                allStatus: false
+            }
+        },
+        methods: {
+            addMsg: function(){
+                if(this.msg.trim()){
+                    //把要添加的数据发射到父组件
+                    this.$emit('sendmsg',this.msg.trim());
+                    this.msg = '';
+                }
+            }
+        },
+        watch: {
+            allStatus: function(){
+                if(this.allStatus){
+                    //实现全选
+                    this.items.forEach(el => {
+                        el.status = true;
+                    });
+                  this.$emit('countmsg',1);
+                }else{
+                    var fal = true;
+                    this.items.forEach(el => {  
+                        if(!el.status){
+                            fal = false;
+                        }
+                    });
+                    if(fal){
+                         //取消全选
+                         this.items.forEach(el => {
+                            el.status = false;
+                        });
+                        this.$emit('countmsg',0);
+                       
+                    }else{
+                        this.$emit('countmsg',2);
+                    }
+                  
+                }
+            } 
+        },
+        mounted: function(){
+            bus.$on('current-status', val => {
+                var fal = true;
+                this.items.forEach(el => {
+                     if(!el.status){
+                         fal = false;
+                     }
+                });
+               this.$emit('countmsg',2);
+                if(fal){ //全选
+                    this.allStatus = true;
+                }else{ //取消全选
+                    this.allStatus = false;
+                }
+                
+            })
+        }
+    }
+    //定义内容显示列表组件
+    let itemComponent = {
+        template: '#items-template',
+        props: ['item'],
+        data: function(){
+            return {
+                status: this.item.status,
+                isEdit: false
+            }
+        },
+        watch: {
+            status: function(){
+                // console.log(this.status);
+            }
+        },
+        methods: {
+            checkBtn: function(){
+                this.item.status = !this.item.status;
+                bus.$emit('current-status',this.item.status)
+              
+            },
+            deleteItem: function(){ //删除内容
+                //发射到父组件进行删除
+                this.$emit('deleteitem',this.item);
+            },
+            editItem: function($event){
+                console.log('双击');
+                this.isEdit = true;
+                //聚焦
+                $($event.target).removeAttr("readOnly");;
+                $($event.target).focus();
+                
+            },
+            updateItem: function($event){
+               
+                var i = this.item;
+                i.msg = $event.target.value;
+                // console.log(i)
+                this.$emit('update',[this.item, i]);
+                $($event.target).attr("readonly",'true');
+                
+            }
+        }
+    }
+
+    //创建vue实例
+    let vm = new Vue({
+        el: '#main-box',
+        data: {
+            items: [],
+            count: 0,
+            isActive: 0
+        },
+        components: {
+            'input-component': inputComponent,
+            'item-component': itemComponent
+        },
+        methods: {
+            gotMsg: function(val){
+                var id = 1;
+                if(this.items.length != 0){
+                    id = this.items[this.items.length-1].id + 1;
+                }
+               
+                //把内容添加到
+                this.items.push({id: id,msg: val, status: false });
+                this.count += 1;
+            },
+            gotCount: function(val){
+                var sum = 0;
+                this.items.forEach(el=>{
+                    if(!el.status){
+                        sum++;
+                    }
+                });
+                // console.log(sum)
+                this.count = sum;
+            },
+            deleteItem: function(item){ //删除
+                this.items.splice(this.items.indexOf(item),1);
+                if(!item.status){
+                    this.count -= 1;
+                }
+               
+            },
+            switchTag: function(index){ //切换显示
+                this.isActive = index;
+               
+            },
+            updateItem: function(val){
+               
+            //    console.log(this.items.indexOf(val[0]));
+               this.items.splice(this.items.indexOf(val[0]),1 ,val[1]);
+            }
+        }
+    })
+
+</script>

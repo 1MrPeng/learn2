@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onbeforeunload = onbeforeunload_handler;
+	window.onunload = onunload_handler;
+
+	function onbeforeunload_handler() {
+		var warning1 = "确认退出?";
+		// alert(warning1);
+		return warning1;
+	}
+
+	function onunload_handler() {
+		var warning2 = "谢谢光临";
+		alert(warning2);
+		return warning1;
+	}
+</script>

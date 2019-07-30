@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" />
+		<button type="button">开始计数</button>
+		<button type="button">停止</button>
+		<p></p>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		
+		var aBtn = document.querySelectorAll('button');
+		var oP = document.querySelector('p');
+		
+		aBtn[0].onclick = function(){
+			var val = document.querySelector('input').value;
+			if(val.trim()){
+				//请工人
+				var worker = new Worker('js/worker.js');
+				//分配任务
+				worker.postMessage(val);
+				//验收成果
+				worker.onmessage = function(ev){
+					var num = ev.data;
+					oP.innerHTML = num;
+				}
+				
+				
+				//主线程计数不受worker影响
+				function count(){
+					val++;
+					console.log(val);
+					setTimeout(count,2000);
+				}
+				count();
+				
+				aBtn[1].onclick = function(){
+					
+					worker.terminate();	//(解雇工人),不影响主线程计数
+				}
+			}else{
+				alert('请输入内容')
+			}
+		}
+		
+	}
+</script>

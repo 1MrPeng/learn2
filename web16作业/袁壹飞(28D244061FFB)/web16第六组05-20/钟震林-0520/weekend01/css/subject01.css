@@ -1,0 +1,74 @@
+html,body,header,footer,div,dl,dt,ul,li{margin: 0; padding: 0;}
+ul,li{list-style: none;}
+#app{
+    margin: 80px auto;
+}
+.child1{
+    width: 600px;
+    height: 160px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.child1 div span{
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    margin-left: 170px;
+}
+.child1 div input{
+    height: 25px;
+}
+.child1 div button{
+    margin-left: 270px;
+}
+.child2{
+    width: 600px;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+.child2 dl{
+    width: 600px;
+    height: 40px;
+    background: blueviolet;
+    display: flex;
+    align-items: center;
+}
+.child2 dl dt{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid black;
+}
+.child2 ul li{
+    width: 600px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.child2 ul li div{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid black;
+}
+.child2 ul li div span{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px auto;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .top{
+            width: 100%;
+            height: 50px;
+            background: #313132;
+            color: white;
+            line-height: 40px;
+            text-align: center;
+        }
+        .tnt{
+            width: 350px;
+            height: 300px;
+            background: #44ABFE;
+            margin-left: 200px;
+            margin-top: 10px;
+            color: white;
+
+        }
+        span{
+            width: 60px;
+            height: 50px;;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        ul{
+            margin-top: 40px;
+            margin-left: 60px;
+        }
+        li{
+            font-size: 20px;
+            height: 50px;
+            line-height: 50px;
+        }
+        .right{
+            height: 400px;
+            margin-top: -300px;
+            margin-left: 600px;
+        }
+        .right div{
+            height: 400px;
+            display: none;
+        }
+        img{
+            height: 100%;
+        }
+        .active_li{
+				background-color: #333333;
+		}
+        div.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="top">
+            H5 history api history
+        </div>
+        <div class="tnt">
+            <span style="font-size: 30px"><b>NAV</b></span>
+            <ul class="left" type="none">
+                <li class="active_li"> &nbsp;&nbsp;&nbsp;&nbsp;美女</li>
+                <li> &nbsp;&nbsp;&nbsp;&nbsp;香车</li>
+                <li> &nbsp;&nbsp;&nbsp;&nbsp;电脑</li>
+                <li> &nbsp;&nbsp;&nbsp;&nbsp;风景</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="active"><img src="../池峰day5/meinv.jpg"></div>
+            <div><img src="../池峰day5/xiangche.jpg"></div>
+            <div><img src="../池峰day5/diannao.jpg"></div>
+            <div><img src="../池峰day5/fengjing.jpg"></div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var oLi = document.getElementsByTagName("li");
+            var oTnt = document.getElementsByClassName("tnt")[0];
+            var oDiv = document.querySelectorAll(".right div")
+            var ind = 0;
+
+            for(var i=0; i<oLi.length; i++){
+				oLi[i].aa = i;		
+				oLi[i].onclick = function(){
+                    resetCSS();
+
+                    this.className = "active_li";
+					oDiv[this.aa].className = "active";
+					ind = this.aa;
+
+            function resetCSS(){
+			    for(var j=0; j<oLi.length; j++){
+		    	    oLi[j].className = "";
+                    oDiv[j].className = "";
+					    }
+				    }
+                }
+            }
+		}
+    </script>
+</body>
+</html>

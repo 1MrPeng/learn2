@@ -1,0 +1,202 @@
+#itemCat {
+  min-width: 1226px;
+  width: 100%;
+  min-height: 350px;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: orange;
+  padding-top: 65px; }
+  #itemCat .empty-cat {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #itemCat .empty-cat div {
+      margin-left: 50px; }
+      #itemCat .empty-cat div p:nth-of-type(1) {
+        font-size: 36px;
+        color: #b0b0b0;
+        margin-bottom: 20px;
+        font-weight: bold; }
+      #itemCat .empty-cat div p:nth-of-type(2) {
+        font-size: 20px;
+        color: #b0b0b0;
+        margin-bottom: 20px; }
+      #itemCat .empty-cat div p:nth-of-type(3) button {
+        width: 172px;
+        height: 50px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: orange;
+        text-align: center;
+        line-height: 50px;
+        color: orangered;
+        background-color: white;
+        cursor: pointer;
+        outline: none; }
+        #itemCat .empty-cat div p:nth-of-type(3) button:nth-of-type(1) {
+          background-color: orange;
+          color: white; }
+  #itemCat .full-cat {
+    width: 1226px;
+    margin: auto; }
+    #itemCat .full-cat .active {
+      color: #ff6700;
+      font-size: 18px; }
+    #itemCat .full-cat .cat-title {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      list-style: none;
+      background-color: white; }
+      #itemCat .full-cat .cat-title li {
+        height: 100%;
+        line-height: 70px; }
+        #itemCat .full-cat .cat-title li:nth-of-type(1) {
+          width: 110px; }
+          #itemCat .full-cat .cat-title li:nth-of-type(1) span {
+            margin: 0 15px 0 25px; }
+        #itemCat .full-cat .cat-title li:nth-of-type(2) {
+          width: 120px; }
+        #itemCat .full-cat .cat-title li:nth-of-type(3) {
+          width: 380px; }
+        #itemCat .full-cat .cat-title li:nth-of-type(4) {
+          width: 140px;
+          margin-right: 18px;
+          text-align: center; }
+        #itemCat .full-cat .cat-title li:nth-of-type(5) {
+          width: 150px;
+          text-align: center; }
+        #itemCat .full-cat .cat-title li:nth-of-type(6) {
+          width: 120px;
+          padding-right: 81px;
+          text-align: end; }
+        #itemCat .full-cat .cat-title li:nth-of-type(7) {
+          width: 80px;
+          text-align: center; }
+    #itemCat .full-cat .cat-items {
+      width: 100%;
+      height: 86px;
+      padding: 15px 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      list-style: none;
+      border-top: 1px solid #e0e0e0;
+      background-color: white; }
+      #itemCat .full-cat .cat-items li {
+        height: 100%;
+        line-height: 86px; }
+        #itemCat .full-cat .cat-items li:nth-of-type(1) {
+          width: 110px; }
+          #itemCat .full-cat .cat-items li:nth-of-type(1) span {
+            margin: 0 15px 0 25px; }
+        #itemCat .full-cat .cat-items li:nth-of-type(2) {
+          width: 120px; }
+          #itemCat .full-cat .cat-items li:nth-of-type(2) img {
+            width: 80px;
+            height: 80px; }
+        #itemCat .full-cat .cat-items li:nth-of-type(3) {
+          width: 380px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden; }
+        #itemCat .full-cat .cat-items li:nth-of-type(4) {
+          width: 140px;
+          margin-right: 18px;
+          text-align: center; }
+        #itemCat .full-cat .cat-items li:nth-of-type(5) {
+          width: 150px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          user-select: none; }
+          #itemCat .full-cat .cat-items li:nth-of-type(5) p {
+            width: 150px;
+            height: 38px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+            #itemCat .full-cat .cat-items li:nth-of-type(5) p span {
+              display: inline-block;
+              height: 38px;
+              line-height: 38px;
+              cursor: pointer; }
+              #itemCat .full-cat .cat-items li:nth-of-type(5) p span:nth-of-type(1) {
+                width: 38px; }
+                #itemCat .full-cat .cat-items li:nth-of-type(5) p span:nth-of-type(1):hover {
+                  background: #ccc; }
+              #itemCat .full-cat .cat-items li:nth-of-type(5) p span:nth-of-type(2) {
+                width: 72px; }
+              #itemCat .full-cat .cat-items li:nth-of-type(5) p span:nth-of-type(3) {
+                width: 38px; }
+                #itemCat .full-cat .cat-items li:nth-of-type(5) p span:nth-of-type(3):hover {
+                  background: #ccc; }
+        #itemCat .full-cat .cat-items li:nth-of-type(6) {
+          width: 120px;
+          padding-right: 81px;
+          text-align: end;
+          color: #ff6700; }
+        #itemCat .full-cat .cat-items li:nth-of-type(7) {
+          width: 80px;
+          text-align: center; }
+          #itemCat .full-cat .cat-items li:nth-of-type(7) span:hover {
+            color: orange;
+            cursor: pointer; }
+    #itemCat .full-cat .cat-footer {
+      width: 100%;
+      height: 50px;
+      margin-top: 20px;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      #itemCat .full-cat .cat-footer p {
+        color: #757575;
+        font-size: 14px;
+        display: flex;
+        align-items: center; }
+        #itemCat .full-cat .cat-footer p:nth-of-type(1) {
+          width: 282px;
+          height: 100%; }
+          #itemCat .full-cat .cat-footer p:nth-of-type(1) a {
+            margin-left: 32px;
+            cursor: pointer; }
+            #itemCat .full-cat .cat-footer p:nth-of-type(1) a:hover {
+              color: orangered; }
+          #itemCat .full-cat .cat-footer p:nth-of-type(1) label {
+            margin-left: 16px;
+            padding-left: 16px; }
+            #itemCat .full-cat .cat-footer p:nth-of-type(1) label span {
+              color: orangered; }
+        #itemCat .full-cat .cat-footer p:nth-of-type(2) {
+          width: 390px;
+          height: 100%; }
+          #itemCat .full-cat .cat-footer p:nth-of-type(2) > span {
+            display: inline-block;
+            height: 100%;
+            width: 200px;
+            border: 1px solid #ff6700;
+            background: #ff6700;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            line-height: 50px;
+            margin-left: 50px;
+            cursor: pointer; }
+          #itemCat .full-cat .cat-footer p:nth-of-type(2) label {
+            color: #ff6700;
+            padding-left: 11px;
+            min-width: 137px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end; }
+            #itemCat .full-cat .cat-footer p:nth-of-type(2) label span {
+              font-size: 30px; }
+
+/*# sourceMappingURL=itemCat.css.map */

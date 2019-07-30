@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: white;
+			}
+			#warp{
+				width: 500px;
+				height: 500px;
+				margin: 0 auto;
+			}
+			.zuobiao{
+				width: 500px;
+				height: 80px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 30px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<canvas id="mycanvas" width="500" height="500">
+				您的浏览器不支持canvas
+			</canvas>
+		</div>
+		<div class="zuobiao">
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var canvas = document.querySelector('canvas');
+		var oDiv = document.querySelector('.zuobiao');
+		var ctx = canvas.getContext('2d');
+		//画猫
+		huamao();
+		
+		//canvas 文字
+		ctx.font = '40px 楷体';
+		
+		//获取字体的宽度(实现文字居中)
+		var txtWidth = ctx.measureText('冷小沫出品：叮当猫.jpg');
+		
+		// 创建渐变色
+		var txtColor = ctx.createLinearGradient(200,0,400,0);
+		
+		// 设置渐变点
+		txtColor.addColorStop(0,"hotpink");
+		txtColor.addColorStop(0.5,"red");
+		txtColor.addColorStop(1,"lightblue");
+		
+		ctx.fillStyle = txtColor;
+		ctx.strokeStyle = txtColor;
+		
+		// 设置阴影
+		ctx.shadowOffsetX = 5;	//X轴偏移量
+		ctx.shadowOffsetY = 5;	//Y轴偏移量
+		ctx.shadowBlur = 10;	//高斯模糊程度
+		ctx.shadowColor = "#ccc";	//阴影颜色
+		ctx.fillText("冷小沫出品：叮当猫.jpg", 20, 450);
+		// ctx.strokeText("今天真热", (canvas.offsetWidth-txtWidth)/2, 200);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		function huamao(){
+			ctx.lineWidth = 2;
+			//头
+			ctx.beginPath();
+			// ctx.save();
+			ctx.ellipse(250,110,100,90,0*Math.PI/180,360*Math.PI/180,false)
+			ctx.arc(250,110,90,0*Math.PI/180,360*Math.PI/180);
+			ctx.fillStyle = '#13AFEC';
+			huizhi();
+			ctx.closePath();
+			
+			//脸
+			ctx.beginPath();
+			ctx.fillStyle = 'white'
+			ctx.moveTo(319,126)
+			ctx.ellipse(250,130,75,65,0*Math.PI/180,360*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			
+			//眼睛
+			ctx.beginPath();
+			ctx.moveTo(228,77)
+			ctx.ellipse(228,77,21,25,0*Math.PI/180,360*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo(270,77)
+			ctx.ellipse(270,77,21,25,0*Math.PI/180,360*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			//眼球
+			ctx.beginPath();
+			ctx.moveTo(239,80)
+			ctx.arc(239,76,3,0*Math.PI/180,360*Math.PI/180);
+			ctx.fillStyle = 'black';
+			huizhi();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo(258,80)
+			ctx.arc(258,76,3,0*Math.PI/180,360*Math.PI/180);
+			ctx.fillStyle = 'black';
+			huizhi();
+			ctx.closePath();
+			//鼻子
+			ctx.beginPath();
+			ctx.moveTo(249,102)
+			ctx.arc(249,102,8,0*Math.PI/180,360*Math.PI/180);
+			ctx.fillStyle = '#DC3910';
+			huizhi();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo(249,109)
+			ctx.lineTo(249,156)
+			huizhi();
+			ctx.closePath();
+			//嘴巴
+			ctx.beginPath();
+			ctx.moveTo(280,141)
+			ctx.arc(249,110,47,45*Math.PI/180,135*Math.PI/180,false);
+			ctx.stroke();
+			ctx.closePath();
+			
+			
+			//手
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = 'black'
+			ctx.moveTo(184,178)
+			ctx.lineTo(144,217);
+			ctx.stroke();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = 'black'
+			ctx.moveTo(318,178)
+			ctx.lineTo(368,217);
+			ctx.stroke();
+			ctx.closePath()
+			
+			
+			ctx.beginPath();
+			ctx.moveTo(152,236);
+			ctx.arc(132,236,20,0*Math.PI/180,360*Math.PI/180);
+			ctx.stroke()
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.arc(375,236,20,0*Math.PI/180,360*Math.PI/180);
+			ctx.stroke()
+			ctx.closePath();
+			
+			//身体
+			ctx.beginPath();
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = 'black'
+			ctx.fillStyle = '#13AFEC'
+			ctx.moveTo(184,178)
+			ctx.fillRect(184,182,134,140);
+			ctx.strokeRect(184,182,134,140);
+			ctx.closePath();
+			
+			//围巾
+			ctx.beginPath();
+			ctx.lineWidth = 15;
+			ctx.strokeStyle = '#DC3910';
+			ctx.lineCap = 'round';
+			ctx.moveTo(190,190)
+			ctx.lineTo(310,190)
+			ctx.stroke();
+			ctx.closePath();
+			
+			//裆部
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'white';
+			ctx.ellipse(249,320,5,5,340*Math.PI/180,180*Math.PI/180,true)
+			ctx.stroke();
+			ctx.fill();
+			ctx.closePath();
+			
+			//脚
+			ctx.beginPath();
+			ctx.lineWidth = 1.5;
+			ctx.lineJoin = 'round';
+			ctx.strokeStyle = 'black';
+			ctx.strokeRect(173,322,70,20)
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.lineWidth = 1.5;
+			ctx.lineJoin = 'round';
+			ctx.strokeStyle = 'black';
+			ctx.strokeRect(254,322,70,20)
+			ctx.closePath();
+			
+			//口袋
+			ctx.beginPath();
+			ctx.lineWidth = 1.5;
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'white';
+			ctx.arc(250,244,60,310*Math.PI/180,230*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'white';
+			ctx.moveTo(209,244);
+			ctx.arc(250,244,40,0*Math.PI/180,180*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			
+			//铃铛
+			ctx.beginPath();
+			ctx.lineWidth = 2;
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = '#F6EC66';
+			ctx.arc(250,197,10,0*Math.PI/180,360*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.lineWidth = 1.5;
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'black';
+			ctx.moveTo(250,207)
+			ctx.arc(250,200,2,0*Math.PI/180,360*Math.PI/180,false);
+			huizhi();
+			ctx.closePath();
+		}
+		function huizhi(){
+			ctx.stroke();
+			ctx.fill();
+		}
+		canvas.onmousedown = function(ev){
+			var ev = ev || window.event;
+			var x = ev.pageX - canvas.offsetLeft;
+			var y = ev.pageY -  canvas.offsetTop;
+			oDiv.innerHTML = 'X轴：'+x+',   Y轴:'+y;
+			ctx.save()
+			ctx.beginPath();
+			ctx.moveTo(x,y);
+			document.onmousemove = function(ev){
+				var ev = ev || window.event;
+				var MX = ev.pageX - canvas.offsetLeft;
+				var MY = ev.pageY - canvas.offsetTop;
+				ctx.lineTo(MX,MY);
+				ctx.stroke();
+			}
+			document.onmouseup = function(){
+				ctx.closePath();
+				document.onmousemove = null;
+			}
+			ctx.restore();
+		}
+	}
+</script>

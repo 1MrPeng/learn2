@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/iconfont.css"/>
+    <title>02文字转移</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .content_box{
+            width: 800px;
+            height: 600px;
+            background: #eee;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .content_left,
+        .content_right{
+            display: inline-block;
+            width: 350px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .content_left{
+            background-color: white;
+            border: 5px black solid;
+        }
+        .content_left pre,
+        .content_right pre{
+            background-color: white;
+            border: 3px pink solid;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            color:  pink;
+            line-height: 1.5;
+            font-size: 18px;
+        }
+        .content_right{
+            background-color: yellow;
+            /* border: 5px black solid; */
+        }
+        .jiantou{
+            display: inline-block;
+         
+            font-size: 90px;
+            color: pink;
+        }
+        .content_right .content_right_pre{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="content_box">
+        <div class="content_left">
+        <pre class="content_left_p">
+大城市落户政策大变化!
+这些城市不用积分和社保
+这三地的政法委书记有个共同点
+2019养老金中央调剂：
+广东等7省贡献最大 辽宁等22省最受益
+和陈佩斯想退出春晚被“请吃饭”留下
+朱时茂追忆黄一鹤：
+百度获科技冬奥专项
+“高精地图唯一承担单位”
+        </pre>
+        </div>
+        <span class="jiantou iconfont icon-iconset0438"></span>
+        <div class="content_right">
+            <pre class="content_right_pre"></pre>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    window.onload = function(){
+        //获取元素
+        var content_left_p = document.getElementsByClassName('content_left_p')[0];
+        var content_right_pre = document.getElementsByClassName('content_right_pre')[0];
+        var move_btn = document.getElementsByClassName('jiantou')[0];
+        //设置初始化的内容
+        // content_left_p.innerHTML = '大城市落户政策大变化!<br>这些城市不用积分和社保<br>这三地的政法委书记有个共同点<br>2019养老金中央调剂：<br>广东等7省贡献最大 辽宁等22省最受益<br>朱时茂追忆黄一鹤：<br>和陈佩斯想退出春晚被“请吃饭”留下<br>百度获科技冬奥专项<br>“高精地图唯一承担单位”'
+
+        var timer = null;
+        //定义一个标记
+        var btn_state = false;
+        //给移动按钮绑定点击事件
+        move_btn.onclick = function(){
+            //判断是否正在转移文字
+            if(btn_state){
+                // console.log('zd')
+                return;
+            }
+            //清楚定时器
+            clearInterval(timer);
+            btn_state = !btn_state;
+            timer = setInterval(doMove,100);
+            
+
+        }
+        //具体的功能方法
+        function doMove(){
+            //截取左边的文本
+            var text = content_left_p.innerHTML.substring(0,1);
+            content_left_p.innerHTML = content_left_p.innerHTML.substring(1);
+            // console.log('=&'+text+"&=");
+            //转移到右边
+            content_right_pre.innerHTML += text;
+            if(text == ''){
+                clearInterval(timer)
+            }
+
+        }
+
+    }
+</script>

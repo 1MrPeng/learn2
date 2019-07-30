@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>围圈圈报数</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html,body,.main_box{
+				width: 100%;
+				height: 100%;
+				background: green;
+			}
+			.main_box{
+				position: relative;
+			}
+			button{
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				border-style: solid;
+				background: gold;
+				position: absolute;
+				top: 5px;
+				left: 150px;
+			}
+			.count{
+				width: 100px;
+				height: 30px;
+				position: absolute;
+				top: 10px;
+				left: 25px;
+			}
+			ul{
+				list-style: none;
+				display: flex;
+				padding: 50px 20px;
+				flex-wrap: wrap;
+			}
+			li{
+				width: 40px;
+				height: 40px;
+				background: gold;
+				border-radius: 50%;
+				margin: 5px;	
+				line-height: 40px;
+				text-align: center;
+			}
+			.taotai_ul{
+				
+			}
+			ul>li:nth-child(1){
+				width: 100%;
+				border-radius: 0;
+				line-height: 40px;
+				padding-left: 20px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="main_box">
+			
+			<input type="text" class="count" value="10" placeholder="请输入人数"/>
+			
+			<ul class="taotai_ul">
+				<li>淘汰的人</li>
+				
+			</ul>
+			<ul class="end">
+				<li>最后剩下的人</li>
+			</ul>
+			
+			<button type="button">点击开始</button>
+			
+		</div>
+	</body>
+</html>
+
+<script>
+	
+	//页面完成加载
+	window.onload = function(){
+		//获取元素
+		var oCount = document.querySelector('.count');
+		var startBtn = document.querySelector('button');
+		var taotai_ul = document.getElementsByClassName('taotai_ul')[0];
+		var end = document.getElementsByClassName('end')[0];
+		
+		
+		
+		//给开始按钮绑定点击时间
+		startBtn.onclick = function(){
+			//初始化页面
+			taotai_ul.innerHTML = '<li>淘汰的人</li>';
+			end.innerHTML = '<li>最后剩下的人</li>';
+			
+			//获取人数
+			var sum = Number(oCount.value.trim());
+			if(!sum||sum<10){
+				alert('游戏的人数至少10人！');
+				oCount.value = 10;
+				return;
+			}
+			
+			//创建一个数组
+			var arr = new Array();
+			for(var i = 1;i<=sum;i++){
+				arr.push(i);
+			}
+			
+			//定义一个状态
+			var state = true;
+			var index = 1;
+			
+			while(state){
+				var len = arr.length;
+				for(var i = 0;i<len;i++){
+				
+					if(index == 3){
+						//把出局的元素替换为false
+						taotai_ul.innerHTML += '<li>'+arr[i]+'</li>';
+						arr.splice(i,1,false);
+						index = 1; //重置索引
+					}else{
+						index ++;
+					}
+				}
+				
+				//把所有的false元素删除
+				for(var i = 0;i<len;i++){
+					if(!arr[i]){
+						//删除值为false的元素
+						arr.splice(i,1);		
+					}
+				}
+				
+				if(arr.length == 1){
+					state = false;//游戏结束
+				}
+				
+			}
+			
+			console.log(arr);
+			end.innerHTML += '<li style="color:white;background:#009688;">'+arr[0]+'</li>';
+			
+			
+		}
+		
+	}
+	
+</script>

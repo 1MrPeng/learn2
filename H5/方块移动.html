@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{
+				background: #eee;
+			}
+			canvas{
+				background: white;
+			}
+		</style>
+	</head>
+	<body>
+		<p>点击让它移动，再点击让它停止</p>
+		<canvas id="canvas" width="500" height="500">
+			您的浏览器不支持canvas
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	$(function(){
+		var timer;
+		//创建画布
+		var ctx = $('canvas')[0].getContext('2d');
+		//定义样式
+		ctx.fillStyle = 'red';
+		
+		//绘制矩形
+		var x = 0;
+		var y = 0;
+		ctx.fillRect(x,y,100,100);
+		
+		//设置定时器
+		var bol =true;
+		$('canvas').on('click',function(){
+			if(bol){
+				clearInterval(timer);
+				timer = setInterval(moveRect,1)
+			}else{
+				clearInterval(timer);
+			}
+			bol = !bol;
+		})
+		function moveRect(){
+			ctx.clearRect(0,0,$('canvas').width(),$('canvas').height())
+			if(x<$('canvas').width()-100 && y==0){
+				x++;
+			}else if(x == $('canvas').width()-100 && y<$('canvas').height()-100){
+				y++;
+			}else if(y == $('canvas').height()-100 && x>0){
+				x--;
+			}else{
+				y--;
+			}
+			ctx.fillRect(x,y,100,100);
+		 }
+	})
+</script>

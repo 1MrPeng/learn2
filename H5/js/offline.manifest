@@ -1,0 +1,9 @@
+CACHE MANIFEST
+CACHE:
+	#注释: 需要缓存的内容
+	https://www.baidu.com/img/dong_962301698d83dc26fa8e7b38011d1705.gif
+NETWORK:
+	#注释: 无论是否有缓存,均需要从网络获取
+	https://i1.mifile.cn/a1/pms_1550642182.7527088!220x220.jpg
+FALLBACK:
+	叮当猫.jpg

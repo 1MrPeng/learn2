@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #item{
+            display: flex;
+            position: relative;
+        }
+        #box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+        #buttn{
+            width: 100px;
+            height: 50px;
+        }
+        #spa{
+            position: absolute;
+            top: 50px;
+            left: 240px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 30px;
+            width: 80px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="item">
+        <textarea name="" id="texts" cols="30" rows="10"></textarea>
+        <button id="buttn">把文字右移</button>
+        <span id="spa"></span>
+        <div id="box"></div>
+    </div>
+    <script>
+        window.onload = function(){
+            var text = document.getElementById("texts");
+            var btn = document.getElementById("buttn");
+            var spas = document.getElementById("spa");
+            var boxs = document.getElementById("box");
+            var timer = null;
+            
+            btn.onclick = function(){
+                var otext = text.value;
+                var obox = otext.length;
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    if(text.value.trim()!=""){
+                        boxs.innerHTML += text.value.charAt(0);
+                        text.value = text.value.substring(1);
+                        var res = text.value.length;
+                        spas.innerHTML = res+"/"+obox;
+                    }else{
+                        clearInterval(timer);
+                        btn.disabled = true;
+                    }
+                },100)
+            }
+        }
+    </script>
+</body>
+</html>

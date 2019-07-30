@@ -1,0 +1,27 @@
+header{
+	width: 75%;
+	height: 15%;
+	background: skyblue;
+	position: absolute;
+	left: 25%;
+	top: 0;
+}
+nav{
+	width: 20%;
+	height: 100vh;
+	background: #00388B;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#content{
+	width: 75%;
+	height: 80%;
+	background: #0070B4;
+	position: absolute;
+	left: 25%;
+	top: 20%;
+}
+#right{
+	display: none;
+}

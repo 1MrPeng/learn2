@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			html,body,ul,p{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			ul{
+				width: 450px;
+			}
+			li{
+				display: flex;
+				justify-content: space-around;
+			}
+			.sum{
+				width: 450px;
+				display: flex;
+				justify-content: space-around;
+			}
+			#container{
+				width: 450px;
+				margin: 100px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<ul>
+				<li>
+					<input type="checkbox" name="liCheck" id="" value="" />
+					<button type="button" class="decrease" disabled="disabled">-</button>
+					<p>
+						<span class="piece">0</span>件
+					</p>
+					<button type="button" class="increase">+</button>
+					<p>
+						<span class="price">10</span>元
+					</p>
+					<p>
+						小计:
+						<input class="smallPrice" type="text" name="" id="" value="0" disabled="disabled" />
+					</p>
+				</li>
+				<li>
+					<input type="checkbox" name="liCheck" id="" value="" />
+					<button type="button" class="decrease" disabled="disabled">-</button>
+					<p>
+						<span class="piece">0</span>件
+					</p>
+					<button type="button" class="increase">+</button>
+					<p>
+						<span class="price">20</span>元
+					</p>
+					<p>
+						小计:
+						<input class="smallPrice" type="text" name="" id="" value="0" disabled="disabled" />
+					</p>
+				</li>
+				<li>
+					<input type="checkbox" name="liCheck" id="" value="" />
+					<button type="button" class="decrease" disabled="disabled">-</button>
+					<p>
+						<span class="piece">0</span>件
+					</p>
+					<button type="button" class="increase">+</button>
+					<p>
+						<span class="price">30</span>元
+					</p>
+					<p>
+						小计:
+						<input class="smallPrice" type="text" name="" id="" value="0" disabled="disabled" />
+					</p>
+				</li>
+				<li>
+					<input type="checkbox" name="liCheck" id="" value="" />
+					<button type="button" class="decrease" disabled="disabled">-</button>
+					<p>
+						<span class="piece">0</span>件
+					</p>
+					<button type="button" class="increase">+</button>
+					<p>
+						<span class="price">40</span>元
+					</p>
+					<p>
+						小计:
+						<input class="smallPrice" type="text" name="" id="" value="0" disabled="disabled" />
+					</p>
+				</li>
+				<li>
+					<input type="checkbox" name="liCheck" id="" value="" />
+					<button type="button" class="decrease" disabled="disabled">-</button>
+					<p>
+						<span class="piece">0</span>件
+					</p>
+					<button type="button" class="increase">+</button>
+					<p>
+						<span class="price">50</span>元
+					</p>
+					<p>
+						小计:
+						<input class="smallPrice" type="text" name="" id="" value="0" disabled="disabled" />
+					</p>
+				</li>
+			</ul>
+			<div class="sum">
+				<label>
+					<input type="checkbox" name="" id="checkAll" value="" />
+					全选
+				</label>
+				<p>
+					商品总计:
+					<span id="totalCount">0</span>
+				</p>
+				<p>
+					商品总价:
+					<span id="totalPrice">0</span>
+				</p>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			// 1.页面加载后执行
+			window.onload = function(){
+				
+				// 2.获取元素
+				var liCheck = document.getElementsByName("liCheck");	//li里面的复选框
+				var decrease = document.getElementsByClassName("decrease");	//减号
+				var piece = document.getElementsByClassName("piece");	//件数
+				var increase = document.getElementsByClassName("increase");	//加号
+				var price = document.getElementsByClassName("price");	//单价
+				var smallPrice = document.getElementsByClassName("smallPrice");	//小计
+				var checkAll = document.getElementById("checkAll");	//全选复选框
+				var totalCount = document.getElementById("totalCount");	//总计
+				var totalPrice = document.getElementById("totalPrice");	//总价
+				
+				// 3.加减按钮
+				for(var i=0; i<decrease.length; i++){
+					// 4.另存下标
+					decrease[i].index = i;
+					increase[i].index = i;
+					liCheck[i].index = i;
+					// 5.减号的点击事件
+					decrease[i].onclick = function(){
+						// 5-1.判断件数是否大于0
+						if(piece[this.index].innerHTML <= 1){
+							this.disabled = true;	//当件数小于等于0时, 将减号按钮禁用
+						}
+						// 5-1-1.当前件数-1
+						piece[this.index].innerHTML--;
+						// 5-1-2.计算小计
+						smallPrice[this.index].value = Number(smallPrice[this.index].value) - Number(price[this.index].innerHTML); 
+						// 6-4.如果当前条目是被选中状态, 则需要将该商品计入总计和总价
+						if(liCheck[this.index].checked){	//选中
+							totalCount.innerHTML--;
+							totalPrice.innerHTML = Number(totalPrice.innerHTML) - Number(price[this.index].innerHTML);
+						}
+					}
+					// 6.加号的点击事件
+					increase[i].onclick = function(){	
+						// 6-1.将对应的减号解禁
+						decrease[this.index].disabled = false;
+						// 6-2.当前件数+1
+						piece[this.index].innerHTML++;
+						// 6-3.计算小计
+						smallPrice[this.index].value = Number(smallPrice[this.index].value) + Number(price[this.index].innerHTML); 
+						// 6-4.如果当前条目是被选中状态, 则需要将该商品计入总计和总价
+						if(liCheck[this.index].checked){	//选中
+							totalCount.innerHTML++;
+							totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(price[this.index].innerHTML);
+						}
+					}
+					// 7.复选框的状态改变事件
+					var count = 0;	//存储选中个数
+					liCheck[i].onchange = function(){
+						// 7-1.判断是否选中	
+						if(this.checked){	//选中状态
+							count++;
+							totalCount.innerHTML = Number(totalCount.innerHTML) + Number(piece[this.index].innerHTML);	//总计加当前件数
+							totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(smallPrice[this.index].value);	//总计加当前件数
+							// 7-1-1. 判断选中个数是否与复选框个数一致
+						}else{	//取消选中状态
+							count--;
+							totalCount.innerHTML = Number(totalCount.innerHTML) - Number(piece[this.index].innerHTML);	//总计加当前件数
+							totalPrice.innerHTML = Number(totalPrice.innerHTML) - Number(smallPrice[this.index].value);	//总计加当前件数
+						}
+						count == liCheck.length? checkAll.checked = true: checkAll.checked = false;
+					}
+				}
+				
+				// 8.全选复选框
+				checkAll.onchange = function(){
+					totalCount.innerHTML = 0;	//总计置为0
+					totalPrice.innerHTML = 0;	//总价置为0
+					for(var j=0; j<liCheck.length; j++){
+						// 8-1. 将li里面的复选框与全选状态保持一致
+						liCheck[j].checked = this.checked;	
+						// 8-2. 判断是否全选
+						if(this.checked){
+							count = liCheck.length; 
+							totalCount.innerHTML = Number(totalCount.innerHTML) + Number(piece[j].innerHTML);
+							totalPrice.innerHTML = Number(totalPrice.innerHTML) + Number(smallPrice[j].value);
+						}else{
+							count = 0;
+						}
+					}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

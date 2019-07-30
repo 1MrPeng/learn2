@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业一</title>
+		<style>
+			html,body,ul,li{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			h3{
+				text-align: center;
+			}
+			@media only screen and (min-width: 780px) {
+				ul>li:nth-child(3){
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					justify-content: space-between;
+				}
+				li:nth-child(3)>div{
+					width: 50%;
+					height: 300px;
+					background-color: gray;
+				}
+				li:nth-child(3)>div:nth-child(2){
+					text-align: center;
+				}
+				.div{
+					width: 1440px;
+					height: 100px;
+					background-color: blue;
+					color: white;
+					text-align: center;
+				}
+			}
+			@media only screen and (max-width: 780px) {
+				.div{
+					width: 1440px;
+					height: 100px;
+					background-color: blue;
+					color: white;
+				}
+				ul>li{
+					display: flex;
+					flex-direction: column;
+				}
+				li:nth-child(3)>div:nth-child(1){
+					background-color: gray;
+				}
+				h3{
+					text-align: center;
+				}
+				img{
+					width: 80%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<div class="div">
+					<h1>世界名犬</h1>
+				</div>
+			</li>
+			<li>
+				<img src="../img/jww1.jpeg" />
+			</li>
+			<li>
+				<div>
+					<h3>吉娃娃的介绍</h3>
+						吉娃娃是目前人们所知道的最古老的犬种之一，原产去美洲，和墨西哥的古老文明有<br />
+					深厚而密切的关系，吉娃娃是属于的犬种最小型、优雅、警惕、动作迅速，以匀称<br />
+					的体格和娇小的体型广受人们的喜爱。他们是相当受欢迎的狗狗，功用也非常广泛<br />
+					他们是宗教的守护者，也是平民的好伴侣。上至贵族下至百姓，不分等级，不分<br  />
+					贵贱，吉娃娃是大家的好朋友。它不喜欢外来的同品种狗，有和梗类相似的特<br />
+					点。精力充沛.。体型较小，适合家养。
+				</div>
+				<div>
+					<h3>吉娃娃</h3>
+					<img src="../img/small.jpg" />
+				</div>
+			</li>
+		</ul>
+	</body>
+</html>

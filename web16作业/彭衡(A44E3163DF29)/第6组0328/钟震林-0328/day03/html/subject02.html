@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业二</title>
+		<style>
+			#p1{
+				width: 14px;
+				height: 14px;
+				background: url("../img/paiban.gif") no-repeat -10px -31px;
+			}
+			#p2{
+				width: 13px;
+				height: 15px;
+				background: url("../img/paiban.gif") no-repeat -72px -64px;
+			}
+			#p3{
+				width: 12px;
+				height: 13px;
+				background: url("../img/paiban.gif") no-repeat -113px -31px;
+			}
+			#p4{
+				width: 13px;
+				height: 13px;
+				background: url("../img/paiban.gif") no-repeat -195px -31px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<form>
+				<table border="1" cellspacing="0px" cellpadding="10px">
+					<tr>
+						<td colspan="12">
+							出诊时间：
+							<input type="date" name="date" value="请选择" />
+							<input type="time" name="time" value="请选择" />
+							门诊类型：
+							<select>
+								<option selected="selected">请选择</option>
+								<option>眼科</option>
+								<option>神经内科</option>
+								<option>耳鼻咽喉科</option>
+							</select>
+							<input type="button" name="button" value="查询" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="12">
+							<p id="p1"></p>普通门诊<p id="p2"></p>专家门诊<p id="p3"></p>特需门诊<p id="p4"></p>夜间门诊
+						</td>
+					</tr>
+					<tr valign="center">
+						<th>医生姓名</th>
+						<th>所在科室</th>
+						<th>擅长</th>
+						<th></th>
+						<th>一</th>
+						<th>二</th>
+						<th>三</th>
+						<th>四</th>
+						<th>五</th>
+						<th>六</th>
+						<th>日</th>
+						<th>联系医生</th>
+					</tr>
+					<tr>
+						<td rowspan="3">马雯 副主任医师</td>
+						<td rowspan="3">眼科</td>
+						<td rowspan="3">视神经、视网膜、脉络膜疾</td>
+						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td rowspan="3">刘运良 其它</td>
+						<td rowspan="3">神经内科</td>
+						<td rowspan="3">临床神经病学脑血管病的</td>
+						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td rowspan="3">蒋剑 主治医生</td>
+						<td rowspan="3">眼科</td>
+						<td rowspan="3"></td>
+						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td rowspan="3"></td>
+						<td>上</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>下</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>晚</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>

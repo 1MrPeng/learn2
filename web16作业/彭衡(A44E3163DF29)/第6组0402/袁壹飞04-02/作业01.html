@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第一个作业</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main_box{
+            margin-bottom: 30px;
+        }
+        ul li{
+            list-style: none;
+        }
+
+        /* 780px以上的效果图 */
+    
+        @media only screen and (min-width:780px){
+            #main_box{
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                /* margin-bottom: 30px; */
+            }
+            .nav_img{
+               display: none;
+            }
+            #main_box .top_box{
+                width: 100%;
+                background-color: #348bec;
+                color: white;
+                height: 130px;
+                display: flex;
+                align-items: center;
+               
+                justify-content: center;
+            }
+            #main_box .top_box p{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #main_box .top_box p:first-child{
+                font-size: 40px;
+                font-weight: bold;
+            }
+            #main_box .top_box p:last-child{
+                font-size: 18px;
+                color: #ccc;
+            }
+            /* 导航栏样式 */
+            #main_box .nav li{
+                height: 90px; 
+                line-height: 90px;
+                cursor: pointer;
+            }
+            #main_box .nav {
+                display: flex;
+                justify-content: center;
+            }
+            #main_box .nav ul{
+                width: 550px;
+                display: flex;
+                justify-content: space-between;
+            }
+            /* 幻灯片的样式 */
+            #main_box .banner_img{
+                text-align: center;
+                margin: 25px 0;
+            }
+            #main_box .banner_img img{
+              width: 90%;
+            }
+
+            /* 小狗描述信息 */
+            .content{
+                width: 90%;
+                display: flex;
+                height: 100%;
+                justify-content: space-between;
+                color: #999;
+            }
+
+            .content .content_left{
+                width: 70%;
+                height: 320px;
+                background-color: #eee;
+                overflow: auto;
+            }
+      
+            .content  .p_top{
+                font-weight: bold;
+                font-size: 30px;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+
+            }
+            .content .content_left p:last-child{
+                padding: 30px 20px;
+                font-size: 20px;
+               
+            }
+
+            .content .content_right{
+                width: 27%;
+                height: 320px;
+                background-color: #eee;
+            }
+            .content .content_right {
+              
+                text-align: center;
+            }
+            .content .content_right img {
+                width: 90%;
+          }
+            footer{
+                width: 100%;
+                border-top: 1px #eee solid;
+                margin-top: 20px;
+                padding-top: 20px;
+                color: #999;
+                font-weight: bold;
+                font-size: 16px;
+                text-align: center;
+              
+            }
+            .nav_min{
+                display: none;
+            }
+
+        }
+        
+
+        /* 780px以下的效果 */
+        @media only screen and (max-width: 780px){
+            #main_box{
+                position: relative;
+               
+            }
+            #main_box .top_box{
+                height: 106px;
+                background-color: #348bec;
+                padding-left: 30px;
+                position: relative;
+            }
+            #main_box .top_box p:first-child{
+                color: white;
+                font-size: 25px;
+                padding-top: 35px;
+            }
+            #main_box .top_box p:last-child{
+                font-size: 12px;
+                color: #ccc;
+            }
+
+            .nav_img{
+                position: absolute;
+                top: 40px;
+                right: -10px;
+                border-bottom: 10px solid transparent;
+            }
+            /* 导航栏 */
+            .nav{
+                display: none;
+            }
+            .nav_min{
+                width: 120px;
+                position: absolute;
+                background-color: #eee;
+                cursor: pointer;
+                text-align: center;
+                top: 85px;
+                right: 0;
+                display: none;
+            }
+            .nav_img:hover + .nav_min{
+                display: block;
+            }
+             .nav_min:hover{
+                display: block;
+            }
+            .nav_min li{
+                padding: 5px 0;
+            }
+            .nav_min li:hover{
+               background: #999;
+            }
+
+            /*幻灯片  */
+            .banner_img{
+                margin: 5px 0;
+                
+            }
+            .banner_img img{
+                width: 100%;
+            }
+
+            .content .content_left{
+                width: 100%;
+                height: 320px;
+              
+                color: #999;
+                background-color: #eee;
+                overflow: auto;
+            }
+            .content  .p_top{
+                font-weight: bold;
+                font-size: 25px;
+                text-align: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+
+            }
+
+            .content .content_right{
+                width: 100%;
+                height: 510px;
+                color: #999;
+                background-color: #eee;
+                margin-top: 5px;
+                text-align: center;
+            }
+            .content .content_right img{
+                width: 95%;
+
+            }
+            footer{
+                position: absolute;
+                color: #ccc;
+                left: 50%;
+                bottom: 225px;
+                font-size: 12px;
+                margin-left: -60px;
+            }
+
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+    <div id="main_box">
+        <!-- 头部 -->
+        <div class="top_box">
+            <div>
+                    <p>世界名犬</p>
+                    <p>世界名犬集合</p>
+            </div>
+            <img class="nav_img" src="./img/素材/nav.png">
+                 <div class="nav_min">
+                    <ul>
+                        <li>吉娃娃</li>
+                        <li>德国牧羊犬</li>
+                        <li>中国藏獒</li>
+                        <li>哈士奇</li>
+                        <li>贵宾犬</li>
+                    </ul>
+                </div>
+        </div>
+        <!-- 导航栏 -->
+        <div class="nav">
+            <ul>
+                <li>吉娃娃</li>
+                <li>德国牧羊犬</li>
+                <li>中国藏獒</li>
+                <li>哈士奇</li>
+                <li>贵宾犬</li>
+            </ul>
+        </div>
+        <!--幻灯片  -->
+        <div class="banner_img">
+            <img  src="./img/素材/jww1.jpeg"  alt="小狗的幻灯片" title="很好看的小狗">
+        </div>
+
+        <!-- 小狗描述 -->
+        <div class="content">
+            <div class="content_left">
+                <p class="p_top">
+                    吉娃娃介绍
+                </p>
+                <p >
+                        吉娃娃是目前人们所知道的最古老的犬种之一，原产于美洲，和墨西哥的古老文明有深厚而密切的关系。吉娃娃属于小型犬种里最小型，优雅、警惕、动作迅速，以匀称的体格和娇小的体型广受人们的喜爱。他们是相当受欢迎的狗狗，功用也相当广泛。它们可以是宗教的守护者，也是平民的好伴侣，上至贵族下至百姓，不分等级不分贵贱，吉娃娃是大家的好朋友。它不喜欢外来的同品种的狗狗。有和梗类相似的特点。精力充沛。体型娇小，适合家养。
+                </p>
+            </div>
+            <div class="content_right">
+                <p class="p_top">
+                    吉娃娃
+                </p>
+                <img src="./img/素材/small.jpg" alt="吉娃娃的图片" title="好可爱哦">
+            </div>
+        </div>
+        
+        <footer >
+                &copy;Copyright 狗狗乐园
+        </footer>
+
+    </div>
+
+ 
+    <!-- <img src="img/780以上效果.png"> -->
+</body>
+</html>

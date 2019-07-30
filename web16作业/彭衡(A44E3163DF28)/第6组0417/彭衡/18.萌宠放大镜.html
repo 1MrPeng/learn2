@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.smallimg{
+				width: 260px;
+				height: 168px;
+				position: relative;
+			}
+			.smallimg span{
+				display: inline-block;
+				width: 60px;
+				height: 60px;
+				background-color: rgb(0,0,0,.2);
+				z-index: 2;
+				position: absolute;
+				display: none;
+			}
+			.bigimg{
+				width: 150px;
+				height: 150px;
+				overflow: hidden;
+				position: absolute;
+				top: 8px;
+				left: 275px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="smallimg">
+			<img src="../img/萨摩耶.jpg" width="260px" >
+			<span></span>
+		</div>
+		<div class="bigimg">
+			<img src="../img/萨摩耶.jpg">
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oSmall = document.querySelector('.smallimg');
+				var span = document.querySelector('.smallimg span');
+				var oBig = document.querySelector('.bigimg');
+				var img = document.querySelector('.bigimg img');
+				//鼠标移入oSmall时span出现,oBig出现
+				
+				oSmall.onmousemove = function(ev){
+					span.style.display = 'block';
+					oBig.style.display = 'block'
+					var ev = ev || window.event;
+					var mouseX = ev.pageX-span.offsetWidth/2;
+					var mouseY = ev.pageY-span.offsetHeight/2;
+					span.style.cssText += 'left: '+mouseX+'px;top: '+mouseY+'px;'
+					// console.log(span.offsetLeft)
+					if(span.offsetLeft<0){
+						mouseX=0;	
+					}else if(span.offsetLeft>oSmall.offsetWidth-span.offsetWidth){
+						mouseX=oSmall.offsetWidth-span.offsetWidth;
+					}
+					if(span.offsetTop<0){
+						mouseY=0;	
+					}else if(span.offsetTop>oSmall.offsetHeight-span.offsetHeight){
+						mouseY=oSmall.offsetHeight-span.offsetHeight;	
+					}
+					span.style.cssText += 'left: '+mouseX+'px;top: '+mouseY+'px;'	
+					//计算比例
+					var pX = span.offsetLeft/(span.offsetWidth-oSmall.offsetWidth);
+					var pY = span.offsetTop/(span.offsetHeight-oSmall.offsetHeight);
+					//设置img的位置
+					img.style.cssText = "position: absolute;left:"+-pX*(oBig.offsetWidth-img.offsetWidth)+"px;top:"+-pY*(oBig.offsetHeight-img.offsetHeight)+"px"
+				}
+				oSmall.onmouseout = function(){
+					span.style.display = 'none';
+					oBig.style.display = 'none'
+				}
+			}
+		</script>
+	</body>
+</html>

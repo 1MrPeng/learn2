@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>网易邮箱注册</title>
+		<meta name="viewport" content="width=device-width initial-scale=1 user-scalable=no" />
+		<style>
+			html,body,div,span,ul,li,input,p,img,button{margin: 0; padding: 0;}
+			ul,li{list-style: none;}
+			body{
+				position: relative;
+				background-color: rgba(0, 0, 0, .2);
+			}
+			.container{
+				width: 560px;
+				height: 600px;
+				background-color: white;
+				position: fixed;
+				top: 50%;
+				margin-top: -300px;
+				left: 50%;
+				margin-left: -280px;
+			}
+			.title{
+				height: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 10px 0;
+			}
+			.title>span{
+				display: inline-block;
+				width: 150px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background-color: #F5F5F5;
+				border: 1px solid black;
+				margin: 0 1px;
+			}
+			.active_box>div{
+				width: 100%;
+				height: 100%;
+				display: none;
+			}
+			.active ul{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+			.active ul li{
+				width: 450px;
+				height: 60px;
+				display: flex;
+				align-items: center;
+			}
+			.active ul li input{
+				height: 30px;
+				border-radius: 5px;
+			}
+			.active ul li button:nth-child(1){
+				width: 140px;
+				height: 50;
+				background-color: #F3F3F3;
+				border-radius: 5px;
+			}
+			.active ul li button:nth-child(2){
+				width: 100px;
+				height: 50;
+				background-color: #53AD3F;
+				border-radius: 5px;
+			}
+			.title .active_span{
+				background-color: #2A72BC;
+				color: white;
+			}
+			.active_box .active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="title">
+				<span class="active_span">注册字母邮箱</span>
+				<span>注册手机号码邮箱</span>
+				<span>注册VIP邮箱</span>
+			</div>
+			<div class="active_box">
+				<div class="active">
+					<ul>
+						<li>
+							<span>*邮箱地址</span>
+							<input type="text" placeholder=""/> @
+							 <select size="1">
+								<option>163.com</option>
+								<option>qq.com</option>
+								<option>186.com</option>
+							</select>
+						</li>
+						<li>
+							<span>*密码</span>
+							<input type="text" placeholder=""/>
+						</li>
+						<li>
+							<span>*确认密码</span>
+							<input type="text" placeholder=""/>
+						</li>
+						<li>
+							<span>*手机号码</span>
+							<input type="text" placeholder=""/>
+						</li>
+						<li>
+							<span>*验证码</span>
+							<input type="text" placeholder=""/>
+							<p>
+								<img />
+								<span>看不清楚？换张图片</span>
+							</p>
+						</li>
+						<li>
+							<button>免费获取验证码</button>
+						</li>
+						<li>
+							<span>*短信验证码</span>
+							<input type="text" placeholder=""/>
+						</li>
+						<li>
+							<label><input type="checkbox" placeholder=""/>同意”服务条款“和”隐私权相关政策“</label>
+						</li>
+						<li>
+							<button>立即注册</button>
+						</li>
+					</ul>
+				</div>
+				<div>111</div>
+				<div>222</div>
+			</div>
+		</div>
+		
+		<script>
+			window.onload = function(){
+				
+				var oTitel = document.querySelector(".title");
+				var aSpan = oTitel.querySelectorAll("span");
+				var oActivebox = document.querySelector(".active_box");
+				var aActiveboxDiv = oActivebox.querySelectorAll(".active_box>div");
+				var aInput = document.querySelectorAll("input");
+				var aBtn = document.querySelectorAll("button");
+				
+				for (var i = 0; i < aSpan.length; i++) {
+					
+					aSpan[i].index = i;
+					
+					aSpan[i].onclick = function(){
+						
+						setCSS();
+						
+						getCSS(this.index);
+					}
+				}
+				aBtn[1].onclick = function(){
+					
+					for (var x = 0; x < aInput.length; x++) {
+					
+						aInput[x].ind = x;
+					
+						aInput[x].onfocus =function(){
+							
+							if (this.ind == 0) {
+								
+								var res1 = /[1~9]/ig;
+							} else if (this.ind == 1){
+								
+							} else if (this.ind == 2) {
+								
+							} else if (this.ind == 3) {
+								
+							} else if (this.ind == 4){
+								
+							} else {
+								
+							}
+						}
+					}
+				}
+				
+				function setCSS(){
+					
+					for (var j=0; j < aSpan.length; j++) {
+						
+						aSpan[j].className = "";
+						aActiveboxDiv[j].className = "";
+					}
+				}
+				
+				function getCSS(flag){
+					
+					aSpan[flag].className = "active_span";
+					aActiveboxDiv[flag].className = "active";
+				}
+			}
+		</script>
+	</body>
+</html>

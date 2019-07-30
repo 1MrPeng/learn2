@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{
+				padding-top: 20px;	
+			}
+			ul li{list-style: none;}
+			.warp{
+				height: 450px;
+				font-size: 12px;
+				background: #f1f2f4;
+				position: relative;
+			}
+			.warp,#footer{
+				width: 810px;
+				margin: 0 auto;	
+			}
+			#footer{
+				height: 50px;
+				line-height: 50px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0 10px;
+				box-sizing: border-box;
+			}
+			table{
+				border: 0.5px solid #cdcdcd;
+			}
+			table tr td{
+				text-align: center;
+				height: 35px;
+				width: 100px;
+				line-height: 35px;
+				border: 0.5px solid #cdcdcd;
+			}
+			table tr span:hover{
+				cursor: pointer;
+				text-decoration: underline;
+			}
+			#tr1{
+				background: #81a7e8;
+				color: white;
+				font-size: 16px;
+			}
+			.left button{
+				padding: 5px 10px;
+				border: none;
+				background: #6dccde;
+				border-radius: 5px;
+			}
+			.right span{
+				font-size: 14px;
+				background: pink;
+				padding: 5px 10px;
+				border-radius: 5px;
+			}
+			.show{
+				width: 300px;
+				height: 300px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				z-index: 2;
+				background: lightblue;
+				border-radius: 10px;
+				display: none;
+			}
+			.data{
+				display: flex;
+				flex-flow: column;
+				width: 80%;
+				margin: 0 auto;
+				margin-top: 20px;
+			}
+			.but{
+				display: flex;
+				width: 80%;
+				justify-content: space-around;
+				margin: 0 auto;
+			}
+			.data p{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 20px;
+			}
+			.data p input{
+				border-radius: 5px;
+				border: none;
+				outline: none;
+				height: 20px;
+				padding-left: 5px;
+			}
+			.but button{
+				padding: 5px 10px;
+			}
+			.active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="warp">
+			<table border="1" cellspacing="0" cellpadding="0">
+				<tr id="tr1">
+					<td>
+						<input type="checkbox" name="checkbox"/>
+					</td>
+					<td>展项ID</td>
+					<td>名称</td>
+					<td>所处楼层</td>
+					<td>所处位置</td>
+					<td>所属展区</td>
+					<td>更多</td>
+					<td>操作</td>
+				</tr>
+				<!-- <tr>
+					<td>
+						<input type="checkbox" name="checkbox"/>
+					</td>
+					<td>item-01</td>
+					<td>大门ee</td>
+					<td>3</td>
+					<td>100，300</td>
+					<td>zone-OB</td>
+					<td>查看更多</td>
+					<td><span>编辑</span> <span>删除</span></td>
+				</tr> -->
+			</table>
+			<div class="show">
+				<div class="data">
+					<p>展项ID：<input type="text"/></p>
+					<p>名称：<input type="text"/></p>
+					<p>所处楼层：<input type="text"/></p>
+					<p>所处位置：<input type="text"/></p>
+					<p>所属展区：<input type="text"/></p>
+				</div>
+				<div class="but">
+					<button type="button">确定</button>
+					<button type="button">取消</button>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="left">
+				<input type="checkbox" name="checkbox" />
+				<button type="button">批量删除</button>
+				<button type="button">新增</button>
+			</div>
+			<div class="right">
+				<span>首页</span>
+				<span>上一页</span>
+				<span>1</span>
+				<span>2</span>
+				<span>3</span>
+				<span>下一页</span>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var table = document.querySelectorAll('.warp>table')[0];
+				var data = document.querySelectorAll('.data p input');
+				var btn = document.querySelectorAll('.left>button')[1];
+				var show = document.getElementsByClassName('show')[0];
+				var but = document.querySelectorAll('.but>button');
+				
+				//绑定新增的点击事件
+				btn.onclick = function(){
+					show.className += ' active';
+				}
+				//绑定取消点击事件
+				but[1].onclick = function(){
+					show.className = 'show';
+				}
+				//绑定确定点击事件
+				but[0].onclick = function(){
+					
+					table.innerHTML +='<tr><td><input type="checkbox" name="checkbox"/></td><td>'+data[0].value+'</td><td>'+data[1].value+'</td><td>'+data[2].value+'</td><td>'+data[3].value+'</td><td>'+data[4].value+'</td><td>查看更多</td><td><span>编辑</span> <span>删除</span></td></tr>';
+					show.className = 'show';
+					var del = document.querySelectorAll('table tr span');
+					
+					//绑定删除点击事件
+					for(i=1;i<del.length;i+=2){
+						del[i].onclick = function(){
+							table.removeChild(this.parentNode.parentNode.parentNode);
+						}
+					}
+					//清空输入框
+					for(j=0;j<data.length;j++){
+						
+						data[j].value = '';
+					}
+					//绑定编辑事件
+				}
+				
+				
+				
+			}
+		</script>
+		
+	</body>
+</html>

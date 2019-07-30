@@ -1,0 +1,145 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+html,body{
+	height: 100%;
+	background: wheat;
+	min-width: 800px;
+}
+.box{
+	margin: 20px auto;
+	width: 800px;
+	height: 500px;
+	background: url(../img/bg.jpg) no-repeat center;
+	position:  relative;
+}
+canvas{
+	background: white;
+	border-radius: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
+	border: none;
+}
+.tools_box{
+	width: 500px;
+	height: 50px;
+	background: #bdbd2a;
+	position: absolute;
+	left: 20px;
+	bottom: 30px;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	
+}
+.tools_box p{
+	width: 50px;
+	background: #c0d6ff;
+	border-radius: 10px;
+	margin-left: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+.tools_box p:nth-of-type(1) span,
+.tools_box p:nth-of-type(2) span{
+	font-size: 30px;
+	height: 50px;
+	line-height: 50px;
+	color: orangered;
+}
+.tools_box p:nth-of-type(1) span{
+	color: orange;
+}
+.tools_box p input{
+	margin-top: 10px;
+}
+.tools_box p:nth-of-type(3){
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.tools_box p:nth-of-type(3) span{
+	display: inline-block;
+	width: 80%;
+	border-radius: 10px;
+	height: 5px;
+	background: black;
+}
+.tools_box p:nth-of-type(5) span,
+.tools_box p:nth-of-type(6) span{
+	display: inline-block;
+	height: 50px;
+	font-size: 25px;
+	line-height: 50px;
+	color: #ff5722;
+}
+
+.tools_box p:nth-of-type(3) span:nth-of-type(1){
+	height: 2px;
+}
+.tools_box p:nth-of-type(3) span:nth-of-type(2){
+	height: 4px;
+}
+.tools_box p:nth-of-type(3) span:nth-of-type(3){
+	height: 7px;
+}
+/*激活的样式*/
+.tools_box p.active{
+	background: wheat;
+}
+/*橡皮擦的样式*/
+.clearP{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 30px;
+	top: 50px;
+	border-radius: 20px;
+	background: bisque;
+	cursor: pointer;
+	display: none;
+}
+.clearP span{
+	font-size: 30px;
+	color: orange;
+}
+
+/*粗细选择*/
+.cuxi_box{
+	position: absolute;
+	left: 220px;
+	bottom: 77px;
+	width: 50px;
+	height: 70px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: lightblue;
+	display: none;
+}
+.cuxi_box span{
+	display: inline-block;
+	height: 5px;
+	width: 90%;
+	background:black;
+	cursor: pointer;
+}
+.cuxi_box span:nth-of-type(1){
+	height: 2px;
+}
+.cuxi_box span:nth-of-type(2){
+	height: 4px;
+}
+.cuxi_box span:nth-of-type(3){
+	height: 7px;
+}
+.img_box{
+	position: absolute;
+	right: 10px;
+	bottom: 80px;
+	padding: 10px;
+	background: wheat;
+}

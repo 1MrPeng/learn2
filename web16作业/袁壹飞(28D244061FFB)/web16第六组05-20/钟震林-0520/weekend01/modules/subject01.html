@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加数据表</title>
+    <link rel="stylesheet" href="../css/subject01.css">
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child1></child1>
+        <child2></child2>
+    </div>
+    <template id="one">
+        <header class="child1">
+                <div>
+                    <span>Name：</span>
+                    <input type="text" placeholder="请输入用户名" v-model="nameVal" autofocus="true" required="true" >
+                </div>
+                <div>
+                    <span>Age：</span>
+                    <input type="number" placeholder="请输入年龄" v-model="ageVal" autofocus="true" required="true" >
+                </div>
+                <div>
+                    <span>Sex：</span>
+                    <input type="radio" id="nan" name="gander" value="男" v-model="sexVal"><label for="nan">男</label>
+                    <input type="radio" id="nv" name="gander" value="女" v-model="sexVal"><label for="nv">女</label>
+                </div>
+                <div>
+                    <button @click="create">Create</button>
+                </div>
+            </header>
+    </template>
+    <template id="two">
+        <footer class="child2">
+                <div class="list">
+                    <dl>
+                        <dt>Name</dt>
+                        <dt>Age</dt>
+                        <dt>Sex</dt>
+                        <dt>Delete</dt>
+                    </dl>
+                </div>
+                <div class="container">
+                    <ul>
+                        <li v-for="itme in list1">
+                            <div>{{itme.nameVal}}</div>
+                            <div>{{itme.ageVal}}</div>
+                            <div>{{itme.sexVal}}</div>
+                            <div>
+                                <span>delete</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+    </template>
+    <script>
+        var bus = new Vue();
+
+        var child1 = {
+            template: "#one",
+            data: function(){
+                return {
+                    nameVal: "",
+                    ageVal: "",
+                    sexVal: "",
+                    list: []
+                }
+            },
+            methods: {
+                create: function(){
+                    var userdata = {nameVal: this.nameVal, ageVal: this.ageVal, sexVal: this.sexVal};
+                    this.list.push(userdata);
+                    this.nameVal = this.ageVal = this.sexVal = "";
+                    bus.$emit("create", userdata);
+                }
+            }
+        };
+
+        var child2 = {
+            template: "#two",
+            data: function(){
+                return {
+                    list1: [
+                        {nameVal:"天麟", ageVal:"23", sexVal:"男"},
+                        {nameVal:"玲珑", ageVal:"20", sexVal:"女"},
+                        {nameVal:"星魂", ageVal:"20", sexVal:"男"}
+                    ]
+                }
+            },
+            methods: {
+                delete: function(nameVal){
+                    this.list.each((itme, i)=>{
+                        if (itme.nameVal == nameVal) {
+                            this.list.splice(i, 1);
+                            return true;
+                        }
+                    });
+                    bus.$emit("delete");
+                }
+            },
+            mounted: function(){
+                bus.$on("create", val=>{
+                    this.list1.push(val);
+                });
+                bus.$on("delete", val=>{
+                    this.list.splice(val, 1);
+                })
+            }
+        };
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                
+            },
+            components: {child1,child2}
+        })
+    </script>
+</body>
+</html>

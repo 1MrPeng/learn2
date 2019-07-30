@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="k" value="">
+    <input type="text" class="g" value="">
+    <button id="dian">点击我</button>
+    <div id="hezi"></div> 
+        <script>
+          /*1、输入宽高，求矩形的面积函数
+             */ 
+            
+            var aInput= document.getElementsByTagName("input");
+             var oBtn =document.getElementById("dian");
+             var open =document.getElementById("hezi");
+              oBtn.onclick=function(){
+                  var value1= aInput[0].value;
+                  var value2= aInput[1].value;
+                  var value3=Number(value1)*Number(value2);
+                  open.innerHTML= value3;
+              } 
+              
+        </script>
+       
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"/>
+		<button type="button" value="">获取验证码</button>
+		<span></span>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var input = document.getElementsByTagName('input')[0];
+		var obtn = document.getElementsByTagName('button')[0];
+		var time = document.getElementsByTagName('span')[0];
+		var int;
+		var i=60;
+		obtn.onclick = function(){
+			window.clearInterval(int);
+			this.disabled = true;
+			 i=60;
+			function timer(){		
+					time.innerHTML = i+'s';
+					// window.clearInterval(int);
+					i--;
+					if(i<0){
+						window.clearTimeout(int);
+						obtn.disabled = false;
+						time.innerHTML = '';
+						obtn.innerHTML = '重新发送'
+					}	
+					int = setTimeout(timer,1000);
+			}	
+			timer();
+		}
+		
+	}
+</script>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单练习</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			form {
+				
+				margin: 0 auto;
+				padding: 20px 0 10px;
+			}
+			ul {
+				list-style: none;
+				width: 410px;
+				margin: 0 auto;
+				margin-bottom: 20px;
+			}
+			form button {
+				width: 136px;
+				height: 34px;
+				line-height: 34px;
+				/*border:1px solid black;*/
+			}
+			form .btn_blue {
+				background: #3179c3;
+				color: white;
+				border-color: #3179c3;
+			}
+			span {
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+			table {
+				width: 600px;
+				margin: 0 auto;
+			}
+			.zx {
+				font-size: 12px;
+				color: #999999;
+			}
+			.left {
+				width: 350px;
+				vertical-align: top;
+				text-align: right;
+				
+			}
+			.right {
+				width: 500px;
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			.longinput {
+				width: 300px;
+			}
+			.tdleft {
+				float: left;
+				display: inline-block;
+			}
+			.tdright {
+				float: left;
+			}
+			a {
+				text-decoration: none;
+				font-size: 12px;
+			}
+			.radio {
+				font-size: 12px;
+			}
+			.submit {
+				background: #5db348;
+				border-color: #5db348;
+			}
+			.star {
+				color: red;
+			}
+			.emailinp {
+				width: 202px;
+			}
+		</style>
+	</head>
+	<body>
+		<form method="">
+			<ul>
+				<li>
+					
+					<button type="button" class="btn_blue">注册字母邮箱</button><button type="button">注册手机号码邮箱</button><button type="button">注册VIP邮箱</button>
+				</li>
+			</ul>
+			
+			<table cellspacing="0">
+				<tr>
+					<td class="left"><span class="star">*</span>邮件地址</td>
+					<td class="right">
+						<input type="text" name="email" class="emailinp" />@
+						<select>
+							<option value ="">163.com</option>
+							<option value ="">139.com</option>
+						</select><br>
+						<span class="zx">6~18个字符，可使用字母、数字、下划线，需以字母开头</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>密码</td>
+					<td class="right">
+						<input type="password" class="longinput"><br>
+						<span class="zx">6~16个字符，区分大小写</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>确认密码</td>
+					<td class="right">
+						<input type="password" class="longinput"><br>
+						<span class="zx">请再次输入密码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>手机号码</td>
+					<td class="right">
+						<input type="tel" name="phone" class="longinput" /><br>
+						<span class="zx">忘记密码时，可使用该手机号码快速找回密码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>验证码</td>
+					<td class="right" class="clearfix">
+						<div class="tdleft">
+							<input type="text"><br>
+							<span class="zx">请填写图片中的字符，不区分大小写</span>
+						</div>
+						<div class="tdright">
+							<img src="./yzm.png" ><br>
+							<a href="javascript:void(0);">看不清，换一张</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right"><button type="button">免费获取验证码</button></td>
+				</tr>
+				<tr>
+					<td class="left"><span class="star">*</span>短信验证码</td>
+					<td class="right">
+						<input type="text" class="longinput"><br>
+						<span class="zx">请查收手机短信，并填写短信中的验证码</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right radio">
+						<input type="checkbox">同意“服务条款”和“隐私相关政策”
+					</td>
+				</tr>
+				<tr>
+					<td class="left"></td>
+					<td class="right">
+						<button type="submit" class="submit" >立即注册</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+<script>
+	
+	//页面完成加载
+	window.onload = function(){
+		//获取元素
+		var oEmail = document.querySelector('input[name="email"]');
+		var oPwd = document.querySelector('input[type="password"]');
+		var oPhone = document.querySelector('input[name="phone"]');
+		var msg = document.getElementsByClassName('zx');
+		
+		//绑定事件
+		oEmail.onblur = function(){
+			//得到输入的邮箱内容
+			var email = oEmail.value.trim();
+			if(!email){
+				//提示输入的内容不能为空
+				msg[0].innerHTML = '<font style="color:red;">请输入邮箱</font>';
+				//得到焦点
+				oEmail.focus();
+			}else{
+				//判断输入的邮箱是否合法  6~18个字符，可使用字母、数字、下划线，需以字母开头
+				var emailRel = /^[a-zA-Z]\w{5,17}$/ig;
+				if(!emailRel.test(email)){
+					//提示错误信息
+					msg[0].innerHTML = '<font style="color:red;">6~18个字符，可使用字母、数字、下划线，需以字母开头</font>';
+					//得到焦点
+					oEmail.focus();
+				}else{
+					msg[0].innerHTML = '<font style="color:green;">该邮箱格式合法！</font>';
+				}
+				
+			}	
+		}
+		
+		//给密码输入框绑定事件
+		oPwd.onblur = function(){
+			//得到输入的密码
+			var pwd = oPwd.value.trim();
+			if(!pwd){
+				//提示输入的内容不能为空
+				msg[1].innerHTML = '<font style="color:red;">请输入密码</font>';
+				oPwd.focus();
+				
+			}else{
+				//验证输入的密码是否合法 6~16个字符，区分大小写
+				var pwdRel = /^\w{6,16}$/;
+				if(!pwdRel.test(pwd)){
+					//提示密码有误
+					//提示输入的内容不能为空
+					msg[1].innerHTML = '<font style="color:red;">输入密码 6~16个字符，区分大小写</font>';
+					oPwd.focus();
+				}else{
+					msg[1].innerHTML = '<font style="color:green;">密码合法</font>';
+				}
+				
+			}
+		}
+		
+		//手机号验证
+		oPhone.onblur = function(){
+			//得到输入的手机号
+			var phone = oPhone.value.trim();
+			if(!phone){
+				//提示输入手机号
+				msg[3].innerHTML = '<font style="color: red;">请输入手机号码!</font>';
+				oPhone.focus();
+			}else{
+				//手机号码a验证
+				var phoneRel = /^1[3|4|5|6|7|8|9]\d{9}$/;
+				if(!phoneRel.test(phone)){
+					//提示手机号码不合法
+					msg[3].innerHTML = '<font style="color: red;">输入的手机号码不合法!</font>';
+					oPhone.focus();
+				}else{
+					msg[3].innerHTML = '<font style="color: green;">手机号码合法!</font>';
+				}
+			}
+			
+		}
+		
+		
+	}
+	
+</script>

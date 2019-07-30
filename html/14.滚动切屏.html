@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			div:nth-of-type(1) {
+				background: pink;
+				font-size: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: white;
+			}
+
+			div:nth-of-type(2) {
+				background: mediumpurple;
+				font-size: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: white;
+			}
+
+			div:nth-of-type(3) {
+				background: lightgrey;
+				font-size: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: white;
+			}
+
+			div:nth-of-type(4) {
+				background: lightseagreen;
+				font-size: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: white;
+			}
+
+			div:nth-of-type(5) {
+				background: lightblue;
+				font-size: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				color: white;
+			}
+
+			#dots {
+				display: flex;
+				flex-flow: column;
+				justify-content: space-between;
+				position: fixed;
+				right: 0;
+				top: 50%;
+				margin-top: -150px;
+				height: 200px;
+			}
+
+			#dots span {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background: white;
+			}
+
+			#dots .active_span {
+				background: deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div id="dots">
+			<span class="active_span"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function() {
+		var aSpan = document.querySelectorAll('#dots span');
+		var aDiv = document.querySelectorAll('div');
+		//绑定点击切屏事件开始
+		for (i = 0; i < aSpan.length; i++) {
+			aSpan[i].index = i;
+			aSpan[i].onclick = function() {
+				setScrollY(window.innerHeight * this.index);
+				for (i = 0; i < aSpan.length; i++) {
+					aSpan[i].className = '';
+				}
+				aSpan[this.index].classList.add('active_span')
+			}
+		}
+		//绑定点击切屏事件结束
+		
+		
+		//绑定滚动切屏事件开始
+		window.onscroll = function(){
+			// console.log(aDiv[0].getBoundingClientRect().bottom)
+			for(i=0;i<aDiv.length-1;i++){
+				window.index = i;
+				if(aDiv[0].getBoundingClientRect().bottom > window.innerHeight/2){
+					resetCss();
+					aSpan[0].classList.add('active_span');
+				}else if(aDiv[this.index].getBoundingClientRect().bottom < window.innerHeight/2){
+					resetCss();
+					aSpan[this.index+1].classList.add('active_span');
+				}
+			}
+		}
+		//绑定滚动切屏事件结束
+		
+
+		function setScrollY(num) {
+			document.documentElement.scrollTop = document.body.scrollTop = num;
+		}
+
+		function getScrollY() {
+			return window.pageYOffset || document.documentElement.scrollTop;
+		}
+		function resetCss(){
+			for (j = 0; j < aSpan.length; j++) {
+				aSpan[j].className = '';
+			}
+		}
+	}
+</script>

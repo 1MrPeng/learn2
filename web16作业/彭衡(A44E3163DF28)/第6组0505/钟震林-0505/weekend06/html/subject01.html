@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟</title>
+		<style>
+			.active{
+				width: 388px;
+				height: 388px;
+				background: url("../img/clock.jpg") no-repeat;
+				position: relative;
+				margin: 150px auto;
+			}
+			.hour img{
+				display: inline-block;
+				width: 13px;
+				height: 110px;
+				position: absolute;
+				top: 116px;
+				left: 186px;
+				animation: 21599s go infinite linear;
+			}
+			.minute img{
+				display: inline-block;
+				width: 10px;
+				height: 150px;
+				position: absolute;
+				top: 82px;
+				left: 188px;
+				animation: 3599s go infinite linear;
+			}
+			.second img{
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				top: 65px;
+				left: 92px;
+				animation: 60s go infinite linear;
+			}
+			@keyframes go{
+				0%{
+					transform: rotateZ(0);
+				}
+				100%{
+					transform: rotateZ(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="active">
+			<span class="hour">
+				<img src="../img/hour.gif" />
+			</span>
+			<span class="minute">
+				<img src="../img/minute.gif" />
+			</span>
+			<span class="second">
+				<img src="../img/second.gif" />
+			</span>
+		</div>
+	</body>
+</html>

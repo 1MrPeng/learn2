@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作业01</title>
+</head>
+<body>
+
+    <!-- 请矩形的面积 -->
+    <input type="text" name="juxin" placeholder="请输入矩形的高">
+    <input type="text" name="juxin" placeholder="请输入矩形的宽">
+    <button type="button" name="juxin_btn">求矩形面积</button>
+    <br>
+
+    <input type="text" class="yuan_input" placeholder="请输入圆的半径">
+    <button type="button" class="yuan_btn">求圆的面积</button>
+
+    <br>
+
+   <input type="text" name="max_input" placeholder="请输入第一个值">
+    <input type="text" name="max_input" placeholder="请输入第二个值">
+    <input type="text" name="max_input" placeholder="请输入第三个值">
+    <button type="button" class="max_btn">求最大数,最小数</button>
+
+    <br>
+
+    <input type="text" class="juedui_input" placeholder="请输入圆的半径">
+    <button type="button" class="juedui_btn">求绝对值</button>
+
+    <script>
+        /*
+            1.输入宽高,求矩形面积函数
+
+            2.输入半径,求圆的面积函数(3.14)
+
+            3.输入三个数,求最大数,最小数的函数
+
+            4.输入一个数,求绝对值函数
+            
+        */    
+
+        // ===============请矩形的面积============
+        //得到矩形的宽高和
+        var juxin_inputs = document.getElementsByName('juxin');
+        document.getElementsByName('juxin_btn')[0].onclick = function(){
+            var juxin_gao = Number(juxin_inputs[0].value);
+            var juxin_kuan = Number(juxin_inputs[1].value);
+            if(isNaN(juxin_gao)|| isNaN(juxin_kuan)){
+                alert("请输入合法的数据！");
+                return;
+            }
+            console.log("矩形面积="+juxin_gao*juxin_kuan);
+
+        }
+
+        //=================求圆的面积函数(3.14)===
+        var yuan_input = document.getElementsByClassName('yuan_input')[0];
+        document.getElementsByClassName('yuan_btn')[0].onclick = function(){
+            var r = Number(yuan_input.value);
+            if(!r){
+                alert('请输入合法的数据')
+                return;
+            }
+            
+            console.log('圆的面积 = '+Math.PI*Math.pow(r,2));
+
+        }
+        //=================求最大数,最小数===
+        var max_inputs = document.getElementsByName('max_input');
+        document.getElementsByClassName('max_btn')[0].onclick = function(){
+            var input_1 = Number(max_inputs[0].value);
+            var input_2 = Number(max_inputs[1].value);
+            var input_3 = Number(max_inputs[2].value);
+
+            if(isNaN(input_1) || isNaN(input_2) || isNaN(input_3) ){
+                alert('请输入合法的数据!')
+                return;
+            }
+            var max_value = Math.max(input_1,input_2,input_3);
+            //最小值
+            var min_value = Math.min(input_1,input_2,input_3);
+            console.log('最大值：'+max_value+" ,最小值："+min_value);
+
+        }
+
+     //=================求绝对值===
+     var juedui_input = document.getElementsByClassName('juedui_input')[0];
+        document.getElementsByClassName('juedui_btn')[0].onclick = function(){
+            var val = Number(juedui_input.value);
+            if(isNaN(val)){
+                alert('请输入合法的数据')
+                return;
+            }
+            
+            console.log('求'+val+'的绝对值 = '+Math.abs(val));
+
+        }
+
+
+
+    </script>
+</body>
+</html> 

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../黄建0411/font_1137368_upofe7gwf8/iconfont.css">
+    <style>
+        table{
+            width: 800px;
+            /* height: 400px; */
+            text-align: center;
+        }
+        tr td:nth-child(1){
+            width: 20px;
+        }
+        td{
+            text-align: center;
+        }
+        table tr:nth-child(2n){
+            background: #F3F4F6;
+        }
+        table tr:nth-child(1){
+            background: #81A7E8;
+            color: white;
+            border: #EDEDED;
+        }
+        table tr{
+            border:#EDEDED
+        }
+        .item{
+            width: 900px;
+            height: 500px;
+
+        }
+        .item_a{
+            background: #E6E9EE;
+            position: relative;
+        }
+        .item1{
+            margin-left: 35px;
+            padding: 10px;
+        }
+        .item2{
+            width: 800px;
+            height: 80px;
+            line-height: 100px;
+            margin-left: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn1{
+            height: 35px;
+            font-size: 16px;
+            background: #F08C8E;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn2{
+            height: 35px;
+            background: #6CCBE0;
+            border: none;
+            border-radius: 5px;
+            margin-left: 20px;
+        }
+        .item4 button{
+            background: #F3F4F6;
+            border: 2px solid #E5E6E8;
+            border-radius: 5px;
+            height: 30px;
+        }
+        #mask{
+            height: 320px;
+            width: 260px;
+            padding: 10px;
+            position: absolute;
+            left: 340px;
+            top:10px;
+            background: wheat;
+            border: 1px solid #ccc;
+        }
+        #mask input{
+            height: 30px;
+        }
+        .alert_btn{
+            display: flex;
+            justify-content: space-around;
+        }
+        .alert_btn button{
+            width: 50px;
+            height: 30px;
+            background: #F08C8E;
+            border: none;
+        }
+        table>tr>td>div{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="item_a">
+            <div class="item1"> 
+                <table border="1px" cellspacing="0" cellpadding="5px">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>展项ID</td>
+                        <td>名称</td>
+                        <td>所处楼层</td>
+                        <td>所处位置</td>
+                        <td>所属展区</td>
+                        <td>更多</td>
+                        <td>操作</td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="item2">
+                <div>
+                    <input type="checkbox" name="" id="">
+                    <button class="btn1" onclick="delet">
+                        <span class="iconfont">&#xe618;</span>
+                        批量删除
+                    </button>
+                    <button class="btn2">
+                        <span class="iconfont">&#xe608;</soan>新增
+                    </button>
+                </div>
+                <div class="item4">
+                    <button>首页</button>
+                    <button>上一页</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>下一页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var otable = document.getElementsByTagName("table")[0];
+            //弹窗
+            var box_a = document.getElementsByClassName("item_a")[0];
+            var obtn2 = document.getElementsByClassName("btn2")[0];
+
+            //新增按钮的点击事件
+            obtn2.onclick = function(){
+                var oMask=document.createElement("div");
+                oMask.id="mask";
+                box_a.appendChild(oMask);
+                oMask.innerHTML="<div class='ainp'><p>展项ID&nbsp;：<input></p><p>名&nbsp;&nbsp;称：<input></p><p>所处楼层：<input></p><p>所处位置：<input></p><p>所属展区：<input></p></div><div class='alert_btn'><button>确定</button><button>取消</button></div>"
+            
+            //弹窗button
+            var abox = document.getElementsByClassName("alert_btn")[0];//弹窗button包裹的div
+            var abtn = abox.getElementsByTagName("button");//弹窗button
+            var abox1 = document.getElementsByClassName("ainp")[0];
+            var op = abox1.getElementsByTagName("p");
+            var ainpt = abox1.getElementsByTagName("input");
+            //点击确定按钮
+            abtn[0].onclick = function(){
+                //创建
+                var otr = document.createElement("tr");
+                var otd1 = document.createElement("td");
+                var otd2 = document.createElement("td");
+                var otd3 = document.createElement("td");
+                var oInput = document.createElement("input") ;
+                oInput.type = "checkbox";
+                oInput.name = "list";
+                oInput.className = "input";
+                // 插入前面固定的td
+                otd1.appendChild(oInput);
+                otr.appendChild(otd1);
+                
+                var oDiv1 = document.createElement("div");
+                var oDiv2 = document.createElement("div");
+                oDiv1.className="iconfont"
+                oDiv1.innerHTML="&#xe67a;"
+                oDiv2.className="iconfont"
+                oDiv2.innerHTML="&#xe618;"
+                otd2.innerHTML = "查看更多>>" ;
+                
+                for(var i = 0;i<ainpt.length;i++){
+                    if(ainpt[i].value ==""){
+                            alert("请输入正确信息");
+                            return;
+                        }else{
+                            var otd = document.createElement("td");
+                            otd.innerHTML = ainpt[i].value;
+                            otr.appendChild(otd);
+                            console.log(otr);
+                            // return
+                        }
+                    }
+                box_a.removeChild(oMask);
+                //插入后面固定的td
+                otd3.appendChild(oDiv1);
+                otd3.appendChild(oDiv2);
+                otr.appendChild(otd2);
+                otr.appendChild(otd3);
+                otable.appendChild(otr);
+            
+                }
+                //点击取消按钮
+            abtn[1].onclick = function(){
+                    box_a.removeChild(oMask);
+                }
+            }
+            //批量删除按钮的点击
+            var aBtn2 = document.getElementsByClassName("btn1")[0];
+            aBtn2.onclick = function(){
+                var aInput = document.getElementsByClassName("input");
+                var length = aInput.length;
+                if(length){
+                    var k =0;//申明k，保持下标不变
+                    for(var j=0; j< length; j++){
+                        if(aInput[j-k].checked){
+                            otable.removeChild(aInput[j-k].parentElement.parentElement);
+                            k++;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

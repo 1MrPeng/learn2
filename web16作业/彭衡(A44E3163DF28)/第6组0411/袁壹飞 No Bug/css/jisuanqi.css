@@ -1,0 +1,85 @@
+/* 清除默认样式 */
+*{
+	padding: 0;
+	margin: 0;
+}
+/* 计算器的窗口大小 */
+#main_box{
+	width: 300px;
+	height: 530px;
+	background: #181820;
+	margin: 40px auto;
+	box-sizing: border-box;
+	color: #b4b6bb;
+	font-size: 30px;
+}
+/* 头部功能栏 */
+.content_top{
+	width: 100%;
+	height: 200px;
+	border-bottom: 20px #373b4a solid;
+	box-sizing: border-box;
+	position: relative;
+	/* padding: 10px; */
+}
+/* 数字显示p */
+.content_p{
+	position: absolute;
+	bottom: 2px;
+	max-height: 165px;
+	right: 10px;
+	/* white-space: normal; */
+	width: 290px;
+	text-align: right;
+	height: auto;
+    word-break:break-all;
+	overflow: auto;
+  
+}
+
+ /*滚动条样式*/
+.content_p::-webkit-scrollbar {
+	width: 4px;    
+}
+.content_p::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.2);
+	/* background: #eee; */
+}
+.content_p::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	border-radius: 0;
+	background: rgba(0,0,0,0.1);
+
+}
+/* 按钮样式 */
+.content_btn{
+	width: 100%;
+	height: 330px;
+	background: #373b4a;
+	}
+.content_btn>ul{
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+.content_btn>ul>li{
+	width: 73px;
+	border: 1px black solid;
+	height: 64px;
+	text-align: center;
+	line-height: 64px;
+	cursor: pointer;
+}
+.content_btn>ul>li:nth-child(1),
+.content_btn>ul>li:nth-child(2),
+.content_btn>ul>li:nth-child(3){
+	background: #8e610e;
+}
+.content_btn>ul>li.li_colspan{
+	width: 148px;
+}
+.content_btn>ul>li.right_btn{
+	background: #a63d46;
+}

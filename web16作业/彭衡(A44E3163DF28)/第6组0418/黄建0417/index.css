@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    list-style: none;
+}
+.top{
+    width: 100%;
+    height: 47px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 18px;
+    box-sizing: border-box;
+    border-bottom:1px solid #ccc; 
+}
+.top1{
+    margin-top: 14px; 
+}
+.top1 img {
+    height: 20px;
+}
+.top button{
+    border: none;
+    background: #42BD56;
+    height: 30px;
+    width: 90px;
+    border-radius:5px; 
+    font-size: 13px;
+    margin-top: 10px;
+    color: white;
+}
+.wenzi{
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    padding-left: 5%;
+    margin-top: 20px;
+}
+.item{
+    padding: 20px;
+}
+.item ul li{
+    width: 26%;
+    margin: 10px;
+}
+.item ul li img{
+    width: 100%;
+    height: 140px;
+}
+.item ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.pingfen{
+    width: 100%;
+    display: flex;
+    margin-left: 8px;
+}
+.pingfen span{
+    font-size: 10px;
+    color: red;
+}
+.pingfen :last-child{
+    color: #ccc;
+}
+.wenzi1{
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.span1{
+    height: 20px;
+    margin-left: 6px;
+    line-height: 25px;
+}

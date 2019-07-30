@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			ul li{list-style: none;}
+			div{
+				width: 500px;
+				margin: 0 auto;
+				margin-bottom: 10px;
+			}
+			ul{
+				width: 550px;
+				height: 230px;
+				margin: 0 auto;
+				display: flex;
+				flex-flow: row wrap;
+			}
+			ul li{
+				width: 100px;
+				height: 114px;
+				border: 1px solid red;
+				text-align: center;
+				line-height: 114px;
+				-webkit-user-select: none;
+				margin: 0;
+			}
+			ul li img{
+				width: 100px;
+				margin: 0;
+			}
+			.jiaohuan{
+				width: 100px;
+				height: 114px;
+				border: 1px solid red;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img src="../img/樱桃.jpg" width="500px" >
+		</div>
+		<div>
+			<ul>
+				<li draggable="true">
+					<img src="../img/ying6.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying8.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying7.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying1.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying4.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying3.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying5.jpg" >
+				</li>
+				<li draggable="true">
+					<img src="../img/ying2.jpg" >
+				</li>
+				<li draggable="true">补</li>
+				<ul class="jiaohuan">
+					
+				</ul>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aLi = document.querySelectorAll('ul li');
+		var oUl = document.querySelector('.jiaohuan');
+		var cloneLi;
+		
+		for(i=0;i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].ondragstart = function(ev){
+				var ev = ev || window.event;
+				ev.dataTransfer.setData('index',this.index);
+			}
+		}
+		
+		oUl.ondragenter = function(){
+			this.ondragover = function(ev){
+				var ev = ev || window.event;	//为了ondragleave,ondrop生效
+				ev.preventDefault();
+			}
+			this.ondrop = function(ev){
+				var ev = ev || window.event;
+				var index = ev.dataTransfer.getData('index');
+				exchange(aLi[index],this);
+			}
+		}
+		
+		function exchange(ele1, ele2){
+			var parentNode1 = ele1.parentNode;
+			var	parentNode2 = ele2.parentNode;
+			//获取当前元素的下标
+			var	index1 = Array.prototype.indexOf.call(parentNode1.children, ele1);
+			var	index2 = Array.prototype.indexOf.call(parentNode2.children, ele2);
+			//判断并交换位置
+			if(Math.abs(index1-index2) == 5 || Math.abs(index1-index2) == 1 ){
+				parentNode2.insertBefore(ele1,parentNode2.children[index2]);
+				if(index1>index2){
+					parentNode1.insertBefore(ele2,parentNode1.children[index1+1]);
+				}else{
+					parentNode1.insertBefore(ele2,parentNode1.children[index1]);
+				}
+			}else{
+				alert('不能这么移动哦');
+			}
+		}
+	}
+</script>

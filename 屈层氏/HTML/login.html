@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			ul li{list-style: none;}
+			/* body{
+				background: lightblue;
+			} */
+			header{
+				height: 41.5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-bottom: 1px solid #eee;
+			}
+			header span{
+				font-size: 18px;
+				color: #4a4a4a;
+			}
+			#content{
+				padding: 40px 30px;
+			}
+			
+			.form_box>p{
+				font-size: 13px;
+				color: #909090;
+			}
+			.form_box>input{
+				height: 47px;
+				width: 100%;
+				box-sizing: border-box;
+				margin: 10px 0;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				text-indent: 10px;
+				background: #FCFCFC;
+				outline: none;
+			}
+			.form_box .yanzhen{
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.form_box .yanzhen input{
+				width: 50%;
+				height: 47px;
+				box-sizing: border-box;
+				margin: 5px 0;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				text-indent: 10px;
+				background: #FCFCFC;
+				outline: none;
+			}
+			.form_box .yanzhen span{
+				width: 107px;
+				height: 45px;
+				background: #FF6692;
+				border-radius: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+				font-size: 24px;
+			}
+			.xieyi{
+				display: flex;
+				align-items: center;
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.xieyi span{
+				color: #ff6692;
+				text-decoration: underline;
+			}
+			.submit{
+				height: 80px;
+				display: flex;
+				justify-content: space-around;
+				align-items: flex-end;
+			}
+			.submit button{
+				width: 100px;
+				height: 45px;
+				border: none;
+				border-radius: 10px;
+				background: #FF6692;
+				color: white;
+			}
+			footer{
+				height: 114px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 12px;
+				color: #919090;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="warp">
+			<header>
+				<span>登录/注册</span>
+			</header>
+			<div id="content">
+				
+				<div class="form_box">
+					<p>ps: 商城全新版本上线，手机登录更安全</p>
+					<input type="text" placeholder="请输入用户名" name="username">
+					<input type="password" placeholder="请输入密码" name="password">
+					<div class="yanzhen">
+						<input type="text" placeholder="请输入验证码">
+						<span><del>1245</del></span>
+					</div>
+					<div class="xieyi">
+						<input type="checkbox" checked="checked">
+						<p>登录/注册即同意<span>用户协议</span>和<span>隐私政策</span></p>
+					</div>
+					<div class="submit">
+						<button>登录</button>
+						<button>注册</button>
+					</div>
+				</div>
+				
+				<footer>
+					版权所有鄂ICP备11005814号-10<br />
+					粤公网安备 44010402000077号
+				</footer>
+			</div>
+		</div>
+		<script>
+			window.onload = function(){
+				var yanz = document.querySelector('.form_box .yanzhen span del');
+				var aBtn = document.querySelectorAll('.submit button');
+				var aInput = document.querySelectorAll('.form_box input');
+				yanz.onclick = function(){
+					yanz.innerHTML = getRandom(1000,9999);
+					aInput[2].focus();
+				}
+				aBtn[0].onclick = submit;
+				aBtn[1].onclick = function(){
+					window.location.href = 'register.html';
+				}
+				function submit(){
+					if(aInput[0].value =="" || aInput[1].value =="" || aInput[2].value =="" || aInput[3].checked ==false){
+						alert('您输入的内容不能为空，请重新输入！')
+					}else{
+						var username = '19918491083';
+						var mima = 'lxm258000';
+						var num = yanz.innerHTML;
+						if(aInput[0].value != username ||aInput[1].value != mima ||aInput[2].value != num){
+							alert('您的输入有误，请重新输入！')
+						}else{
+							window.location.href = "index.html"
+						}
+					}
+				}
+				//获取随机数函数
+				function getRandom(min,max){
+					return Math.floor(Math.random()*(max-min)+min);
+				}
+			}
+		</script>
+	</body>
+</html>

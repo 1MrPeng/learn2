@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#wrap{
+				width: 500px;
+				height: 500px;
+				border: 2px solid #ccc;
+				margin: 0 auto;
+				display: flex;justify-content: center;align-items: center;
+				transform-style: preserve-3d;
+				perspective: 100px;
+				perspective-origin: 250px 250px;
+			}
+			#wrap div{
+				width: 150px;
+				height: 150px;
+				text-align: center;
+				line-height: 100px;
+				background: hotpink;
+				color: white;
+				transition: 1s all 0s linear;
+			}
+			#wrap:hover div{
+				/* transform: translate3d(100px,50px,0); */
+				transform: translate3d(100px,50px,-50px) rotate(30deg);
+				
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+		给父元素
+			1.创建3D空间:
+				transform-style: preserve-3d
+			
+			2.设置景深:
+				perspective: 值越小, 景深越大
+				
+			3.景深基点:
+				perspective-origin: left top;(X轴 Y轴)[默认中心点]
+			
+		给变换的元素	
+			3D变换:
+				translateZ: Z轴位移
+				rotateX: 绕着X轴旋转
+				rotateY: 绕着Y轴旋转
+				rotateZ: 绕着Z轴旋转
+				
+				translate3d(X,Y,Z)
+		-->
+		<div id="wrap">
+			<div>
+				3D
+			</div>
+		</div>
+	</body>
+</html>

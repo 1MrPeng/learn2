@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作业03</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 666px;
+            height: 81px;
+            margin: 50px auto;
+            background: url("./img/images/index_top.gif") no-repeat center;
+        }
+        ul{
+            /* text-align: center; */
+            line-height: 81px;
+        }
+        li{
+            list-style: none;
+            background: url("./img/images/index_00.gif") no-repeat center;
+            line-height: 81px;
+            width: 47px;
+            height: 81px;
+            background-position-y: 32px;
+            background-size: 100%;
+            float: left;
+        }
+        #box>li:nth-child(2){
+            width: 111px;
+            background-image: url("./img/images/index_01.gif");
+        }
+        #box>li:nth-child(3){
+            width: 100px;
+            background-image: url("./img/images/index_02.gif");
+        }
+        #box>li:nth-child(4){
+            width: 82px;
+            background-image: url("./img/images/index_03.gif");
+        }
+        #box>li:nth-child(5){
+            width: 60px;
+            background-image: url("./img/images/index_04.gif");
+        }
+        #box>li:nth-child(6){
+            width: 112px;
+            background-image: url("./img/images/index_05.gif");
+        }
+        #box>li:nth-child(7){
+            width: 100px;
+            background-image: url("./img/images/index_06.gif");
+        }
+        #box>li:nth-child(8){
+            width:44px;
+            background-image: url("./img/images/index_07.gif");
+        }
+     
+
+    </style>
+
+</head>
+<body>
+    
+  
+          <ul id="box">
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)" value="0"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="1"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="2"></li>
+              <li onmouseover="li_hover(this)"  onmouseout="li_out(this)" value="3"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="4"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="5"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="6"></li>
+              <li onmouseover="li_hover(this)" onmouseout="li_out(this)"  value="7"></li>
+          </ul>
+  
+          <!-- 使用js来实现hover的切换 -->
+          <script type="text/javascript">
+
+               function li_hover(li_doc){
+                    // console.info("li_doc="+ li_doc.value);
+                    // 切换图片
+                    var img_index = li_doc.value;
+                    li_doc.style.backgroundImage = "url('./img/images/index_0"+img_index+"_f2.gif')";
+               }
+
+               function li_out(li_doc){
+                    // console.info("li_doc="+ li_doc.value);
+                    // 切换图片
+                    var img_index = li_doc.value;
+                    li_doc.style.backgroundImage = "url('./img/images/index_0"+img_index+".gif')";
+               }
+          </script>
+</body>
+</html>

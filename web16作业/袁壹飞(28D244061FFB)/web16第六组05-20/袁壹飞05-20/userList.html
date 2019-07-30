@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="./js/jquery-3.4.0.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css"/>
+    <title>用户列表</title>
+</head>
+<body>
+
+    <div id="main-box">
+        <p>Create New Person</p>
+        <p id='alertMsg'>请输入合法的数据!</p>
+        <!-- 创建用户 -->
+        <create-person></create-person>
+
+        <!-- 用户列表 -->
+        <user-list></user-list>
+
+    </div>
+    <!-- <img src="./createPerson.bmp"/> -->
+    
+     <!-- 创建用户模板 -->
+     <template id="create-person">
+        <form >
+            <div>
+                <span>Name:</span>
+                <input v-model="username" type="text"/>
+            </div>
+            <div>   
+                <span>Age:</span>
+                <input v-model="age" type="text"/>
+            </div>
+            <div>
+                <span>Sex:</span>
+                <select v-model="sex">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div>
+                <button @click="createUser" type="button">Create</button>
+            </div>
+        </form>
+    </template> 
+
+    
+    <!-- 用户列表 -->
+    <template id="user-list">
+        <div class="user-list-box">
+            <header class="user-list-title">
+                <p>Name</p>
+                <p>Age</p>
+                <p>Sex</p>
+                <p>Delete</p>
+            </header>
+            <!-- 用户列表信息 -->
+            <ul>
+                <li v-for="(user, index) in userArrInit">
+                    <p>{{user.username}}</p>
+                    <p>{{user.age}}</p>
+                    <p>{{user.sex}}</p>
+                    <p><span  @click="deleteUser(user, index)">Delete</span></p>
+                </li>
+            </ul>
+        </div>
+    </template>
+
+</body>
+</html>
+<script>
+       //定义初始化数据
+    let userArrInit = [
+        {id: '1', username: 'Jack', age: 30, sex: 'Male'},
+        {id: '2', username: 'Bill', age: 26, sex: 'Male'},
+        {id: '3', username: 'Tracy', age: 22, sex: 'Female'},
+        {id: '4', username: 'Chris', age: 36, sex: 'Male'},
+        {id: '5', username: 'Steve', age: 18, sex: 'Male'}
+    ]
+    let bus = new Vue();
+
+    // 定义创建用户组件
+    let createPersonComponent = {
+        template: '#create-person',
+        data: function() {
+            return {
+                username: "",
+                age: 0,
+                sex: "Male"
+            }
+        },
+        methods: { //定义普通的函数
+            createUser: function(){ //创建用户的函数
+              //判断输入的用户信息是否为空
+              if(this.username && this.age > 0 && this.age <= 120){
+                  //创建用户
+                //   userArrInit.push({id: userArrInit.length+1, username: this.username, age: this.age, sex: this.sex})
+                  bus.$emit('createBus',{id: userArrInit.length+1, username: this.username, age: this.age, sex: this.sex})
+                  console.log(bus)
+                  //清空输入框
+                  this.username = "";
+                  this.age = 0;
+                  this.sex = 'Male';
+                  $('#alertMsg').html('创建用户成功!');
+                  $('#alertMsg').fadeIn(1000);
+                  $('#alertMsg').fadeOut(1000);
+              }else{
+                  //提示输入完整的用户信息
+                  $('#alertMsg').html('请输入合法的数据!');
+                  $('#alertMsg').fadeIn(1000);
+                  $('#alertMsg').fadeOut(1000);
+              }
+
+            }
+
+        }
+    }
+
+    //用户列表组件
+    let userListComponent = {
+        template: '#user-list',
+        data: function(){
+            return {
+                userArrInit: userArrInit
+            }
+        },
+        mounted: function(){
+            bus.$on('createBus', newUser =>{
+                // 添加到数组
+                this.userArrInit.push(newUser);
+            })
+
+        }
+        ,
+        methods: {
+            deleteUser: function(user, index){ //删除用户
+                if(confirm('确定要删除改数据吗?')){
+                    this.userArrInit.splice(index,1);
+                    // console.log(this.userArrInit)
+                    $('#alertMsg').html('删除成功!');
+                     $('#alertMsg').fadeIn(1000);
+                    $('#alertMsg').fadeOut(1000);
+                }
+            }
+        }
+    }
+
+ 
+ 
+
+    //创建根实例
+    let vm = new Vue({
+        el: '#main-box',
+        data: {
+            // uesrArrInit: userArrInit
+        },
+        components: { //注册局部组件
+            'create-person': createPersonComponent,
+            'user-list': userListComponent
+        }
+    })
+
+
+
+</script>

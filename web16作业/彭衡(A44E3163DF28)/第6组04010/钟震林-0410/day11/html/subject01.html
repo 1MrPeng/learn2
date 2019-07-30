@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>作业一</title>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css" />
+		<script type="text/javascript" src="../js/iconfont.js"></script>
+		<script type="text/javascript" src="../js/watson.js"></script>
+		<style>
+			html,body,div,span,input,img{margin: 0; padding: 0;}
+			.app{
+				width: 100%;
+				height: 100%;
+			}
+			.top{
+				width: 100%;
+				height: 44px;
+				border-bottom: 1px solid gray;
+				display: flex;
+				justify-content: space-between;
+			}
+			.top>div:nth-child(1){
+				display: inline-block;
+				width: 15%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+			}
+			.top>div:nth-child(2){
+				width: 65%;
+				height: 30px;
+				border: 1px solid gray;
+				border-radius: 10px;
+				margin: 5px;
+			}
+			.top>div:nth-child(2)>input{
+				display: inline-block;
+				width: 80%;
+				height: 30px;
+				border: none;
+			}
+			.top>div:nth-child(3){
+				display: inline-block;
+				width: 15%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+			}
+			.middle_top{
+				width: 100%;
+				height: 50px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+			}
+			.middle_top>span{
+				display: inline-block;
+				width: 24%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background-color: lightpink;
+				color: white;
+				margin: 5px;
+			}
+			.middle_top>div{
+				width: 250px;
+				height: 768px;
+				border: 1px solid black;
+				display: none;
+			}
+			.middle_top>div>img{
+				width: 100%;
+			}
+			.middle_top.middle_div{
+				display: block;
+			}
+			.middle_top .middle_span{
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="app">
+			<div class="top">
+				<div class="iconfont">&#xe778;</div>
+				<div class="iconfont">&#xe625;
+					<input type="text" value="" placeholder="请输入搜索内容！" />
+				</div>
+				<div class="iconfont">&#xe600;</div>
+			</div>
+			<div class="middle">
+				<div class="middle_top">
+					<span class="middle_span">今日推存</span>
+					<span>面膜中心</span>
+					<span>居家生活</span>
+					<span>购全球</span>
+					<div class="middle_div">
+						<img src="../img/img01.jpg" />
+					</div>
+					<div>
+						<img src="../img/img02.jpg" />
+					</div>
+					<div>
+						<img src="../img/img03.jpg" />
+					</div>
+					<div>
+						<img src="../img/img04.jpg" />
+					</div>
+				</div>
+			</div>
+			<div class="bottom"></div>
+		</div>
+		<script>
+			window.onload = function(){
+				var aSpan = document.getElementsByTagName("span");
+				var oDiv = document.getElementsByClassName("middle_top")[0];
+				var aDiv = oDiv.getElementsByTagName("div");
+				for (var i = 0; i < aSpan.length; i++) {
+					aSpan[i].flag = i;
+					aSpan[i].onclick = function(){
+						for (var j = 0; j < aSpan.length; j++) {
+							aSpan[j].className = "";
+							aDiv[j].className = "";
+						}
+						this.className = "middle_span";
+						aDiv[this.flag].className = "middle_div";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

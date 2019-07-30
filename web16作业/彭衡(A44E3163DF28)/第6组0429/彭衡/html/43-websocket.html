@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#content{
+				width: 500px;
+				height: 500px;
+				border: 1px solid #ccc;
+				overflow-y: auto;
+			}
+			#content p{
+				padding: 0 10px;
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 5px;
+			}
+			#content .tips{
+				justify-content: center;
+				color: #ccc;
+				font-size: 12px;
+			}
+			#content p span span:nth-child(2){
+				padding: 5px 3px;
+				border-radius: 10px;
+				background-color: limegreen;
+				color: #fff;
+			}
+			div{
+				background: url(../img/timg.jpg) no-repeat;
+				background-size: 100% 100%
+				margin-bottom: 10px;
+			}
+			input{
+				width: 420px;
+				margin-top: 10px
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			如: 聊天室功能
+			在websocket之前,通过ajax轮询的方式实现
+			
+			websocket: 双向实时通讯技术(服务器可以主动发送消息给,客户端可以主动发送消息给服务器)
+		
+			nodejs环境:
+				1.进入nodejs官网,安装nodejs: https://nodejs.org/en/download/
+				2.打开cmd, 输入: node -v  测试是否安装成功(出现版本号即安装成功,否则步骤3)
+				3.配置环境变量: 计算机--属性--高级系统配置--环境变量--Path--将nodejs安装目录添加到Path后面,用分号与前面的Path分开
+		
+		-->
+		<div id="content"></div>
+		<input type="text" id="txt">
+		<button type="button" id="btn">发送消息</button>
+		
+		
+		<script>
+			
+			window.onload = function(){
+				
+				var oTxt = document.getElementById("txt");
+				var oSend = document.getElementById("btn");
+				var oBox = document.getElementById("content");
+				
+				// 1.创建连接
+				var ws = new WebSocket("ws://192.168.2.62:3001");	//服务器接口地址
+				
+				// 2.打开连接
+				ws.onopen = function(){
+					console.log("连接已建立");
+				}
+				
+				//接收消息
+				ws.onmessage = function(ev){
+					
+					if(ev.data.indexOf("tips") != -1){
+						
+						oBox.innerHTML += "<p class='tips'>"+ev.data+"</p>";
+						
+					}else{
+						var nowTime = new Date().toLocaleTimeString();
+						oBox.innerHTML += "<p><span>"+ev.data+"</span><span>"+nowTime+"</span></p>";
+					}
+					oBox.scrollTop = oBox.scrollHeight;
+					
+				}
+				
+				// 关闭连接
+				ws.onclose = function(){
+					
+					console.log("连接已关闭");
+					
+				}
+				
+				oSend.onclick = function(){
+					
+					var val = oTxt.value;
+					
+					if(val.trim() != ""){
+						
+						ws.send(val);
+						oTxt.value = "";
+						
+					}
+					
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>

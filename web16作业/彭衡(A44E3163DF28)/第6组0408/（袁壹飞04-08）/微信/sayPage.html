@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/iconfont02.css"/>
+    <script type="text/javascript" src="./js/username.js"></script>
+    <title>聊天页面</title>
+
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /* 内容主体的div */
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+        }
+        #main_box{
+            box-sizing: border-box;
+            flex-grow: 1;
+           /* border: 3px solid black; */
+        }
+        /* 头部功能栏 */
+        #main_box .say_top_nav{
+            width: 100%;
+            height: 60px;
+            line-height: 50px;
+            background-color: #ededed;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }   
+
+        #main_box .say_top_nav span{
+            display: inline-block;
+            height: 100%;
+            text-align: center;
+        }
+        .say_top_nav .break_span{
+            width: 50px;
+            float: left;
+            font-size: 30px;
+            
+        }
+        .say_top_nav .username_span{
+            float: left;
+            line-height: 60px;
+            font-size: 20px;
+        }
+        .say_top_nav .nav_right_set{
+            line-height: 44px;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        /*底部样式  */
+        .weixin_footer {
+            width: 100%;
+            /* height: 60px; */
+            min-height: 60px;
+            line-height: 60px;
+            background-color: #ededed;
+            /* position: fixed;
+            bottom: 0;
+            left: 0; */
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding-bottom: 10px;
+        }   
+        .weixin_footer span{
+            display: inline-block;
+            width: 50px;
+            height: 45px;
+            border: 1px solid #555;
+            background-color: white;
+        }
+        .weixin_footer span:nth-of-type(1){
+            background: url("./img/qq1.gif") no-repeat center;
+            background-size: 100%;
+        }
+        .weixin_footer span:nth-of-type(2){
+            /* background: url("./img/qq2.gif") no-repeat center; */
+            /* background-size: 75%; */
+            font-size: 45px;
+            line-height: 45px;
+            background-color: #ededed;
+            border: none;
+        }
+        /* 内容输入框 */
+        .weixin_footer .input_msg{
+            width: 175px;
+            /* height: 45px; */
+            min-height: 45px;
+            line-height: 25px;
+            display:flex;
+            align-items: center;
+            font-size: 20px;
+            border: 1px  #bfbebe solid;
+            border-radius: 4px;
+            overflow: auto;
+            word-break: break-all;
+            /* 去掉外轮廓 */
+            outline: none;
+          
+        }
+        /* 发送按钮 */
+        .weixin_footer button{
+            width: 50px;
+            height: 45px;
+            border: none;
+            border-radius: 10px;
+        }
+        /* 表情包 */
+        .footer_box{
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+        .look_box{
+            width: 100%;
+            height: 200px;
+            background: #ededed;
+            display:none;
+            text-align: center;
+
+        }
+        .look_box img{
+            margin: 0 5px;
+            width: 9%;
+        }
+        /* ===聊天内容主体 */
+        #main_box{
+            background: url("./img/say_content_bg.jpg") no-repeat center;
+            background-size: 100%;
+            overflow: auto;
+            margin-bottom: 60px;
+        }
+        #main_box .say_content{
+          margin-top: 60px;
+          /* border-top: 1px black solid; */
+           
+        }
+       
+       /* 聊天内容的样式 */
+       .say_content .centont_left{
+           display: flex;
+           align-items: top;
+            padding: 5px 10px;
+       }
+       .say_content .centont_left span:nth-child(1){
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            background: url("./img/qq1.gif") no-repeat center;
+           background-size: 100%;
+       }
+       .say_content .centont_left span,
+       .say_content .centont_right span{
+            background-color: #ededed;
+            padding: 5px 10px;
+            border-radius: 6px;
+            line-height: 100%;  
+            display: inline-block;
+            max-width: 175px;
+            
+            /* 换行 */
+            word-break: break-all;
+        } 
+
+        /* 右边的样式 */
+        .say_content .centont_right{
+           display: flex;
+           flex-direction: row-reverse;
+           align-items: top;
+            padding: 5px 10px;
+       }
+       .say_content .centont_right span:nth-child(1){
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background: url("./img/qq2.gif") no-repeat center;
+           
+       }
+        
+       .say_content .centont_right span{
+           background: #3bc53b;
+          
+       }
+    </style>
+</head>
+<body>
+    
+    <div id="main_box">
+
+        <!-- 头部功能栏 -->
+        <div class="say_top_nav">
+            <span class="break_span">&lt;</span>
+            <span class="username_span"></span>
+            <!-- 右边的更多 -->
+            <span class="nav_right_set">...</span>
+        </div>  
+
+        <!-- 聊天内容 -->
+        <div class="say_content">
+            
+            
+           
+        </div>
+        
+        
+    
+        <div class="footer_box">
+
+            <!-- 底部输入框 -->
+            <div class="weixin_footer">
+                <span class="img_top"></span>
+                <!-- 变为可编辑的文本域 -->
+                <p contenteditable="true"  class="input_msg"></p>
+                <span class="iconfont look_span icon-biaoqing"></span>
+                <button type="button">发送</button>
+            
+            </div>
+            <!-- 表情包 -->
+            <div class="look_box">
+                <img src="http://img.baidu.com/hi/tsj/t_0001.gif" id="t_0001" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0002.gif" id="t_0002" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0003.gif" id="t_0003" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0004.gif" id="t_0004" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0005.gif" id="t_0005" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0006.gif" id="t_0006" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0007.gif" id="t_0007" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0008.gif" id="t_0008" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0009.gif" id="t_0009" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0010.gif" id="t_0010" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0011.gif" id="t_0011" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0012.gif" id="t_0012" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0013.gif" id="t_0013" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0014.gif" id="t_0014" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0015.gif" id="t_0015" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0016.gif" id="t_0016" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0017.gif" id="t_0017" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0018.gif" id="t_0018" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0019.gif" id="t_0019" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0020.gif" id="t_0020" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0021.gif" id="t_0021" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0022.gif" id="t_0022" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0023.gif" id="t_0023" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0024.gif" id="t_0024" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0025.gif" id="t_0025" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0026.gif" id="t_0026" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0027.gif" id="t_0027" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0028.gif" id="t_0028" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0029.gif" id="t_0029" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0030.gif" id="t_0030" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0031.gif" id="t_0031" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0032.gif" id="t_0032" width="30px">  
+                <img src="http://img.baidu.com/hi/tsj/t_0033.gif" id="t_0033" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0034.gif" id="t_0034" width="30px"> 
+                <img src="http://img.baidu.com/hi/tsj/t_0035.gif" id="t_0035" width="30px">  
+             
+              
+            </div>
+        </div>
+
+    </div>
+
+   <script>
+          //得到要操作的DOM对象
+        var input_msg = document.getElementsByClassName('input_msg')[0];
+        var sendBtn = document.getElementsByTagName('button')[0];
+        var content_box = document.getElementsByClassName('say_content')[0];
+        var img_top = document.getElementsByClassName('img_top')[0];
+        var username_span = document.getElementsByClassName('username_span')[0];
+
+        var main_box = document.getElementById('main_box');
+        var break_span = document.getElementsByClassName('break_span')[0];
+        var look_box = document.getElementsByClassName('look_box')[0];
+        var look_span = document.getElementsByClassName('look_span')[0];
+        var footer_box = document.getElementsByClassName('footer_box')[0];
+        var nav_right_set = document.getElementsByClassName('nav_right_set')[0];
+        // 得到所有的表情包
+        var face_img = document.getElementsByTagName('img');
+        //定义一个标记
+        var img_top_state = false;
+        // 从cookie中得到用
+        var url = window.location.href;
+        var username = url.substring(url.indexOf('=')+1);
+        var username_index = Number(username);
+        //设置人名
+
+
+    //    使用js实现发送的功能
+        window.onload = function(){
+            username_span.innerHTML = usernameArr[username_index-1];
+            //显示头像
+            img_top.style.backgroundImage = 'url("./img/top'+username+'.jpg")';
+
+            // 发送按钮的状态
+            var state = false;
+            input_msg.onkeyup = function(event){
+              
+                // 判断输入框中是否有内容
+                if(event.keyCode === 8 && input_msg.innerHTML == ""){
+                  
+                    changeSendBtn('buttonface','black');
+                    state = false;
+                }else{
+                    
+                    state = true;
+                }
+                if(event.keyCode === 13){
+                    //清空输入框中的内容
+                    changeSendBtn('buttonface','black');
+                    state = false;
+                    input_msg.innerHTML= "";
+                }
+            }
+            input_msg.onkeydown = function(event){
+           
+                var msg_val = String(input_msg.innerHTML);
+                console.info(msg_val);
+                //判断输入框是否有内容
+                if(msg_val.trim() === ''){
+                    //改变按钮的颜色
+                    changeSendBtn('buttonface','black');
+                    state = false;
+                }else{
+                    //改变按钮的颜色
+                      changeSendBtn('green','white');
+                      state = true;
+                }
+                // 按回车也可以发送消息
+                if( event.keyCode === 13 && state){
+                    //发送消息
+                    doSendMsg();
+                }
+            }
+            
+           
+            // 实现发送功能
+            sendBtn.onclick = doSendMsg;
+
+
+            // 切换人头
+            img_top.onclick = function(){
+                img_top_state = !img_top_state;
+                var img_index;
+                if(img_top_state){
+                    img_index = 'url("./img/qq2.gif")';
+                }else{
+                    img_index = 'url("./img/top'+username+'.jpg")';
+                }
+                img_top.style.backgroundImage = img_index;
+               
+            }
+            //跳转会首页
+            break_span.onclick = function(){
+                window.location.href = './index.html';
+            }
+
+            //展现表情包
+            var look_state = false;
+            look_span.onclick = function(){
+                look_state = !look_state;
+               
+                if(look_state){
+                    // 切换图标iconfont look_span icon-biaoqing
+                    look_span.className = 'iconfont look_span icon-jianpan'
+                //   显示
+                  look_box.style.display = 'inline-block';
+                  main_box.style.marginBottom = '270px';
+                  main_box.scrollTop = main_box.scrollHeight;
+                }else{
+                    look_span.className = 'iconfont look_span icon-biaoqing'
+                    // 隐藏
+                    look_box.style.display = 'none';
+                    main_box.style.marginBottom = '70px';
+                    main_box.scrollTop = main_box.scrollHeight;
+                }
+              
+            }
+
+            // 给每一个表情包设置点击事件
+            for(let i = 0;i<face_img.length;i++){
+                face_img[i].onclick = function(){
+                input_msg.focus();
+                var className ;
+                var span;
+                if(img_top_state){
+                    className = 'centont_right';   
+                    span = '<span></span>';
+                }else{
+                    className = 'centont_left';  
+                    span = '<span style="background-image: url(./img/top'+username+'.jpg);"></span>';  
+                }
+
+                //  console.log("alt="+this.id);
+                var content = '<p class="'+className+'">'+
+                                     span +
+                                '<span>'+'<img src="http://img.baidu.com/hi/tsj/'+this.id+'.gif" width="30px">'+'</span> </p>';
+                content_box.innerHTML += content;
+                    // 设置滚动条的位置
+                    main_box.scrollTop = main_box.scrollHeight;
+      
+                }
+            }
+        }
+    
+            //==================================
+
+        //具体的发送消息的功能方法
+        function doSendMsg(){
+            //得到输入框中的内容
+             var msg_value = String(input_msg.innerHTML);
+        
+            if(msg_value == ''){
+            
+                //改变按钮的颜色
+            
+                changeSendBtn('buttonface','black');
+                //不能发送
+                return ;
+            }
+            // 发送消息
+            var className ;
+            var span ;
+            if(img_top_state){
+                // 右边
+                className = 'centont_right';
+                // background-image: url("./img/qq2.gif")
+                span = '<span></span>';
+            }else{
+                // 左边
+                className = 'centont_left';
+                span = '<span style="background-image: url(./img/top'+username+'.jpg);"></span>';
+            }
+            var content = '<p class="'+className+'">'+
+                            span+
+                            '<span>'+msg_value+'</span> </p>';
+            content_box.innerHTML += content;
+
+            //清空输入框中的内容
+            input_msg.innerHTML= "";
+            // 控制滚动条永远在最底下
+            main_box.scrollTop = main_box.scrollHeight;
+                
+            //改变发送按钮
+            changeSendBtn('buttonface','black');
+        }
+        //改变发送按钮的方法
+        function changeSendBtn(bgColor ,font_color) {
+            //改变按钮的颜色
+            sendBtn.style.backgroundColor = bgColor;
+            sendBtn.style.color = font_color;
+        }
+
+        
+        // 实现个人信息页面的跳转
+        nav_right_set.onclick = function(){
+            window.location.href = './messager.html?index='+username;
+        }
+   </script>
+  
+</body>
+</html>

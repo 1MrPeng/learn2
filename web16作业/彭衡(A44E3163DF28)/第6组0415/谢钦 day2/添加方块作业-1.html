@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div,body,html{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width:456px;
+            height: 216px;
+            background-color: limegreen;
+            background-size: 100%;
+            background-repeat: no-repeat;  
+            /* border-radius: 50%;  */
+             background-image: url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=541911207,978152375&fm=26&gp=0.jpg); 
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+        <div>
+            <!-- <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=541911207,978152375&fm=26&gp=0.jpg" alt="">  -->
+        </div>
+
+        <script>
+                //  页面加载后执行
+                window.onload = function(){
+
+                    //  获取元素
+                    var oDiv = document.getElementsByTagName("div")[0];
+                    
+
+                    //  绑定鼠标按下事件
+                    oDiv.onmousedown = function(){
+   
+
+                        //  创建元素节点
+                        var myDiv = document.createElement("div");
+                       
+                        //  给创建的元素节点随机颜色
+                        myDiv.style.backgroundColor = "rgb("+getRandom(0,255)+","+getRandom(0,255)+","+getRandom(0,255)+")"
+                         myDiv.style.backgroundImage = "url(https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=541911207,978152375&fm=26&gp=0.jpg)";  
+                        myDiv.style.position = 'absolute';
+                        console.log(myDiv);
+                        //  添加节点
+                        document.body.insertBefore(myDiv,oDiv);
+                        //绑定鼠标移动事件
+                        document.onmousemove = function(ev){
+                            var ev = ev || window.event;
+                            var mouseX = ev.pageX-myDiv.offsetWidth/2;
+                            var mouseY = ev.pageY-myDiv.offsetHeight/2;
+                            myDiv.style.cssText +='left: '+mouseX+'px; top: '+mouseY+'px';
+                        }
+                        //  清除鼠标移动事件
+                        oDiv.onmouseup = function(){
+                            document.onmousemove = null;
+                        }
+                        //  绑定添加节点的移动松开事件
+                          myDiv.onmousedown = function(){ 
+                            document.onmousemove = function(ev){
+                                var ev = ev || window.event;
+                                var mouseX = ev.pageX-myDiv.offsetWidth/2;
+                                var mouseY = ev.pageY-myDiv.offsetHeight/2;
+                                myDiv.style.cssText +='left: '+mouseX+'px; top: '+mouseY+'px';
+                            } 
+                               document.onmouseup = function(){
+                                document.onmousemove = null; 
+                            }
+                        }
+                    }
+                    
+                    }
+                    //  添加随机函数
+                    function getRandom(min,max){
+					
+					    return Math.floor(Math.random()*(max-min)+min);
+                    }
+                
+                    
+        </script>
+</body>
+</html>

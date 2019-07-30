@@ -1,0 +1,357 @@
+/*footer样式开始*/
+#footer{
+	height: 48px;
+	border-top: .5px solid #d8d8d8;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	font-size: 12px;
+	color: #696969;
+	font-family: PingFangSC-Regular,Hiragino Sans GB,sans-serif;
+}
+#footer ul{
+	height: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+#footer ul li{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 20%;
+}
+#footer ul li i{
+	font-size: 25px;
+	margin-bottom: 2px;
+	font-weight: 700;
+}
+.active_li{
+	color: #F03D37;
+}
+#movie,#cinema,#mine{
+	height: 100vh;
+	display: none;
+}
+#movie.active_div,#cinema.active_div,#mine.active_div{
+	display: block;
+}
+/*footer样式结束*/
+
+/*电影页面样式开始*/
+header {
+	height: 50.5px;
+	color: #fff;
+	background: #e54847;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+}
+#nav {
+	position: fixed;
+	top: 50.5px;
+	left: 0;
+	right: 0;
+	background: white;
+	height: 44px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 15px;
+	color: #666;
+	border-bottom: 1px solid #e6e6e6;
+	z-index: 100;
+}
+#nav div:nth-of-type(1) {
+	width: 47px;
+}
+#nav span {
+	width: 45px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon-searchicon:before {
+	font-size: 20px;
+	font-weight: 700;
+	color: red;
+}
+/*nowPlaying开始*/
+#nowPlaying,#commingSoon{
+	min-height: 500px;
+	display: none;
+}
+#nowPlaying.active_div,#commingSoon.active_div{
+	display: block;
+}
+.nowPlaying,
+.commingSoon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 21.33333vw;
+	height: 100%;
+	font-weight: 700;
+	box-sizing: border-box;
+}
+
+.active {
+	border-bottom: 2px solid red;
+	color: #ef4238;
+}
+
+#nowPlaying {
+	padding: 0 15px;
+	font-size: 13px;
+	color: #666;
+	padding-bottom: 48px;
+	padding-top: 94.5px;
+}
+#commingSoon{
+	padding-bottom: 48px;
+	padding-top: 94.5px;
+}
+.item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.item_right {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 10px;
+	height: 108px;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+.item_msg {
+	width: 100%;
+	padding: 3px 0;
+	box-sizing: border-box;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.item_msg p {
+	margin: 3px 0;
+	width: 202px;
+}
+
+.item_msg p:nth-of-type(1) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 17px;
+	font-weight: 700;
+	color: #333;
+	margin-top: 9px;
+	align-items: center;
+	display: flex;
+	align-items: center;
+}
+.item_msg p:nth-of-type(1) span:nth-of-type(1){
+	font-size: 12px;
+	color: white;
+	background: #509FC9;
+	height: 14px;
+}
+.item_msg p:nth-of-type(1) span:nth-of-type(2){
+	font-size: 12px;
+	border: 1px solid #509FC9;
+	box-sizing: border-box;
+}
+.item_msg p:nth-of-type(3) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.item_msg p:nth-of-type(4) {
+	margin-bottom: 10px;
+}
+
+.item_msg p:nth-of-type(2) span {
+	font-size: 15px;
+	color: #faaf00;
+	font-weight: 700;
+}
+.ticket {
+	font-size: 12px;
+	display: inline-block;
+	width: 47px;
+	height: 27px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #F03D37;
+	border-radius: 3px;
+	margin-right: 10px;
+	padding: 0 3px;
+}
+/*nowPlaying结束*/
+/*commingSoon开始*/
+#commingSoon{
+	margin-right: 15px;
+	font-size: 13px;
+}
+.expect{
+	padding: 15px 0 15px 15px;
+	border-bottom: 10px solid #F5F5F5;
+}
+.expect>p{
+	margin-bottom: 12px;
+	font-size: 14px;
+	color: #333;
+}
+.expectItems{
+	position: relative;
+	height: 152px;
+	overflow: hidden;
+	width: 95.5%;
+}
+.expectItems>div{
+	display: flex;
+	position: absolute;
+	left: 0;
+}
+.expect_item{
+	width: 85px;
+	margin-right: 15px;
+	position: relative;
+}
+.wish{
+	position: absolute;
+	bottom: 40px;
+	left: 5px;
+	color: #faaf00;
+	font-weight: 600;
+	font-size: 11px;
+}
+.expect_item img{
+	margin-bottom: 6px;
+}
+.expect_item p:nth-of-type(1){
+	color: #222;
+	margin-bottom: 5px;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.expect_item p:nth-of-type(2){
+	color: #999;
+	font-size: 12px;
+}
+.commingSoon_items{
+	padding-left: 15px;
+	color: #666;
+}
+.c_item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 8px;
+}
+
+.c_item_right {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 10px;
+	height: 108px;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+.c_item_msg {
+	width: 100%;
+	padding: 3px 0;
+	box-sizing: border-box;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.c_item_msg p {
+	margin: 3px 0;
+	width: 202px;
+}
+
+.c_item_msg p:nth-of-type(1) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 17px;
+	font-weight: 700;
+	color: #333;
+	margin-top: 9px;
+	align-items: center;
+	display: flex;
+	align-items: center;
+}
+.c_item_msg p:nth-of-type(1) span:nth-of-type(1){
+	
+	font-size: 12px;
+	color: white;
+	background: #509FC9;
+	height: 14px;
+}
+.c_item_msg p:nth-of-type(1) span:nth-of-type(2){
+	display: inline-block;
+	font-size: 12px;
+	border: 1px solid #509FC9;
+	box-sizing: border-box;
+}
+.c_item_msg p:nth-of-type(3) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.c_item_msg p:nth-of-type(4) {
+	margin-bottom: 10px;
+}
+
+.c_item_msg p:nth-of-type(2) span {
+	font-size: 15px;
+	color: #faaf00;
+	font-weight: 700;
+}
+.c_ticket {
+	font-size: 12px;
+	display: inline-block;
+	width: 47px;
+	height: 27px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #3C9FE6;
+	border-radius: 3px;
+	margin-right: 10px;
+	padding: 0 3px;
+}
+.date>p{
+	margin-top: 12px;
+	color: #333;
+}
+/*commingSoon结束*/
+/*电影页面样式结束*/

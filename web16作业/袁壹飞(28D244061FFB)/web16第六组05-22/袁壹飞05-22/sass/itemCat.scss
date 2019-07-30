@@ -1,0 +1,284 @@
+@charset "utf-8";
+// 购物车的样式
+$width: 100% !default;
+$min-height: 350px !default;
+
+
+#itemCat{
+    
+    width: $width;
+    min-height: $min-height;
+    border-top: {
+        width: 2px;
+        style: solid;
+        color: orange;
+    }
+    padding-top: 65px;
+
+
+    input[type='checkbox']{
+        width: 20px;
+        height: 20px;
+        margin:0 10px;
+    }
+
+    // 购物车为空时的样式
+    .empty-cat{
+        width: $width;
+        height: 270px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
+        div{
+            margin-left: 50px;
+            p:nth-of-type(1){
+                font-size: 36px;
+                color: #b0b0b0;
+                margin-bottom: 20px;
+                font-weight: bold;
+            }
+            p:nth-of-type(2){
+                font-size: 20px;
+                color: #b0b0b0;
+                margin-bottom: 20px;
+            }
+            p:nth-of-type(3){
+                button{
+                    width: 172px;
+                    height: 50px;
+                    border: {
+                        width: 1px;
+                        style: solid;
+                        color: orange;
+                    }
+                    text-align: center;
+                    line-height: 50px;
+                    color: orangered;
+                    background-color: white;
+                    cursor: pointer;
+                    outline: none;
+                    &:nth-of-type(1){
+                        background-color: orange;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    // 购物车中有商品列表时
+    .full-cat{
+        width: 1226px;
+        margin: auto;
+       
+        .active{
+            color: #ff6700;
+            font-size: 18px;
+        }
+
+        .cat-title{
+            width: $width;
+            height: 70px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            background-color: white;
+            li{
+                height: 100%;
+                line-height: 70px;
+                &:nth-of-type(1){
+                    display: flex;
+                    align-items: center;
+                    width: 110px;
+                    span{
+                        margin: 0 15px 0 25px;
+                    }
+                }
+                &:nth-of-type(2){
+                    width: 120px;
+                }
+                &:nth-of-type(3){
+                    width: 380px;
+                }
+                &:nth-of-type(4){
+                    width: 140px;
+                    margin-right: 18px;
+                    text-align: center;
+                }
+                &:nth-of-type(5){
+                    width: 150px;
+                    text-align: center;
+                }
+                &:nth-of-type(6){
+                    width: 120px;
+                    padding-right: 81px;
+                    text-align: end;
+                }
+                &:nth-of-type(7){
+                    width: 80px;
+                    text-align: center;
+                }
+            }
+        }
+        // 每一个商品
+        .cat-items{
+            width: $width;
+            height: 86px;
+            padding: 15px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            list-style: none;
+            border-top: 1px solid #e0e0e0;
+            background-color: white;
+            li{
+                height: 100%;
+                line-height: 86px;
+                &:nth-of-type(1){
+                    width: 110px;
+                    span{
+                        margin: 0 15px 0 25px;
+                    }
+                }
+                &:nth-of-type(2){
+                    width: 120px;
+                    img{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+                &:nth-of-type(3){
+                    width: 380px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                &:nth-of-type(4){
+                    width: 140px;
+                    margin-right: 18px;
+                    text-align: center;
+                }
+                &:nth-of-type(5){
+                    width: 150px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    user-select: none;
+                    p{
+                        width: 150px;
+                        height: 38px;
+                        border: 1px solid #e0e0e0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        span{
+                            display: inline-block;
+                            height: 38px;
+                            line-height: 38px;
+                            cursor: pointer;
+                            &:nth-of-type(1){
+                                width: 38px;
+                                &:hover{
+                                    background: #ccc;
+                                }
+                            }
+                            &:nth-of-type(2){
+                                width: 72px;
+                            }
+                            &:nth-of-type(3){
+                                width: 38px;
+                                &:hover{
+                                    background: #ccc;
+                                }
+                            }
+                        }
+                    }
+                }
+                &:nth-of-type(6){
+                    width: 120px;
+                    padding-right: 81px;
+                    text-align: end;
+                    color: #ff6700;
+                }
+                &:nth-of-type(7){
+                    width: 80px;
+                    text-align: center;
+                    span:hover{
+                        color: orange;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        // 购物车结算栏
+        .cat-footer{
+            width: $width;
+            height: 50px;
+            margin-top: 20px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            p{
+                color: #757575;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                &:nth-of-type(1){
+                    width: 282px;
+                    height: 100%;
+                    a{
+                        margin-left: 32px;
+                        cursor: pointer;
+                        &:hover{
+                            color: orangered;
+                        }
+                    }
+                    label{
+                        margin-left: 16px;
+                        padding-left: 16px;
+                        span{
+                            color: orangered;
+                        
+                        }
+                    }
+                }
+                &:nth-of-type(2){
+                    width: 390px;
+                    height: 100%;
+                    >span{
+                        display:inline-block;
+                        height: 100%;
+                        width: 200px;
+                        border: 1px solid #ff6700;
+                        background: #ff6700;
+                        color: white;
+                        font-size: 18px;
+                        text-align: center;
+                        line-height: 50px;
+                        margin-left: 50px;
+                        cursor: pointer;
+                    }
+                    label{
+                        color: #ff6700;
+                        padding-left: 11px;
+                        min-width: 137px;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        span{
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+}

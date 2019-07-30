@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>机器人</title>
+		<style>
+			.container{
+				width: 1380px;
+				height: 200px;
+				border: 1px solid #ccc;
+				position: relative;
+				margin: 200px auto;
+				transition: 1s;
+			}
+			img{
+				position: absolute;
+				right: 0;
+				animation: 5s changeposition infinite linear;
+			}
+			
+			@keyframes changeposition{
+				0%{
+					left: 0px;
+					transform: rotateY(180deg);
+				}
+				49%{
+					transform: rotateY(180deg);
+				}
+				50%{
+					left: 1200px;
+					transform: rotateY(0deg);
+				}
+				100%{
+					left: 0px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<img src="../img/robot.png" />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>验证码倒计时</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            margin-left: 5px;
+        }
+        body{
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="text" placeholder="请输入验证码"><button >获取验证码</button>
+    
+</body>
+</html>
+<script>
+    //页面加载完成是触发
+    window.onload = function(){
+        //获取元素
+        var oInput = document.getElementsByTagName('input')[0];
+        var oBtn = document.getElementsByTagName('button')[0];
+        var timer = null;
+        var time ;
+
+        //给按钮绑定点击事件
+        oBtn.onclick = function(){
+            oBtn.innerHTML = '10s';
+            //禁用按钮
+            this.disabled = true;
+            //开始倒计时
+
+            runTime();
+        }
+
+
+        //具体的功能实现方法
+        function runTime(){
+            //清楚定时器
+            clearTimeout(timer);
+
+            //得到当前时间
+            var current_time = parseInt(oBtn.innerHTML);
+            //判断是否倒计时完
+            if(current_time === 0){
+                //清楚定时器
+                clearTimeout(timer);
+                oBtn.innerHTML = '重新获取验证码';
+                //启用按钮
+                oBtn.disabled = false;
+                return ;
+            }
+            //设置时间
+            oBtn.innerHTML = --current_time+'s';
+
+            //设置定时器
+            timer = setTimeout(runTime,1000);
+
+        }
+    }
+</script>

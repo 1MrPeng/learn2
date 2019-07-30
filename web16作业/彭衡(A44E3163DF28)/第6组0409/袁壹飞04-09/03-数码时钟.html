@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数码时钟</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,
+        body,
+        #content_box{
+            height: 100%;
+        }
+        #content_box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('./img/bg_time.jpg') no-repeat center;
+            color: white;
+        }
+        #content_box img:nth-child(4),
+        #content_box img:nth-child(6),
+        #content_box img:nth-child(8){
+            margin-right: 15px;
+        }
+        #content_box img:nth-child(5),
+        #content_box img:nth-child(7),
+        #content_box img:nth-child(9){
+            margin-left: 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <!-- 数码时钟 -->
+    <div id="content_box">
+    </div>
+
+</body>
+</html>
+<script>
+    window.onload = function(){
+
+       //得到元素
+       var content_box = document.getElementById('content_box');
+       //开始显示时间
+        time_run();
+        var timer = null;
+        function time_run(){
+            clearTimeout(timer);
+             //清楚原来的内容
+             content_box.innerHTML = "";
+            //得到时间
+            var myDate= new Date();
+            var oYear = myDate.getFullYear();
+            var oMonth = myDate.getMonth();
+            var oDate = myDate.getDate();
+            var oHours = myDate.getHours();
+            var oMinutes = myDate.getMinutes();
+            var oSeconds = myDate.getSeconds();
+                //拼接成日期
+                var myTime = oYear+"-"+addOzre(oMonth+1)+"-"+addOzre(oDate)+" "+addOzre(oHours)+":"+addOzre(oMinutes)+":"+addOzre(oSeconds);
+            
+                //截取字符串
+                var time_arr = myTime.split("");
+                console.log(time_arr)
+                for(var i = 0;i<time_arr.length;i++){
+                    //判断该元素是否是数字
+                    if(isNaN(time_arr[i])){
+                        //不是数字,添加特殊字符
+                        if(time_arr[i].trim() == ":"){
+                            //添加双引号图片
+                            content_box.innerHTML += '<img src="./img/second1.png">';
+                        }else{
+                            //添加 - 符号
+                            content_box.innerHTML += " - ";
+                        }
+                    
+
+                    }else{
+                        // console.log(time_arr[i])
+                        //是数字或者 " "
+                        if(time_arr[i].trim() == ""){
+                            //添加空格
+                            content_box.innerHTML += " ";
+                        }else{
+                            //是数字
+                            content_box.innerHTML += '<img src="./img/'+time_arr[i]+'.png">';
+                        }
+                    
+                    }
+                }
+                //设置定时器，进行递归调用该方法
+                timer = setTimeout(time_run,1000);
+        }
+       
+    }
+
+    //添加0
+    function addOzre(time){
+        if(time<10){
+            return '0'+time;
+        }
+        return time;
+    }
+</script>

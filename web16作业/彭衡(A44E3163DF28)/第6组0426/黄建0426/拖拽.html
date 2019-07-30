@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/ajax封装.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            list-style: none;
+        }
+        .item{
+            width: 550px;
+            height: 600px;
+            border: 1px solid #ccc;
+        }
+        .item li{
+            width: 25%;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        .item img{
+            width: 90%;
+        }
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 12px;
+            justify-content: space-around;
+        }
+        .box{
+            width: 300px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            position: relative;
+        }
+        .big_div{
+            display: flex;
+        }
+        .box1{
+            width: 100%;
+            height: 50px;
+            background: black;
+            font-size: 24px;
+            line-height: 50px;
+            color: wheat;
+        }
+        .box3{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+        }
+        .box3 span{
+            flex: 1;
+            display: inline;
+            background: pink;
+        }
+        .box2{
+            width: 100%;
+            height: 400px;
+            overflow: auto;
+        }
+        .box2_item{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            font-size: 14px;
+            text-align: center;
+            line-height: 50px;
+            margin: 10px 0;
+        }
+        .box2 img{
+            width: 50px;
+            height: 50px;
+        }
+        .span1{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 5px;
+        }
+        .box2_item :last-child{
+            color: red;
+        }
+        p{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div class="big_div">
+        <div class="item">
+            <ul>
+            </ul>
+        </div>
+        <div class="box">
+            <div class="box1">购物车拖拽</div>
+            <div class="box2">
+                <!-- <div class="box2_item"><img src="https://image.watsons.com.cn//upload/8b0e57e4.jpg" alt=""><span class="span1">PAPARECIPE春雨黑蜂胶面膜25g*5片</span><span>￥33*<span>2</span></span></div> -->
+            </div>
+            <div class="box3">
+                <span>结算</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = function(){
+            //获取数据
+            var oul = document.querySelector("ul");
+            var obj ={} //对象
+            var num =0  //总价
+            var allMoney = null;
+            ajax("GET","https://www.easy-mock.com/mock/5bdc1b9296a2e50a9ee1986a/example/qcs",function(data){},function(res){
+                // console.log(res)
+                var mydata = res.data.item_list
+                // console.log(mydata)
+                for(var i in mydata){
+                    var eachdata = mydata[i]
+                    // console.log(eachdata)
+                    oul.innerHTML +='<li draggable="true"><div><img src='+eachdata.over_image_url+' alt=""></div><div><span>'+eachdata.item_name+'</span></div><div>￥<p>'+eachdata.max_price/100+'</p></div></li>'
+                }
+                //拖拽
+                var ali = document.getElementsByTagName("li");
+                var op = document.querySelectorAll("p");
+                var oImg = document.querySelectorAll("ul img");
+                var ospan = document.querySelectorAll("ul span");
+                var obox = document.getElementsByClassName("box2")[0];
+                // console.log(op)
+                // console.log(ospan)
+                // console.log(ali)
+                for(var i =0;i<ali.length;i++){
+                    ali[i].index = i;
+                    ali[i].ondragstart = function(ev){
+                        var ev = ev || window.event;
+                        var text1 = oImg[this.index].src;
+                        var text2 = op[this.index].innerText;
+                        var text3 = ospan[this.index].innerText;
+                        ev.dataTransfer.setData("img",text1);
+                        ev.dataTransfer.setData("money",text2);
+                        ev.dataTransfer.setData("title",text3);
+                    }
+                }
+				//阻止默认事件
+                obox.ondragover = function(ev){
+					var ev = ev ||window.event;
+					ev.preventDefault();
+                }
+                obox.ondrop = function(ev){
+                    var ev = ev || window.event;
+                    var a = ev.dataTransfer.getData("img");
+                    var b = ev.dataTransfer.getData("money");
+                    var c = ev.dataTransfer.getData("title");
+                    console.log(obj);
+                    // 判断对象是否存在c
+                    if(!obj[c]){
+                        var op = document.createElement("p");
+                        var content = '<div class="box2_item"><img src="'+a+'" alt=""><span class="span1">'+c+'</span><span id="span_b">￥'+b+'*<span class="span_a">1</span></span></div>';
+                        op.innerHTML = content;
+                        obox.appendChild(op);
+                        obj[c]=1;
+                        console.log(obj)
+                    }else{
+                        var aspan = document.getElementsByClassName("span_a") 
+                        var ispan = document.getElementsByClassName("span1");
+                        console.log(aspan)
+                            for(var z =0;z<ispan.length;z++){
+                                if(ispan[z].innerHTML == c){
+                                    aspan[z].innerHTML = parseInt(aspan[z].innerHTML) + 1;
+                                }
+                            }
+                        }
+                        var span_all = document.querySelector(".box3 span:first-child")
+                        num += parseInt(b);
+                        span_all.innerHTML = '结算:￥' + num;
+                        }   
+            },function(fail){})
+        }
+    </script>
+</body>
+</html>

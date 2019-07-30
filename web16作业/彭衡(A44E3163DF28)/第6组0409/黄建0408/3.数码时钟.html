@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    
+    <script>
+        window.onload = function(){
+            var obox = document.getElementById("box");
+            var timer = null;
+
+            function time(){
+                var date = new Date();
+                var ohour = String(addzero(date.getHours()));
+                var omint = String(addzero(date.getMinutes()));
+                var osecd = String(addzero(date.getSeconds()));
+
+                obox.innerHTML = "<img src = '../黄建0408/img/"+ohour.charAt(0)+".png'><img src = '../黄建0408/img/"+ohour.charAt(1)+".png'><img src = '../黄建0408/img/second1.png'><img src = '../黄建0408/img/"+omint.charAt(0)+".png'><img src = '../黄建0408/img/"+omint.charAt(1)+".png'><img src = '../黄建0408/img/second1.png'><img src = '../黄建0408/img/"+osecd.charAt(0)+".png'><img src = '../黄建0408/img/"+osecd.charAt(1)+".png'>"
+                clearTimeout(timer);
+                timer = setTimeout(time,1000);
+
+            }
+            time();
+            function addzero(num){
+                if(num<10){
+                    return "0"+num;
+                }else{
+                    return num;
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>

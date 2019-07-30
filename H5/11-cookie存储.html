@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button type="button">存cookie</button>
+		<button type="button">取cookie</button>
+		<button type="button">删cookie</button>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aBtn = document.querySelectorAll('button');
+		aBtn[0].onclick = function(){
+			$.cookie("name","xiaoming",{expires: 7},{path: "/"});
+		}
+		aBtn[1].onclick = function(){
+			var name = $.cookie("name");
+			console.log(name);
+		}
+		aBtn[2].onclick = function(){
+			$.removeCookie("name");
+		}
+	}
+</script>

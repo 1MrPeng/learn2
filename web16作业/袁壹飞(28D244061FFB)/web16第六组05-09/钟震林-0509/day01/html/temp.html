@@ -1,0 +1,16 @@
+<ul class="container"> 
+	{{each data.films val}}
+    <li>
+        <div class="li_left"><img src="{{val.poster}}"/></div> 
+        <div class="li_right">
+            <div class="txt">
+                <p>{{val.name}}<span>{{val.filmType.name}}</span></p>
+                <p>观众评分<span>{{val.grade}}</span></p>
+                <p>主演:{{val.actor}}</p>  
+                <p><span>{{val.nation}}</span>|<span>{{val.runtime}}</span>分钟</p> 
+            </div>  
+            <div class="btn"><span>购票</span></div > 
+        </div> 
+    </li>
+    {{/each}}
+</ul>

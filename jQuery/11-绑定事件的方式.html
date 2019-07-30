@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jquery3.4.0.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			div{
+				width: 200px;
+				height: 200px;
+				background: #ccc;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			.ready()	--准备就绪
+			
+			.on()	--绑定事件
+				参数:
+					1.事件名
+					2.触发函数
+			
+			.off()	--取消事件
+				参数:
+					如不填参数, 则取消该jq元素绑定的所有事件
+					1.事件名(取消该jq元素对应的事件)
+					2.函数名(取消该jq元素对应的事件执行的函数)
+			.one()	--仅绑定一次的事件
+				参数:
+					1.事件名
+					2.执行函数
+				
+			.trigger()	--触发某元素的对应事件执行的函数
+				参数:
+					1.事件名
+					2.执行函数的参数[可选]
+		-->
+		<div></div>
+		<button type="button">点击</button>
+		<button type="button">取消</button>
+		<button type="button">触发点击事件</button>
+	</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('div').one('click',function(){
+			console.log(666);
+		})
+		
+		$('button').eq(0).on('click',function(){
+			console.log(887);
+		})
+		
+		$('button').eq(1).on('click',function(){
+			$('button').eq(0).off('click');
+		})
+		
+		$('button').eq(2).on('click',function(){
+			$("button").eq(0).trigger("click");
+		})
+	})
+	
+	
+	//简写方式
+	$(function(){
+		
+	})
+</script>

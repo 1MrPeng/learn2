@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/animate.css"/>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			div{
+				width: 500px;
+				height: 500px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				flex-flow: wrap;
+				margin: 20px auto 0;
+				background: lightcyan;
+				transition: 20s linear;
+				animation: bounce 2s infinite;
+				box-sizing: border-box;
+			}
+			div:hover{
+				transform: rotateZ(1800deg);
+			}
+			div p{
+				width: 48%;
+				height: 48%;
+				box-sizing: border-box;
+			}
+			div p:nth-child(1){
+				background: lightskyblue;
+				border-top-right-radius: 100%;
+				border-bottom-left-radius: 80%;
+			}
+			div p:nth-child(2){
+				background: yellow;
+				border-top-left-radius: 80%;
+				border-bottom-right-radius: 100%;
+			}
+			div p:nth-child(3){
+				background: lightblue;
+				border-top-left-radius: 100%;
+				border-bottom-right-radius: 80%;
+			}
+			div p:nth-child(4){
+				background: pink;
+				border-top-right-radius: 80%;
+				border-bottom-left-radius: 100%;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+		</div>
+	</body>
+</html>

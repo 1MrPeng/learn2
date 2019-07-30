@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="兼容函数.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.btns{
+				display: flex;
+				/* font-size: 0; */
+			}
+			button{
+				border: none;
+				height: 30px;
+				margin-right: 5px;
+			}
+			.active_btn{
+				background-color: red;
+			}
+			.boxs div{
+				width: 300px;
+				border: 1px solid #ccc;
+				display: none;
+			}
+			.boxs img{
+				width: 300px;
+			}
+			.boxs .active{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="checkboxs">
+			<input id="i1" type="checkbox" name="迪丽热巴" checked="checked" /><label for="i1">迪丽热巴</label>
+			<input id="i2" type="checkbox" name="古力娜扎" checked="checked" /><label for="i2">古力娜扎</label>
+			<input id="i3" type="checkbox" name="Angelababy" checked="checked" /><label for="i3">Angelababy</label>
+			<input id="i4" type="checkbox" name="关晓彤" /><label for="i4">关晓彤</label>
+			<input id="i5" type="checkbox" name="刘亦菲" /><label for="i5">刘亦菲</label>
+		</div>
+		<div class="btns">
+			<button class="active_btn">迪丽热巴</button>
+			<button>古力娜扎</button>
+			<button>Angelababy</button>
+		</div>
+		<div class="boxs">
+			<div class="active">
+				<img src="img/迪丽热巴.jpg">
+			</div>
+			<div><img src="img/古力娜扎.jpg"></div>
+			<div><img src="img/Angelababy.jpg"></div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	window.onload = function(){
+		var aInput = document.querySelectorAll('.checkboxs input');
+		var btnList = document.querySelector(".btns");
+		var divList = document.querySelector(".boxs");
+		var aBtn;
+		var aDiv;
+		//绑定button点击事件开始
+		btnClick();
+		//绑定button点击事件结束
+
+		
+		//绑定input点击事件开始
+		for(var k=0; k<aInput.length; k++){		
+			aInput[k].onclick = function(){
+				if(this.checked){	
+					var btn = document.createElement("button");
+					btn.innerHTML = this.name;
+					
+					var div = document.createElement("div");
+					var img = document.createElement('img');
+					img.src = 'img/'+this.name+'.jpg';
+					img['width'] = '300px';
+					div.appendChild(img);
+					
+					if(btnList.children.length == 0){
+						btn.className = "active_btn";
+						div.className = "active";
+					}
+					
+					btnList.appendChild(btn);
+					divList.appendChild(div);
+					
+					
+					btnClick();	
+				
+				}else{
+					for(var p=0; p<aBtn.length; p++){
+					
+						if(aBtn[p].innerHTML == this.name && aBtn[p].className == "active_btn" && nextNode(aBtn[p])){
+							
+							nextNode(aBtn[p]).className = "active_btn";
+							nextNode(aDiv[p]).className = "active";
+							
+							btnList.removeChild(aBtn[p]);
+							divList.removeChild(aDiv[p]);
+							
+						}else if(aBtn[p].innerHTML == this.name && aBtn[p].className == "active_btn"){
+							let aBtn1 = document.querySelectorAll('.btns button');
+							let aDiv1 = document.querySelectorAll('.boxs div');
+							
+							aBtn1[0].className = "active_btn";
+							aDiv1[0].className = "active";
+							
+							btnList.removeChild(aBtn[p]);
+							divList.removeChild(aDiv[p]);
+							
+						
+						}else if(aBtn[p].innerHTML == this.name){
+							
+							btnList.removeChild(aBtn[p]);
+							divList.removeChild(aDiv[p]);
+						
+						}
+						
+					}
+					
+				
+				}
+			}
+		}
+		//绑定input点击事件结束
+		
+		function btnClick(){
+			aBtn = document.querySelectorAll('.btns button');
+			aDiv = document.querySelectorAll('.boxs div');
+			for(i=0;i<aBtn.length;i++){
+				aBtn[i].index = i;
+				aBtn[i].onclick = function(){
+					resetCSS();
+					activeCSS(this.index);
+				}
+			}
+		}
+		
+		function resetCSS(){
+			for(i=0;i<aBtn.length;i++){
+				aBtn[i].classList.remove('active_btn');
+				aDiv[i].classList.remove('active');
+			}
+		}
+		function activeCSS(index){
+			for(var j=0; j<aBtn.length; j++){
+				aBtn[index].classList.add("active_btn");
+				aDiv[index].classList.add("active");
+			}
+		}
+		
+	}
+</script>

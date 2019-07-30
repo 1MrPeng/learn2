@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业三</title>
+	</head>
+	<body>
+		<div class="content">
+			<div></div>
+		</div>
+		<script>
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName("div")[0];
+				var timer = null
+				function getTimer(){
+					clearInterval(timer);
+					var myDate = new Date();
+					var oHours = myDate.getHours();
+					var oMinute = myDate.getMinutes();
+					var oSecond = myDate.getSeconds();
+					oDiv.innerHTML = addZero(oHour)+":"+addZero(oMinute)+":"+addZero(oSecond);
+				}
+			}
+		</script>
+	</body>
+</html>
