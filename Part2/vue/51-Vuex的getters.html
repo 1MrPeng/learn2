@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+<body>
+    <!-- 
+        1.通过this.$store.getters.处理方法名   去处理并返回state里面的数据，但不会改变state的数据
+
+        2.可以借助mapGetters辅助函数进行获取
+            let {mapState,mapGetters} = Vuex  //从vuex中导出mapState辅助函数
+            在computed里面写：
+            ...mapGetters({myArr: 'dealArr'}),   //别名写法
+            // ...mapGetters(['dealArr'])       //同名写法
+
+            
+     -->
+    <div id="app">
+        <child2></child2>
+    </div>
+
+</body>
+</html>
+<script>
+    let {mapState,mapGetters} = Vuex  //从vuex中导出mapState辅助函数
+    const store = new Vuex.Store({
+        state: {
+            msg: '共享状态',
+            info: '恭喜发财',
+            arr: [12,32,3,5,2,3,2,121,32]
+        },
+        getters: {   //对state的数据进行处理后返回,不改变state的数据
+            dealArr(state){
+                return state.arr.filter(each=>each%2==0)
+            }
+        }
+    })
+
+    let child0 ={
+        template: `
+        <div>
+            child0: {{myinfo}}{{msg}}
+            <ul>
+                <li v-for="item in dealArr">{{item}}</li>
+            </ul>
+        </div>`,
+        // computed: {
+        //     info(){
+        //         return this.$store.state.info
+        //     }
+        // }
+        data() {
+            return {
+                aaa: 'aaa'
+            }
+        },
+        computed: mapState({
+            myinfo: "info",
+            dealArr: 'arr',
+            msg(){
+                return this.aaa
+            },
+            dealArr(){
+                return this.$store.getters.dealArr
+            }
+        })
+    }
+
+    let child1 ={
+        template: `
+            <div>
+                <div>
+                    child1: {{msg}}
+                </div>
+                <child0></child0>
+            </div>
+        `,
+        computed: {
+            msg(){
+                return this.$store.state.msg
+            }
+        },
+        components: {
+            child0
+        }
+        
+    }
+    let child2 ={
+        template: `
+            <div>
+                <div>
+                    child2: 
+                   {{msg}}{{info}}
+                   <ul>
+                        <li v-for="item in myArr">{{item}}</li>
+                    </ul>
+                </div>
+                <child1></child1>
+            </div>
+        `,
+        components: {
+            child1
+        },
+        // computed: mapState([
+        //     'msg','info'
+        // ]),
+        computed: {
+            ...mapState(['msg','info']),
+            ...mapGetters({myArr: 'dealArr'}),   //别名写法
+            // ...mapGetters(['dealArr'])       //同名写法
+        }
+        // computed: {
+        //     msg(){
+        //         return this.$store.state.msg
+        //     },
+        //     info(){
+        //         return this.$store.state.info
+        //     }
+        // },
+    }
+
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+
+        },
+        components: {
+            child2
+        },
+        store
+    })
+</script>

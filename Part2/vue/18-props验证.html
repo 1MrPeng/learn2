@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        <child :list="mylist" :str="str" :info="info" :num="num" :verify="verify"></child>
+    </div>
+
+</body>
+</html>
+<template id="child">
+    <div>
+        <ul>
+            <li v-for="item in list">
+                {{item}}
+            </li>
+        </ul>
+        {{str}}
+        <p>
+          {{info}}  
+        </p>
+        <p>{{num}}</p>
+        <p>{{verify}}</p>
+    </div>
+</template>
+<script>
+    let child = {
+        template: "#child",
+        props: {
+            list: Array,
+            str: [String,Object,Number], //多个验证时，用数组形式表示
+            info: {
+                type: String,
+                required: true      //info数据为必传
+            },
+            num: {
+                type:Number,
+                default: 100    //num数据的默认值，当父组件传了值时优先使用传来的值
+            },
+            verify: {
+                type: String,
+                validator: function(val){   //validator：验证器，val是父组件传来的数据verify
+                    return ['success',"warning","fail","danger"].indexOf(val) !== -1
+                }
+            }
+        }
+    }
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            mylist: ["html","css","javaScript"],
+            str: "props验证",
+            info: "必填",
+            num: 88,
+            verify: 'success'
+        },
+        components: {
+            child
+        }
+    })
+</script>

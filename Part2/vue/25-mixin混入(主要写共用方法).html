@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        {{msg}}
+        <p>{{info}}</p>
+        {{show()}}
+        <child1></child1>
+        <child2></child2>
+    </div>
+
+</body>
+</html>
+<script>
+    //使用mixin更多的是提取出共用的方法
+    let myMixin1 = {
+        data () {
+            return {
+                msg: '我是mixin中的msg',
+                info: '我是mixin中的info',
+                show1: "混入子组件1中的show",
+                show2: "混入子组件2中的show",
+            }
+        },
+        created () {
+            console.log('我创建了')
+        },
+        methods: {
+            show(){
+                console.log('我是mixin1中的show方法')
+            }
+        },
+    }
+
+    let myMixin2 = {
+        data () {
+            return {
+                msg: '我是mixin2中的msg',
+                info: '我是mixin2中的info',
+            }
+        },
+        created () {
+            console.log('我创建了')
+        }
+    }
+    //组件的data格式需要和mixin一致
+    let child1 = {
+        template:`
+            <div>{{show1}}{{show()}}</div>
+        `,
+        mixins: [myMixin1]
+    } 
+    let child2 = {
+        template:`
+            <div>{{show2}}{{show()}}</div>
+        `,
+        mixins: [myMixin1]
+    } 
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            msg: "我是组件中的msg"
+        },
+        mixins: [myMixin2,myMixin1],    //当有多个mixin时，当数据冲突时，优先使用后引入的mixin数据
+        components: {
+            child1,child2
+        }
+    })
+</script>

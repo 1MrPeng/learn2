@@ -1,0 +1,77 @@
+<style type="text/css">
+	.nav_top{
+		height: 44px;
+		background: #F5F5F5;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #E6E6E6;
+	}
+	.nav_top>div{
+		margin-left: 15px;
+		display: flex;
+		align-items: center;
+	}
+	.nav_top>div span{
+		color: #666;
+	}
+	.nav_top>div i{
+		font-size: 12px;
+		color: #777;
+	}
+	.nav_top>input{
+		width: 280px;
+		height: 27px;
+		border: 1px solid #E6E6E6;
+		outline: 0;
+		border-radius: 5px;
+		margin: 0 15px 0 18px;
+		padding-left: 125px;
+		box-sizing: border-box;
+	}
+	.nav_bottom{
+		height: 40px;
+		background: white;
+	}
+	.nav_bottom ul{
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		margin-right: 15px;
+		border-bottom: 1px solid #E6E6E6;
+	}
+	.nav_bottom ul li{
+		flex: 1;
+		height: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-left: 1px solid #E6E6E6;
+		color: #777;
+	}
+	.nav_bottom ul li,.nav_bottom ul li i{
+		font-size: 13px;
+	}
+	.nav_content{
+		background: white;
+		padding-right: 17px;
+		overflow: hidden;
+		border-top: 1px solid #eee;
+		display: none;
+	}
+</style>
+<div class="nav_top">
+	<div>
+		<span>{{city}}</span>
+		<i class="iconfont {{icon1}}"></i>
+	</div>
+	<input type="text" placeholder="搜影院" />
+</div>
+<div class="nav_bottom">
+	<ul>
+		{{each nav val}}
+		<li>{{val}}<i class="iconfont {{icon1}}"></i></li>
+		{{/each}}
+	</ul>
+</div>
+<div class="nav_content"></div>

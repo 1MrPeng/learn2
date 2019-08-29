@@ -1,0 +1,37 @@
+<style type="text/css">
+	.businessUl1,.subwayUl1{
+		overflow: auto;
+		margin-top: 2px;
+	}
+	.businessUl1::-webkit-scrollbar,.subwayUl1::-webkit-scrollbar{
+		display: none;
+	}
+	.businessUl1 li,.subwayUl1 li{
+		height: 44px;
+		width: 108px;
+		color: #777;
+		font-size: 14px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.businessUl1 li.active,.subwayUl1 li.active{
+		background: #F5F5F5;
+	}
+	.businessUl2,.subwayUl1{
+		height: 400px;
+		background: #F5F5F5;
+		flex: 1;
+		margin-top: 2px;
+	}
+</style>
+
+<ul class="businessUl1">
+	{{each district.subItems lis}}
+	<li>{{lis.name}}({{lis.count}})</li>
+	{{/each}}
+</ul>
+<ul class="businessUl2"></ul>

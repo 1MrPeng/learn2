@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        div{
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        
+     -->
+    <div id="app">
+        <child2></child2>
+    </div>
+
+</body>
+</html>
+<script>
+    let {mapState,mapGetters,mapMutations,mapActions} = Vuex  //从vuex中导出mapMutations辅助函数
+    const store = new Vuex.Store({
+        strict: true,   //严格模式下，在mutations里面去获取数据会报错,使用actions进行异步操作不会报错
+        state: {
+            myData: []
+        },
+        mutations: {    //处理同步操作
+            increment(state,params){   //第一个参数是state,第二个可以接收参数
+                state.num+=params.num
+            },
+            changeData(state,data){
+                state.myData = data
+            }
+        },
+        actions: {  //异步操作
+            async getData({commit}){
+                let res = await axios.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/movieInfo")
+                console.log(res.data.movieList)
+                commit("changeData",res.data.movieList)    //提交到mutations
+            }
+        }
+    })
+    let child0 ={
+        template: `
+        <div>
+            child0
+            <ul>
+                <li v-for="item in myData">{{item.nm}}</li>
+            </ul>
+        </div>`,
+        computed: {
+            ...mapState(['myData'])
+        },
+    }
+
+    let child1 ={
+        template: `
+            <div>
+                child1
+                <button @click="getData">获取数据</button>
+                <child0></child0>
+            </div>
+        `,
+        components: {
+            child0
+        },
+        methods: {
+            getData(){
+                this.$store.dispatch('getData') //后也可接参数
+            }
+            // ...mapActions(["getData"])
+        },
+    }
+    let child2 ={
+        template: `
+            <div>
+                child2
+                <child1></child1>
+            </div>
+        `,
+        components: {
+            child1
+        }
+    }
+
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+
+        },
+        components: {
+            child2
+        },
+        store
+    })
+</script>

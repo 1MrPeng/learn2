@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <style>
+        ul li{list-style: none;}
+        ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        导航守卫：
+            全局导航守卫
+                beforeEach: 全局前置守卫（所有路由变化之前，即触发）
+                    to
+                    from
+                    next()  必须要调用才能通行
+                            next()直接通行
+                            next(false)中断导航
+                            next('/login')重定向到某个组件
+                            next(error)
+                beforeResolve
+                afterEach
+                    路由变化之后，进入到目标路由之后，即触发。无next
+     -->
+    <div id="app">
+        <ul>
+            <li v-for="item in list" @click="jump(item)" :class="{'active': item.name==nowItem}">
+                {{item.name}}
+            </li>
+        </ul>
+        <router-view></router-view>
+    </div>
+
+</body>
+</html>
+
+<script>
+    let movie = {
+        name: 'movie',
+        template: `
+            <div>电影</div>
+        `
+    }
+    let mine = {
+        name: 'mine',
+        template: `
+            <div>我的</div>
+        `
+    }
+    let login = {
+        name: 'login',
+        template: `
+            <div>登录页</div>
+        `
+    }
+    const router = new VueRouter({
+        routes: [
+            {path: "/movie", name: "movie", component: movie},
+            {path: "/mine", name: "mine", component: mine},
+            {path: "/login", name: "login", component: login}
+        ]
+    })
+    //to是即将进入的目标组件，from是导航正要离开的目标组件，next()一定要调用该方法才能进入
+    router.beforeEach(function(to, from, next){
+        // console.log("从"+from.name+"来")
+        console.log("到"+to.name+"去")
+        // console.log(to)
+        // console.log(next)
+        if(to.name == 'login'){
+            next(); //允许通行
+        }else{
+            // alert("请先登录")
+            next('/login')  //指定进入到的路由，false中断导航
+        }
+        
+    })
+
+    //必须要beforeEach调用next()确认之后才触发
+    router.beforeResolve((to, from, next) => {
+        // to and from are both route objects. must call `next`.
+        console.log(to)
+        next();
+    })
+    router.afterEach((to, from) => {
+        // to and from are both route objects.
+        console.log(to.name)
+        console.log(from.name)
+    })
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            list: [
+                {name: "movie"},
+                {name: "mine"},
+                {name: "login"}
+            ],
+            nowItem: "movie"
+        },
+        methods: {
+            jump(item){
+                this.$router.push({name: item.name,params: {msg: "你好"}})
+                this.nowItem = item.name
+            }
+        },
+        router
+    })
+</script>

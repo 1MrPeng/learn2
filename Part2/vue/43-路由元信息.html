@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <style>
+        html,
+        body,
+        ul,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #tabs {
+            position: fixed;
+            bottom: 0;
+            border-top: 1px solid #dfdcdc;
+        }
+
+        .tabbar,
+        #tabs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100vw;
+            height: 50px;
+        }
+        .login{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .login input{
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        
+    -->
+    <div id="app">
+        <ul id="tabs">
+            <li v-for="item in list" @click="changeItem(item)">{{item.title}}</li>
+        </ul>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        var films = {
+            template: "<h3>电影</h3>"
+        }
+        var cinema = {
+            template: "<h3>影院</h3>"
+        }
+        var mine = {
+            template: "<h3>我的</h3>"
+        }
+        var login = {
+            template: `
+                <div class="login">
+                    <input type="text" />
+                    <input type="password" />
+                    <button @click="login">登录</button>
+                </div>
+            `,
+            data() {
+                return {
+                    redirect: ""
+                }
+            },
+            // 组件守卫(为了获取路由传递过来的参数[原先想要跳转的路由])
+            beforeRouteEnter: (to, from, next) => {
+                console.log(this)
+                this.redirect = to.params.redirect  //将传递过来的参数接收到变量中
+                next()
+            },
+            methods: {
+                login(){
+                    window.localStorage.setItem("login", true);
+                    this.$router.push(redirect)  //重定向到原来想要去的页面
+                }
+            }
+        }
+
+        // 1.定义路由表
+        var routes = [{
+                path: "/films",
+                component: films,
+                name: "films",
+                meta: {
+                    title: "电影",
+                    needLogin: true
+                }
+            },
+            {
+                path: "/cinema",
+                component: cinema,
+                name: "cinema",
+                meta: {
+                    title: "影院"
+                }
+            },
+            {
+                path: "/mine",
+                component: mine,
+                name: "mine",
+                meta: {
+                    title: "个人中心",
+                    needLogin: true
+                }
+            },
+            {
+                path: "/login",
+                component: login,
+                name: "login",
+                meta: {
+                    title: "登录界面"
+                }
+            }
+        ]
+
+        // 2.创建vueRouter实例
+        const router = new VueRouter({
+            routes
+        })
+
+        // 全局前置守卫设置网页标题
+        router.beforeEach((to,from,next)=>{
+            document.title = to.meta.title || '首页'    //如果to.meta.title为假值, 则使用"首页"
+            if(to.matched.some(recode=>recode.meta.needLogin)){ //recode.meta.needLogin条件为true时, recode满足条件, 此时, to匹配的是mine
+                // console.log(to)
+                if(window.localStorage.getItem("login")){
+                    next()
+                }else{
+                    next({name: "login", params: {redirect: to.fullPath}})  // /mine
+                }
+            }else{
+                next();
+            }
+            // if(to.meta.needLogin){  //表示访问该页面需要已登录
+            //     if(window.localStorage.getItem("login")){
+            //         next()
+            //     }else{
+            //         next({name: "login", params: {redirect: to.fullPath}})
+            //     }
+            // }else{
+            //     next()
+            // }
+        })
+
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                list: [{
+                        title: "电影",
+                        path: "/films"
+                    },
+                    {
+                        title: "影院",
+                        path: "/cinema"
+                    },
+                    {
+                        title: "我的",
+                        path: "/mine"
+                    }
+                ]
+            },
+            methods: {
+                changeItem(item) {
+                    if (this.$router.history.current.path != item.path) {
+                        // this.$router.push(item.path);
+                        this.$router.push({
+                            path: item.path
+                        });
+                    }
+                }
+            },
+            router
+        })
+    </script>
+</body>
+
+</html>

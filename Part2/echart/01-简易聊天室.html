@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body,textarea, button{margin: 0; padding: 0;}
+        #box{
+            width: 502px;
+            margin: 100px auto;
+        }
+        #contentBox{
+            width: 500px;
+            min-height: 150px;
+            max-height: 300px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
+        #contentBox::-webkit-scrollbar{
+            display: none;
+        }
+        textarea{
+            width: 500px;
+            height: 80px;
+            overflow: auto;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+        button{
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: lightblue;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: content-box;
+            color: #fff;
+        }
+        #contentBox p{
+            padding: 0 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        #contentBox .tips{
+            justify-content: center;
+            color: #ccc;
+            font-size: 12px;
+        }
+        #contentBox p span span:nth-child(2){
+            vertical-align: top;
+            display: inline-block;
+            padding: 5px 3px;
+            border-radius: 10px;
+            background-color: limegreen;
+            color: #fff;
+            max-width: 280px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        websocket之前, 聊天室的需求需要通过ajax轮询实现, 性能不好
+        
+        websocket: 双向通讯协议(客户端可以向服务器请求数据, 服务器也可以主动向客户端发送数据)
+    -->
+    <div id="box">
+        <div id="contentBox"></div>
+        <div>
+            <textarea></textarea>
+        </div>
+        <button>发送</button>
+    </div>
+
+    <script>
+        var oBox = document.querySelector("#contentBox");
+        var oSend = document.querySelector("button");
+        var oTxt = document.querySelector("textarea");
+    
+        var ws = new WebSocket("ws://192.168.2.112:4000");  //websocket的服务器地址
+
+        ws.onmessage = function(ev){    //当该连接接收到消息时触发
+            console.log(ev);
+            if(ev.data.indexOf("tips") != -1){  //xxx进来聊天室的消息
+                
+                oBox.innerHTML += "<p class='tips'>"+ev.data+"</p>";
+                
+            }else{
+                var nowTime = new Date().toLocaleTimeString();  //获取当前时间
+                oBox.innerHTML += "<p><span>"+ev.data+"</span><span>"+nowTime+"</span></p>";
+            }
+            oBox.scrollTop = oBox.scrollHeight;
+        }   
+        // 关闭连接
+        ws.onclose = function(){
+            
+            console.log("连接已关闭");
+            
+        }
+        
+        oSend.onclick = function(){
+            
+            var val = oTxt.value;
+            
+            if(val.trim() != ""){
+                
+                ws.send(val);   //通过send方法发送消息到服务器端
+                oTxt.value = "";
+                
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

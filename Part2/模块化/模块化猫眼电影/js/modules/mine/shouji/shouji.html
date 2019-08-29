@@ -1,0 +1,90 @@
+<style type="text/css">
+	.shouji_input{
+		height: 86px;
+		background: white;
+		padding-left: 10px;
+		border-bottom: 1px solid #ccc;
+	}
+	.shouji_input div{
+		height: 43px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-right: 10px;
+	}
+	.shouji_input div:nth-of-type(1){
+		border-bottom: 1px solid #e8e8e8;
+		display: flex;
+		justify-content: space-between;
+	}
+	.shouji_input div input{
+		width: 100%;
+		height: 30px;
+		border: none;
+		border-radius: 5px;
+		outline: none;
+	}
+	.shouji_input div:nth-of-type(1) input{
+		width: 60%;
+	}
+	.shouji_input div:nth-of-type(1) button{
+		height: 30px;
+		border: none;
+		width: 100px;
+		color: #999;
+		outline: none;
+	}
+	.shouji_input div:nth-of-type(2) input{
+		background: #EBEBE4;
+	}
+	.shouji_footer{
+		height: 437px;
+		background: #F8F8F8;
+		box-sizing: border-box;
+		padding: 15px 10px 0 10px;
+	}
+	.shouji_footer div input{
+		width: 100%;
+		height: 30px;
+		border: none;
+		background: #DCDCDC;
+		color: #999;
+	}
+	.shouji_footer div:nth-of-type(2){
+		margin-top: 10px;
+		display: flex;
+		justify-content: space-between;
+		font-size: 13px;
+		color: #FE8C00;
+	}
+	.shouji_footer footer{
+		font-size: 14px;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.shouji_footer footer span{
+		color: #df2d2d;
+	}
+</style>
+
+<div class="shouji_input">
+	<div>
+		<input type="text" placeholder="请输入手机号" />
+		<button type="button">获取验证码</button>
+	</div>
+	<div>
+		<input type="password" placeholder="请输入短信验证码" />
+	</div>
+</div>
+<div class="shouji_footer">
+	<div>
+		<input type="submit" value="登录" />
+	</div>
+	<div>
+		<span>立即注册</span>
+		<span>找回密码</span>
+	</div>
+	<footer>
+		@猫眼电影 客服电话 ：<span>400-670-5335</span>
+	</footer>
+</div>

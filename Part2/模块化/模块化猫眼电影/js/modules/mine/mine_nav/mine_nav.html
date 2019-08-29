@@ -1,0 +1,26 @@
+<style type="text/css">
+	.mine_nav ul{
+		display: flex;
+		height: 100%;
+		padding: 0 10px;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.mine_nav ul li{
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		padding-top: 5px;
+	}
+	.mine_nav ul li.active{
+		border-bottom: .3rem solid #FFC300;
+	}
+</style>
+
+<ul>
+	{{each li val}}
+	<li>{{val}}</li>
+	{{/each}}
+</ul>

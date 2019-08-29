@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/echartGL.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="height: 600px;"></div>
+    <script>
+
+        var myChart = echarts.init(document.getElementById("main"));
+
+        $.getJSON("./js/flight.json", function (data) {
+
+            function getAirportCoord(idx) { //获取机场坐标
+                return [data.airports[idx][3], data.airports[idx][4]];
+            }
+            var routes = data.routes.map(function (airline) {
+                return [
+                    getAirportCoord(airline[1]),
+                    getAirportCoord(airline[2])
+                ];
+            });
+
+            myChart.setOption({
+                backgroundColor: '#000',    //背景色
+                globe: {
+                    baseTexture: './img/world.topo.bathy.200401.jpg',   //底图
+                    heightTexture: './img/bathymetry_bw_composite_4k.jpg',  //高亮图
+
+                    shading: 'lambert', // lambert 着色表现光照带来的明暗
+
+                    light: {
+                        ambient: {  //全局环境光
+                            intensity: 0.5  //强度
+                        },
+                        main: {     //主光源
+                            intensity: 0.9  //强度
+                        }
+                    },
+
+                    viewControl: {  //视图控制
+                        autoRotate: true   //自动旋转
+                    }
+                },
+                series: {
+
+                    type: 'lines3D',
+
+                    coordinateSystem: 'globe',  //坐标系: 球体
+
+                    blendMode: 'lighter',   //混合模式
+
+                    lineStyle: {
+                        width: 1,
+                        color: 'rgb(50, 50, 150)',
+                        opacity: 0.1
+                    },
+
+                    data: routes
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        <child :list="mylist">
+            <template v-slot:header>    <!--v-slot:header注意使用:绑定插槽的名字-->
+                <!--如果父组件的数据不需要在子组件中进行其他操作，仅仅是渲染到页面上可以使用插槽-->
+                <p>{{info}}</p> 
+            </template>
+            <!-- 通过v-slot:footer="slotProps"，所有自定义属性组成一个obj，obj名字为slotProps -->
+            <template v-slot:footer="slotProps">
+                <footer>
+                    {{footer}} 
+                    <p>{{slotProps.data}}</p>
+                    
+                    <p>{{slotProps.msg}}</p>
+                </footer>
+            </template>
+            <template v-slot:middle>
+                <p>{{middle}}</p>
+            </template>
+        </child>
+    </div>
+</body>
+</html>
+<template id="child">
+    <div>
+        <!-- 匿名插槽 -->
+        <slot name="header"></slot>
+        <ul>
+            <li v-for="item in list">
+                {{item}}
+                <slot name="middle"></slot>
+            </li>
+        </ul>
+        <!-- 可以通过(:自定义属性名="数据名")绑定子组件的数据
+            这里的写法类似于不需要先定义数据名的props传值
+        -->
+        <slot name="footer" :data="data" :msg="msg"></slot>
+        
+    </div>
+</template>
+<script>
+    let child = {
+        template: "#child",
+        props: {
+            list: Array
+        },
+        data() {
+            return {
+                data: '我是子组件的数据',
+                msg: '我是子组件的msg'
+            }
+        },
+    }
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            mylist: ["html","css","javaScript"],
+            info: "我是name为header的插槽内容",
+            footer: "我是name为footer的插槽内容",
+            middle: "middle"
+        },
+        components: {
+            child
+        }
+    })
+</script>

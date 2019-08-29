@@ -1,0 +1,230 @@
+body{
+    color: #333;
+    background: #ccc;
+}
+#container{
+    width: 1000px;
+    height: 600px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+header{
+    height: 80px;
+    background: #26BCD5;
+    display: flex;
+    justify-content: space-between
+}
+.logo{
+    width: 200px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+}
+header ul{
+    flex: 1;
+    display: flex;
+}
+header ul li{
+    flex: 1;
+    color: #eff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 80px;
+    cursor: pointer;
+}
+header ul li:hover{
+    background: #ff6700;
+}
+#content{
+    flex: 1;
+}
+#content>div{
+    height: 500px;
+    background: white;
+}
+#index{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+#index .index_left{
+    width: 200px;
+    height: 100%;
+    background: #EEF1F8; 
+}
+#index .index_left>div{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+    user-select: none;
+}
+#index .index_left>ul li{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+#index .index_left>ul li:hover{
+    background: pink;
+}
+#index .index_right{
+    flex: 1;
+    padding: 10px;
+    background: white;
+}
+
+.index_right>div>p:nth-child(1){
+    padding-bottom: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+.index_right>div>p:nth-child(2) button{
+    border: none;
+    background: #1C7887;
+    color: #eee;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.index_right>div>p:nth-child(2) button:hover{
+    background: #26BCD5;
+}
+.index_right table{
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+.th{
+    border: 1px solid #ccc;
+    padding: 5px 0;
+    background: #F7F7F7;
+    font-weight: 100;
+    font-size: 16px;
+}
+.index_right table tr{
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 13px;
+    border-bottom: 1px solid #ccc;
+}
+.index_right table tr td{
+    max-width: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.index_right table tr td span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.handle{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.handle button{
+    margin-right: 5px;
+}
+.handle p{
+    font-size: 13px;
+}
+.position2{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+}
+.position{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+    
+}
+.position p{
+    width: 253px;
+    display: flex;
+    justify-content: space-between;
+}
+.position p input,.position p select{
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.position p:nth-of-type(3){
+    justify-content: flex-start;
+}
+.position p:nth-of-type(3) select{
+    width: 173px;
+}
+.position p:nth-of-type(5){
+    width: 200px;
+}
+.position p:nth-of-type(5) button{
+    cursor: pointer;
+    background: #1C7887;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 3px;
+    color: #eee;
+}
+.position p:nth-of-type(5) button:hover{
+    background: #26BCD5;
+}
+
+.position2 p{
+    width: 253px;
+    display: flex;
+    justify-content: space-between;
+}
+.position2 p input,.position p select{
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.position2 p:nth-of-type(3){
+    justify-content: flex-start;
+}
+.position2 p:nth-of-type(3) select{
+    width: 173px;
+}
+.position2 p:nth-of-type(5){
+    width: 200px;
+}
+.position2 p:nth-of-type(5) button{
+    cursor: pointer;
+    background: #1C7887;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 3px;
+    color: #eee;
+}
+.position2 p:nth-of-type(5) button:hover{
+    background: #26BCD5;
+}

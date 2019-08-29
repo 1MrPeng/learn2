@@ -1,0 +1,63 @@
+<div id="content">
+	{{each xiaomi val}}
+	<img src="{{bannerImg}}" width="100%" >
+	<div class="content-top">
+		<h3>{{val.name}}</h3>
+		<ul>
+			{{each val.tabs tab}}
+			<li>{{tab}}</li>
+			{{/each}}
+		</ul>
+	</div>
+	<div class="content_bottom">
+		<div class="content-left">
+			<ul>
+				{{each val.prom prom}}
+				<li>
+					<img src="{{prom.imgUrl}}" >
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+		<div class="content-right">
+			<ul>
+				{{each val.products products}}
+				<li>
+					<img src="{{products.img}}" title="{{products.title}}" >
+					<p>{{products.title}}</p>
+					<p>{{products.intro}}</p>
+					<p><span>{{products.marketPrice}}元</span> <span>{{products.maxPrice? products.maxPrice+'元' : ''}}</span></p>
+					{{if products.onsale}}
+					<span class="tag tag1">{{products.onsale}}</span>
+					{{else}}
+					<span></span>
+					{{/if}}
+					<div id="huaRed">
+						<p>{{products.hotComment.info}}</p>
+						<p>来自{{products.hotComment.from}}的评价</p>
+					</div>
+				</li>
+				{{/each}}
+				
+				<li class="morePro">
+					<div>
+						<div>
+							<p>米家电烤箱</p>
+							<span>299元</span>
+						</div>
+						<img src="{{val.moreProduct.img}}" style="width: 80px;height: 80px;"  >
+					</div>
+					<div>
+						<div>
+							<p>浏览更多</p>
+							<p>热门</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	{{/each}}
+</div>
+

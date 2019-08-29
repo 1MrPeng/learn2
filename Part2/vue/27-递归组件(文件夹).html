@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="./js/digui.js"></script>
+    <style>
+        ul li{list-style: none;}
+        .fa-folder-open,.fa-folder{
+            color: #F5E78D;
+        }
+        .fa-file{
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        <ul>
+           <child :mydata="item" v-for="item in mysource" :key="item.id"></child> 
+        </ul>
+        
+    </div>
+
+</body>
+</html>
+<template id="temp">
+    <li>
+        <div @click="open=!open">
+
+            <i v-if="mydata.childTreeNode" :class="['fa',open? 'fa-folder-open' : 'fa-folder']"></i>
+            <i v-else class="fa fa-file"></i>
+            {{mydata.data.menuName}}
+        </div>
+        
+
+        <ul v-show="open">
+            <child :mydata="each" v-for="each in mydata.childTreeNode" :key="each.id"></child> 
+        </ul>
+    </li>
+</template>
+<script>
+    let child = {
+        template: "#temp",
+        name: "child",
+        props: ["mydata"],
+        data () {
+            return {
+                open: false
+            }
+        }
+    }
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            mysource: data
+        },
+        components: {
+            child
+        }
+    })
+</script>

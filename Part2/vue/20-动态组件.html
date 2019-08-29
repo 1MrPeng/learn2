@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        当绑定动态组件时，组件会每次创建和销毁，性能较差，通过keep-alive进行缓存
+        keep-alive可以通过activated监听激活状态的组件
+     -->
+    <div id="app">
+        <button :class="item.name==title.name? 'active': ''" v-for="item in list" @click="title=item">{{item.name}}</button>
+        <div>   
+            <!-- 用来挂载子组件的 -->
+            <!-- <child1></child1>
+            <child2></child2> -->
+            
+            <!-- 保持活着状态不被销毁 -->
+            <keep-alive>
+                <component :is="change" :title="title"></component>
+            </keep-alive>
+            
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    let child1 = {
+        props: ['title'],
+        template: `
+            <div>
+                {{title.content}}
+            </div>
+        `,
+        created () {
+            console.log("组件1创建了")
+        },
+        destroyed() {
+            console.log('组件1销毁')
+        },
+        activated () {  //给keep-alive时，才能监听激活状态函数
+            console.log('组件1激活了')
+        },
+        deactivated() {
+            console.log('组件1失活了')
+        },
+    }
+    let child2= {
+        props: ['title'],
+        template: `
+            <div>
+                {{title.content}}
+            </div>
+        `,
+        created () {
+            console.log("组件2创建了")
+        },
+        destroyed() {
+            console.log('组件2销毁')
+        },
+        activated () {
+            console.log('组件2激活了')
+        },
+        deactivated() {
+            console.log('组件2失活了')
+        },
+
+    }
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            list: [
+                {name: "tab1",content: "我是tab1"},
+                {name: "tab2",content: "我是tab2"}
+            ],
+            title: ""
+        },
+        created(){
+            this.title = this.list[0]
+        },
+        computed: {
+            change(){
+                if(this.title.name=='tab1'){
+                    return 'child1'
+                }else if(this.title.name=='tab2'){
+                    return 'child2'
+                }
+            }   
+        },
+        components: {
+            child1,child2
+        }
+    })
+</script>

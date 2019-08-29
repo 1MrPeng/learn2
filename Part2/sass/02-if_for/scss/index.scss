@@ -1,0 +1,27 @@
+@charset "utf-8";
+$bg1: red;
+$bg2: lightblue;
+$bg3: yellow;
+$width: 400px;
+
+div{
+    width: $width;
+    height: 300px;
+    @if $width>500{
+        background: $bg1;
+    }@else if $width>300 and $width<=500{
+        background: $bg2;
+    }@else{
+        background: $bg3;
+    }
+}
+
+ul{
+    li{
+       @for $i from 1 to 6{
+           &:nth-of-type(#{$i}){
+               border-bottom: 2px*$i solid rgb(20*$i,30*$i,10*$i)
+           }
+       }
+    }
+}

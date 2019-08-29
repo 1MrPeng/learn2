@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <link rel="stylesheet" href="./css/Backstage_management.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <script src="./js/component.js"></script>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="container">
+        <header>
+            <div class="logo">{{logo}}</div>
+            <ul>
+                <li v-for="item in list" @click="change(item.id)">{{item.name}}</li>
+            </ul>
+        </header>
+
+        <div id="content">
+            <router-view></router-view>
+        </div>
+    </div>
+
+</body>
+</html>
+<template id="index">
+    <div id="index">
+        <div class="index_left">
+            <div>{{name}}</div>
+            <ul>
+                <li v-for="item in list" @click="tip">{{item}}</li>
+            </ul>
+        </div>
+        <div class="index_right">
+            <index1></index1>
+            <index2></index2>
+        </div>
+    </div>
+</template>
+
+<template id="index2">
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <th class="th" v-for="item in list">{{item}}</th>
+                </tr>
+                <tr v-if="data.length !=0" v-for="(item,ind) in data">
+                    <td><input type="checkbox" :value="item.name" v-model="checkArr"></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.nick}}</td>
+                    <td>{{item.group}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.time}}</td>
+                    <td><span @click="modify(ind)">修改</span> | <span @click="del(item)">删除</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="position2" ref="posi2">
+                <p>用户名称：<input type="text" v-model.tirm="name"></p>
+                <p>用户呢称：<input type="text" v-model.trim="nick"></p>
+                <p>用户分组：
+                    <select name="groups" v-model="group">
+                        <option :value="item" v-for="item in groups">{{item}}</option>
+                    </select>
+                </p>
+                <p>用户描述：<input type="text" v-model.trim="description"></p>
+                <p><button @click="enter" class="enter">确定</button> <button @click="cancle" class="cancle">取消</button></p>
+            </div>
+        <div v-if="data.length ==0">空空如也</div>
+        <div class="handle">
+            <button @click="checkAll">全选</button>
+            <button @click="reverseCheck">反选</button>
+            <button @click="delSelect">删除</button>
+            <p>共<span>{{allNum}}</span>条记录，已选择<span>{{selectNum}}</span>条</p>
+        </div>
+    </div>
+</template>
+<script>
+    var res = [];
+    var modifyInd = null;
+    var bus = new Vue();
+    let index1 = {
+        name: 'index1',
+        template: `
+            <div>
+                <p>用户管理</p>
+                <p>
+                    <button @click="addUser">添加用户</button>
+                </p>
+                <div class="position" ref="posi1">
+                    <p>用户名称：<input type="text" v-model.tirm="name"></p>
+                    <p>用户呢称：<input type="text" v-model.trim="nick"></p>
+                    <p>用户分组：
+                        <select name="groups" v-model="group">
+                            <option :value="item" v-for="item in groups">{{item}}</option>
+                        </select>
+                    </p>
+                    <p>用户描述：<input type="text" v-model.trim="description"></p>
+                    <p><button @click="enter" class="enter">确定</button> <button @click="cancle" class="cancle">取消</button></p>
+                </div>
+            </div>
+        `,
+        data() {
+            return {
+                groups: ["超级管理员","网站编辑组","普通用户组"],
+                name: '',
+                nick: '',
+                group: '',
+                description: ''
+            }
+        },
+        methods: {
+            addUser(){
+                this.$refs.posi1.style.display = "flex";
+                // document.querySelector('.position').style.display = "flex";
+            },
+            enter(){
+                let time = new Date().toString().replace(" GMT+0800 (中国标准时间)","").replace("Mon Aug 12 2019","")
+                // document.querySelector('.position').style.display = "none";
+                this.$refs.posi1.style.display = "none";
+                if(this.name&&this.nick&&this.group&&this.description){
+                    var obj = {name: this.name,nick: this.nick,group: this.group,description: this.description,time: time}
+                    if(res.indexOf(this.name) == -1){
+                        bus.$emit('send',obj)
+                        res.push(this.name) 
+                    }else{
+                        alert("已存在该name，请不要重复添加")
+                    }
+                }
+            },
+            cancle(){
+                // document.querySelector('.position').style.display = "none";
+                this.$refs.posi1.style.display = "none";
+            }
+        }
+    }
+    let index2 = {
+        name: 'index2',
+        template: "#index2",
+        data () {
+            return {
+                list: ["全选","用户名称","用户昵称","用户分组","用户描述","创建时间","操作"],
+                data: [
+                    {name: "孙丞浩",nick: "浩哥",group: "超级管理员",description: "",time: "永生"}
+                ],
+                allNum: 1,
+                selectNum: 0,
+                checkArr: [],
+                groups: ["超级管理员","网站编辑组","普通用户组"],
+                name: '',
+                nick: '',
+                group: '',
+                description: ''
+            }
+        },
+        mounted() {
+            bus.$on("send",res=>{
+                this.data.push(res)
+            })
+        },
+        watch: {
+            checkArr(val){
+                this.selectNum = val.length
+            },
+            data(val){
+                this.allNum = val.length;
+            }
+        },
+        methods: {
+            checkAll(){
+                this.checkArr = [];
+                this.data.forEach(val=>{
+                    this.checkArr.push(val.name)
+                })
+                
+            },
+            reverseCheck(){
+                let arr = []
+                this.data.forEach(val=>{
+                    arr.push(val.name)
+                })
+                this.checkArr.forEach(val=>{
+                    if(arr.indexOf(val) != -1){
+                        arr.splice(arr.indexOf(val),1)
+                    }
+                })
+                this.checkArr = arr;
+                
+            },
+            delSelect(){
+                if(this.checkArr.length == this.data.length){
+                    this.data = []
+                    this.selectNum = 0
+                    res = []
+                }else{
+                    this.data.forEach((val,ind)=>{
+                        if(this.checkArr.indexOf(val.name) != -1){
+                            this.data.splice(this.data.indexOf(val),1)
+                            this.checkArr.splice(this.checkArr.indexOf(val.name),1)
+                            res.splice(res.indexOf(val.name),1)
+                        }
+                    })
+                }
+            },
+            del(item){
+                this.checkArr.splice(this.checkArr.indexOf(item.name),1)
+                this.data.splice(this.data.indexOf(item),1)
+                res.splice(res.indexOf(item.name),1)
+                
+            },
+            modify(ind){
+                this.$refs.posi2.style.display = "flex";
+                // document.querySelector('.position2').style.display = "flex";
+                modifyInd = ind;
+            },
+            enter(ind){
+                if(this.name&&this.nick&&this.group&&this.description){
+                    let time = new Date().toString().replace(" GMT+0800 (中国标准时间)","").replace("Mon Aug 12 2019","")
+                    // document.querySelector('.position2').style.display = "none";
+                    this.$refs.posi2.style.display = "none";
+                    this.data[modifyInd].name = this.name;
+                    this.data[modifyInd].nick = this.nick;
+                    this.data[modifyInd].group = this.group;
+                    this.data[modifyInd].description = this.description;
+                    this.data[modifyInd].time = time;
+                    
+                }else{
+                    alert("请输入修改内容")
+                }
+
+            },
+            cancle(){
+                // document.querySelector('.position2').style.display = "none";
+                this.$refs.posi2.style.display = "none";
+            }
+            
+        },
+    }
+    let index = {
+        name: 'index',
+        template: "#index",
+        data() {
+            return {
+                name: "首页",
+                list: ["基本信息","数据配置","用户管理","分组管理","登录日志","SEO配置","菜单管理"]
+            }
+        },
+        components: {
+            index1,index2 
+        },
+        methods: {
+            tip(){
+                alert("请期待更多功能...")
+            }
+        }
+    }
+    
+    //创建路由实例
+    const router = new VueRouter({
+        //配置路由表
+        routes: [
+           //path对应的是路径，component是组件名
+            {path: '/',component: index},
+            {path: '/index',name: 'index',component: index},
+            {path: '/system',name: 'system',component: system},
+            {path: '/column',name: 'column',component: column},
+            {path: '/mycontent',name: 'mycontent',component: mycontent},
+            {path: '/model',name: 'model',component: model},
+            {path: '/plugin',name: 'plugin',component: plugin},
+            {path: '/store',name: 'store',component: store}
+        ]
+    })
+
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#container",
+        data: {      //vue实例里的数据
+            logo: 'MRCMS',
+            list: [
+                {name: '首页',id: 'index'},
+                {name: '系统',id: 'system'},
+                {name: '栏目',id: 'column'},
+                {name: '内容',id: 'mycontent'},
+                {name: '模型',id: 'model'},
+                {name: '插件',id: 'plugin'},
+                {name: '商店',id: 'store'},
+            ]
+        },
+        router,
+        methods: {
+            change(id){
+                if(id == this.$router.history.current.name){
+                    alert("你怎么这么皮！")
+                }else{
+                    this.$router.push({name: id})
+                }
+            }
+        },
+    })
+</script>

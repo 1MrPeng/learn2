@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+#box {
+  background: pink; }
+  #box h3 {
+    color: blue; }
+  #box li {
+    background: gray;
+    height: 100px;
+    color: blue;
+    border-bottom: 2px solid red;
+    margin-bottom: 10px; }
+  #box ul li:nth-of-type(3) p {
+    font-size: 50px; }
+  #box ul li:nth-of-type(3) p:first-child {
+    background: red; }
+
+#bigbox {
+  border-bottom-width: 2px;
+  border-bottom-style: soild;
+  border-bottom-color: red; }
+
+/*# sourceMappingURL=index.css.map */

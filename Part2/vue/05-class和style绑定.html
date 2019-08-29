@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <style>
+        ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 49px;
+            border-top: 1px solid #999;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .active{
+            color: #f03d37;
+        }
+        .normal{
+            color: #999;
+        }
+        .bg{
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        <ul>
+            <!-- 判断item.name == defaultActive为true时，添加active -->
+            <!-- <li :class="{'active': item.name == defaultActive}" v-for='item in list' @click="change(item)">{{item.name}}</li> -->
+
+            <!--多个class需要判断渲染条件时，用逗号隔开-->
+            <!-- <li :class="{'active': item.name == defaultActive,'bg': ind == 2}" v-for='(item,ind) in list' @click="change(item)">{{item.name}}</li> -->
+            
+            <!-- 三目运算 -->
+            <!-- <li :class="item.name == defaultActive? 'active' : 'normal'" v-for='item in list' @click="change(item)">{{item.name}}</li> -->
+
+            <!--class对象进行渲染-->
+            <!-- <li :class="classObj" v-for='item in list' @click="change(item)">{{item.name}}</li> -->
+
+            <!--数组形式进行渲染-->
+            <!-- <li :class="[activeClass,bgClass]" v-for='item in list' @click="change(item)">{{item.name}}</li> -->
+
+            <!--style渲染,多个样式用,隔开。属性有-时可以加引号，也可以使用驼峰式写法-->
+            <li :style="{color: item.name == defaultActive? 'red' : '#999',fontSize: fonts}" v-for='item in list' @click="change(item)">{{item.name}}</li>
+
+            <!-- 多重值用数组形式 -->
+            <!-- <div :style="{display: ['-webkit-box','-ms-flexbox','flex']}">111</div> -->
+        </ul>
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            list: [
+                {name: "电影"},
+                {name: "影院"},
+                {name: "我的"}
+            ],
+            defaultActive: "电影",
+
+            classObj: {
+                active: true,
+                bg: false
+            },
+            activeClass: 'active',
+            bgClass: 'bg',
+            fonts: '20px'
+        },
+        methods: {
+            change(item){
+                this.defaultActive = item.name;
+            }
+        }
+    })
+</script>

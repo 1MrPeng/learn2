@@ -1,0 +1,35 @@
+<style type="text/css">
+	.allCity{
+		padding-right: 10px;
+		width: 100%;
+	}
+	.allCity>ul{
+		display: flex;
+		height: 44px;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.allCity>ul li{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 1;
+		height: 100%;
+	}
+	.allCity>ul>li.active{
+		color: #F03D37;
+		border-bottom: 2px solid #F03D37;
+	}
+	.allCity div{
+		height: 400px;
+		display: flex;
+	}
+</style>
+<div class="allCity">
+	<ul>
+		{{each nav val}}
+		<li>{{val}}</li>
+		{{/each}}
+	</ul>
+	<div></div>
+</div>

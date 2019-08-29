@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			html,body,ul,li,p{margin: 0; padding: 0; }
+			#home h3{
+				height: 150px;
+			}
+			#home h3:nth-child(1){
+				background: lightblue;
+			}
+			#home h3:nth-child(2){
+				background: lightcoral;
+			}
+			#home h3:nth-child(3){
+				background: lightcyan;
+			}
+			#home h3:nth-child(4){
+				background: lightgoldenrodyellow;
+			}
+			#home h3:nth-child(5){
+				background: lightgray;
+			}
+			#home h3:nth-child(6){
+				background: lightpink;
+			}
+			#home h3:nth-child(7){
+				background: lightsalmon;
+			}
+			#home h3:nth-child(8){
+				background: lightseagreen;
+			}
+			#home h3:nth-child(9){
+				background: lightskyblue;
+			}
+			#home h3:nth-child(10){
+				background: lightsteelblue;
+			}
+			ul,li{list-style: none;}
+			ul{
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				height: 45px;
+				background: linen;
+				position: fixed;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			VueRouter实例中
+				scrollBehavior	滚动行为
+					to:	 路由即将进入的组件
+					from:	路由即将离开的组件
+					savedPosition:	存储过的位置(历史记录回退或前进时, 曾保存下来的位置)
+
+
+		-->
+		<div id="app">
+			<router-view></router-view>
+			<ul>
+				<li>
+					<!-- 首页 -->
+					<router-link to="/">首页</router-link>
+				</li>
+				<li>
+					<!-- 商品 -->
+					<router-link to="/goods">商品</router-link>
+				</li>
+				<li>
+					<!-- 刘亦菲 -->
+					<router-link to="/goods#liu">刘亦菲</router-link>
+				</li>
+				<li>
+					<!-- 太阳 -->
+					<router-link to="/goods#sun">太阳</router-link>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- 首页组件模板 -->
+		<template id="homeC">
+			<div id="home">
+				<h3>1</h3>
+				<h3>2</h3>
+				<h3>3</h3>
+				<h3>4</h3>
+				<h3>5</h3>
+				<h3>6</h3>
+				<h3>7</h3>
+				<h3>8</h3>
+				<h3>9</h3>
+				<h3>10</h3>
+			</div>
+		</template>
+		
+		<!-- 商品组件模板 -->
+		<template id="goodsC">
+			<div id="goods">
+				<div @click="back">
+					←
+				</div>
+				<p style="height: 200px; background: yellow;"></p>
+				<img id="liu" src="./img/liu.jpg" width="100%" />
+				<img id="sun" src="./img/sun.jpg" width="100%" />
+				<p style="height: 600px; background: yellow;"></p>
+			</div>
+		</template>
+		
+		<script type="text/javascript">
+			// 1.定义组件
+			var home = {
+				template: "#homeC", 
+				
+			};
+			var goods = {
+				template: "#goodsC",
+				methods: {
+					back(){
+						this.$router.go(-1);
+					}
+				},
+			};
+			
+			// 2.配置路由表
+			var aa = [
+				{path: "/", component: home},
+				{path: "/goods", component: goods}
+			]
+			
+			// 3.实例化VueRouter
+			var bb = new VueRouter({
+				// mode: "history",
+				routes: aa,
+				scrollBehavior (to, from, savedPosition) {	//savedPosition指的是存储的位置
+					console.log(to);
+					// return 期望滚动到哪个的位置
+					if(to.hash){	//当路由存在hash值时, 跳转到对应hash的位置
+						return {
+							selector: to.hash
+						}
+					}else if(savedPosition){	//如果保存了位置, 则跳转到相应的存储位置(需要历史记录后退或前进时触发)
+						return savedPosition;
+					}else{
+						return {x: 0, y: 0};
+					}
+				}
+			})
+			
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					
+				},
+				router: bb
+			})
+			
+		</script>
+	</body>
+</html>

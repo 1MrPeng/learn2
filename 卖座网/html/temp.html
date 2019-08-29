@@ -1,0 +1,22 @@
+{{each films val ind}}
+<li>
+	<div class="item_img"><img src="{{val.poster}}" width="100%"></div>
+	<div class="item_info">
+		<p>
+			<span>{{val.name}}</span>
+			<span>{{val.filmType.name}}</span>
+		</p>
+		{{if val.grade}}
+		<p>观众评分<span>{{val.grade}}</span></p>
+		{{else}}
+		<p> </p>
+		{{/if}}
+		<p>主演 :{{val.actorName}}</p>
+		<p>
+			<span>上映日期：</span>
+			<span>{{val.premiereAt | timestampToTime}}</span>
+		</p>
+	</div>
+	<div class="ticket">购票</div>
+</li>
+{{/each}}

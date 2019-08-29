@@ -4,6 +4,15 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script src="./js/artTemplate.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red{
+				background: red;
+				color: white;
+			}
+			.blue{
+				background: skyblue;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="container"></div>
@@ -29,12 +38,21 @@
 	{{else}}
 		<h3>请求失败</h3>
 	{{/if}}
+	
+	<button type="button" class="{{time==1? 'red' : 'blue'}}">
+		{{time==1? '购买' : '预售'}}
+	</button>
+	
+	<button type="button" style="background: {{time==1? 'red' : 'skyblue'}};color: white;">
+		{{time==1? '红色' : '蓝色'}}
+	</button>
 </script>
 <!--渲染模板-->
 <script type="text/javascript">
 	let date = {
 		status: 200,
-		readyState: 2
+		readyState: 2,
+		time: 1
 	}
 	
 	let myHtml = template('temp',date);

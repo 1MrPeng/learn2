@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <style>
+        a:active{
+            color: black;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        /* a.router-link-active{
+            color: #ff6700;
+        } */
+        #app .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        用vue.js和vue router创建单页应用(spa)
+     -->
+    <div id="app">
+        <!-- 使用 router-link 组件来导航. -->
+        <!-- 通过传入 `to` 属性指定链接. -->
+        <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+        <router-link tag="p" to="/child1" replace active-class="active">Go to child1</router-link>
+        <router-link tag="p" to="/child2" replace active-class="active">Go to child2</router-link>
+
+        <!-- 路由出口，路由配置到的组件将会渲染到这里 -->
+        <router-view></router-view>
+    </div>
+
+</body>
+</html>
+<script>
+    let child1 = {
+        name: 'child1',
+        template: `<div>child1</div>`
+    }
+    let child2 = {
+        name: 'child2',
+        template: `<div>child2</div>`
+    }
+    // 2.配置路由表
+    // const routes = [
+    //     //path对应的是路径，component是组件名
+    //     {path: '/child1',component: child1},
+    //     {path: '/child2',component: child2}
+    // ]
+    // // 3.创建router实例，然后传routes路由表配置
+    // const router = new VueRouter({
+    //     routes // (路由表名字) 相当于 routes: routes,key一定要是routes
+    // })
+
+    //合写方式
+    const router = new VueRouter({
+        //配置路由表
+        routes: [
+           //path对应的是路径，component是组件名
+            {path: '/child1',component: child1},
+            {path: '/child2',component: child2} 
+        ]
+    })
+
+    let vm = new Vue({
+        el: "#app",  
+        data: {      
+
+        },
+        components: {
+            child1,child2
+        },
+        router  //router实例名字
+    })
+</script>

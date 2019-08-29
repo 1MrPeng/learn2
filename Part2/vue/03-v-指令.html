@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!--
+        v-if:   条件判断
+        v-show: 渲染判断
+        区别：
+            v-show是通过css控制样式是否隐藏(一直存在于文档流)
+            v-if是通过条件判断是否显示在Dom树里（是否存在文档流）
+            渲染开销问题
+                当需要频繁切换显示时，使用v-show（初始开销大）
+                反之，使用v-if
+        v-for   循环
+        v-pre   保留原格式
+    -->
+    <!-- 页面容器 -->
+    <div id="app">
+        <p v-if='seen1'>true时能见，false时不可见</p>
+        <p v-show='seen2'>can you show me?</p>
+
+        <!-- 条件判断 -->
+        <input type="text" v-model="status">
+        <p v-if="status == 200">请求成功</p>
+        <p v-else-if="status == 404">页面找不到</p>
+        <p v-else-if="status == 500">服务器错误</p>
+        <p v-else>请联系管理员</p>
+        <hr>
+        <p style="color: red;">猫眼评分</p>
+        <p v-if='global == true && sc'>
+            观众评 {{sc}}
+        </p>
+        <p v-else-if='global'>
+            暂无评分
+        </p>
+        <p v-else>{{wish}}人想看</p>
+
+        <!-- v-for循环 -->
+        <!-- 数组循环 -->
+        <ul>
+            <li v-for='(item,ind) in list'>
+                {{ind}}         <!--对应的下标-->
+                {{item.name}}   <!--每一条数据-->
+            </li>
+        </ul>
+
+        <!-- 对象循环 -->
+        <ul>
+            <li v-for='(val,key,ind) in obj'>
+                {{ind}}
+                {{key}}
+                {{val == 1? '男' : val == 0? '女' : val}}
+            </li>
+        </ul>
+
+        <!-- key管理复用元素
+            key属性可以保证元素的唯一性,如果没有key, 当元素相同时, 切换只更改了元素中属性值不一致的部分,仍然保留该元素
+            有相同父元素的子元素必须有独特的 key。重复的 key 会造成渲染错误。
+        -->
+        <ul>
+            <li v-if="show">
+                <input type="text" placeholder="请输入用户名" key="userName" />
+            </li>
+            <li v-else>
+                <input type="text" placeholder="请输入手机号码" key="phone" />
+            </li>
+        </ul>
+        <button @click="show=!show">切换登录方式</button>
+
+        <!-- v-pre保留原格式,不会对插值表达式进行编译 -->
+        <p v-pre>
+            {{ show }}
+            保留
+            原
+            格
+            式
+        </p>
+
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            show: true,
+            seen1: true,
+            seen2: true,
+            status: 200,
+            global: true,
+            sc: 9.9,
+            wish: 19800,
+
+            list: [
+                {name: '小明'},
+                {name: '小花'},
+                {name: '小草'}
+            ],
+
+            obj: {
+                name: "小浩子",
+                age: 24,
+                gender: 1
+            }
+        }
+    })
+</script>

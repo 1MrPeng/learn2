@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <style>
+        .red{
+            background: red;
+            color: white;
+        }
+        .blue{
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        v-once:     单次绑定，数据更新是不会改变
+        v-on:       事件绑定，简写为@
+
+    -->
+    <!-- 页面容器 -->
+    <div id="app">
+        {{msg}}
+        <p v-html="tag"></p>
+        <p v-html="fonts"></p>
+        <p>{{num<5? num*2 : num/2}}</p>
+        <p>{{info.split("").reverse().join('')}}</p>
+        <input type="text" v-model="info">
+        <!-- 单次绑定，数据更新是不会改变 -->
+        <p v-once>{{info}}</p>
+        
+        <button @click="change">改变num值</button>
+        <p :class="num<5? 'red' : 'blue'">
+            {{num<5? '红色': '蓝色'}}
+        </p>
+
+        <!-- 动态属性值 -->
+        <input :[a]="b">
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            msg: "mustache胡子语法",
+            tag: "<span>我是span标签</span>",
+            fonts: "&lt;特&nbsp;殊字符渲染&gt;",
+            num: 4,
+            info: "反转输出",
+            a: 'value',
+            b: "password"
+        },
+        methods: {
+            change(){
+                this.num++;
+            }
+        },
+    })
+</script>

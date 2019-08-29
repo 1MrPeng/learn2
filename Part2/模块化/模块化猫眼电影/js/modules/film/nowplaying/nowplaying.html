@@ -1,0 +1,133 @@
+<style type="text/css" scoped="scoped">
+	.nowPlaying {
+		font-size: 13px;
+		color: #666;
+		margin-top: 96.5px;
+		margin: 96.5px 15px 0 15px;
+	}
+	.item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.item_right {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 10px;
+		height: 108px;
+		border-bottom: 1px solid #F0F0F0;
+	}
+	
+	.item_msg {
+		width: 100%;
+		padding: 3px 0;
+		box-sizing: border-box;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	
+	.item_msg p {
+		margin: 3px 0;
+		width: 202px;
+	}
+	
+	.item_msg p:nth-of-type(1) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 17px;
+		font-weight: 700;
+		color: #333;
+		margin-top: 9px;
+		align-items: center;
+		display: flex;
+		align-items: center;
+	}
+	.item_msg p:nth-of-type(1) span:nth-of-type(1){
+		font-size: 12px;
+		color: white;
+		background: #509FC9;
+		height: 14px;
+	}
+	.item_msg p:nth-of-type(1) span:nth-of-type(2){
+		font-size: 12px;
+		border: 1px solid #509FC9;
+		box-sizing: border-box;
+	}
+	.item_msg p:nth-of-type(3) {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.item_msg p:nth-of-type(4) {
+		margin-bottom: 10px;
+	}
+	
+	.item_msg p:nth-of-type(2) span {
+		font-size: 15px;
+		color: #faaf00;
+		font-weight: 700;
+	}
+	.ticket,.yushou {
+		font-size: 12px;
+		display: inline-block;
+		width: 47px;
+		height: 27px;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 3px;
+		margin-right: 10px;
+		padding: 0 3px;
+	}
+	.ticket{
+		background: #F03D37;
+	}
+	.yushou{
+		background: #3C9FE6;
+	}
+</style>
+
+<div class="nowPlaying">
+	{{each movieList val}}
+	<div class="item">
+		<div class="item_left">
+			<img src="{{val.img.replace('w.h','128.180')}}" width="64px">
+		</div>
+		<div class="item_right">
+			<div class="item_msg">
+				<p>{{val.nm}}
+					{{if val.version}}
+					<span>{{val.version.substring(1,3).toUpperCase()}}</span>
+					{{if val.version.substring(4,8)}}
+					<span>{{val.version.substring(4,8).toUpperCase()}}</span>
+					{{/if}}
+					{{/if}}
+				</p>
+				{{if val.globalReleased}}
+				{{if val.sc}}
+				<p>观众评 <span>{{val.sc.toFixed(1)}}</span></p>
+				{{else}}
+				<p>暂无评分</p>
+				{{/if}}
+				{{else}}
+				<p><span>{{val.wish}}</span>人想看</p>
+				{{/if}}
+				<p>主演: <span>{{val.star}}</span></p>
+				<p>{{val.showInfo}}</p>
+			</div>
+			{{if val.globalReleased == true}}
+			<span class="ticket">购票</span>
+			{{else val.globalReleased == fasle}}
+			<span class="yushou">预售</span>
+			{{/if}}
+		</div>
+	</div>
+	{{/each}}
+</div>

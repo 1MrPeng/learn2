@@ -1,0 +1,32 @@
+@charset "utf-8";
+@import './body1.scss';
+@import './body2.scss';
+
+
+@mixin borderRadius($level){
+    border-radius: $level;
+    
+}
+@mixin shape{
+    height: 100px;
+    width: 100px;
+    background: pink;
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 100px;
+}
+ul li{list-style: none;}
+ul{
+    li{
+        @include shape;
+        @for $i from 1 to 6{
+            &:nth-of-type(#{$i}){
+                @include borderRadius($i*10px);
+            }
+        }
+    }
+}
+
+div{
+    @include shape;
+}

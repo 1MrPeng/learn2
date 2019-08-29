@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/echartGL.js"></script>
+    <script src="./js/jquery.js"></script>
+    <style>
+        body{
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" style="height: 760px; margin: auto;"></div>
+
+    <script>
+        // 1.初始化
+        var mycharts = echarts.init(document.getElementById("main"));
+
+        // 2.获取数据
+        function createNodes(widthCount, heightCount) {
+            var nodes = [];
+            for (var i = 0; i < widthCount; i++) {
+                for (var j = 0; j < heightCount; j++) {
+                    nodes.push({
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                        value: 1
+                    });
+                }
+            }
+            return nodes;
+        }
+
+        function createEdges(widthCount, heightCount) {
+            var edges = [];
+            for (var i = 0; i < widthCount; i++) {
+                for (var j = 0; j < heightCount; j++) {
+                    if (i < widthCount - 1) {
+                        edges.push({
+                            source: i + j * widthCount, //0 51 100
+                            target: i + 1 + j * widthCount,
+                            value: 1
+                        });
+                    }
+                    if (j < heightCount - 1) {
+                        edges.push({
+                            source: i + j * widthCount,
+                            target: i + (j + 1) * widthCount,
+                            value: 1
+                        });
+                    }
+                }
+            }
+            return edges;
+        }
+
+        var nodes = createNodes(50, 50);
+        var edges = createEdges(50, 50);
+
+        var option = {
+            series: [{
+                type: 'graphGL',
+                nodes: nodes,
+                edges: edges,
+                itemStyle: {
+                    color: 'rgba(255,255,0,0.8)'
+                },
+                lineStyle: {
+                    color: 'rgba(0,0,255,0.8)',
+                    width: 3
+                },
+                forceAtlas2: {
+                    steps: 5,
+                    jitterTolerence: 10,
+                    edgeWeightInfluence: 4
+                }
+            }]
+        };
+
+        mycharts.setOption(option);
+    
+    </script>
+</body>
+</html>

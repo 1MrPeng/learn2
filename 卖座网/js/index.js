@@ -70,11 +70,17 @@ window.onload = function(){
 			for(j=0;j<each.actors.length;j++){
 				actorName.push(each.actors[j].name);
 			}
-			// console.log(actorName);
-			var grade = itemData[i].grade? '<p>观众评分<span>'+itemData[i].grade+'</span></p>' : '<p></p>';
-			oUl.innerHTML += '<li><div class="item_img"><img src="'+itemData[i].poster+'" width="100%" ></div><div class="item_info"><p><span>'+itemData[i].name+'</span><span>'+itemData[i].filmType.name+'</span></p>'+grade+'<p>主演 : '+actorName.join()+'</p><p><span>上映日期：</span><span>'+timestampToTime(itemData[i].premiereAt) +'</span></p></div><div class="ticket">购票</div></li>';
-			
+			itemData[i].actorName = actorName.join();
+			// var grade = itemData[i].grade? '<p>观众评分<span>'+itemData[i].grade+'</span></p>' : '<p></p>';
+			// oUl.innerHTML += '<li><div class="item_img"><img src="'+itemData[i].poster+'" width="100%" ></div><div class="item_info"><p><span>'+itemData[i].name+'</span><span>'+itemData[i].filmType.name+'</span></p>'+grade+'<p>主演 : '+actorName.join()+'</p><p><span>上映日期：</span><span>'+timestampToTime(itemData[i].premiereAt) +'</span></p></div><div class="ticket">购票</div></li>';
+			// 
 		}
+		console.log(itemData)
+		$.get("./temp.html",function(html){
+			template.defaults.imports.timestampToTime = timestampToTime;
+			let myContent = template.render(html,jsonData.data);
+			oUl.innerHTML = myContent;
+		})
 	},function(fail){
 		console.log(fail);
 	})

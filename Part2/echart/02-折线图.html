@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="./js/echarts.min.js"></script>
+  </head>
+  <body>
+    <div id="main" style="width: 600px;height:600px"></div>
+  </body>
+</html>
+<script>
+  //1.初始化图表
+  var myChart = echarts.init(document.querySelector("#main"));
+
+  //2.设定图表数据
+  var option = {
+    xAxis: {
+      type: "category", //类型（分类）
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    },
+    yAxis: {
+      type: "value" //Y轴类别下对应的值
+    },
+    series: [
+      {
+          //数据
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: "line",   //折线图
+        // type: "bar",
+        lineStyle: {
+            width: 5,
+            color: 'blue',
+            type: 'solid',
+            shadowColor: 'rgba(0, 0, 0, .5)',
+            shadowBlur: 10
+        },
+        areaStyle: {    //区域填充(如不设置则是普通折线图)
+            color: "lightblue"
+        }
+      }
+    ]
+  };
+  myChart.setOption(option);
+
+</script>

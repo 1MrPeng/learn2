@@ -1,0 +1,41 @@
+注意: 项目路径命令不要使用中文
+			
+sass环境搭建步骤:
+	1. 安装ruby和sass环境
+		a. 官网: https://www.sass.hk/install/
+		b. 下载Ruby, 添加系统环境变量
+		c. 输入命令: ruby -v(如出现版本号即安装成功, 否则需手动配置环境变量)
+			手动配置环境变量步骤:
+				A. 找到ruby安装路径, 点击进入bin目录, 复制路径; 如: C:\Ruby25-x64\bin
+				B. 计算机--属性--高级系统设置--环境变量--path编辑(使用分号与前面的path分隔开,将路径粘贴到后面,确定即可)
+		d. 由于ruby默认gem源是国外的,不够稳定,所以替换成国内的gem源
+			输入命令: gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
+			查看是否替换成功: gem sources -l, 显示为https://gems.ruby-china.com/即可
+		f. 安装sass环境
+			gem install sass
+			查看是否安装成功命令: sass -v(成功则出现版本号)
+						
+	2. 编写scss文件
+		a. 变量(选择器,属性,属性值)
+			
+		b. 嵌套(选择器嵌套,属性嵌套)
+		
+		c. 条件判断
+
+		d. 循环
+
+		e. 混合器
+
+		f. 导入
+			
+				
+	3. 将scss文件转译成css文件
+		//单文件转换命令
+		sass input.scss output.css
+
+		//单文件监听命令
+		sass --watch input.scss:output.css
+
+		//如果你有很多的sass文件的目录，你也可以告诉sass监听整个目录：
+		sass --watch app/sass:public/stylesheets
+					

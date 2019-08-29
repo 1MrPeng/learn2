@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <style>
+        a:active{
+            color: black;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        a.router-link-active{
+            color: #ff6700;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        编程式导航
+            方式1：
+            通过this.$router.push()进行导航，参数接收一个对象
+                {name: 路由名称，params: {key: value}}进行传参
+                通过在子组件this.$route.params进行接收
+                存在历史记录，可以使用this.$router.go()返回
+
+            方式2：
+                通过this.$router.replace进行替换导航，不会产生历史记录
+                不存在历史记录
+                ，不能使用this.$router.go()返回
+
+            都能使用name和path对应组件
+
+    -->
+    <div id="app">
+        <template v-for="item in list">
+            <div @click="goTo(item)">Go to {{item.name}}</div>
+            <!-- <router-link :to="{path: '/'+item.id,query: {id: item.num,msg: item.msg}}">Go to {{item.name}}</router-link> -->
+        </template>
+        
+        <router-view></router-view>
+    </div>
+
+</body>
+</html>
+<script>
+    let child1 = {
+        name: 'child1',
+        template: `
+        <div>
+            <p>{{ receive.id }}</p>
+            <p>{{ receive.name }}</p>
+            <p>{{ receive.msg }}</p>
+            
+        </div>
+        `,
+        data() {
+            return {
+                receive: {}
+            }
+        },
+        created () {
+            if(this.$route.query){
+                this.receive = this.$route.query
+            }
+        }
+    }
+    let child2 = {
+        name: 'child2',
+        template: `
+        <div>
+            <p>{{ receive.id }}</p>
+            <p>{{ receive.name }}</p>
+            <p>{{ receive.msg }}</p>
+            
+        </div>
+        `,
+        data() {
+            return {
+                receive: {}
+            }
+        },
+        created () {
+            if(this.$route.query){
+                this.receive = this.$route.query
+            }
+        }
+    }
+
+    const router = new VueRouter({
+        mode: 'history',    //如果不想使用#则改变mode为history(需要服务器启动)，默认为hash
+        //配置路由表
+        routes: [
+           //path对应的是路径，component是组件名
+           //:id指的是动态参数(url会显示参数)，需要在router-link的params中定义id这个key,默认定义的名字为id
+                
+            {path: '/child1',name: 'child1',component: child1},
+            {path: '/child2',name: 'child2',component: child2}
+        ]
+    })
+
+    let vm = new Vue({
+        el: "#app",  
+        data: {      
+            list: [
+                {name: "小明",num: 12345,id: 'child1',msg: 'hello xiaoming'},
+                {name: "小花",num: 56789,id: 'child2',msg: 'hello xiaohua'}
+            ],
+            
+        },
+        methods: {
+            goTo(item){
+                //使用replace或者push进行路由跳转，使用replace不能使用this.$router.go(-1)
+                this.$router.replace({name: item.id,query: {
+                    id: item.num,
+                    name: item.name,
+                    msg: "都要传的数据"
+                }})
+            }
+        },
+        router  //router实例名字
+    })
+</script>

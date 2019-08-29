@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <!--
+        生命周期:
+            8个钩子函数(在对应的时期, 触发)
+                beforeCreate
+                created
+                beforeMount
+                mounted
+                beforeUpdate
+                updated
+                beforeDestroy
+                destroyed
+    -->
+
+    <!-- 页面容器 -->
+    <div id="app">
+      {{ msg }}
+    </div>
+  </body>
+</html>
+<script>
+  // 实例化(参数接受一个对象)
+  let vm = new Vue({
+    // el: "#app", //挂载的dom元素
+    data: {
+      //vue实例里的数据
+      msg: "变化"
+    },
+    beforeCreate() {
+      console.log("创建之前")
+    },
+    // beforeCreate: ()=>{ //如果使用箭头函数，this指向的是window
+    //     console.log(this)
+    // },
+    async created() {
+      //一般在此获取数据
+      console.log("创建之后")
+      let res1 = await axios.get(
+        "https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/maoyancommingsoon"
+      )
+      console.log(res1)
+    },
+    beforeMount() {
+      console.log("挂载之前")
+    },
+    mounted() {
+      console.log("挂载之后")
+    },
+    beforeUpdate() {
+      console.log("更新之前")
+    },
+    updated() {
+      console.log("更新之后")
+    },
+    beforeDestroy() {
+      console.log("销毁之前")
+    },
+    destroyed() {
+      console.log("销毁之后")
+    }
+  }).$mount("#app");
+</script>

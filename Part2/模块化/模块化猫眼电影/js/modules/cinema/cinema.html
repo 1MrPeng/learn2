@@ -1,0 +1,50 @@
+<style type="text/css" scoped="scoped">
+	
+	#cinema header{
+		background: #e54847;
+		height: 51.5px;
+		color: #fff;
+		font-size: 18px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
+	.cinema_nav{
+		height: 84px;
+		position: fixed;
+		top: 51.5px;
+		left: 0;
+		right: 0;
+		z-index: 10;
+	}
+	.cinemaContent{
+		margin-top: 136.5px;
+		padding: 0 15px;
+		position: relative;
+		z-index: 1;
+	}
+	#header_mask{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0,0,0,.3);
+		display: none;
+	}
+</style>
+
+<div id="cinema">
+	<header>{{title}}
+		<div id="header_mask"></div>
+	</header>
+	<div class="cinema_nav"></div>
+	<div class="cinemaContent"></div>
+</div>

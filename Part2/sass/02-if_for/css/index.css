@@ -1,0 +1,17 @@
+div {
+  width: 400px;
+  height: 300px;
+  background: lightblue; }
+
+ul li:nth-of-type(1) {
+  border-bottom: 2px solid #141e0a; }
+ul li:nth-of-type(2) {
+  border-bottom: 4px solid #283c14; }
+ul li:nth-of-type(3) {
+  border-bottom: 6px solid #3c5a1e; }
+ul li:nth-of-type(4) {
+  border-bottom: 8px solid #507828; }
+ul li:nth-of-type(5) {
+  border-bottom: 10px solid #649632; }
+
+/*# sourceMappingURL=index.css.map */

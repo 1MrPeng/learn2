@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 1.引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <script src="./js/vuex.js"></script>
+</head>
+<body>
+    <!--
+        1.引入vuex.js
+        2.实例化Vuex.Store({
+            state:      存储所有共享状态(单一状态树)
+            mutations   更新状态的唯一途径
+        })
+        注册到vue实例中
+        3.store.commit('increment')     提交申请触发mutations里的函数去改变状态
+        4.在computed: {}    去监听num 的改变，渲染到页面上
+    -->
+    <!-- 2.页面容器 -->
+    <div id="app">
+        {{num}}
+       <child1></child1>
+    </div>
+
+    <script>
+        // vuex实例化(参数接收一个对象)
+        const store = new Vuex.Store({
+            state: {
+                num: 100
+            },
+            mutations: {    //state里的数据只能通过mutations更改
+                increment (state){
+                    state.num++
+                }
+            }
+        })
+
+        
+        var child2 = {
+            name: 'child2',
+            template: `<div @click="changeNum">孙组件(点击++): {{num}}</div>`,
+            data() {
+                return {
+                }
+            },
+            methods: {
+                changeNum(){
+                    //提交申请去触发mutations的方法进行改变
+                    store.commit('increment')
+                }
+            },
+            computed: {
+              num(){
+                  return store.state.num
+              }  
+            },
+        }
+        var child1 = {
+            template: `
+                <div>
+                    <div>子组件:{{num}}</div>
+                    <child2></child2>
+                </div>
+            `,
+            data() {
+                return {
+                }
+            },
+            computed: {
+              num(){
+                  return store.state.num
+              }  
+            },
+            components: {child2},
+        }
+        
+        var vm = new Vue({
+            el: "#app",     //挂载的dom元素
+            data: {         //Vue实例里面的数据
+            },
+            computed: {
+              num(){
+                  return store.state.num
+              }  
+            },
+            components: {child1},
+            store
+        })
+    </script>
+</body>
+</html>

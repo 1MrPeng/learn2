@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 1.引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <link rel="stylesheet" href="./css/iconfont.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/maoyan.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/cities.js"></script>
+</head>
+<body>
+    <!-- 2.页面容器 -->
+    <div id="app">
+       <tabbar></tabbar>
+       <keep-alive>
+           <router-view></router-view>
+       </keep-alive>
+    </div>
+    
+    <template id="tabbar">
+        <ul id="tabbarUl">
+            <li v-for="item in list" @click="change(item)" :class="{'active': item.title==nowItem}">
+                <i :class="`iconfont icon-${item.icon}`"></i>
+                {{item.title}}
+            </li>
+        </ul>
+    </template>
+    <template id="cities">
+        <div id="cities">
+            <div>
+                <p>热门城市</p>
+                <ul>
+                    <li v-for="item in isHot" @click="selected(item)">{{item}}</li>
+                </ul>
+            </div>
+            <div v-for="item in dealCities">
+                <p :id="item.pinyin">{{item.pinyin.toUpperCase()}}</p>
+                <ul>
+                    <li v-for="each in item.content" @click="selected(each.name)">
+                        {{each.name}}
+                    </li>
+                </ul>
+            </div>
+            
+
+            <ul class="psiCity">
+                <li v-for="item in allNum">
+                    <router-link :to=`/cities#${item}`>{{item}}</router-link>
+                </li>
+            </ul>
+        </div>
+    </template>
+    <script>
+        var mixin = {
+            methods: {
+                change(item){
+                    this.nowItem = item.title
+                    window.sessionStorage.setItem("nowItem", this.nowItem);
+                    this.$router.push({path: item.path})
+                },
+                
+            }
+        }
+
+        var cities = {
+            name: 'cities',
+            template: '#cities',
+            data () {
+                return {
+                    cities: null,
+                    allNum: [],
+                    dealCities: [],
+                    isHot: []
+                }
+            },
+            created () {
+                this.cities = data.data.cities;
+                this.cities.forEach(val=>{
+                    this.allNum.push(val.pinyin.charAt(0))
+                })
+                this.allNum = [...new Set(this.allNum)].sort()
+                var obj = {}
+                this.allNum.forEach(item=>{
+                    obj = {pinyin: item, content: []};
+                    this.dealCities.push(obj) 
+                    this.cities.forEach(each=>{
+                        if(each.pinyin.charAt(0) == item){
+                            obj.content.push(each)
+                        }
+                    })
+                })
+                console.log(this.dealCities)
+                this.cities.forEach(each=>{
+                    if(each.isHot){
+                        this.isHot.push(each.name)
+                    }
+                })
+                console.log(this.isHot)
+            },
+            methods: {
+                selected(item){
+                    this.$router.push({path: '/movie',query: {city: item}})
+                }
+            },
+        }
+
+        // 电影组件
+        var movie = {
+            template: `
+                <div>
+                    <div id="filmHeader">猫眼电影</div>
+                    <div id="tabs">
+                        <div class="city" @click="enterCities"><span v-html="city"></span><i class="iconfont icon-xiajiantou"></i></div>
+                        <ul>
+                            <li @click="change(item)" v-for="item in list" :class="{'active': item.title==nowItem}">
+                                {{item.title}}
+                            </li>
+                        </ul>
+                        <div><i class="iconfont icon-searchicon"></i></div>
+                    </div>
+                    <keep-alive>
+                        <router-view></router-view>
+                    </keep-alive>
+                </div>
+            `,
+            data(){
+                return {
+                    list: [
+                        {title: "正在热映", path: "nowPlaying"},
+                        {title: "即将上映", path: "commingSoon"},
+                    ],
+                    city: '深圳',
+                    nowItem: window.sessionStorage.getItem("nowItem") || "正在热映" //从会话缓存中获取nowItem, 如有则使用缓存,否则默认为"正在热映"
+                }
+            },
+            activated() {
+                if(this.$route.query.city){
+                    this.city = this.$route.query.city
+                }
+                
+            },
+            mixins: [mixin],
+            watch: {
+                $route(val){
+                    // console.log(val)
+                }
+            },
+            methods: {
+                enterCities(){
+                    this.$router.push({name: 'cities'})
+                }
+            }
+        }
+        // 正在热映组件
+        var nowPlaying = {
+            template: `
+                <div id="film_content">
+                    <ul>
+                        <li @click="toDetail(val.id)" v-for="val in movieList">
+                            <div class="left">
+                                <img :src="val.img.replace('w.h','128.180')" alt="">
+                            </div>
+                            <ul class="right">
+                                <li>
+                                    <div>
+                                        <span v-if="val.version || val.preShow" style="max-width: 180px;">{{val.nm}}</span>
+                                        <span v-else style="width: 200px;">{{val.nm}}</span>
+                                        <p style="display: flex; align-items: center;">
+                                            <span v-if="val.version">{{val.version.substring(1,3).toUpperCase()}}</span>
+                                                <span v-if="val.version.substr(4)">{{val.version.substr(4).toUpperCase()}}</span>
+                                            <span v-else-if="val.preShow" class="preShow">点映</span>
+                                        </p>
+                                    </div>
+                                    <p v-if="val.sc==0 && val.globalReleased">暂无评分</p>
+                                    <p v-else-if="val.sc==0"><span>{{val.wish}}</span>人想看</p>
+                                    <p v-else>观众评 <span>{{val.sc}}</span></p>
+                                    <p>主演: {{val.star}}</p>
+                                    <p>
+                                        {{val.showInfo}}
+                                    </p>
+                                </li>
+                                <li>
+                                    <span v-if="val.showst==3" class="onsale">购票</span>
+                                    <span v-else-if="val.showst==4" class="presale">预售</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            `,
+            data(){
+                return {
+                    movieList: []
+                }
+            },
+            methods: {
+                toDetail(id){
+                    this.$router.push({name: "detail", params: {id: id}})
+                }
+            },
+            async created() {
+                let res = await axios.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/movieInfo");
+                this.movieList = res.data.movieList
+            },
+        }
+        // 即将上映组件
+        var commingSoon = {
+            template: `
+                <div id="film_content">
+                    <div id="expect">
+                        <p>近期最受期待</p>
+                        <ul>
+                            <li v-for="val in coming">
+                                <div>
+                                    <img :src="val.img.replace('w.h','170.230')" alt="">
+                                    <p>{{val.wish}}人想看</p>
+                                </div>
+                                <div>
+                                    <p>{{val.nm}}</p>
+                                    <p>{{val.comingTitle.split(" ")[0]}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="main-content">
+                        <template v-for="one in commingsoon">
+                            <p>
+                                {{one.title}}
+                            </p>
+                            <ul>
+                                <li v-for="val in one.content">
+                                    <div class="left">
+                                        <img :src="val.img.replace('w.h','128.180')" alt="">
+                                    </div>
+                                    <ul class="right">
+                                        <li>
+                                            <div>
+                                                <span v-if="val.version || val.preShow" style="max-width: 180px;">{{val.nm}}</span>
+                                                <span v-else style="width: 200px;">{{val.nm}}</span>
+                                                <p style="display: flex; align-items: center;">
+                                                    <span v-if="val.version">{{val.version.substring(1,3).toUpperCase()}}</span>
+                                                        <span v-if="val.version.substr(4)">{{val.version.substr(4).toUpperCase()}}</span>
+                                                    <span v-else-if="val.preShow" class="preShow">点映</span>
+                                                </p>
+                                            </div>
+                                            <p v-if="val.sc==0 && val.globalReleased">暂无评分</p>
+                                            <p v-else-if="val.sc==0"><span>{{val.wish}}</span>人想看</p>
+                                            <p v-else>观众评 <span>{{val.sc}}</span></p>
+                                            <p>主演: {{val.star}}</p>
+                                            <p>
+                                                {{val.rt}}上映
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <span v-if="val.showst==3" class="onsale">购票</span>
+                                            <span v-else-if="val.showst==1" class="wish">想看</span>
+                                            <span v-else-if="val.showst==4" class="presale">预售</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </template>
+                    </div>
+                </div>
+            `,
+            data(){
+                return {
+                    coming: [],
+                    commingsoon: []
+                }
+            },
+            async created(){
+                let res1 = await axios.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/maoyanExpect");
+                let res2 = await axios.get("https://www.easy-mock.com/mock/5ba06ec82ee5a7654dc13dd7/example/maoyancommingsoon");
+                this.coming = res1.data.coming;
+                let arr = res2.data.coming
+                let obj = {};
+                let titles = [];    //所有不重复的comingTitle
+                let myobj = [];     //存放整理好数据的数组
+                arr.forEach(item=>{
+                    let title = item.comingTitle;
+                    titles.push(title);
+                    if(obj[title]){
+                        obj[title].push(item);
+                    }else{
+                        obj[title] = [item]
+                    }
+                })
+                let totalTitle = [...new Set(titles)];
+                totalTitle.forEach(one=>{
+                    myobj.push({"title": one, "content": obj[one]})
+                })
+                this.commingsoon = myobj;   //归类好的数据
+            }
+        }
+
+        // 影院组件
+        var cinema = {
+            template: `
+                <div>影院</div>
+            `
+        }
+        // 我的组件
+        var mine = {
+            template: `
+                <div>我的</div>
+            `
+        }
+        // 切换组件
+        var tabbar = {
+            template: '#tabbar',
+            data(){
+                return {
+                    list: [
+                        {title: "电影", icon: "dianying", path: "/movie"},
+                        {title: "影院", icon: "yingyuana", path: "/cinema"},
+                        {title: "我的", icon: "wode", path: "/mine"}
+                    ],
+                    nowItem: "电影"
+                }
+            },
+            mixins: [mixin]
+        }
+
+        var detail = {
+            template: `
+                <div>详情页面</div>
+            `
+        }
+
+        // 1.定义路由表
+        var routes = [
+            {
+                path: '/',
+                redirect: '/movie'
+            },
+            {
+                path: '/movie', 
+                component: movie,
+                meta: {
+                    title: '电影'
+                },
+                children: [ //子路由
+                    {path: '/', redirect: 'nowPlaying'},
+                    {path: 'nowPlaying', name: 'nowPlaying', component: nowPlaying},
+                    {path: 'commingSoon', name: 'commingSoon', component: commingSoon},
+                ]
+            },
+            {path: '/cinema', name: 'cinema', component: cinema,
+                meta: {
+                    title: '影院'
+                }
+            },
+            {path: '/mine', name: 'mine', component: mine,
+                meta: {
+                    title: '我的'
+                }
+            },
+            {path: '/detail/:id', name: 'detail', component: detail,
+                meta: {
+                    title: '详情页'
+                }
+            },
+            {path: '/cities',name: 'cities',component: cities}
+        ]
+
+        // 2.实例化VueRouter
+        const router = new VueRouter({
+            routes,
+            scrollBehavior (to, from, savedPosition) {	
+                if(to.hash){	
+                    return {
+                        selector: to.hash
+                    }
+                }else if(savedPosition){
+                    return savedPosition;
+                }else{
+                    return {x: 0, y: 0};
+                }
+            }
+        })
+
+        router.beforeEach((to, from, next) => {
+            document.title = to.meta.title || '电影'
+            next()
+        })
+        var vm = new Vue({
+            el: "#app",     //挂载的dom元素
+            data: {         //Vue实例里面的数据
+                
+            },
+            components: {tabbar},
+            router
+        })
+    </script>
+</body>
+</html>

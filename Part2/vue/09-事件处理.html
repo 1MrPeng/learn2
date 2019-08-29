@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <style>
+        .div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .div2{
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        .div3{
+            width: 50px;
+            height: 50px;
+            background: blue;
+            color: white;
+        }
+        .scrollBox{
+            border: 1px solid #ccc;
+            width: 100px;
+            height: 100px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div id="app">
+        <button @click="num++">点击++ {{num}}</button>
+        <button @click.once="num++">只触发一次++ {{num}}</button>
+
+        <!-- 按下鼠标滚轮触发 -->
+        <button @click.middle="num++">滚轮 {{num}}</button>
+
+        <!-- 按下鼠标右键滚轮(prevent阻止默认菜单显示) -->
+        <button @click.right.prevent="num++">鼠标右键 {{num}}</button>
+
+        <!-- 按下鼠标左键滚轮(prevent阻止默认菜单显示) -->
+        <button @click.left="num++">鼠标左键 {{num}}</button>
+
+        <!--把事件传给函数-->
+        <input type="text" @keydown="keydown($event)" placeholder="打印keyCode">
+
+        <!-- 取消冒泡事件 -->
+        <div class="div1" @click.stop="maopao('red')">
+            <div class="div2" @click.stop="maopao('yeloow')">
+                <div class="div3" @click.stop="maopao('blue')">取消冒泡</div>
+            </div>
+        </div>
+
+        <!-- 阻止默认行为(提交时的重载行为) -->
+        <form action="" @submit.prevent="submit">
+            <input type="text" name="user" value="" />
+            <input type="submit">
+        </form>
+        <!-- 文本域回车默认事件 -->
+        <textarea cols="30" rows="10" @keydown.enter.prevent="keydown($event)"></textarea>
+
+        <!-- 使用事件捕获模式 -->
+        <div class="div1" @click.capture="maopao('red')">
+            <div class="div2" @click.capture="maopao('yeloow')">
+                <div class="div3" @click.capture="maopao('blue')">捕获事件</div>
+            </div>
+        </div>
+
+        <!-- 当event.target是当前元素本身时触发 -->
+        <div class="div1" @click.self="maopao('red')">
+            <div class="div2" @click.self="maopao('yeloow')">
+                <div class="div3" @click.self="maopao('blue')">self</div>
+            </div>
+        </div>
+
+        <!-- 浏览器在执行事件时, 需要查询是否有添加preventDefault阻止默认事件, 会消耗一定的时间
+        passive说明不需要阻止默认事件, 则浏览器不需要查询是否有preventDefault, 节省事件, 减少页面卡顿 -->
+        <div class="scrollBox" v-on:scroll.passive="onScroll">
+            <p style="height: 1000px;"></p>
+        </div>
+
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <input type="text" @keydown.ctrl.exact="num++" v-model="num" />
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            num: 0
+        },
+        methods: {
+            keydown(ev){
+                console.log(ev)
+                console.log(ev.keyCode)
+            },
+            maopao(color){
+                console.log(color)
+            },
+            submit(){
+                console.log('提交了')
+            },
+            keydown(e){
+                console.log(e.keyCode)
+            },
+            onScroll(){
+                console.log(this.num++)
+            }
+        }
+    })
+</script>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <script src="./js/md5.js"></script>
+    <style>
+        ul li{list-style: none;}
+        ul{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        组件内守卫
+            beforeRouteEnter    进入组件之前触发
+            beforeRouteUpdate   组件复用时，组件更新即触发
+            beforeRouteLeave    组件要离开时，触发
+     -->
+    <div id="app">
+        <ul>
+            <li v-for="item in list" @click="jump(item)" :class="{'active': item.name==nowItem}">
+                {{item.name}}
+            </li>
+        </ul>
+        <router-view></router-view>
+    </div>
+
+</body>
+</html>
+
+<script>
+    let movie = {
+        name: 'movie',
+        template: `
+            <div>电影</div>
+        `
+    }
+    let mine = {
+        name: 'mine',
+        template: `
+            <div>
+                <div>我的</div> 
+            </div>
+        `,
+        
+    }
+    let login = {
+        name: 'login',
+        template: `
+            <div>
+                <div>登录页</div>
+                <input type="text" v-model.trim="username">
+                <input type="password" v-model.trim="pwd">
+                <button @click="login">登录</button>
+                
+            </div>
+            
+        `,
+        // beforeRouteEnter(to, from, next){
+        //     if(from.path){
+        //         this.toPath = from.path //从哪里来的路径存到toPath
+        //         next()
+        //     }else{
+        //         next('/')
+        //     }
+        // },
+        data() {
+            return {
+                username: '',
+                pwd: '',
+                toPath: '/'
+            }
+        },
+        methods: {
+            login(){
+                if(this.username&&this.pwd){
+                    let obj = {name: this.username,pwd: md5(this.pwd)};
+                    window.localStorage.setItem("info",obj) //将用户信息存入到本地存储
+                    // this.$router.push({path: this.toPath})
+                }
+            }
+        },
+    }
+    const router = new VueRouter({
+        routes: [
+            {path: "/movie", name: "movie", component: movie},
+            {
+                path: "/mine", name: "mine", component: mine,
+                beforeEnter: (to, from, next) => {
+                    //如果能在存储中找到登录信息再让它进入，否则跳转到login页面
+                    if(window.localStorage.getItem("info")){
+                        next()
+                        console.log(22)
+                    }else{
+                        next("/login")
+                    }
+                }
+            },
+            {path: "/login", name: "login", component: login}
+        ]
+    })
+    //to是即将进入的目标组件，from是导航正要离开的目标组件，next()一定要调用该方法才能进入
+    router.beforeEach(function(to, from, next){
+        // console.log("从"+from.name+"来")
+        // console.log("到"+to.name+"去")
+        // console.log(to)
+        // console.log(next)
+        // if(to.name == 'login'){
+        //     next(); //允许通行
+        // }else{
+        //     // alert("请先登录")
+        //     next('/login')  //指定进入到的路由，false中断导航
+        // }
+        next();
+        
+    })
+
+    //必须要beforeEach调用next()确认之后才触发
+    router.beforeResolve((to, from, next) => {
+        // to and from are both route objects. must call `next`.
+        // console.log(to)
+        next();
+    })
+    router.afterEach((to, from) => {
+        // to and from are both route objects.
+        // console.log(to.name)
+        // console.log(from.name)
+    })
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            list: [
+                {name: "movie"},
+                {name: "mine"},
+                {name: "login"}
+            ],
+            nowItem: "movie"
+        },
+        methods: {
+            jump(item){
+                this.$router.push({name: item.name,params: {msg: "你好",id: 1}})
+                this.nowItem = item.name
+            }
+        },
+        router
+    })
+</script>

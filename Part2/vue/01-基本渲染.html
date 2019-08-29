@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!--
+        Vue:
+            MVVM双向绑定模式:
+                M: model--数据层
+                V: view--视图层
+                VM: viewModel--中间媒介(处理层)--监听视图或数据的变化
+
+        v指定：
+            v-model:    表单绑定，渲染表单初始值
+            v-html:     标签绑定，渲染标签
+                不要对用户输入的信息进行v-html插值, 容易造成XSS攻击
+                防御: 对用户输入信息进行过滤
+            v-bind:     属性绑定，简写为:
+
+    -->
+    <!-- v-bind:     属性绑定，简写为: -->
+    <div id="app" :title="tody">
+        <p>{{info}}</p>
+        <p>{{tody}}</p>
+        <p>{{msg}}</p>
+
+        <!-- v-model:    表单绑定，渲染表单初始值 -->
+        <input type="text" v-model="msg">
+        <button>请输入</button>
+
+        <!-- v-html:     标签绑定，渲染标签 -->
+        <div v-html="span"></div>
+
+    </div>
+</body>
+</html>
+<script>
+    //实例化vue,参数接受一个对象
+    var vm = new Vue({
+        el: "#app", //挂载dom元素
+        data: {
+            info: "欢迎进入vue的世界",
+            tody: "今日七夕",
+            msg: "牛郎织女鹊桥相会",
+            span: "<span>我是span标签</span>"
+        }
+    })
+</script>

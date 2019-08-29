@@ -1,0 +1,45 @@
+<style type="text/css">
+	.tabbar{
+		height: 48px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background: white;
+	}
+	.tabbar li{
+		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 13px;
+	}
+	.tabbar li i{
+		font-size: 22px;
+		color: inherit;
+	}
+	.tabbar li.active{
+		color: #f03d37;
+	}
+	#tabbar_mask{
+		position: absolute;
+		top: -2px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0,0,0,.3);
+		display: none;
+	}
+</style>
+<div id="tabbar_mask"></div>
+<ul class="tabbar">
+	{{each list val}}
+	<li>
+		<i class="iconfont {{val.icon}}"></i>
+		{{val.name}}
+	</li>
+	{{/each}}
+</ul>

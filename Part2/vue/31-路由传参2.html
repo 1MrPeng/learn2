@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+    <style>
+        a:active{
+            color: black;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        a.router-link-active{
+            color: #ff6700;
+        }
+    </style>
+</head>
+<body>
+    <!--
+         路由传参：
+        
+        方式1：
+            :to="`/movies/${item.num}`"
+            item.num就是传递的参数
+            接收使用$route.params.参数的key
+
+            缺点：一定会将参数显示在url上(安全性低)
+
+        方式2：
+            在router-link :to="{name: 'movies',params: {id: num}}"传参
+            params:存储所有参数
+            接收使用$route.params.参数的key
+
+    -->
+    <div id="app">
+        <template v-for="item in list">
+            <router-link :to="{name: item.id,params: {id: item.num}}">Go to {{item.name}}</router-link>
+        </template>
+        
+        <router-view></router-view>
+    </div>
+
+</body>
+</html>
+<script>
+    let child1 = {
+        name: 'child1',
+        template: `
+        <div>
+            User {{$route.params.id}}
+        </div>
+        `
+    }
+    let child2 = {
+        name: 'chil2',
+        template: `
+        <div>
+            User {{$route.params.id}}
+        </div>
+        `
+    }
+
+    const router = new VueRouter({
+        //配置路由表
+        routes: [
+           //path对应的是路径，component是组件名
+           //:id指的是动态参数(url会显示参数)，需要在router-link的params中定义id这个key,默认定义的名字为id
+                
+            {path: '/child1',name: 'child1',component: child1},
+            {path: '/child2',name: 'child2',component: child2}
+        ]
+    })
+
+    let vm = new Vue({
+        el: "#app",  
+        data: {      
+            list: [
+                {name: "小明",num: 12345,id: 'child1'},
+                {name: "小花",num: 56789,id: 'child2'}
+            ]
+        },
+        router  //router实例名字
+    })
+</script>

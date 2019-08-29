@@ -1,0 +1,36 @@
+<style type="text/css">
+	.subwayUl1{
+		overflow: auto;
+		margin-top: 2px;
+	}
+	.subwayUl1::-webkit-scrollbar{
+		display: none;
+	}
+	.subwayUl1 li{
+		height: 44px;
+		width: 108px;
+		color: #777;
+		font-size: 14px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.subwayUl1 li.active{
+		background: #F5F5F5;
+	}
+	.subwayUl2{
+		height: 400px;
+		flex: 1;
+		background: #F5F5F5;
+		margin-top: 2px;
+	}
+</style>
+<ul class="subwayUl1">
+	{{each subway.subItems lis}}
+	<li>{{lis.name}}({{lis.count}})</li>
+	{{/each}}
+</ul>
+<ul class="subwayUl2"></ul>

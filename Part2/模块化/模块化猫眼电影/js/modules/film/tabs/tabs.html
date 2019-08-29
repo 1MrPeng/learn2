@@ -1,0 +1,54 @@
+<style type="text/css">
+	.tabs{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 10px;
+		height: 44px;
+	}
+	.tabs ul{
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+	.tabs ul li{
+		height: 100%;
+		padding: 0 10px;
+		display: flex;
+		align-items: center;
+		margin: 0 10px;
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.tabs ul li.active{
+		color: #e54847;
+		border-bottom: 2px solid #e54847;
+	}
+	.tabs div:nth-child(1){
+		font-size: 15px;
+	}
+	.tabs div:nth-child(1) i{
+		color: #b0b0b0;
+	}
+	.tabs div:nth-of-type(2) i{
+		color: #e54847;
+		font-size: 24px;
+		font-weight: bold;
+	}
+</style>
+<div class="tabs">
+	<div>
+		{{city}}
+		<i class="iconfont {{icon1}}"></i>
+	</div>
+	<ul>
+		{{each list val}}
+		<li>{{val}}</li>
+		{{/each}}
+	</ul>
+	<div>
+		<i class="iconfont {{icon2}}"></i>
+	</div>
+</div>

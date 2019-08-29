@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!--
+        计算属性和方法的区别:
+            计算属性(具有缓存功能, 当数据发生了变化时才会触发, 没有变化时依赖缓存的数据)--当数据量大,处理开销大时, 使用
+            方法(每次调用时, 都会触发相应的方法)
+    -->
+    <!-- 页面容器 -->
+    <div id="app">
+        <p>{{msg}}</p>
+        <button @click="reverse">反转</button>
+        <p>
+            {{reverse()}}
+            {{reverse()}}
+            {{reverse()}} 
+        </p>
+       
+        <p>
+            {{comreverse}}
+            {{comreverse}}
+            {{comreverse}}
+        </p>
+        
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            msg: "好好学习，天天向上"
+        },
+        methods: {
+            reverse(){
+                console.log(666);   //打印3次
+                let msg = this.msg.split('').reverse().join('');
+                return msg;
+            }
+        },
+        computed: { //计算属性具有缓存功能，数据无变化时不触发，依赖缓存的数据
+            comreverse(){
+                let msg = this.msg.split('').reverse().join('');
+                console.log(777);   //只打印一次
+                return msg;
+            }   
+        }
+    })
+</script>

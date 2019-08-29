@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        filters可以进行链式过滤
+     -->
+    <div id="app">
+        性别：{{gender | genderF}}
+        <p>
+           时间：{{timestamps | timestampF}} 
+        </p>
+    </div>
+
+</body>
+</html>
+<script>
+    // 实例化(参数接受一个对象)
+    let vm = new Vue({
+        el: "#app",  //挂载的dom元素
+        data: {      //vue实例里的数据
+            gender: 1,
+            timestamps: ''
+        },
+        created() {
+            //使用this的时候必须考虑this指向问题,这里使用箭头函数使this指向Vue,不使用的话指向的是window
+            let timer = ()=>{
+                // console.log(this)
+                this.timestamps = new Date().getTime()
+                setTimeout(timer,1000)
+            }
+            timer()
+        },
+        filters: {
+            genderF(gender){
+                switch (gender) {
+                    case 0:
+                        return '女'
+                        break;
+                    case 1:
+                        return '男'
+                        break; 
+                    default:
+                        break;
+                }
+            },
+            //时间戳转当前时间函数
+            timestampF(timestamp){
+                let now = new Date(timestamp)
+                let oYear = now.getFullYear()
+                let oMonth =addZero(now.getMonth()+1) 
+                let oDate = addZero(now.getDate()) 
+                let oHour = addZero(now.getHours()) 
+                let oMinute = addZero(now.getMinutes()) 
+                let oSecond = addZero(now.getSeconds()) 
+                let arr = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]
+                let oWeek = arr[now.getDay()] 
+                
+                let nowTime = `${oYear}/${oMonth}/${oDate} ${oHour}:${oMinute}:${oSecond} ${oWeek}`
+
+                function addZero(num){
+                    if(num < 10){
+                        return '0'+num
+                    }else{
+                        return num
+                    }
+                }
+                return nowTime
+            }
+        }
+    })
+    
+</script>

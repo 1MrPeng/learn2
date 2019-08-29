@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        ul li{list-style: none;}
+        #app>ul:nth-of-type(1){
+            display: flex;
+            justify-content: space-around
+        }
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        兄弟组件间传值
+            1.创建一个空的vue实例，作为中间媒介bus
+            2.在一个组件的methods中通过 bus.$emit("DIYEvent",要传的数据)
+            3.另一个组件的mounted中通过 bus.$on("DIYEvent",res=>{})接收，res就是传过来的数据
+     -->
+    <div id="app">
+        <my-child1></my-child1>
+        <my-child2></my-child2>
+    </div>
+
+</body>
+</html>
+
+<template id="temp1">
+    <button @click="show1">组件1</button>
+</template>
+
+<template id="temp2">
+        <button @click="show2">组件2</button>
+    </template>
+<script>
+    var bus = new Vue();    //中间媒介
+
+    //注册局部组件
+    var myChild1 = {
+        name: "myChild1",
+        template: "#temp1",
+        data () {
+            return {
+               info: "1的消息"
+            }
+        },
+        methods: {
+            show1(){
+                bus.$emit('send1',this.info)
+            }
+        },
+        mounted() {
+            bus.$on("send2",res=>{  //注意this指向问题
+                console.log("在组件1中打印"+res)
+            })
+        },
+
+    }
+    var myChild2 = {
+        name: "myChild2",
+        template: "#temp2",
+        data () {
+            return {
+                info: "2的消息"
+            }
+        },
+        methods: {
+            show2(){
+                bus.$emit("send2",this.info)
+            }
+        },
+        mounted () {
+            bus.$on("send1",res=>{
+                console.log("在组件2中的打印："+ res)
+            })
+        }
+
+    }
+
+    let vm = new Vue({
+        el: "#app",  
+        data: {      
+            
+        },
+        components: {
+            myChild1,myChild2
+        }
+    })
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 1.引入vue.js -->
+    <script src="./js/vue.js"></script>
+    <script src="./js/vueRouter.js"></script>
+</head>
+<body>
+    <!--
+        当跨组件传值时, 需要中间组件进行中转
+        如: 祖孙组件(爷组件--父组件--子组件)--父组件进行中转
+
+    -->
+    <!-- 2.页面容器 -->
+    <div id="app">
+        {{num}}
+       <child1 :num="num"></child1>
+    </div>
+
+    <script>
+        // 3.vue实例化(参数接收一个对象)
+        var child2 = {
+            props: ['num'],
+            name: 'child2',
+            template: `<div @click="changeNum">孙组件: {{num}}</div>`,
+            methods: {
+                changeNum(){
+                    this.num++;
+                }
+            },
+        }
+        var child1 = {
+            props: ['num'],
+            template: `
+                <div>
+                    <div>子组件:{{num}}</div>
+                    <child2 :num="num"></child2>
+                </div>
+            `,
+            components: {child2},
+        }
+        
+        var vm = new Vue({
+            el: "#app",     //挂载的dom元素
+            data: {         //Vue实例里面的数据
+                num: 100
+            },
+            components: {child1}
+        })
+    </script>
+</body>
+</html>

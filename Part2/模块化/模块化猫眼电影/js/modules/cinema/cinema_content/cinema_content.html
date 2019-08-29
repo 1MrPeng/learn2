@@ -1,0 +1,116 @@
+<style type="text/css">
+	.c_Ul li{
+		padding: 15px 0;
+		box-sizing: border-box;
+		border-bottom: 1px solid #e6e6e6;
+	}
+	.c_Ul li div:nth-of-type(1){
+		margin-bottom: 8px;
+	}
+	.c_Ul li div:nth-of-type(1) p:nth-of-type(1){
+		color: #000;
+	}
+	.c_Ul li div:nth-of-type(1) p:nth-of-type(2) span{
+		font-size: 18px;
+		color: #F03D37;
+	}
+	.c_Ul li div:nth-of-type(1) p:nth-of-type(2){
+		font-size: 12px;
+		color: #F03D37;
+	}
+	.c_Ul li div:nth-of-type(2) p{
+		font-size: 13px;
+		color: #666;
+	}
+	.c_Ul li div:nth-of-type(2) p:nth-of-type(1){
+		width: 275px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.c_Ul li div{
+		display: flex;
+		margin-top: 6px;
+	}
+	.c_Ul li div:nth-of-type(3) span{
+		font-size: 12px;
+		height: 15px;
+		border: 1px solid;
+		margin-right: 5px;
+		padding: 0 3px;
+	}
+	.allowRefund,.endorse,.hallType{
+		color: #589daf;
+		border-color: #589daf;
+	}
+	.snack,.vipTag{
+		color: #f90;
+		border-color: #f90;
+	}
+	
+	.c_Ul li div:last-child{
+		font-size: 12px;
+		margin-top: 8px;
+	}
+	.c_Ul li .last span:nth-of-type(1){
+		width: 15px;
+		height: 14px;
+		background: #57C0F8;
+		color: #eee;
+	}
+	.c_Ul li .last span{
+		color: #999;
+		margin-right: 5px;
+	}
+	#mask{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0,0,0,.3);
+		display: none;
+	}
+</style>
+<div id="mask"></div>
+<ul class="c_Ul">
+	{{each cinemas val}}
+	<li>
+		<div>
+			<p>{{val.nm}}</p>
+			<p><span>{{val.sellPrice}}</span>元起</p>
+		</div>
+		<div>
+			<p>{{val.addr}}</p>
+			<p>{{val.distance}}</p>
+		</div>
+		<div>
+			{{if val.tag.allowRefund}}
+			<span class="allowRefund">退</span>
+			{{/if}}
+			{{if val.tag.endorse}}
+			<span class="endorse">改签</span>
+			{{/if}}
+			{{if val.tag.snack}}
+			<span class="snack">小吃</span>
+			{{/if}}
+			{{if val.tag.vipTag}}
+			<span class="vipTag">{{val.tag.vipTag}}</span>
+			{{/if}}
+			
+			{{each val.tag.hallType hallType}}
+			<span class="hallType">{{hallType}}</span>
+			{{/each}}
+			
+		</div>
+		{{if val.promotion.cardPromotionTag}}
+		<div class="last">
+			<span>卡</span>
+			<span>{{val.promotion.cardPromotionTag}}</span>
+		</div>
+		{{/if}}
+	</li>
+	{{/each}}
+</ul>

@@ -1,0 +1,49 @@
+@charset "utf-8";
+$bgColor: pink;
+$fontColor: blue;  //使用全局变量
+$borderColor: red;
+$dir: bottom;
+$nth: 3;
+*{
+    margin: 0;
+    padding: 0;
+}
+#box{
+    background: $bgColor;
+    h3{
+        color: $fontColor;
+    }
+    li{
+        background: gray;
+        $height: 100px; //局部变量，只能在该选择器内部使用
+        height: $height;
+        color: $fontColor;
+        border-#{$dir}: 2px solid $borderColor;
+        margin-bottom: 10px;
+    }
+    ul{
+        li:nth-of-type(#{$nth}){
+            p{
+                font-size: 50px;
+            }
+        }
+    }
+    ul{
+        li{
+            &:nth-of-type(3){
+                p{
+                    &:first-child{
+                        background: red;
+                    }
+                }
+            }
+        }
+    }
+}
+#bigbox{
+    border-#{$dir}: {
+        width: 2px;
+        style: soild;
+        color: $borderColor;
+    };    
+}

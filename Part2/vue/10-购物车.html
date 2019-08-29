@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>购物车</title>
+    <style>
+        html,
+        body,
+        div,
+        ul,
+        li,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        body {
+            background: #f2f2f2;
+        }
+
+        #list {
+            width: 1226px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-content: space-around;
+            position: relative;
+        }
+
+        #list li {
+            width: 234px;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            position: relative;
+            cursor: pointer;
+        }
+
+        #list li>div:nth-child(1) {
+            height: 60%;
+        }
+
+        #list li>div:nth-child(2) {
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #list p {
+            user-select: none;
+        }
+
+        #list li>div:nth-child(2) p:nth-child(2) {
+            color: #ff6700;
+            margin: 10px 0 20px;
+        }
+
+        #list li>div:nth-child(2) p:nth-child(3) {
+            color: #888;
+        }
+
+        .shop {
+            width: 100px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ff6700;
+            background: #fff;
+            color: #ff6700;
+            position: absolute;
+            left: 50%;
+            margin-left: -50px;
+            opacity: 0;
+            transition: .6s all;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .shop:hover {
+            background: #ff6700;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @keyframes boxShow {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-3px);
+                box-shadow: 4px 4px 10px 5px #ddd;
+            }
+        }
+
+        #list li:hover {
+            animation: boxShow .2s 1 linear;
+            animation-fill-mode: forwards;
+            /*把动画保持在最后一帧*/
+
+        }
+
+        #list li:hover .shop {
+            display: block;
+            opacity: 1;
+            bottom: 20px;
+        }
+
+        #shoppingCart {
+            background: #fff;
+            width: 1226px;
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        .shoptitle,
+        .cartlist {
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            /* justify-content: flex-start; */
+            border-bottom: 1px solid #ccc;
+        }
+
+        .shoptitle>div,
+        .cartlist>div {
+            text-align: center;
+        }
+
+        .shoptitle>div:nth-child(1),
+        .cartlist>div:nth-child(1) {
+            width: 110px;
+        }
+
+        .shoptitle>div:nth-child(2),
+        .cartlist>div:nth-child(2) {
+            width: 380px;
+            text-align: left;
+            padding-left: 40px;
+        }
+
+        .cartlist>div:nth-child(2) img {
+            vertical-align: middle;
+        }
+
+        .shoptitle>div:nth-child(3),
+        .cartlist>div:nth-child(3) {
+            width: 158px;
+        }
+
+        .shoptitle>div:nth-child(4)~div,
+        .cartlist>div:nth-child(4)~div {
+            width: 150px;
+        }
+
+        .cartlist>div:nth-child(4) input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .cartlist>div:last-child:hover {
+            cursor: pointer;
+            color: red;
+        }
+
+        .empty {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        #total {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul id="list">
+            <li v-for="item in goodsList">
+                <div><img :src="item.imgUrl" /></div>
+                <div>
+                    <p>{{ item.name }}</p>
+                    <p>{{ item.price }}元</p>
+                    <p v-if="item.comment">{{ item.comment }}人好评</p>
+                </div>
+                <div class="shop" @click="addToShoppingCart(item)">加入购物车</div>
+            </li>
+        </ul>
+        <div id="shoppingCart">
+            <div class="shoptitle">
+                <div><input type="checkbox" v-model="isCheckAll" />全选</div>
+                <div>商品名称</div>
+                <div>单价</div>
+                <div>数量</div>
+                <div>小计</div>
+                <div>操作</div>
+            </div>
+            <template v-if="shoplist.length!=0">
+                <ul>
+                    <li class="cartlist" v-for="(item,index) in shoplist">
+                        <div>
+                            <input type="checkbox" :value="item.name" v-model="checkedArr" />
+                        </div>
+                        <div>
+                            <img :src="item.imgUrl" alt="" width="60" />
+                            {{ item.name }}
+                        </div>
+                        <div>{{ item.price }}</div>
+                        <div>
+                            <button @click="changeNum('decrease',item)" :disabled="item.num<=1">
+                                -
+                            </button>
+                            <input type="text" v-model="item.num" />
+                            <button @click="changeNum('increase',item)">+</button>
+                        </div>
+                        <div>{{ item.num * item.price }}</div>
+                        <div @click="del(item,index)">❌</div>
+                    </li>
+                </ul>
+            </template>
+            <template v-else>
+                <div class="empty">
+                    购物车为空, 赶紧选购吧
+                </div>
+            </template>
+            <div id="total">
+                <p>共{{ totalPiece }}件</p>
+                <p>合计{{ totalPrice }}元</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+<script>
+    var vm = new Vue({
+        data: {
+            goodsList: [
+                { name: "小米蓝牙耳机AirDots青春版", price: 199, num: 1, imgUrl: "https://i1.mifile.cn/a1/pms_1540520049.41531994!140x140.jpg", comment: "1.2万" },
+                { name: "小米米家行车记录仪1S", price: 349, num: 1, imgUrl: "https://i1.mifile.cn/a1/pms_1539051273.95659582!140x140.jpg", comment: "2672" },
+                { name: "米家飞行员太阳镜", price: 99, num: 1, imgUrl: "https://i1.mifile.cn/a1/pms_1556528367.85034850!140x140.jpg", comment: "81" },
+                { name: "米家互联网空调C1", price: 2299, num: 1, imgUrl: "https://i1.mifile.cn/a1/pms_1553854346.26097782!140x140.jpg", comment: "" },
+                { name: "驱蚊片", price: 29, num: 1, imgUrl: "https://i1.mifile.cn/a1/pms_1528858798.51556173!140x140.jpg", comment: "1933" },
+            ],
+            shoplist: [],
+            totalPiece: 0,
+            totalPrice: 0,
+            isCheckAll: false,
+            checkedArr: []      //选中的商品数组
+        },
+        methods: {
+            addToShoppingCart(item) {
+                if (this.shoplist.indexOf(item) != -1) {
+                    item.num++
+                    if (this.checkedArr.indexOf(item.name) != -1) {
+                        this.totalPiece++
+                        this.totalPrice += item.price
+                    }
+                } else {
+                    this.shoplist.push(item)
+                    this.isCheckAll = false
+                }
+
+            },
+            changeNum(type, item) {
+                if (type == "increase") {
+                    item.num++
+                    if (this.checkedArr.indexOf(item.name) != -1) {
+                        this.totalPiece++
+                        this.totalPrice += item.price
+                    }
+                } else {
+                    item.num--
+                    if (this.checkedArr.indexOf(item.name) != -1) {
+                        this.totalPiece--
+                        this.totalPrice -= item.price
+                    }
+
+                }
+            },
+            del(item, index) {
+                var r = confirm("您确定要删除吗？")
+                if (r) {
+                    this.shoplist.splice(index, 1)
+                    if(this.checkedArr.indexOf(item.name) != -1){
+                        this.checkedArr.splice(this.checkedArr.indexOf(item.name),1)
+                        this.totalPiece -= item.num
+                        this.totalPrice -= item.price * item.num
+                    }
+                   
+                    item.num = 1
+                }
+                if(this.checkedArr.length == this.shoplist.length){
+                    if(this.shoplist.length != 0){
+                        this.isCheckAll = true;
+                        console.log(2)
+                    }
+                    
+                }
+                if(this.shoplist.length == 0){
+                    this.isCheckAll = false;
+                    console.log(1)
+                }
+                console.log(this.isCheckAll)
+            }
+        },
+        watch: {
+            isCheckAll(val) {
+                if (val) {
+                    //先清空，在全部push，处理checkedArr下isCheckAll为true时的问题
+                    this.checkedArr = []
+                    this.totalPiece = 0
+                    this.totalPrice = 0
+                    this.shoplist.forEach(item => {
+                        this.checkedArr.push(item.name)
+                        this.totalPiece += item.num
+                        this.totalPrice += item.num * item.price
+                    })
+                } else {    //isCheckAll为false时
+                    //原先为全选时才全部清空
+                    if (this.checkedArr.length == this.shoplist.length) {
+                        this.checkedArr = []
+                        this.shoplist.forEach(item => {
+                            this.totalPiece = 0
+                            this.totalPrice = 0
+                        })
+                    } 
+
+                }
+            },
+            checkedArr(val) {
+                if (val.length != this.shoplist.length) {
+                    this.isCheckAll = false
+                    //置零
+                    this.totalPiece = 0
+                    this.totalPrice = 0
+                    this.shoplist.forEach(item => {
+                        if(this.checkedArr.indexOf(item.name) != -1){   //如果是选中的再计算
+                            this.totalPiece += item.num
+                            this.totalPrice += item.num * item.price
+                        }
+                    })
+                } else {
+                    if(val.length != 0){
+                       this.isCheckAll = true 
+                    }
+                }
+            }
+        },
+    }).$mount("#app")
+</script>

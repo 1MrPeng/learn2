@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document</title>
+		<!-- 引入vue.js -->
+		<script src="./js/vue.js"></script>
+		<script src="./js/vueRouter.js"></script>
+		<link rel="stylesheet" href="./css/iconfont.css">
+		<link rel="stylesheet" href="./css/reset.css">
+		<!-- <link rel="stylesheet" href="./css/vueMaoyan.css"> -->
+		<style>
+			#tabbarUl {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 48px;
+				display: flex;
+				justify-content: space-between;
+				border-top: .5px solid #d8d8d8;
+				background: #fff;
+			}
+
+			#tabbarUl li {
+				flex: 1;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			#tabbarUl li i {
+				font-size: 24px;
+			}
+
+			#tabs ul {
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+
+			#tabs ul li {
+				/* flex: 1; */
+				text-align: center;
+				padding: 10px 20px;
+			}
+			.active{
+				color: #ef4238;
+				border-bottom: 2px solid #ef4238;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 页面容器 -->
+		<div id="app">
+			<tabbar></tabbar>
+			<keep-alive>
+				<router-view></router-view>
+			</keep-alive>
+		</div>
+
+	</body>
+</html>
+<template id="tabbar">
+	<ul id="tabbarUl">
+		<li v-for="item in list" @click="change(item)" :class="{'active': item.title==nowItem}">
+			<i :class="`iconfont icon-${item.icon}`"></i>
+			{{item.title}}
+		</li>
+	</ul>
+</template>
+<script>
+	var mixin = {
+		methods: {
+			change(item) {
+				// if(item.path == this.$router.history.current.path){
+				//     alert("你怎么这么皮！")
+				// }else{
+				//     this.$router.push({path: item.path})
+				// }
+				this.nowItem = item.title
+				this.$router.push({
+					path: item.path
+				})
+			}
+		}
+	}
+	//电影组件
+	let movie = {
+		name: 'movie',
+		template: `
+            <div id="tabs">
+                <ul>
+                    <li @click="change(item)" v-for="item in list" :class="{'active': item.title==nowItem}">
+                        {{item.title}}    
+                    </li>    
+                </ul>
+                <router-view></router-view>
+            </div>
+        `,
+		data() {
+			return {
+				list: [{
+						title: "正在热映",
+						path: "nowPlaying"
+					},
+					{
+						title: "即将上映",
+						path: "comingSoon"
+					}
+				],
+				nowItem: "正在热映"
+			}
+		},
+		mixins: [
+			mixin
+		]
+	}
+	//正在热映
+	let nowPlaying = {
+		name: 'nowPlaying',
+		template: `
+            <div>正在热映</div>
+        `
+	}
+	//即将上映
+	let comingSoon = {
+		name: 'comingSoon',
+		template: `
+            <div>即将上映</div>
+        `
+	}
+
+	//影院组件
+	let cinema = {
+		name: 'cinema',
+		template: `
+            <div>影院</div>
+        `
+	}
+	//我的组件
+	let mine = {
+		name: 'mine',
+		template: `
+            <div>我的</div>
+        `
+	}
+	let tabbar = {
+		name: "tabbar",
+		template: "#tabbar",
+		data() {
+			return {
+				list: [{
+						title: "电影",
+						icon: "dianying",
+						path: '/movie'
+					},
+					{
+						title: "影院",
+						icon: "yingyuana",
+						path: '/cinema'
+					},
+					{
+						title: "我的",
+						icon: "wode",
+						path: '/mine'
+					},
+				],
+				nowItem: "电影"
+			}
+		},
+		mixins: [
+			mixin
+		]
+	}
+	const router = new VueRouter({
+		routes: [
+			//重定向到movie
+			{
+				path: '/',
+				redirect: '/movie',
+			},
+			{
+				path: '/movie',
+				// name: 'movie',
+				component: movie,
+				//嵌套路由children
+				children: [{
+						path: '/',
+						redirect: 'nowPlaying'
+					},
+					{
+						path: 'nowPlaying',
+						name: "nowPlaying",
+						component: nowPlaying
+					},
+					{
+						path: 'comingSoon',
+						name: "comingSoon",
+						component: comingSoon
+					}
+				]
+			},
+			{
+				path: '/cinema',
+				name: 'cinema',
+				component: cinema
+			},
+			{
+				path: '/mine',
+				name: 'mine',
+				component: mine
+			}
+		]
+	})
+	let vm = new Vue({
+		el: "#app",
+		data: {
+
+		},
+		router,
+		components: {
+			tabbar
+		}
+	})
+</script>
